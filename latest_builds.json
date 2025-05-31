@@ -1,0 +1,652 @@
+[
+  {
+    "artifacts": {
+      "images": [
+        "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+      ]
+    },
+    "createTime": "2025-05-28T11:20:54.264092579Z",
+    "failureInfo": {
+      "detail": "Build step failure: build step 1 \"gcr.io/cloud-builders/docker\" failed: step exited with non-zero status: 1",
+      "type": "USER_BUILD_STEP"
+    },
+    "finishTime": "2025-05-28T11:21:59.984129746Z",
+    "id": "9e093a35-b58c-4e45-93c2-20a0097ccd5c",
+    "images": [
+      "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+    ],
+    "logUrl": "https://console.cloud.google.com/cloud-build/builds/9e093a35-b58c-4e45-93c2-20a0097ccd5c?project=247373753072",
+    "logsBucket": "gs://247373753072.cloudbuild-logs.googleusercontent.com",
+    "name": "projects/247373753072/locations/global/builds/9e093a35-b58c-4e45-93c2-20a0097ccd5c",
+    "options": {
+      "logging": "LEGACY",
+      "pool": {}
+    },
+    "projectId": "karen-437100",
+    "queueTtl": "3600s",
+    "results": {
+      "buildStepImages": [
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        ""
+      ],
+      "buildStepOutputs": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "serviceAccount": "projects/karen-437100/serviceAccounts/247373753072-compute@developer.gserviceaccount.com",
+    "source": {
+      "storageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748431253983476",
+        "object": "source/1748431253.257425-f5e4c12b29e24ae2abdfcfa615929659.tgz"
+      }
+    },
+    "sourceProvenance": {
+      "fileHashes": {
+        "gs://karen-437100_cloudbuild/source/1748431253.257425-f5e4c12b29e24ae2abdfcfa615929659.tgz#1748431253983476": {
+          "fileHash": [
+            {
+              "type": "MD5",
+              "value": "kQDdEVv7bCvoqXWKhAI0oQ=="
+            }
+          ]
+        }
+      },
+      "resolvedStorageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748431253983476",
+        "object": "source/1748431253.257425-f5e4c12b29e24ae2abdfcfa615929659.tgz"
+      }
+    },
+    "startTime": "2025-05-28T11:20:55.090572526Z",
+    "status": "FAILURE",
+    "steps": [
+      {
+        "args": [
+          "build",
+          "-t",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "."
+        ],
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:20:58.974608271Z",
+          "startTime": "2025-05-28T11:20:58.967819930Z"
+        },
+        "status": "SUCCESS",
+        "timing": {
+          "endTime": "2025-05-28T11:21:57.788038067Z",
+          "startTime": "2025-05-28T11:20:58.967819930Z"
+        }
+      },
+      {
+        "args": [
+          "push",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+        ],
+        "exitCode": 1,
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:21:57.789570457Z",
+          "startTime": "2025-05-28T11:21:57.788113958Z"
+        },
+        "status": "FAILURE",
+        "timing": {
+          "endTime": "2025-05-28T11:21:59.351695469Z",
+          "startTime": "2025-05-28T11:21:57.788113958Z"
+        }
+      },
+      {
+        "args": [
+          "run",
+          "deploy",
+          "handyman-assistant",
+          "--image",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "--platform",
+          "managed",
+          "--region",
+          "us-central1",
+          "--allow-unauthenticated"
+        ],
+        "entrypoint": "gcloud",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+        "status": "QUEUED"
+      }
+    ],
+    "timeout": "3600s",
+    "timing": {
+      "BUILD": {
+        "endTime": "2025-05-28T11:21:59.351767738Z",
+        "startTime": "2025-05-28T11:20:58.365391507Z"
+      },
+      "FETCHSOURCE": {
+        "endTime": "2025-05-28T11:20:58.365323131Z",
+        "startTime": "2025-05-28T11:20:55.673660207Z"
+      }
+    }
+  },
+  {
+    "artifacts": {
+      "images": [
+        "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+      ]
+    },
+    "createTime": "2025-05-28T11:16:34.739850442Z",
+    "failureInfo": {
+      "detail": "Build step failure: build step 1 \"gcr.io/cloud-builders/docker\" failed: step exited with non-zero status: 1",
+      "type": "USER_BUILD_STEP"
+    },
+    "finishTime": "2025-05-28T11:17:45.173082963Z",
+    "id": "36e2f220-03c2-4f83-aca7-6def02213e4d",
+    "images": [
+      "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+    ],
+    "logUrl": "https://console.cloud.google.com/cloud-build/builds/36e2f220-03c2-4f83-aca7-6def02213e4d?project=247373753072",
+    "logsBucket": "gs://247373753072.cloudbuild-logs.googleusercontent.com",
+    "name": "projects/247373753072/locations/global/builds/36e2f220-03c2-4f83-aca7-6def02213e4d",
+    "options": {
+      "logging": "LEGACY",
+      "pool": {}
+    },
+    "projectId": "karen-437100",
+    "queueTtl": "3600s",
+    "results": {
+      "buildStepImages": [
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        ""
+      ],
+      "buildStepOutputs": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "serviceAccount": "projects/karen-437100/serviceAccounts/247373753072-compute@developer.gserviceaccount.com",
+    "source": {
+      "storageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748430994509927",
+        "object": "source/1748430993.824446-a045c01f5bea464ab8c499a15dace06f.tgz"
+      }
+    },
+    "sourceProvenance": {
+      "fileHashes": {
+        "gs://karen-437100_cloudbuild/source/1748430993.824446-a045c01f5bea464ab8c499a15dace06f.tgz#1748430994509927": {
+          "fileHash": [
+            {
+              "type": "MD5",
+              "value": "xXksqTBj5y5ag-7qdTcrgA=="
+            }
+          ]
+        }
+      },
+      "resolvedStorageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748430994509927",
+        "object": "source/1748430993.824446-a045c01f5bea464ab8c499a15dace06f.tgz"
+      }
+    },
+    "startTime": "2025-05-28T11:16:35.803189062Z",
+    "status": "FAILURE",
+    "steps": [
+      {
+        "args": [
+          "build",
+          "-t",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "."
+        ],
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:16:39.927098398Z",
+          "startTime": "2025-05-28T11:16:39.921549735Z"
+        },
+        "status": "SUCCESS",
+        "timing": {
+          "endTime": "2025-05-28T11:17:43.623098524Z",
+          "startTime": "2025-05-28T11:16:39.921549735Z"
+        }
+      },
+      {
+        "args": [
+          "push",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+        ],
+        "exitCode": 1,
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:17:43.624652713Z",
+          "startTime": "2025-05-28T11:17:43.623188759Z"
+        },
+        "status": "FAILURE",
+        "timing": {
+          "endTime": "2025-05-28T11:17:44.678787736Z",
+          "startTime": "2025-05-28T11:17:43.623188759Z"
+        }
+      },
+      {
+        "args": [
+          "run",
+          "deploy",
+          "handyman-assistant",
+          "--image",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "--platform",
+          "managed",
+          "--region",
+          "us-central1",
+          "--allow-unauthenticated"
+        ],
+        "entrypoint": "gcloud",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+        "status": "QUEUED"
+      }
+    ],
+    "timeout": "3600s",
+    "timing": {
+      "BUILD": {
+        "endTime": "2025-05-28T11:17:44.678857665Z",
+        "startTime": "2025-05-28T11:16:39.234472411Z"
+      },
+      "FETCHSOURCE": {
+        "endTime": "2025-05-28T11:16:39.234309350Z",
+        "startTime": "2025-05-28T11:16:36.252893342Z"
+      }
+    }
+  },
+  {
+    "artifacts": {
+      "images": [
+        "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+      ]
+    },
+    "createTime": "2025-05-28T11:14:52.298441846Z",
+    "failureInfo": {
+      "detail": "Build step failure: build step 1 \"gcr.io/cloud-builders/docker\" failed: step exited with non-zero status: 1",
+      "type": "USER_BUILD_STEP"
+    },
+    "finishTime": "2025-05-28T11:16:04.777489885Z",
+    "id": "f7051b1b-9902-47c0-a2e8-1ad5b8be5b28",
+    "images": [
+      "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+    ],
+    "logUrl": "https://console.cloud.google.com/cloud-build/builds/f7051b1b-9902-47c0-a2e8-1ad5b8be5b28?project=247373753072",
+    "logsBucket": "gs://247373753072.cloudbuild-logs.googleusercontent.com",
+    "name": "projects/247373753072/locations/global/builds/f7051b1b-9902-47c0-a2e8-1ad5b8be5b28",
+    "options": {
+      "logging": "LEGACY",
+      "pool": {}
+    },
+    "projectId": "karen-437100",
+    "queueTtl": "3600s",
+    "results": {
+      "buildStepImages": [
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        ""
+      ],
+      "buildStepOutputs": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "serviceAccount": "projects/karen-437100/serviceAccounts/247373753072-compute@developer.gserviceaccount.com",
+    "source": {
+      "storageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748430892088420",
+        "object": "source/1748430891.444206-fe3801e5ab1b4014a4a201a90a1cfe54.tgz"
+      }
+    },
+    "sourceProvenance": {
+      "fileHashes": {
+        "gs://karen-437100_cloudbuild/source/1748430891.444206-fe3801e5ab1b4014a4a201a90a1cfe54.tgz#1748430892088420": {
+          "fileHash": [
+            {
+              "type": "MD5",
+              "value": "xa05waS8-zfnjuXo7Mjbeg=="
+            }
+          ]
+        }
+      },
+      "resolvedStorageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748430892088420",
+        "object": "source/1748430891.444206-fe3801e5ab1b4014a4a201a90a1cfe54.tgz"
+      }
+    },
+    "startTime": "2025-05-28T11:14:53.307122542Z",
+    "status": "FAILURE",
+    "steps": [
+      {
+        "args": [
+          "build",
+          "-t",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "."
+        ],
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:14:57.329929315Z",
+          "startTime": "2025-05-28T11:14:57.321198565Z"
+        },
+        "status": "SUCCESS",
+        "timing": {
+          "endTime": "2025-05-28T11:16:02.355541198Z",
+          "startTime": "2025-05-28T11:14:57.321198565Z"
+        }
+      },
+      {
+        "args": [
+          "push",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+        ],
+        "exitCode": 1,
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:16:02.357143054Z",
+          "startTime": "2025-05-28T11:16:02.355648529Z"
+        },
+        "status": "FAILURE",
+        "timing": {
+          "endTime": "2025-05-28T11:16:03.864474231Z",
+          "startTime": "2025-05-28T11:16:02.355648529Z"
+        }
+      },
+      {
+        "args": [
+          "run",
+          "deploy",
+          "handyman-assistant",
+          "--image",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "--platform",
+          "managed",
+          "--region",
+          "us-central1",
+          "--allow-unauthenticated"
+        ],
+        "entrypoint": "gcloud",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+        "status": "QUEUED"
+      }
+    ],
+    "timeout": "3600s",
+    "timing": {
+      "BUILD": {
+        "endTime": "2025-05-28T11:16:03.864569814Z",
+        "startTime": "2025-05-28T11:14:56.656991360Z"
+      },
+      "FETCHSOURCE": {
+        "endTime": "2025-05-28T11:14:56.656899856Z",
+        "startTime": "2025-05-28T11:14:53.798323993Z"
+      }
+    }
+  },
+  {
+    "artifacts": {
+      "images": [
+        "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+      ]
+    },
+    "createTime": "2025-05-28T11:13:22.814040357Z",
+    "failureInfo": {
+      "detail": "Build step failure: build step 1 \"gcr.io/cloud-builders/docker\" failed: step exited with non-zero status: 1",
+      "type": "USER_BUILD_STEP"
+    },
+    "finishTime": "2025-05-28T11:14:29.521358435Z",
+    "id": "eaba6e61-b663-47e9-8e72-0b503ca64d04",
+    "images": [
+      "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+    ],
+    "logUrl": "https://console.cloud.google.com/cloud-build/builds/eaba6e61-b663-47e9-8e72-0b503ca64d04?project=247373753072",
+    "logsBucket": "gs://247373753072.cloudbuild-logs.googleusercontent.com",
+    "name": "projects/247373753072/locations/global/builds/eaba6e61-b663-47e9-8e72-0b503ca64d04",
+    "options": {
+      "logging": "LEGACY",
+      "pool": {}
+    },
+    "projectId": "karen-437100",
+    "queueTtl": "3600s",
+    "results": {
+      "buildStepImages": [
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        ""
+      ],
+      "buildStepOutputs": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "serviceAccount": "projects/karen-437100/serviceAccounts/247373753072-compute@developer.gserviceaccount.com",
+    "source": {
+      "storageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748430802522773",
+        "object": "source/1748430800.735561-bbda26ac68e24d5ea246a4c96c61cfe6.tgz"
+      }
+    },
+    "sourceProvenance": {
+      "fileHashes": {
+        "gs://karen-437100_cloudbuild/source/1748430800.735561-bbda26ac68e24d5ea246a4c96c61cfe6.tgz#1748430802522773": {
+          "fileHash": [
+            {
+              "type": "MD5",
+              "value": "EvetOePgct20Rm73UhwvSg=="
+            }
+          ]
+        }
+      },
+      "resolvedStorageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748430802522773",
+        "object": "source/1748430800.735561-bbda26ac68e24d5ea246a4c96c61cfe6.tgz"
+      }
+    },
+    "startTime": "2025-05-28T11:13:23.899844490Z",
+    "status": "FAILURE",
+    "steps": [
+      {
+        "args": [
+          "build",
+          "-t",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "."
+        ],
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:13:27.693406542Z",
+          "startTime": "2025-05-28T11:13:27.688021152Z"
+        },
+        "status": "SUCCESS",
+        "timing": {
+          "endTime": "2025-05-28T11:14:27.512921073Z",
+          "startTime": "2025-05-28T11:13:27.688021152Z"
+        }
+      },
+      {
+        "args": [
+          "push",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+        ],
+        "exitCode": 1,
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T11:14:27.514379342Z",
+          "startTime": "2025-05-28T11:14:27.513002550Z"
+        },
+        "status": "FAILURE",
+        "timing": {
+          "endTime": "2025-05-28T11:14:28.840264515Z",
+          "startTime": "2025-05-28T11:14:27.513002550Z"
+        }
+      },
+      {
+        "args": [
+          "run",
+          "deploy",
+          "handyman-assistant",
+          "--image",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "--platform",
+          "managed",
+          "--region",
+          "us-central1",
+          "--allow-unauthenticated"
+        ],
+        "entrypoint": "gcloud",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+        "status": "QUEUED"
+      }
+    ],
+    "timeout": "3600s",
+    "timing": {
+      "BUILD": {
+        "endTime": "2025-05-28T11:14:28.840331164Z",
+        "startTime": "2025-05-28T11:13:27.101299616Z"
+      },
+      "FETCHSOURCE": {
+        "endTime": "2025-05-28T11:13:27.101239630Z",
+        "startTime": "2025-05-28T11:13:24.460596097Z"
+      }
+    }
+  },
+  {
+    "artifacts": {
+      "images": [
+        "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+      ]
+    },
+    "createTime": "2025-05-28T04:03:52.181884666Z",
+    "failureInfo": {
+      "detail": "Build step failure: build step 1 \"gcr.io/cloud-builders/docker\" failed: step exited with non-zero status: 1",
+      "type": "USER_BUILD_STEP"
+    },
+    "finishTime": "2025-05-28T04:04:56.445866270Z",
+    "id": "9bad7df0-c641-41af-b22a-9c9a320f3c2e",
+    "images": [
+      "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+    ],
+    "logUrl": "https://console.cloud.google.com/cloud-build/builds/9bad7df0-c641-41af-b22a-9c9a320f3c2e?project=247373753072",
+    "logsBucket": "gs://247373753072.cloudbuild-logs.googleusercontent.com",
+    "name": "projects/247373753072/locations/global/builds/9bad7df0-c641-41af-b22a-9c9a320f3c2e",
+    "options": {
+      "logging": "LEGACY",
+      "pool": {}
+    },
+    "projectId": "karen-437100",
+    "queueTtl": "3600s",
+    "results": {
+      "buildStepImages": [
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        "sha256:14f4959f3f4c50cae3113447930cd2010af776d7b49f42d29a0a457b17a6af71",
+        ""
+      ],
+      "buildStepOutputs": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "serviceAccount": "projects/karen-437100/serviceAccounts/247373753072-compute@developer.gserviceaccount.com",
+    "source": {
+      "storageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748405031954717",
+        "object": "source/1748405031.180669-36c8d294e35f4e8598e06be47abd39e3.tgz"
+      }
+    },
+    "sourceProvenance": {
+      "fileHashes": {
+        "gs://karen-437100_cloudbuild/source/1748405031.180669-36c8d294e35f4e8598e06be47abd39e3.tgz#1748405031954717": {
+          "fileHash": [
+            {
+              "type": "MD5",
+              "value": "W3Beie_QprKR13fm0YIAcw=="
+            }
+          ]
+        }
+      },
+      "resolvedStorageSource": {
+        "bucket": "karen-437100_cloudbuild",
+        "generation": "1748405031954717",
+        "object": "source/1748405031.180669-36c8d294e35f4e8598e06be47abd39e3.tgz"
+      }
+    },
+    "startTime": "2025-05-28T04:03:53.079519414Z",
+    "status": "FAILURE",
+    "steps": [
+      {
+        "args": [
+          "build",
+          "-t",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "."
+        ],
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T04:03:56.930205408Z",
+          "startTime": "2025-05-28T04:03:56.920572011Z"
+        },
+        "status": "SUCCESS",
+        "timing": {
+          "endTime": "2025-05-28T04:04:54.473886522Z",
+          "startTime": "2025-05-28T04:03:56.920572011Z"
+        }
+      },
+      {
+        "args": [
+          "push",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant"
+        ],
+        "exitCode": 1,
+        "name": "gcr.io/cloud-builders/docker",
+        "pullTiming": {
+          "endTime": "2025-05-28T04:04:54.475431522Z",
+          "startTime": "2025-05-28T04:04:54.474006183Z"
+        },
+        "status": "FAILURE",
+        "timing": {
+          "endTime": "2025-05-28T04:04:55.846044854Z",
+          "startTime": "2025-05-28T04:04:54.474006183Z"
+        }
+      },
+      {
+        "args": [
+          "run",
+          "deploy",
+          "handyman-assistant",
+          "--image",
+          "us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant",
+          "--platform",
+          "managed",
+          "--region",
+          "us-central1",
+          "--allow-unauthenticated"
+        ],
+        "entrypoint": "gcloud",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+        "status": "QUEUED"
+      }
+    ],
+    "timeout": "3600s",
+    "timing": {
+      "BUILD": {
+        "endTime": "2025-05-28T04:04:55.846108604Z",
+        "startTime": "2025-05-28T04:03:56.314439146Z"
+      },
+      "FETCHSOURCE": {
+        "endTime": "2025-05-28T04:03:56.314369006Z",
+        "startTime": "2025-05-28T04:03:53.557117986Z"
+      }
+    }
+  }
+]

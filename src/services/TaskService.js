@@ -1,0 +1,1 @@
+export async function fetchTasks() {\n  // Fetch tasks from the backend\n  return await fetch('/api/tasks').then(res => res.json());\n}

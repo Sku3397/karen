@@ -1,0 +1,14 @@
+[
+  {
+    "endpoint": "generateInvoice",
+    "status": 500,
+    "body": "7 PERMISSION_DENIED: Cloud Firestore API has not been used in project karen-437100 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=karen-437100 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
+    "error": null
+  },
+  {
+    "endpoint": "scheduleAppointment",
+    "status": 500,
+    "body": "14 UNAVAILABLE: Name resolution failed for target dns:localhost:9500:443",
+    "error": null
+  }
+]

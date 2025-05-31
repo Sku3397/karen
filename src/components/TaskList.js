@@ -1,0 +1,1 @@
+import React, { useEffect, useState } from 'react';\nimport { fetchTasks } from '../services/TaskService';\n\nfunction TaskList() {\n  const [tasks, setTasks] = useState([]);\n\n  useEffect(() => {\n    fetchTasks().then(setTasks);\n  }, []);\n\n  return (<div>{tasks.map(task => <div key={task.id}>{task.details}</div>)}</div>);\n}\n\nexport default TaskList;

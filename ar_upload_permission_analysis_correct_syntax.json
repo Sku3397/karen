@@ -1,0 +1,152 @@
+[
+  {
+    "ACLs": [
+      {
+        "accesses": [
+          {
+            "permission": "artifactregistry.repositories.uploadArtifacts"
+          }
+        ],
+        "identities": [
+          {
+            "name": "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          }
+        ],
+        "resources": [
+          {
+            "fullResourceName": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo"
+          }
+        ]
+      }
+    ],
+    "policy": {
+      "attachedResource": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo",
+      "binding": {
+        "members": [
+          "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+        ],
+        "role": "roles/artifactregistry.repoAdmin"
+      }
+    }
+  },
+  {
+    "ACLs": [
+      {
+        "accesses": [
+          {
+            "permission": "artifactregistry.repositories.uploadArtifacts"
+          }
+        ],
+        "identities": [
+          {
+            "name": "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          }
+        ],
+        "resources": [
+          {
+            "fullResourceName": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo"
+          }
+        ]
+      }
+    ],
+    "policy": {
+      "attachedResource": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo",
+      "binding": {
+        "members": [
+          "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+        ],
+        "role": "roles/artifactregistry.writer"
+      }
+    }
+  },
+  {
+    "ACLs": [
+      {
+        "accesses": [
+          {
+            "permission": "artifactregistry.repositories.uploadArtifacts"
+          }
+        ],
+        "identities": [
+          {
+            "name": "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          }
+        ],
+        "resources": [
+          {
+            "fullResourceName": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo"
+          }
+        ]
+      }
+    ],
+    "policy": {
+      "attachedResource": "//cloudresourcemanager.googleapis.com/projects/karen-437100",
+      "binding": {
+        "members": [
+          "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+        ],
+        "role": "roles/artifactregistry.admin"
+      }
+    }
+  },
+  {
+    "ACLs": [
+      {
+        "accesses": [
+          {
+            "permission": "artifactregistry.repositories.uploadArtifacts"
+          }
+        ],
+        "identities": [
+          {
+            "name": "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          }
+        ],
+        "resources": [
+          {
+            "fullResourceName": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo"
+          }
+        ]
+      }
+    ],
+    "policy": {
+      "attachedResource": "//cloudresourcemanager.googleapis.com/projects/karen-437100",
+      "binding": {
+        "members": [
+          "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+        ],
+        "role": "roles/artifactregistry.writer"
+      }
+    }
+  },
+  {
+    "ACLs": [
+      {
+        "accesses": [
+          {
+            "permission": "artifactregistry.repositories.uploadArtifacts"
+          }
+        ],
+        "identities": [
+          {
+            "name": "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          }
+        ],
+        "resources": [
+          {
+            "fullResourceName": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo"
+          }
+        ]
+      }
+    ],
+    "policy": {
+      "attachedResource": "//cloudresourcemanager.googleapis.com/projects/karen-437100",
+      "binding": {
+        "members": [
+          "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+        ],
+        "role": "roles/cloudbuild.builds.builder"
+      }
+    }
+  }
+]

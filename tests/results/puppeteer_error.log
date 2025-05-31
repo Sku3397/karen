@@ -1,0 +1,7 @@
+Error: net::ERR_CONNECTION_REFUSED at http://localhost:8080
+    at navigate (C:\Users\Man\ultra\projects\AI_Handyman_Secretary_Assistant\node_modules\puppeteer-core\lib\cjs\puppeteer\cdp\Frame.js:170:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Deferred.race (C:\Users\Man\ultra\projects\AI_Handyman_Secretary_Assistant\node_modules\puppeteer-core\lib\cjs\puppeteer\util\Deferred.js:31:20)
+    at async CdpFrame.goto (C:\Users\Man\ultra\projects\AI_Handyman_Secretary_Assistant\node_modules\puppeteer-core\lib\cjs\puppeteer\cdp\Frame.js:136:25)
+    at async CdpPage.goto (C:\Users\Man\ultra\projects\AI_Handyman_Secretary_Assistant\node_modules\puppeteer-core\lib\cjs\puppeteer\api\Page.js:603:20)
+    at async C:\Users\Man\ultra\projects\AI_Handyman_Secretary_Assistant\scripts\puppeteer_smoke_test.js:27:5

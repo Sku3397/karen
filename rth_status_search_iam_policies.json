@@ -1,0 +1,10 @@
+{
+    "final_handler_status_message": "SUCCESS",
+    "subprocess_exit_code": 0,
+    "cli_script_exit_code": 0,
+    "stdout_temp_file_used": "C:\\Users\\Man\\AppData\\Local\\Temp\\rth_child_stdout_n1atbqp0",
+    "stderr_temp_file_used": "C:\\Users\\Man\\AppData\\Local\\Temp\\rth_child_stderr_09ocrncv",
+    "execution_start_time_epoch": 1748431233.993865,
+    "execution_end_time_epoch": 1748431235.2068965,
+    "total_duration_seconds": 1.213
+}

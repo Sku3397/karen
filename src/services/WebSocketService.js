@@ -1,0 +1,1 @@
+class WebSocketService {\n  constructor() {\n    this.socket = new WebSocket('ws://your-websocket-url');\n  }\n  // WebSocket implementation here\n}\n\nexport default WebSocketService;

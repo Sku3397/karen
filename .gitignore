@@ -1,0 +1,25 @@
+# Node
+node_modules/
+# Python
+__pycache__/
+*.pyc
+# Terraform
+iac/.terraform/
+iac/terraform.tfstate*
+# Environment/Secrets
+.env
+.env.*
+credentials.json
+gmail_token.json
+src/config/karen-437100-firebase-adminsdk-fbsvc-e1f59fc29d.json
+*private*.json
+*key*.json
+*token*.json
+*-adminsdk-*.json
+# OS
+.DS_Store
+Thumbs.db
+celery_worker_from_main_logs.txt
+
+# Celery Beat schedule database
+celerybeat-schedule.sqlite3

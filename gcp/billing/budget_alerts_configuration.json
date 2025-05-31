@@ -1,0 +1,26 @@
+{
+  "budget": {
+    "displayName": "AI Handyman Budget",
+    "amount": {
+      "specifiedAmount": {
+        "currencyCode": "USD",
+        "units": "1000"
+      }
+    },
+    "thresholdRules": [
+      {
+        "thresholdPercent": 90.0
+      },
+      {
+        "thresholdPercent": 100.0
+      },
+      {
+        "thresholdPercent": 110.0
+      }
+    ],
+    "allUpdatesRule": {
+      "pubsubTopic": "projects/your-project-id/topics/your-topic",
+      "schemaVersion": "1.0"
+    }
+  }
+}

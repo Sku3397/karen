@@ -1,0 +1,1 @@
+Get-Process | Where-Object {($_.ProcessName -eq 'python' -or $_.ProcessName -eq 'python3' -or $_.Path -like '*python.exe*') -and $_.CommandLine -ne $null} | Select-Object Id, ProcessName, Path, CommandLine | Out-File -FilePath C:\Users\Man\AppData\Local\Temp\python_processes.txt -Encoding utf8 -Force 

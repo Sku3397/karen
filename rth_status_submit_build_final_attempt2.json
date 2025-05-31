@@ -1,0 +1,10 @@
+{
+    "final_handler_status_message": "FAILURE_EXIT_CODE_1",
+    "subprocess_exit_code": 1,
+    "cli_script_exit_code": 1,
+    "stdout_temp_file_used": "C:\\Users\\Man\\AppData\\Local\\Temp\\rth_child_stdout_b4i3q3an",
+    "stderr_temp_file_used": "C:\\Users\\Man\\AppData\\Local\\Temp\\rth_child_stderr_lah_owji",
+    "execution_start_time_epoch": 1748402091.9254487,
+    "execution_end_time_epoch": 1748402107.4974942,
+    "total_duration_seconds": 15.572
+}

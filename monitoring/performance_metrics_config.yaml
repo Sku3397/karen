@@ -1,0 +1,12 @@
+# Performance Metrics Configuration
+
+performance_metrics:
+  collection:
+    requests:
+      enabled: true
+      sample_rate: 1.0
+    latency:
+      enabled: true
+      thresholds:
+        - warning: 300ms
+        - critical: 500ms

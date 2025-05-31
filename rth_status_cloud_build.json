@@ -1,0 +1,10 @@
+{
+    "final_handler_status_message": "RTH_EXEC_ERROR_FILE_NOT_FOUND",
+    "subprocess_exit_code": null,
+    "cli_script_exit_code": 1,
+    "stdout_temp_file_used": "C:\\Users\\Man\\AppData\\Local\\Temp\\rth_child_stdout_mlg0tpd6",
+    "stderr_temp_file_used": "C:\\Users\\Man\\AppData\\Local\\Temp\\rth_child_stderr_v0k2afa7",
+    "execution_start_time_epoch": 1748473578.1307993,
+    "execution_end_time_epoch": 1748473578.1379652,
+    "total_duration_seconds": 0.007
+}

@@ -1,0 +1,353 @@
+[
+  {
+    "assetType": "artifactregistry.googleapis.com/Repository",
+    "organization": "organizations/186154332611",
+    "policy": {
+      "bindings": [
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/artifactregistry.repoAdmin"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/artifactregistry.writer"
+        }
+      ]
+    },
+    "project": "projects/247373753072",
+    "resource": "//artifactregistry.googleapis.com/projects/karen-437100/locations/us-central1/repositories/handyman-assistant-repo"
+  },
+  {
+    "assetType": "run.googleapis.com/Service",
+    "organization": "organizations/186154332611",
+    "policy": {
+      "bindings": [
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com"
+          ],
+          "role": "roles/run.viewer"
+        }
+      ]
+    },
+    "project": "projects/247373753072",
+    "resource": "//run.googleapis.com/projects/karen-437100/locations/us-central1/services/handyman-assistant"
+  },
+  {
+    "assetType": "storage.googleapis.com/Bucket",
+    "organization": "organizations/186154332611",
+    "policy": {
+      "bindings": [
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com",
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/storage.admin"
+        },
+        {
+          "members": [
+            "projectEditor:karen-437100",
+            "projectOwner:karen-437100"
+          ],
+          "role": "roles/storage.legacyBucketOwner"
+        },
+        {
+          "members": [
+            "projectViewer:karen-437100"
+          ],
+          "role": "roles/storage.legacyBucketReader"
+        },
+        {
+          "members": [
+            "projectEditor:karen-437100",
+            "projectOwner:karen-437100"
+          ],
+          "role": "roles/storage.legacyObjectOwner"
+        },
+        {
+          "members": [
+            "projectViewer:karen-437100"
+          ],
+          "role": "roles/storage.legacyObjectReader"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com"
+          ],
+          "role": "roles/storage.objectViewer"
+        }
+      ]
+    },
+    "project": "projects/247373753072",
+    "resource": "//storage.googleapis.com/karen-437100_cloudbuild"
+  },
+  {
+    "assetType": "iam.googleapis.com/ServiceAccount",
+    "organization": "organizations/186154332611",
+    "policy": {
+      "bindings": [
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com",
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/iam.serviceAccountUser"
+        }
+      ]
+    },
+    "project": "projects/247373753072",
+    "resource": "//iam.googleapis.com/projects/karen-437100/serviceAccounts/247373753072-compute@developer.gserviceaccount.com"
+  },
+  {
+    "assetType": "iam.googleapis.com/ServiceAccount",
+    "organization": "organizations/186154332611",
+    "policy": {
+      "bindings": [
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/iam.serviceAccountAdmin"
+        },
+        {
+          "members": [
+            "serviceAccount:karenn@karen-437100.iam.gserviceaccount.com"
+          ],
+          "role": "roles/iam.serviceAccountTokenCreator"
+        }
+      ]
+    },
+    "project": "projects/247373753072",
+    "resource": "//iam.googleapis.com/projects/karen-437100/serviceAccounts/karenn@karen-437100.iam.gserviceaccount.com"
+  },
+  {
+    "assetType": "cloudresourcemanager.googleapis.com/Project",
+    "organization": "organizations/186154332611",
+    "policy": {
+      "bindings": [
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/artifactregistry.admin"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com",
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/artifactregistry.reader"
+        },
+        {
+          "members": [
+            "serviceAccount:service-247373753072@gcp-sa-artifactregistry.iam.gserviceaccount.com"
+          ],
+          "role": "roles/artifactregistry.serviceAgent"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/artifactregistry.writer"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/cloudbuild.builds.builder"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/cloudbuild.builds.editor"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/cloudbuild.connectionAdmin"
+        },
+        {
+          "members": [
+            "serviceAccount:service-247373753072@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+          ],
+          "role": "roles/cloudbuild.serviceAgent"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/cloudbuild.workerPoolOwner"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/cloudbuild.workerPoolUser"
+        },
+        {
+          "members": [
+            "serviceAccount:service-247373753072@gcf-admin-robot.iam.gserviceaccount.com"
+          ],
+          "role": "roles/cloudfunctions.serviceAgent"
+        },
+        {
+          "members": [
+            "serviceAccount:karen-service-1@karen-437100.iam.gserviceaccount.com"
+          ],
+          "role": "roles/cloudtasks.enqueuer"
+        },
+        {
+          "members": [
+            "serviceAccount:service-247373753072@compute-system.iam.gserviceaccount.com"
+          ],
+          "role": "roles/compute.serviceAgent"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com",
+            "serviceAccount:service-247373753072@containerregistry.iam.gserviceaccount.com"
+          ],
+          "role": "roles/containerregistry.ServiceAgent"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/datastore.owner"
+        },
+        {
+          "members": [
+            "serviceAccount:karen-service-1@karen-437100.iam.gserviceaccount.com"
+          ],
+          "role": "roles/datastore.user"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudservices.gserviceaccount.com"
+          ],
+          "role": "roles/editor"
+        },
+        {
+          "members": [
+            "serviceAccount:service-247373753072@gcp-sa-firebase.iam.gserviceaccount.com"
+          ],
+          "role": "roles/firebase.managementServiceAgent"
+        },
+        {
+          "members": [
+            "serviceAccount:firebase-adminsdk-fbsvc@karen-437100.iam.gserviceaccount.com"
+          ],
+          "role": "roles/firebase.sdkAdminServiceAgent"
+        },
+        {
+          "members": [
+            "serviceAccount:firebase-adminsdk-fbsvc@karen-437100.iam.gserviceaccount.com"
+          ],
+          "role": "roles/iam.serviceAccountTokenCreator"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/iam.serviceAccountUser"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/iam.workloadIdentityPoolAdmin"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com"
+          ],
+          "role": "roles/logging.logWriter"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/owner"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/resourcemanager.projectIamAdmin"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com",
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/run.admin"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/run.builder"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/run.developer"
+        },
+        {
+          "members": [
+            "serviceAccount:service-247373753072@serverless-robot-prod.iam.gserviceaccount.com"
+          ],
+          "role": "roles/run.serviceAgent"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com"
+          ],
+          "role": "roles/run.viewer"
+        },
+        {
+          "members": [
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/serviceusage.serviceUsageAdmin"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com",
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/serviceusage.serviceUsageConsumer"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com",
+            "user:hello@757handy.com"
+          ],
+          "role": "roles/storage.admin"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072-compute@developer.gserviceaccount.com"
+          ],
+          "role": "roles/storage.objectViewer"
+        },
+        {
+          "members": [
+            "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+          ],
+          "role": "roles/viewer"
+        }
+      ]
+    },
+    "project": "projects/247373753072",
+    "resource": "//cloudresourcemanager.googleapis.com/projects/karen-437100"
+  }
+]

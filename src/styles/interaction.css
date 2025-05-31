@@ -1,0 +1,67 @@
+.interaction-container {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+.interaction-tabs {
+  display: flex;
+  margin-bottom: 18px;
+}
+.interaction-tabs button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: #f4f4f4;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  border-bottom: 2px solid #e0e0e0;
+}
+.interaction-tabs button.active {
+  background: #e0f0ff;
+  border-bottom: 2px solid #2196f3;
+}
+.email-form, .sms-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.email-form label, .sms-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  font-weight: 500;
+}
+.email-form input,
+.email-form textarea,
+.sms-form input,
+.sms-form textarea {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.email-form button, .sms-form button {
+  align-self: flex-end;
+  padding: 10px 22px;
+  background: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.email-form button:disabled, .sms-form button:disabled {
+  background: #b3dafc;
+  cursor: not-allowed;
+}
+.confirmation {
+  margin-top: 10px;
+  color: #388e3c;
+  font-weight: 500;
+}

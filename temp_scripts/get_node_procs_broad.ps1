@@ -1,0 +1,1 @@
+Get-Process | Where-Object {($_.ProcessName -like '*node*' -or $_.Path -like '*node.exe*')} | Select-Object Id, ProcessName, Path, CommandLine | Out-File -FilePath C:\Users\Man\AppData\Local\Temp\node_processes_broad.txt -Encoding utf8 -Force 

@@ -1,0 +1,1 @@
+# Monitoring Setup\n\nInstructions for setting up Cloud Monitoring dashboards, error reporting, performance metrics, and cost optimization alerts.

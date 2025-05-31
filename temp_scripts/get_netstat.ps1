@@ -1,0 +1,1 @@
+netstat -ano -p tcp | Out-File -FilePath C:\Users\Man\AppData\Local\Temp\netstat_output.txt -Encoding utf8 -Force 

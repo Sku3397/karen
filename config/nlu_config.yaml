@@ -1,0 +1,5 @@
+# NLU Configuration
+use_dialogflow: false  # Set to true to enable Dialogflow integration
+# Dialogflow settings (required if use_dialogflow is true):
+dialogflow_project_id: ""
+dialogflow_language_code: "en"

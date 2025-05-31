@@ -1,0 +1,1 @@
+import React from 'react';\n\nfunction CommunicationPanel() {\n  return (<div>Communication Panel Component</div>);\n}\n\nexport default CommunicationPanel;

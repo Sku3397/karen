@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  args: ['run', 'deploy', 'handyman-assistant', '--image', 'us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant', '--platform', 'managed', '--region', 'us-central1', '--allow-unauthenticated']
+images: ['us-central1-docker.pkg.dev/karen-437100/handyman-assistant-repo/handyman-assistant']

@@ -1,0 +1,1 @@
+# Production Setup\n\nInstructions for multi-region Cloud Run deployment, including global load balancer, CDN for static assets, and auto-scaling policies.

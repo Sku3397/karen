@@ -1,0 +1,1 @@
+# Database Optimization\n- Implemented batch processing for Firestore operations to reduce the number of read/write operations.\n- Utilized Firestore indexes to improve query performance.\n- Implemented data caching strategies to minimize direct database hits.

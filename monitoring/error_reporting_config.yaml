@@ -1,0 +1,8 @@
+# Error Reporting Configuration
+
+error_reporting:
+  enabled: true
+  alerting:
+    email: 'devops@aihandyman.com'
+    threshold: 10
+    period: '1h'

@@ -1,0 +1,59 @@
+// Firestore Security Rules for AI Handyman Secretary Assistant
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users: Each user can read their own, only admin can read all
+    match /users/{userId} {
+      allow read, update: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null;
+      allow delete: if request.auth.token.role == 'admin';
+      // Subcollection: client_history
+      match /client_history/{historyId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    // Knowledge base: Readable by all authenticated, write by admin/agent
+    match /knowledge_base/{docId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth.token.role in ['admin', 'agent'];
+    }
+
+    // Agent states: Only agent and admin can read/write
+    match /agent_states/{agentId} {
+      allow read, write: if request.auth != null && (request.auth.uid == agentId || request.auth.token.role == 'admin');
+    }
+
+    // Tasks: Owner, assigned agent, or admin can read/write
+    match /tasks/{taskId} {
+      allow read, update, delete: if request.auth != null && (
+        resource.data.createdBy == request.auth.uid ||
+        resource.data.assignedAgent == request.auth.uid ||
+        request.auth.token.role == 'admin'
+      );
+      allow create: if request.auth != null;
+    }
+
+    // Projects: Only members (creator, assigned agents) and admin
+    match /projects/{projectId} {
+      allow read, update, delete: if request.auth != null && (
+        resource.data.createdBy == request.auth.uid ||
+        request.auth.token.role == 'admin'
+      );
+      allow create: if request.auth != null;
+    }
+
+    // Billing: Only owner (client) and admin
+    match /billing/{billingId} {
+      allow read, update: if request.auth != null && (
+        resource.data.clientId == request.auth.uid ||
+        request.auth.token.role == 'admin'
+      );
+      allow create: if request.auth != null && (
+        request.resource.data.clientId == request.auth.uid ||
+        request.auth.token.role == 'admin'
+      );
+      allow delete: if request.auth.token.role == 'admin';
+    }
+  }
+}

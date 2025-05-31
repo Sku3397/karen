@@ -1,0 +1,39 @@
+# NOTE: This pipeline assumes robust_terminal_handler.py is in the PATH and is executable as a native tool.
+# If not, add it to the PATH or use the full path to the script.
+
+image: node:23
+
+stages:
+  - test
+
+default:
+  before_script:
+    - python -m venv .venv
+    - . .venv/bin/activate
+    - pip install -r requirements.txt
+    - npm ci
+
+frontend_test:
+  stage: test
+  script:
+    # Start frontend with RTH in background (native tool usage)
+    - robust_terminal_handler.py --status-file-path /builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/rth_status_files/frontend_status.json --command "npm start" &
+    # Wait for frontend to be ready
+    - |
+      for i in {1..30}; do
+        if curl -sSf http://localhost:8080 > /dev/null; then exit 0; fi
+        sleep 2
+      done
+      echo "Frontend did not start in time"; exit 1
+    # Run smoke test
+    - node tests/frontend_smoke_test.js
+    # Stop frontend (kill process on port 8080)
+    - |
+      pid=$(lsof -ti:8080) && if [ -n "$pid" ]; then kill -9 $pid; fi
+    # Print RTH status file
+    - cat /builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/rth_status_files/frontend_status.json || true
+  artifacts:
+    paths:
+      - rth_status_files/
+      - tests/results/
+    expire_in: 1 week 

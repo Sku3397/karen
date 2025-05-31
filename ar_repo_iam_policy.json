@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "members": [
+        "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+      ],
+      "role": "roles/artifactregistry.repoAdmin"
+    },
+    {
+      "members": [
+        "serviceAccount:247373753072@cloudbuild.gserviceaccount.com"
+      ],
+      "role": "roles/artifactregistry.writer"
+    }
+  ],
+  "etag": "BwY2KkR_85I=",
+  "version": 1
+}

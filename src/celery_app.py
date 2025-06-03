@@ -6,6 +6,7 @@ import os # Moved os import higher
 from dotenv import load_dotenv
 import logging
 from datetime import datetime, timedelta
+import asyncio # Added for asyncio.run
 
 # --- Early .env loading for Celery context ---
 # Determine project root assuming this file is in src/
@@ -126,21 +127,21 @@ def get_communication_agent_instance():
     if _communication_agent_instance is None:
         logger.debug("Creating new CommunicationAgent instance in get_communication_agent_instance().")
         
-        print("PRINT_DEBUG_AGENT_INSTANCE: --- START get_communication_agent_instance (using os.getenv) ---", flush=True)
-        # Ensure .env is loaded in this context (redundant if early load works, but safe)
-        # load_dotenv(MAIN_ENV_PATH_FOR_CELERY, override=True) # Already done at top of file
-
-        email_client_config = {
-            'SECRETARY_EMAIL_SMTP_SERVER': os.getenv('SECRETARY_EMAIL_SMTP_SERVER'),
-            'SECRETARY_EMAIL_SMTP_PORT': int(os.getenv('SECRETARY_EMAIL_SMTP_PORT', 587)), # Ensure int
-            'SECRETARY_EMAIL_IMAP_SERVER': os.getenv('SECRETARY_EMAIL_IMAP_SERVER'),
-            'SECRETARY_EMAIL_IMAP_PORT': int(os.getenv('SECRETARY_EMAIL_IMAP_PORT', 993)), # Ensure int
+        # Config for Karen's sending email account (karensecretaryai@gmail.com)
+        sending_email_config = {
             'SECRETARY_EMAIL_ADDRESS': os.getenv('SECRETARY_EMAIL_ADDRESS'),
-            'SECRETARY_EMAIL_PASSWORD': os.getenv('SECRETARY_EMAIL_PASSWORD'), 
-            'ADMIN_EMAIL_ADDRESS': os.getenv('ADMIN_EMAIL_ADDRESS'),
+            'SECRETARY_TOKEN_PATH': os.getenv('SECRETARY_TOKEN_PATH', 'gmail_token_karen.json') # Default if not in .env
+            # SMTP/IMAP server/port/password are not used by the current EmailClient with Gmail API
         }
-        print(f"PRINT_DEBUG_AGENT_INSTANCE: email_client_config from os.getenv: {email_client_config.get('SECRETARY_EMAIL_ADDRESS')}", flush=True)
-        
+        logger.debug(f"Sending email config: {sending_email_config.get('SECRETARY_EMAIL_ADDRESS')}, Token: {sending_email_config.get('SECRETARY_TOKEN_PATH')}")
+
+        # Config for the monitored email account (hello@757handy.com)
+        monitoring_email_config = {
+            'MONITORED_EMAIL_ACCOUNT': os.getenv('MONITORED_EMAIL_ACCOUNT'),
+            'MONITORED_EMAIL_TOKEN_PATH': os.getenv('MONITORED_EMAIL_TOKEN_PATH', 'gmail_token_monitor.json') # Default
+        }
+        logger.debug(f"Monitoring email config: {monitoring_email_config.get('MONITORED_EMAIL_ACCOUNT')}, Token: {monitoring_email_config.get('MONITORED_EMAIL_TOKEN_PATH')}")
+
         sms_cfg_to_use = {
             'account_sid': os.getenv('TWILIO_ACCOUNT_SID'),
             'auth_token': os.getenv('TWILIO_AUTH_TOKEN'),
@@ -157,7 +158,8 @@ def get_communication_agent_instance():
 
         print("PRINT_DEBUG_AGENT_INSTANCE: About to instantiate CommunicationAgent (using os.getenv based config).", flush=True)
         _communication_agent_instance = CommunicationAgent(
-            email_client_cfg=email_client_config,
+            sending_email_cfg=sending_email_config,      # Pass sending config
+            monitoring_email_cfg=monitoring_email_config, # Pass monitoring config
             sms_cfg=sms_cfg_to_use, 
             transcription_cfg=transcription_cfg_to_use, 
             admin_email=os.getenv('ADMIN_EMAIL_ADDRESS'), # Get directly
@@ -174,38 +176,50 @@ def add(x, y):
 
 @celery_app.task(name='check_emails_task', ignore_result=True)
 def check_secretary_emails_task():
-    print("PRINT_DEBUG: যৌগRE-INTRODUCING get_communication_agent_instance() CALL যৌগ", flush=True)
-    logger.info("Celery task: যৌগRE-INTRODUCING get_communication_agent_instance() CALL যৌগ")
+    print("PRINT_DEBUG: \u09af\u09cc\u0997RE-INTRODUCING get_communication_agent_instance() CALL \u09af\u09cc\u0997", flush=True)
+    logger.info("Celery task: \u09af\u09cc\u0997RE-INTRODUCING get_communication_agent_instance() CALL \u09af\u09cc\u0997")
     try:
-        print("PRINT_DEBUG: যৌগTRY BLOCK ENTERED যৌগ", flush=True)
+        print("PRINT_DEBUG: \u09af\u09cc\u0997TRY BLOCK ENTERED \u09af\u09cc\u0997", flush=True)
         logger.debug("Attempting to get CommunicationAgent instance...")
         agent = get_communication_agent_instance()
-        print(f"PRINT_DEBUG: যৌগCommunicationAgent instance obtained: {type(agent)} যৌগ", flush=True)
+        print(f"PRINT_DEBUG: \u09af\u09cc\u0997CommunicationAgent instance obtained: {type(agent)} \u09af\u09cc\u0997", flush=True)
         logger.info(f"CommunicationAgent instance obtained: {type(agent)}.")
-        
-        # Call method to check and process emails
-        if agent:
-            logger.info("Calling agent.check_and_process_incoming_tasks()")
-            # Process UNSEEN emails by default, or specify days for broader fetch e.g., agent.check_and_process_incoming_tasks(process_last_n_days=1)
-            agent.check_and_process_incoming_tasks() 
-            logger.info("Finished agent.check_and_process_incoming_tasks()")
-        else:
-            logger.error("CommunicationAgent instance is None. Cannot process emails.")
-
+        logger.info("Calling asyncio.run(agent.check_and_process_incoming_tasks()) for last 1 day")
+        # Running the async method within the synchronous Celery task
+        asyncio.run(agent.check_and_process_incoming_tasks(process_last_n_days=1)) 
+        logger.info("Finished asyncio.run(agent.check_and_process_incoming_tasks())")
     except Exception as e:
-        print(f"PRINT_DEBUG: যৌগEXCEPTION in check_secretary_emails_task: {e} যৌগ", flush=True)
+        print(f"PRINT_DEBUG: \u09af\u09cc\u0997EXCEPTION in check_secretary_emails_task: {e} \u09af\u09cc\u0997", flush=True)
         logger.error(f"Error in check_secretary_emails_task: {e}", exc_info=True)
+        raise # Re-raise the exception so Celery can mark the task as failed if needed
+    logger.info("Celery task: \u09af\u09cc\u0997FINISHED (after get_communication_agent_instance call) \u09af\u09cc\u0997")
+
+@celery_app.task(name='check_instruction_emails_task', ignore_result=True)
+def check_instruction_emails_task_runner(): # Renamed to avoid conflict with a potential future module name
+    logger.info("Celery task: \u09af\u09cc\u0997RUNNING check_instruction_emails_task_runner \u09af\u09cc\u0997")
+    try:
+        agent = get_communication_agent_instance()
+        logger.info("Calling agent.check_and_process_instruction_emails() for last 1 day")
+        # By default, it checks last 1 day and UNSEEN only, which is good for instructions.
+        agent.check_and_process_instruction_emails(process_last_n_days=1) 
+        logger.info("Finished agent.check_and_process_instruction_emails()")
+    except Exception as e:
+        logger.error(f"Error in check_instruction_emails_task_runner: {e}", exc_info=True)
         raise
-    logger.info("Celery task: যৌগFINISHED (after get_communication_agent_instance call) যৌগ")
+    logger.info("Celery task: \u09af\u09cc\u0997FINISHED check_instruction_emails_task_runner \u09af\u09cc\u0997")
 
 # Define a periodic task schedule (e.g., run every 5 minutes)
 # This schedule will be active if Celery beat is run with this app.
-celery_app.conf.beat_schedule = {
-    'check-secretary-emails-every-1-minute': { # Changed to 1 minute for faster testing feedback
-        'task': 'check_emails_task', # Name is 'check_emails_task'
-        'schedule': crontab(minute='*/1'),  # Run every 1 minute
-    },
-}
+# celery_app.conf.beat_schedule = {
+#     'check-secretary-emails-every-1-minute': { # Changed to 1 minute for faster testing feedback
+#         'task': 'check_emails_task', # Name is 'check_emails_task'
+#         'schedule': crontab(minute='*/1'),  # Run every 1 minute
+#     },
+#     'check-instruction-emails-every-2-minutes': { 
+#         'task': 'check_instruction_emails_task', # This is the name of the task defined above
+#         'schedule': crontab(minute='*/2'),  # Run every 2 minutes
+#     },
+# }
 
 # --- Autonomous Testing Rig (Keep for other tests, but not primary for this interactive one) ---
 def run_autonomous_test_suite():

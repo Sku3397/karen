@@ -97,8 +97,15 @@ SECRETARY_EMAIL_SMTP_SERVER = os.getenv('SECRETARY_EMAIL_SMTP_SERVER')
 SECRETARY_EMAIL_SMTP_PORT = int(os.getenv('SECRETARY_EMAIL_SMTP_PORT', 587))
 SECRETARY_EMAIL_IMAP_SERVER = os.getenv('SECRETARY_EMAIL_IMAP_SERVER')
 SECRETARY_EMAIL_IMAP_PORT = int(os.getenv('SECRETARY_EMAIL_IMAP_PORT', 993))
-SECRETARY_EMAIL_ADDRESS = os.getenv('SECRETARY_EMAIL_ADDRESS')
-SECRETARY_EMAIL_PASSWORD = os.getenv('SECRETARY_EMAIL_PASSWORD')
+SECRETARY_EMAIL_ADDRESS = os.getenv('SECRETARY_EMAIL_ADDRESS') # karensecretaryai@gmail.com (for sending test/receiving instructions)
+SECRETARY_EMAIL_PASSWORD = os.getenv('SECRETARY_EMAIL_PASSWORD') # Likely unused with OAuth
+SECRETARY_TOKEN_PATH_ENV_VAR = os.getenv('SECRETARY_TOKEN_PATH', 'gmail_token_karen.json')
+SECRETARY_TOKEN_PATH_CONFIG = os.path.join(PROJECT_ROOT, SECRETARY_TOKEN_PATH_ENV_VAR.split('#')[0].strip()) # Token for karensecretaryai@gmail.com
+
+MONITORED_EMAIL_ACCOUNT_CONFIG = os.getenv('MONITORED_EMAIL_ACCOUNT') # hello@757handy.com (for primary monitoring and sending)
+MONITORED_EMAIL_TOKEN_PATH_ENV_VAR = os.getenv('MONITORED_EMAIL_TOKEN_PATH', 'gmail_token_monitor.json')
+MONITORED_EMAIL_TOKEN_PATH_CONFIG = os.path.join(PROJECT_ROOT, MONITORED_EMAIL_TOKEN_PATH_ENV_VAR.split('#')[0].strip()) # Token for hello@757handy.com
+
 ADMIN_EMAIL_ADDRESS = os.getenv('ADMIN_EMAIL_ADDRESS')
 
 # Gemini API Key
@@ -117,9 +124,17 @@ FIREBASE_SERVICE_ACCOUNT_KEY_PATH = os.getenv('FIREBASE_SERVICE_ACCOUNT_KEY_PATH
 # Mock client setting (for testing)
 USE_MOCK_EMAIL_CLIENT = os.getenv('USE_MOCK_EMAIL_CLIENT', 'False').lower() == 'true'
 
+# Path to the Google OAuth client secrets file (for all Google services ideally)
+GOOGLE_APP_CREDENTIALS_PATH = os.getenv('GOOGLE_APP_CREDENTIALS_PATH', 'credentials.json')
+
+# Token path specifically for hello@757handy.com's Google Calendar access
+GOOGLE_CALENDAR_TOKEN_PATH = os.getenv('GOOGLE_CALENDAR_TOKEN_PATH_HELLO', 'gmail_token_hello_calendar.json')
+
 # It's good practice to log critical configs if they are missing, or provide fallbacks
 if not SECRETARY_EMAIL_ADDRESS:
     logger.error("CRITICAL: SECRETARY_EMAIL_ADDRESS is not set in the environment.")
+if not MONITORED_EMAIL_ACCOUNT_CONFIG: # Added check
+    logger.error("CRITICAL: MONITORED_EMAIL_ACCOUNT is not set in the environment. Primary email functions will fail.")
 if not GEMINI_API_KEY:
     logger.warning("WARNING: GEMINI_API_KEY is not set in the environment. AI features will fail.")
 if not CELERY_BROKER_URL:
@@ -130,4 +145,10 @@ if not FIREBASE_SERVICE_ACCOUNT_KEY_PATH:
 
 # For clarity, let's define ADMIN_EMAIL and SECRETARY_EMAIL as requested in the prompt's test script
 ADMIN_EMAIL = ADMIN_EMAIL_ADDRESS
-SECRETARY_EMAIL = SECRETARY_EMAIL_ADDRESS
+SECRETARY_EMAIL = SECRETARY_EMAIL_ADDRESS # This refers to karensecretaryai@gmail.com
+PRIMARY_KAREN_EMAIL = MONITORED_EMAIL_ACCOUNT_CONFIG # This will be hello@757handy.com
+
+# --- Celery Configuration ---
+# If True, the main application will not attempt to start Celery worker and beat.
+# This is useful if Redis is not available or Celery is managed separately.
+SKIP_CELERY_STARTUP = os.getenv("SKIP_CELERY_STARTUP", "True").lower() == "true"

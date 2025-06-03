@@ -34,7 +34,7 @@ DATABASES = {
 # As of Django 4.0, pytz is deprecated in favor of zoneinfo.
 # django-celery-beat 2.5.0 might still have older dependencies.
 # Let's try with False first, assuming newer deps or compatibility.
-USE_DEPRECATED_PYTZ = False
+USE_DEPRECATED_PYTZ = True
 TIME_ZONE = 'UTC' # Explicitly set for clarity and consistency
 USE_TZ = True
 
@@ -45,6 +45,23 @@ USE_TZ = True
 
 # Celery Beat Scheduler
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# Define the Celery Beat schedule directly in Django settings
+CELERY_BEAT_SCHEDULE = {
+    'check-secretary-emails-every-1-minute': {
+        'task': 'check_emails_task',  # Refers to the task name in celery_app.py
+        'schedule': '* * * * *',  # crontab format for every 1 minute
+    },
+    'check-instruction-emails-every-2-minutes': {
+        'task': 'check_instruction_emails_task', # Refers to the task name in celery_app.py
+        'schedule': '*/2 * * * *',  # crontab format for every 2 minutes
+    },
+    # Example of a crontab schedule object if preferred, though string form is fine
+    # 'celery.backend_cleanup': {
+    # 'task': 'celery.backend_cleanup',
+    # 'schedule': crontab(hour=4, minute=0), # Example: daily at 4 AM
+    # },
+}
 
 # Minimal MIDDLEWARE for Django admin and auth
 MIDDLEWARE = [

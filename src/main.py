@@ -13,6 +13,8 @@ import os
 import subprocess # Added for starting Celery worker
 import threading # Added for running worker in a separate thread
 import sys # Added to get Python executable
+import time # Added for sleep in startup for logging clarity
+import logging.config # Added for dictionary config
 
 # Attempt to import EmailClient and config
 try:
@@ -49,14 +51,61 @@ except ImportError as e:
     task_manager_router = APIRouter(prefix="/tasks", tags=["tasks_mock"]) # Mock router
     TASK_MANAGER_AVAILABLE = False
 
-
 # Configure logging
-# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-# stream_handler = logging.StreamHandler() # Optional: if direct stdout needed before uvicorn
-# stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-# logger.addHandler(stream_handler)
+# Use dictionary configuration for more control
+logging_config = {
+    'version': 1,
+    'disable_existing_loggers': False, # Keep existing loggers
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+            'level': 'DEBUG', # Set console handler level to DEBUG
+            'stream': 'ext://sys.stdout', # Explicitly use stdout
+        },
+        # File handler configuration (optional, based on need)
+        # 'file': {
+        #     'class': 'logging.FileHandler',
+        #     'formatter': 'standard',
+        #     'level': 'DEBUG',
+        #     'filename': 'application.log',
+        # },
+    },
+    'loggers': {
+        '': { # Root logger
+            'handlers': ['console'], # Add console handler to root
+            'level': 'INFO', # Set root logger level to INFO
+            'propagate': True
+        },
+        'uvicorn': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False # Prevent uvicorn logs from being duplicated by root
+        },
+        'uvicorn.error': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False
+        },
+        'src.email_client': { # Explicitly configure email_client logger
+            'handlers': ['console'],
+            'level': 'DEBUG', # Ensure DEBUG messages from email client are shown
+            'propagate': False # Prevent duplication
+        }
+    },
+}
+
+try:
+    logging.config.dictConfig(logging_config)
+except Exception as e:
+    print(f"Error configuring logging: {e}")
+
+logger = logging.getLogger(__name__) # Get logger after config
 
 # Initialize Firebase Admin SDK (if not already initialized)
 # Ensure GOOGLE_APPLICATION_CREDENTIALS environment variable is set to the path of your service account key file
@@ -85,6 +134,7 @@ app = FastAPI(
 
 # --- Celery Worker Auto-start ---
 celery_worker_process = None
+celery_beat_process = None # Added for Celery Beat
 
 def start_celery_worker():
     """Starts the Celery worker in a separate process."""
@@ -114,8 +164,10 @@ def start_celery_worker():
         # but for logging to file, a visible window might not be an issue.
         # subprocess.CREATE_NO_WINDOW (requires import subprocess)
         # Redirect output to a file for the worker as well
-        with open("celery_worker_from_main_logs.txt", "wb") as log_file:
-            celery_worker_process = subprocess.Popen(worker_command, stdout=log_file, stderr=subprocess.STDOUT, env=env)
+        # with open("celery_worker_from_main_logs.txt", "wb") as log_file:
+        #     celery_worker_process = subprocess.Popen(worker_command, stdout=log_file, stderr=subprocess.STDOUT, env=env)
+        # Don't redirect output to file for now, let it go to console for easier debugging
+        celery_worker_process = subprocess.Popen(worker_command, env=env)
         logger.info(f"Celery worker started with PID: {celery_worker_process.pid}")
     except Exception as e:
         logger.error(f"Failed to start Celery worker: {e}", exc_info=True)
@@ -134,39 +186,185 @@ def stop_celery_worker():
             celery_worker_process.kill()
             logger.info("Celery worker killed.")
         celery_worker_process = None
+
+def start_celery_beat():
+    """Starts the Celery Beat scheduler in a separate process."""
+    global celery_beat_process
+    try:
+        python_executable = sys.executable
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        env = os.environ.copy()
+        env["PYTHONPATH"] = project_root + os.pathsep + env.get("PYTHONPATH", "")
+        
+        # Using django_celery_beat.schedulers:DatabaseScheduler based on project clues
+        # Ensure django_celery_beat is installed (should be in requirements.txt)
+        beat_command = [
+            python_executable, "-m", "celery", "-A", "src.celery_app:celery_app", "beat",
+            "-l", "INFO", # Or DEBUG
+            "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler",
+            "--pidfile=", # Empty string for pidfile to avoid issues if it's not cleaned up
+        ]
+        logger.info(f"Starting Celery Beat with command: {' '.join(beat_command)}")
+        # Log to a separate file for beat
+        # with open("celery_beat_from_main_logs.txt", "wb") as log_file:
+        #     celery_beat_process = subprocess.Popen(beat_command, stdout=log_file, stderr=subprocess.STDOUT, env=env)
+        # Don't redirect output to file for now, let it go to console for easier debugging
+        celery_beat_process = subprocess.Popen(beat_command, env=env)
+        logger.info(f"Celery Beat started with PID: {celery_beat_process.pid}")
+    except Exception as e:
+        logger.error(f"Failed to start Celery Beat: {e}", exc_info=True)
+
+def stop_celery_beat():
+    """Stops the Celery Beat scheduler if it's running."""
+    global celery_beat_process
+    if celery_beat_process:
+        logger.info("Stopping Celery Beat...")
+        celery_beat_process.terminate()
+        try:
+            celery_beat_process.wait(timeout=10)
+            logger.info("Celery Beat terminated.")
+        except subprocess.TimeoutExpired:
+            logger.warning("Celery Beat did not terminate in time, killing...")
+            celery_beat_process.kill()
+            logger.info("Celery Beat killed.")
+        celery_beat_process = None
 # --- End Celery Worker Auto-start ---
 
 
 @app.on_event("startup")
 async def startup_event():
+    # --- TEMPORARY DEBUG PRINT --- # Keep this comment to mark the section
+    # All temporary debug lines are removed from here.
+    # --- END TEMPORARY DEBUG PRINT ---
+
     logger.info("Application startup: AI Handyman Secretary Assistant is online.")
     
-    # Start Celery Worker
-    # Run in a separate thread to not block FastAPI startup
-    worker_thread = threading.Thread(target=start_celery_worker, daemon=True)
-    worker_thread.start()
+    # Add a small delay to allow logging to initialize
+    time.sleep(2) # Added a small delay
+    logger.info("POST-SLEEP: Continuing startup...") # New log
+
+    if not config.SKIP_CELERY_STARTUP:
+        # Start Celery Worker
+        logger.info("PRE-WORKER-THREAD: Attempting to start Celery worker thread...") # New log
+        worker_thread = threading.Thread(target=start_celery_worker, daemon=True)
+        worker_thread.start()
+        logger.info("POST-WORKER-THREAD: Celery worker thread started.") # New log
+
+        # Start Celery Beat
+        logger.info("PRE-BEAT-THREAD: Attempting to start Celery beat thread...") # New log
+        beat_thread = threading.Thread(target=start_celery_beat, daemon=True)
+        beat_thread.start()
+        logger.info("POST-BEAT-THREAD: Celery beat thread started.") # New log
+    else:
+        logger.info("SKIP_CELERY_STARTUP is True. Celery worker and beat will not be started by main app.")
     
-    if EMAIL_SYSTEM_AVAILABLE and config and config.ADMIN_EMAIL_ADDRESS and config.SECRETARY_EMAIL_ADDRESS:
+    # --- Add one-time instruction check on startup for the last hour ---
+    logger.info("Attempting to schedule one-time instruction email check for the last hour.")
+    try:
+        # We need a CommunicationAgent instance. This will use get_communication_agent_instance
+        # from celery_app, which should be initialized by now or on first call.
+        from .celery_app import get_communication_agent_instance as get_agent_for_startup
+        
+        def run_startup_instruction_check():
+            try:
+                logger.info("STARTUP TASK: Getting agent instance for instruction check...")
+                agent = get_agent_for_startup()
+                if agent:
+                    logger.info("STARTUP TASK: Agent instance retrieved. Checking instruction emails (newer_than='1h', ignoring UNSEEN status for this check)...")
+                    agent.check_and_process_instruction_emails(newer_than_duration="1h", override_search_criteria_for_duration_fetch=True)
+                    logger.info("STARTUP TASK: Finished one-time instruction email check for the last hour.")
+                else:
+                    logger.error("STARTUP TASK: Failed to get CommunicationAgent instance. Cannot check instruction emails.")
+            except Exception as e_startup_check:
+                logger.error(f"STARTUP TASK: Error during one-time instruction email check: {e_startup_check}", exc_info=True)
+
+        startup_instruction_check_thread = threading.Thread(target=run_startup_instruction_check, daemon=True)
+        startup_instruction_check_thread.start()
+        logger.info("One-time instruction email check thread started.")
+
+    except ImportError as e_import_agent:
+        logger.error(f"Failed to import get_communication_agent_instance for startup check: {e_import_agent}")
+    except Exception as e_startup_task_setup:
+        logger.error(f"Failed to set up one-time instruction email check: {e_startup_task_setup}")
+    # --- End one-time instruction check ---
+
+    # Check for primary email account and its token path for startup notification
+    if EMAIL_SYSTEM_AVAILABLE and config and config.ADMIN_EMAIL_ADDRESS and \
+       config.MONITORED_EMAIL_ACCOUNT_CONFIG and config.MONITORED_EMAIL_TOKEN_PATH_CONFIG:
         try:
-            email_client = EmailClient(email_address=config.SECRETARY_EMAIL_ADDRESS)
+            # Added logging before EmailClient initialization
+            logger.info(f"Attempting to initialize EmailClient for monitored account: {config.MONITORED_EMAIL_ACCOUNT_CONFIG}")
+            email_client_monitor = EmailClient(
+                email_address=config.MONITORED_EMAIL_ACCOUNT_CONFIG, 
+                token_file_path=config.MONITORED_EMAIL_TOKEN_PATH_CONFIG
+            )
+            logger.info(f"EmailClient initialized successfully for monitored account: {config.MONITORED_EMAIL_ACCOUNT_CONFIG}")
+
             subject = "AI Secretary Online Notification"
-            body = "The AI Handyman Secretary Assistant has started and is now monitoring emails."
-            logger.info(f"Attempting to send startup notification email to {config.ADMIN_EMAIL_ADDRESS} from {config.SECRETARY_EMAIL_ADDRESS}")
-            email_client.send_email(
+            body = f"The AI Handyman Secretary Assistant (monitoring {config.MONITORED_EMAIL_ACCOUNT_CONFIG}) has started and is now online."
+            logger.info(f"Attempting to send startup notification email to {config.ADMIN_EMAIL_ADDRESS} from {config.MONITORED_EMAIL_ACCOUNT_CONFIG}")
+            email_client_monitor.send_email(
                 to=config.ADMIN_EMAIL_ADDRESS,
                 subject=subject,
                 body=body
             )
             logger.info(f"Startup notification email sent successfully to {config.ADMIN_EMAIL_ADDRESS}.")
         except Exception as e:
-            logger.error(f"Failed to send startup email: {e}", exc_info=True) # Log traceback
+            logger.error(f"Failed to send startup email from {config.MONITORED_EMAIL_ACCOUNT_CONFIG}: {e}", exc_info=True) # Log traceback
     else:
-        logger.warning("Email system or required email configurations are not available. Startup email will not be sent.")
+        logger.warning("Email system, admin email, or primary monitored account/token path configurations are not fully available. Startup email will not be sent.")
+
+    # --- STARTUP SELF-TEST ---
+    if EMAIL_SYSTEM_AVAILABLE and config and \
+       config.SECRETARY_EMAIL_ADDRESS and config.SECRETARY_TOKEN_PATH_CONFIG and \
+       config.MONITORED_EMAIL_ACCOUNT_CONFIG:
+        logger.info("--- Initiating Startup Self-Test Email ---")
+        try:
+            logger.info(f"Attempting to initialize EmailClient for instruction account (sender for self-test): {config.SECRETARY_EMAIL_ADDRESS}")
+            email_client_secretary = EmailClient(
+                email_address=config.SECRETARY_EMAIL_ADDRESS,
+                token_file_path=config.SECRETARY_TOKEN_PATH_CONFIG
+            )
+            logger.info(f"EmailClient initialized successfully for instruction account: {config.SECRETARY_EMAIL_ADDRESS}")
+
+            test_subject = "Service Inquiry - Kitchen & Small Roof Repair" # New Subject
+            test_body = (                                                  # New Body
+                "Hi Beach Handyman,\n\n"
+                "I have a couple of questions about your services.\n"
+                "1. Do you handle kitchen remodels?\n"
+                "2. I also have a small roofing issue, probably less than 50 sq ft. Is that something you can look at?\n"
+                "3. Lastly, do you offer free estimates for work?\n\n"
+                "Looking forward to your response.\n\n"
+                "Thanks,\n"
+                "A. Potential Customer"
+            )
+            
+            logger.info(f"Sending self-test email from {config.SECRETARY_EMAIL_ADDRESS} to {config.MONITORED_EMAIL_ACCOUNT_CONFIG} with subject: '{test_subject}'")
+            success = email_client_secretary.send_email(
+                to=config.MONITORED_EMAIL_ACCOUNT_CONFIG,
+                subject=test_subject,
+                body=test_body
+            )
+            if success:
+                logger.info(f"Startup self-test email successfully dispatched from {config.SECRETARY_EMAIL_ADDRESS} to {config.MONITORED_EMAIL_ACCOUNT_CONFIG}.")
+            else:
+                logger.error(f"Failed to send startup self-test email from {config.SECRETARY_EMAIL_ADDRESS} to {config.MONITORED_EMAIL_ACCOUNT_CONFIG}.")
+
+        except Exception as e:
+            logger.error(f"Failed to execute startup self-test: Could not initialize EmailClient for {config.SECRETARY_EMAIL_ADDRESS} or send email. Error: {e}", exc_info=True)
+    else:
+        logger.warning("Startup self-test email not sent. Required configurations (secretary email/token, monitored email) are not fully available.")
+    # --- END STARTUP SELF-TEST ---
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Application shutdown: AI Handyman Secretary Assistant is shutting down.")
-    stop_celery_worker()
+    if not config.SKIP_CELERY_STARTUP:
+        stop_celery_worker()
+        stop_celery_beat()
+    else:
+        logger.info("SKIP_CELERY_STARTUP is True. Skipping Celery worker and beat shutdown.")
 
 # Add CORS middleware
 app.add_middleware(
@@ -198,24 +396,15 @@ async def root():
     return {
         "message": "AI Handyman Secretary Assistant API",
         "version": "1.0.0",
-        "status": "operational",
-        "task_manager_available": TASK_MANAGER_AVAILABLE,
-        "endpoints": {
-            "users": "/api/v1/users",
-            "tasks": "/api/v1/tasks" if TASK_MANAGER_AVAILABLE else "/api/v1/tasks_mock",
-            "appointments": "/api/v1/appointments",
-            "communications": "/api/v1/communications",
-            "knowledge": "/api/v1/knowledge",
-            "billing": "/api/v1/billing",
-            "inventory": "/api/v1/inventory",
-            # "task-manager": "/api/v1/task-manager" if AGENTS_AVAILABLE else "unavailable" # Updated
-        }
+        "docs_url": "/docs",
+        "redoc_url": "/redoc"
     }
 
+# Health check endpoint
 @app.get("/health")
 async def health_check():
-    """Health check endpoint."""
-    return {"status": "healthy", "service": "AI Handyman Secretary Assistant"}
+    # Basic health check: returns 200 if the FastAPI app is running
+    return {"status": "ok"}
 
 if __name__ == "__main__":
     import uvicorn

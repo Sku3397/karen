@@ -1,25 +1,27 @@
 # Task Management Agent
 
-## Overview
-The Task Management Agent is responsible for:
-- Breaking down client requests into actionable steps
-- Assigning tasks/subtasks to handyman resources (simulated)
-- Tracking progress and status of all tasks
+**Note:** The Task Management Agent and its associated Firestore integration are **currently not active or fully implemented** in the main application flow. The necessary `firestore_models` dependency and related code in `src/task_manager_agent.py` (or `src/task_manager.py`) have been temporarily commented out to resolve startup issues. This document describes the **intended/planned functionality** for this agent.
 
-## Main Components
-- **FirestoreTaskInterface**: Abstraction for Firestore task storage operations
-- **TaskManagementAgent**: Core agent logic for creation, breakdown, assignment, progress tracking
-- **REST API**: FastAPI endpoints for agent communication, usable by other agents or orchestrators
+## Planned Overview
+The Task Management Agent is envisioned to be responsible for:
+- Breaking down client requests into actionable steps.
+- Assigning tasks/subtasks to handyman resources (simulated or real).
+- Tracking progress and status of all tasks.
 
-## API Endpoints
-- `POST /tasks/` : Create and breakdown task
-- `POST /tasks/{task_id}/assign/` : Assign a task to a handyman resource
-- `POST /tasks/{task_id}/status/` : Update the status of a task
-- `GET /tasks/{parent_task_id}/progress/` : Get progress of a parent task & its steps
+## Planned Main Components
+- **FirestoreTaskInterface**: An abstraction layer for Firestore task storage operations.
+- **TaskManagementAgent**: Core agent logic for task creation, breakdown, assignment, and progress tracking.
+- **REST API**: FastAPI endpoints for agent communication, intended for use by other agents or an orchestrator.
 
-## Firestore Document Structure
-Each task is a document. Parent task has `steps` array with subtask IDs; subtasks have `parent_task_id`.
+## Planned API Endpoints (Illustrative)
+- `POST /tasks/` : Create and potentially break down a task.
+- `POST /tasks/{task_id}/assign/` : Assign a task to a handyman resource.
+- `POST /tasks/{task_id}/status/` : Update the status of a task.
+- `GET /tasks/{parent_task_id}/progress/` : Get progress of a parent task and its sub-tasks/steps.
 
-## Notes
-- All assignments are simulated
-- Pub/Sub hooks to be implemented for multi-agent notifications if needed
+## Planned Firestore Document Structure
+Each task would be a document in Firestore. Parent tasks might have a `steps` array with subtask IDs, and subtasks would have a `parent_task_id` to link them.
+
+## Notes on Planned Functionality
+- Assignments to handyman resources would initially be simulated or placeholder.
+- Pub/Sub hooks might be implemented for multi-agent notifications if this architecture is pursued.

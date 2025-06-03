@@ -10,12 +10,15 @@ iac/terraform.tfstate*
 .env
 .env.*
 credentials.json
-gmail_token.json
+# gmail_token.json # Covered by *token*.json
 src/config/karen-437100-firebase-adminsdk-fbsvc-e1f59fc29d.json
 *private*.json
 *key*.json
 *token*.json
 *-adminsdk-*.json
+project_iam_policy.json
+ar_repo_iam_policy.json
+rth_status_*.json
 # OS
 .DS_Store
 Thumbs.db

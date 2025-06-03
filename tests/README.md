@@ -1,77 +1,40 @@
-# Frontend & Backend Test Guide
+# Testing Karen AI Assistant
 
-This project includes automated tests for both the frontend (React) and backend (Python/Cloud Functions).
+This directory contains tests for the Karen AI Handyman Secretary Assistant project.
 
-See the [main README.md](../README.md) and [TESTING.md](../TESTING.md) for unified quickstart, troubleshooting, and best practices.
+## Overview
 
----
+Currently, the test suite is minimal. The focus has been on iterative development and manual end-to-end testing of the core email processing loop.
 
-## Frontend Smoke Test
+As the project matures, this directory should be populated with:
+- **Unit Tests:** For individual functions and classes (e.g., testing `EmailClient` methods in isolation, `HandymanResponseEngine` logic, `LLMClient` interactions with mocks).
+- **Integration Tests:** For testing interactions between components (e.g., `CommunicationAgent`'s use of `EmailClient` and `LLMClient`).
+- **End-to-End (E2E) Tests:** Scripts that simulate real user scenarios, such as sending an email to the monitored inbox and verifying that an appropriate reply is sent to the correct recipient and admin notifications are generated. These might involve using a dedicated test Gmail account and mocking external services where necessary.
 
-- Located at `tests/frontend_smoke_test.js`.
-- Checks that the dev server is running, the root div is present, and expected UI text is rendered.
+## Running Tests
 
-### How to run
-1. Start the frontend dev server:
-   ```sh
-   npm start
-   ```
-2. In another terminal, run:
-   ```sh
-   node tests/frontend_smoke_test.js
-   ```
+(Instructions to be added once a formal testing framework like `pytest` is more thoroughly implemented and tests are written.)
 
----
+**Example (conceptual) using pytest:**
+```bash
+# Ensure your virtual environment is activated
+# Ensure pytest is installed (pip install pytest)
 
-## Backend Function Tests
-
-- Scripts for each cloud function:
-  - `tests/backend_notification_test.js`
-  - `tests/backend_billing_test.js`
-  - `tests/backend_scheduler_test.js`
-  - `tests/backend_gmail_test.js`
-- These call exported functions with test data or verify API access.
-
-### How to run
-```sh
-python -m unittest discover tests/backend
-# or for JS tests:
-node tests/backend_notification_test.js
-node tests/backend_billing_test.js
-node tests/backend_scheduler_test.js
-node tests/backend_gmail_test.js
+# Navigate to the project root
+pytest tests/
 ```
 
----
+## Writing Tests
 
-## Master Autonomous Test Runner
+- Place new test files in this `tests/` directory.
+- Follow naming conventions (e.g., `test_*.py` for files, `test_*` for functions if using pytest).
+- Use mocking extensively to isolate units and avoid reliance on external services or live API calls during automated tests.
+  - The `src.mock_email_client.MockEmailClient` can be used or extended for testing email functionalities.
+  - Mock LLM responses to test the `HandymanResponseEngine` and `CommunicationAgent` logic under various scenarios.
 
-To run all frontend and backend tests in sequence with a single command:
-```sh
-node tests/all_autonomous_tests.js
-```
-- Runs all tests, logs results, and exits nonzero if any test fails (except for skipped backend tests).
-- Use for CI, health checks, or local development to ensure the system is working end-to-end.
+## Current Test-Related Files
 
----
+- `pytest.ini`: Basic configuration for `pytest` (if present in the root).
+- This `tests/README.md`.
 
-## Interpreting Results
-- `PASS: ...` — Test succeeded.
-- `SKIP: ...` — Test skipped (e.g., missing credentials).
-- `FAIL: ...` — Error details will be shown.
-
----
-
-## Troubleshooting
-- **Frontend not running:** Ensure `npm start` is running and accessible at [http://localhost:8080](http://localhost:8080).
-- **Port in use:** Kill the process or change the port in `webpack.config.js`.
-- **Dependency errors:** Delete `node_modules` and `package-lock.json`, then run `npm install`.
-- **Backend test failures:** Check Python environment and credentials.
-- See [TESTING.md](../TESTING.md) for more troubleshooting tips.
-
----
-
-## Best Practices
-- Keep all test scripts up to date with UI and API changes.
-- Use the autonomous test runner for full-stack health checks.
-- Document any new tests or changes in this file and in [TESTING.md](../TESTING.md). 
+Contributions to improving test coverage are welcome! 

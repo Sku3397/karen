@@ -14,8 +14,31 @@
       "Bash(pip3 install:*)",
       "Bash(python3:*)",
       "Bash(apt:*)",
-      "Bash(apt install:*)"
+      "Bash(apt install:*)",
+      "Bash(npm i:*)",
+      "Bash(sudo npm i -g @anthropic-ai/claude-code)",
+      "Bash(claude --version)",
+      "Bash(claude doctor)",
+      "Bash(export CI=true)",
+      "Bash(grep:*)",
+      "Bash(pip install:*)",
+      "Bash(ls:*)",
+      "Bash(ls:*)",
+      "Bash(.venv/bin/python:*)",
+      "Bash(sudo apt:*)",
+      "Bash(sudo apt install:*)",
+      "Bash(.venv/Scripts/python test_memory_engineer_initialization.py:*)",
+      "Bash(.venv/Scripts/python.exe test_memory_engineer_initialization.py:*)",
+      "Bash(.venv/Scripts/python.exe test_memory_cross_medium.py:*)",
+      "Bash(.venv/Scripts/python.exe:*)",
+      "Bash(mv:*)",
+      "Bash(source:*)",
+      "Bash(/mnt/c/Users/Man/ultra/projects/karen/.venv/Scripts/python.exe -c \"\nimport json, os, time, sys\nsys.path.insert(0, '/mnt/c/Users/Man/ultra/projects/karen')\nfrom claude_helpers import archaeologist_helper as helper\n\nwhile True:\n    task_file = '/mnt/c/Users/Man/ultra/projects/karen/active_tasks/archaeologist_current_task.json'\n    if os.path.exists(task_file):\n        with open(task_file) as f:\n            task_data = json.load(f)\n        print(f'Executing archaeologist task: {task_data[\\\"task\\\"][\\\"type\\\"]}')\n        exec(task_data['instruction'])\n        os.rename(task_file, task_file.replace('.json', '_completed.json'))\n    else:\n        print('No archaeologist tasks, waiting...')\n    time.sleep(10)\n\")",
+      "Bash(/mnt/c/Users/Man/ultra/projects/karen/.venv/Scripts/python.exe -c \"\nimport json, os, time, sys\nsys.path.insert(0, '/mnt/c/Users/Man/ultra/projects/karen')\n\n# Import helper without errors\ntry:\n    from claude_helpers import archaeologist_helper as helper\n    print('Archaeologist helper loaded successfully')\nexcept Exception as e:\n    print(f'Helper loading error: {e}')\n\nprint('Starting archaeologist autonomous mode...')\n\niteration = 0\nmax_iterations = 60  # Run for about 10 minutes\n\nwhile iteration < max_iterations:\n    task_file = '/mnt/c/Users/Man/ultra/projects/karen/active_tasks/archaeologist_current_task.json'\n    if os.path.exists(task_file):\n        with open(task_file) as f:\n            task_data = json.load(f)\n        print(f'Executing archaeologist task: {task_data[\\\"task\\\"][\\\"type\\\"]}')\n        \n        try:\n            exec(task_data['instruction'])\n            print('Task completed successfully')\n        except Exception as e:\n            print(f'Task execution error: {e}')\n            \n        completed_file = task_file.replace('.json', '_completed.json')\n        os.rename(task_file, completed_file)\n        print(f'Task marked as completed')\n    else:\n        print(f'Iteration {iteration}: No archaeologist tasks, waiting...')\n    \n    iteration += 1\n    time.sleep(10)\n\nprint(f'Completed {max_iterations} monitoring cycles')\n\")",
+      "Bash(/mnt/c/Users/Man/ultra/projects/karen/.venv/Scripts/python.exe -c \"\nimport json\nimport os\nimport time\nimport sys\nsys.path.insert(0, '/mnt/c/Users/Man/ultra/projects/karen')\n\n# Import personality modules\nfrom src.personality import CorePersonality, EmpathyEngine, PhoneEtiquette, SmallTalkEngine, CulturalAwareness\n\nprint('=== DUAL ARCHAEOLOGIST-PERSONALITY ENGINEER ===')\nprint('Monitoring for both analysis and personality tasks...')\n\n# Initialize personality components\npersonality = CorePersonality()\nempathy = EmpathyEngine()\nphone = PhoneEtiquette()\nsmall_talk = SmallTalkEngine()\ncultural = CulturalAwareness()\n\nprint('Personality modules loaded successfully!')\n\niteration = 0\nmax_iterations = 300  # About 1 hour of monitoring\n\nwhile iteration < max_iterations:\n    task_file = '/mnt/c/Users/Man/ultra/projects/karen/active_tasks/archaeologist_current_task.json'\n    \n    if os.path.exists(task_file):\n        print(f'\\\\n>>> TASK FOUND (iteration {iteration}) <<<')\n        \n        with open(task_file) as f:\n            task_data = json.load(f)\n        \n        task_type = task_data.get('task', {}).get('type', 'unknown')\n        print(f'Task type: {task_type}')\n        \n        # Handle both analysis AND personality tasks\n        if any(keyword in task_type.lower() for keyword in ['personality', 'empathy', 'phone', 'cultural', 'communication']):\n            print(f'🎭 PERSONALITY TASK: {task_type}')\n            \n            # Create personality implementation based on task type\n            if 'empathy' in task_type.lower():\n                print('Implementing empathy features...')\n            elif 'phone' in task_type.lower():\n                print('Creating phone etiquette templates...')\n            elif 'cultural' in task_type.lower():\n                print('Adding cultural awareness...')\n            else:\n                print('General personality enhancement...')\n                \n        else:\n            print(f'🔍 ANALYSIS TASK: {task_type}')\n            print('Analyzing code patterns and architecture...')\n        \n        # Execute the task instruction\n        try:\n            exec(task_data['instruction'])\n            print('✅ Task completed successfully')\n        except Exception as e:\n            print(f'❌ Task execution error: {e}')\n        \n        # Mark as completed\n        completed_file = task_file.replace('.json', '_completed.json')\n        os.rename(task_file, completed_file)\n        print(f'📋 Task marked as completed')\n        \n    else:\n        if iteration % 30 == 0:  # Status every 5 minutes\n            print(f'[{iteration}] Monitoring... (Personality modules ready)')\n        else:\n            print('.', end='', flush=True)\n    \n    iteration += 1\n    time.sleep(10)\n\nprint(f'\\\\n\\\\n=== SESSION COMPLETE ===')\nprint(f'Monitored {iteration} cycles')\nprint('Personality engineering capabilities fully operational!')\n\")",
+      "Bash(timeout:*)"
     ],
     "deny": []
-  }
+  },
+  "model": "claude-sonnet-4-20250514"
 }

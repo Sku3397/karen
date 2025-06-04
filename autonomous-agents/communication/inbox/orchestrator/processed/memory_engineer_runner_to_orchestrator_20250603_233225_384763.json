@@ -1,0 +1,24 @@
+{
+  "from": "memory_engineer_runner",
+  "to": "orchestrator",
+  "type": "component_ready",
+  "content": {
+    "component": "memory_engineer",
+    "capabilities": [
+      "store_email_conversation",
+      "store_sms_conversation",
+      "store_voice_conversation",
+      "link_customer_identities",
+      "get_conversation_context",
+      "search_conversations",
+      "auto_detect_phone_from_email"
+    ],
+    "storage": "chromadb",
+    "collections": [
+      "conversations",
+      "context",
+      "identity_mappings"
+    ]
+  },
+  "timestamp": "2025-06-03T23:32:25.383416"
+}

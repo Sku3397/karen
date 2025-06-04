@@ -1,0 +1,53 @@
+{
+  "contributor": "archaeologist",
+  "type": "core_patterns",
+  "content": {
+    "celery_task_patterns": {
+      "task_definition_structure": {
+        "decorator": "@celery_app.task(name='task_name', bind=True, ignore_result=True)",
+        "function_signature": "def task_function(self, payload: dict = None):",
+        "logging_pattern": "task_logger = self.get_logger()",
+        "communication_init": "comm = AgentCommunication('agent_name')",
+        "status_updates": "comm.update_status('processing', progress, details)",
+        "error_handling": "try/except with comm.update_status('error')"
+      },
+      "schedule_pattern": {
+        "crontab_usage": "schedule': crontab(minute='*/2')",
+        "task_registration": "Task registered in CELERYBEAT_SCHEDULE",
+        "async_bridge": "asyncio.run(agent.async_method())"
+      }
+    },
+    "oauth_authentication_patterns": {
+      "token_management": {
+        "storage_location": "PROJECT_ROOT relative paths",
+        "refresh_mechanism": "creds.refresh(GoogleAuthRequest())",
+        "error_handling": "google.auth.exceptions.RefreshError",
+        "scopes": ["gmail.send", "gmail.compose", "gmail.readonly", "gmail.modify"]
+      },
+      "service_initialization": {
+        "fail_fast_pattern": "Validate credentials in __init__",
+        "error_propagation": "raise ValueError with descriptive messages",
+        "service_building": "build('service', 'version', credentials=creds)"
+      }
+    },
+    "email_processing_flow": {
+      "search_criteria": "Build Gmail queries with labels and dates",
+      "batch_processing": "Process emails independently with error isolation",
+      "label_management": "Use 'Karen_Processed' label to prevent reprocessing",
+      "response_generation": "Classify → LLM → Calendar Check → Send → Label"
+    },
+    "error_handling_standards": {
+      "exception_hierarchy": "HttpError → RefreshError → Exception",
+      "logging_pattern": "logger.error with exc_info=True",
+      "admin_notification": "send_admin_email for critical errors",
+      "status_code_handling": "401=auth, 403=permission, 404=not_found"
+    },
+    "configuration_management": {
+      "early_loading": "load_dotenv before Celery imports",
+      "environment_specific": "APP_ENV determines .env file",
+      "validation": "Validate required variables on startup",
+      "path_handling": "Use PROJECT_ROOT for all relative paths"
+    }
+  },
+  "timestamp": "2025-06-03T22:30:00.000000"
+}

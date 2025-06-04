@@ -1,0 +1,12 @@
+{
+  "agent": "orchestrator",
+  "status": "orchestrating",
+  "progress": 86,
+  "details": {
+    "cycle": 1,
+    "agents_monitored": 5,
+    "last_cycle": "2025-06-03T23:44:41.565102"
+  },
+  "cycle_count": 1,
+  "timestamp": "2025-06-03T23:44:41.565111"
+}

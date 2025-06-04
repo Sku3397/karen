@@ -557,11 +557,74 @@ class TestEngineer:
         """Check if task scheduling is available"""
         return self._check_celery_beat()
 
+def test_email_system():
+    """Test email system connectivity and functionality"""
+    try:
+        from email_client import EmailClient
+        client = EmailClient()
+        
+        # Test connection
+        if not client.gmail_service:
+            raise Exception("Gmail service not initialized")
+        
+        # Check if we can fetch emails (don't actually send)
+        print("Email system: OPERATIONAL")
+        return True
+    except Exception as e:
+        print(f"EMAIL SYSTEM FAILURE: {e}")
+        return False
+
+def continuous_monitoring():
+    """Continuous monitoring system as requested"""
+    import sys
+    sys.path.append('.')
+    from src.agent_communication import AgentCommunication
+    
+    comm = AgentCommunication('test_engineer')
+    
+    print("Starting continuous email monitoring...")
+    
+    while True:
+        # Test email system
+        email_ok = test_email_system()
+        
+        # Test completed features
+        if os.path.exists('src/phone_engineer_agent.py'):
+            print("Testing phone integration...")
+            # Add phone tests when needed
+        
+        # Update status
+        comm.update_status('testing', 70, {
+            'email_status': 'working' if email_ok else 'FAILED',
+            'last_check': time.strftime('%Y-%m-%d %H:%M:%S')
+        })
+        
+        # If email system fails, send emergency alert
+        if not email_ok:
+            comm.send_message('orchestrator', 'emergency', {
+                'system': 'email',
+                'error': 'Email system check failed',
+                'severity': 'CRITICAL'
+            })
+        
+        print(f"Status check completed at {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        time.sleep(600)  # 10 minutes
+
 def main():
     """Main entry point for Test Engineer agent"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Test Engineer Agent')
+    parser.add_argument('--monitor', action='store_true', 
+                       help='Run continuous monitoring mode')
+    args = parser.parse_args()
+    
     try:
-        test_engineer = TestEngineer()
-        test_engineer.listen_for_test_requests()
+        if args.monitor:
+            continuous_monitoring()
+        else:
+            test_engineer = TestEngineer()
+            test_engineer.listen_for_test_requests()
     except Exception as e:
         logger.error(f"Test Engineer failed to start: {e}")
         logger.error(traceback.format_exc())

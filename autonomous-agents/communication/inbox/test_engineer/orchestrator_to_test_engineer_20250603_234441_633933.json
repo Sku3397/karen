@@ -1,0 +1,11 @@
+{
+  "from": "orchestrator",
+  "to": "test_engineer",
+  "type": "system_check",
+  "content": {
+    "priority": "urgent",
+    "system": "email",
+    "issue": "no_recent_activity"
+  },
+  "timestamp": "2025-06-03T23:44:41.633946"
+}

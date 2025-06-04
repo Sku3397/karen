@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import logging
 from datetime import datetime, timedelta
 import asyncio # Added for asyncio.run
+from src.orchestrator import get_orchestrator_instance # Add this import
 
 # --- Early .env loading for Celery context ---
 # Determine project root assuming this file is in src/
@@ -212,6 +213,54 @@ def check_instruction_emails_task_runner(): # Renamed to avoid conflict with a p
     logger.info("Celery task: \u09af\u09cc\u0997FINISHED check_instruction_emails_task_runner \u09af\u09cc\u0997")
 
 # --- New Agent-Related Tasks ---
+
+# Import for Orchestrator
+from .orchestrator import get_orchestrator_instance # Ensure this import is present
+
+# Import SMS tasks
+from .celery_sms_tasks import check_sms_task, test_sms_system
+
+@celery_app.task(name='trigger_orchestrator_action_task', bind=True, ignore_result=True)
+def trigger_orchestrator_action_task(self, action_name: str = 'check_all_agent_health', params: dict = None):
+    """
+    Triggers a specified action on the OrchestratorAgent.
+    Default action is 'check_all_agent_health'.
+    Future actions could include 'execute_workflow' with params.
+    """
+    task_logger = self.get_logger()
+    comm = AgentCommunication('orchestrator_trigger_task') # Use a specific ID for this task's communication
+    task_logger.info(f"Executing trigger_orchestrator_action_task for action: {action_name}")
+
+    try:
+        comm.update_status('starting_orchestrator_action', 10, {'action': action_name, 'task_id': self.request.id})
+        
+        orchestrator = get_orchestrator_instance()
+        task_logger.info(f"Orchestrator instance obtained: {orchestrator}")
+
+        if action_name == 'check_all_agent_health':
+            task_logger.info("Calling orchestrator.check_all_agent_health()")
+            health_status = orchestrator.check_all_agent_health()
+            task_logger.info(f"Orchestrator check_all_agent_health completed. Status: {health_status}")
+            comm.update_status('completed_health_check', 100, {'action': action_name, 'health_status': health_status, 'task_id': self.request.id})
+        elif action_name == 'execute_workflow' and params and 'workflow_name' in params:
+            workflow_name = params.get('workflow_name')
+            workflow_params = params.get('workflow_params', {})
+            task_logger.info(f"Calling orchestrator.execute_workflow(workflow_name='{workflow_name}', params={workflow_params})")
+            workflow_result = orchestrator.execute_workflow(workflow_name=workflow_name, params=workflow_params)
+            task_logger.info(f"Orchestrator execute_workflow completed. Result: {workflow_result}")
+            comm.update_status('completed_workflow_execution', 100, {'action': action_name, 'workflow_name': workflow_name, 'result': workflow_result, 'task_id': self.request.id})
+        else:
+            task_logger.warning(f"Unknown or unsupported action_name: {action_name} or missing params for execute_workflow.")
+            comm.update_status('failed_action_not_supported', 100, {'action': action_name, 'error': 'Action not supported or invalid params', 'task_id': self.request.id})
+            return
+
+        task_logger.info(f"Successfully executed orchestrator action: {action_name}")
+
+    except Exception as e:
+        task_logger.error(f"Error in trigger_orchestrator_action_task for action {action_name}: {e}", exc_info=True)
+        comm.update_status('error_in_orchestrator_action', 100, {'action': action_name, 'error': str(e), 'task_id': self.request.id})
+        raise # Re-raise for Celery to see it as failed
+
 @celery_app.task(name='archaeologist_periodic_scan_task', bind=True, ignore_result=True)
 def archaeologist_periodic_scan_task(self):
     """Code archaeologist agent that maps existing system"""
@@ -500,6 +549,20 @@ def monitor_gmail_api_quota_task():
     # logger.info("Link to Google Cloud API Quotas: https://console.cloud.google.com/apis/dashboard")
     print("PRINT_DEBUG: monitor_gmail_api_quota_task executed (manual check reminder).", flush=True)
 
+@celery_app.task(name='trigger_orchestrator_action', bind=True)
+def trigger_orchestrator_action(self, action='check_health'):
+    """Manually trigger orchestrator actions"""
+    try:
+        orchestrator = get_orchestrator_instance()
+        if action == 'check_health':
+            orchestrator.check_all_agent_health()
+        elif action == 'execute_workflow':
+            orchestrator.execute_workflow()
+        return f"Orchestrator action '{action}' completed"
+    except Exception as e:
+        logger.error(f"Orchestrator action failed: {e}")
+        raise
+
 # Define a periodic task schedule
 celery_app.conf.beat_schedule = {
     # Existing email check tasks (adjust schedules as needed based on actual `email_check_interval`)
@@ -524,6 +587,16 @@ celery_app.conf.beat_schedule = {
     'qa-tests-runner-hourly': {
         'task': 'qa_tests_runner_task',
         'schedule': crontab(minute=30, hour='*'), # Every hour at 30 minutes past the hour
+    },
+
+    # SMS Processing Tasks
+    'check-sms-every-2-minutes': {
+        'task': 'check_sms_task',
+        'schedule': crontab(minute='*/2'),  # Every 2 minutes, matching email schedule
+    },
+    'test-sms-system-daily': {
+        'task': 'test_sms_system', 
+        'schedule': crontab(hour=9, minute=15),  # Daily at 9:15 AM
     },
 
     # New Monitoring Periodic Tasks

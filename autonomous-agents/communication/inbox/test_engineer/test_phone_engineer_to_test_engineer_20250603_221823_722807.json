@@ -1,0 +1,18 @@
+{
+  "from": "test_phone_engineer",
+  "to": "test_engineer",
+  "type": "ready_for_testing",
+  "content": {
+    "feature": "voice_integration",
+    "test_files": [
+      "tests/test_voice_integration.py"
+    ],
+    "dependencies": [
+      "twilio",
+      "google-cloud-speech",
+      "google-cloud-texttospeech"
+    ],
+    "test_phone_number": "+1234567890"
+  },
+  "timestamp": "2025-06-03T22:18:23.721785"
+}

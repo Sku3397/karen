@@ -8,8 +8,9 @@ import json
 import hashlib
 import logging
 import asyncio
+import re
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any, Union
+from typing import Dict, List, Optional, Any, Union, Tuple
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
@@ -83,6 +84,11 @@ class MemoryClient:
                 metadata={"description": "Conversation context and patterns"}
             )
             
+            self.identity_mapping_collection = self.client.get_or_create_collection(
+                name="identity_mappings",
+                metadata={"description": "Maps identities across different communication mediums"}
+            )
+            
             logger.info("Memory client initialized successfully")
             
         except Exception as e:
@@ -91,9 +97,42 @@ class MemoryClient:
     
     def _generate_conversation_id(self, sender: str, recipient: str) -> str:
         """Generate a consistent conversation ID for participants"""
-        participants = sorted([sender.lower(), recipient.lower()])
+        # Normalize participants to handle cross-medium conversations
+        sender_normalized = self._normalize_identifier(sender)
+        recipient_normalized = self._normalize_identifier(recipient)
+        participants = sorted([sender_normalized, recipient_normalized])
         content = f"{participants[0]}:{participants[1]}"
         return hashlib.md5(content.encode()).hexdigest()[:16]
+    
+    def _normalize_identifier(self, identifier: str) -> str:
+        """Normalize email addresses and phone numbers for consistent matching"""
+        if not identifier:
+            return ""
+        
+        # Check if it's a phone number
+        phone_match = re.match(r'^\+?1?(\d{10})$', re.sub(r'[\s\-\(\)]', '', identifier))
+        if phone_match:
+            # Normalize to 10-digit format
+            return phone_match.group(1)
+        
+        # Otherwise treat as email and normalize
+        return identifier.lower().strip()
+    
+    def _extract_phone_from_email(self, email: str) -> Optional[str]:
+        """Try to extract phone number from email address if it contains one"""
+        # Pattern for emails like 1234567890@vzwpix.com or similar
+        phone_patterns = [
+            r'^(\d{10})@',  # 10 digits followed by @
+            r'^\+1(\d{10})@',  # +1 followed by 10 digits
+            r'^1(\d{10})@',  # 1 followed by 10 digits
+        ]
+        
+        for pattern in phone_patterns:
+            match = re.match(pattern, email)
+            if match:
+                return match.group(1) if len(match.group(1)) == 10 else match.group(1)[-10:]
+        
+        return None
     
     def _extract_email_content(self, email_data: Dict[str, Any]) -> str:
         """Extract meaningful content from email data"""
@@ -116,6 +155,13 @@ class MemoryClient:
             
             conversation_id = self._generate_conversation_id(sender, recipient)
             
+            # Check if sender email contains a phone number (e.g., from SMS gateways)
+            sender_phone = self._extract_phone_from_email(sender)
+            if sender_phone:
+                # Auto-link the phone number with the email
+                await self.link_identities(sender, sender_phone)
+                logger.info(f"Auto-linked phone {sender_phone} from email address {sender}")
+            
             # Store incoming email
             entry_id = f"email_{email_data.get('id', datetime.now().isoformat())}"
             entry = ConversationEntry(
@@ -130,7 +176,8 @@ class MemoryClient:
                     'email_id': email_data.get('id'),
                     'subject': email_data.get('subject', ''),
                     'thread_id': email_data.get('threadId'),
-                    'direction': 'incoming'
+                    'direction': 'incoming',
+                    'extracted_phone': sender_phone or ''
                 }
             )
             
@@ -177,6 +224,11 @@ class MemoryClient:
             recipient = sms_data.get('to', '')
             content = sms_data.get('body', '')
             
+            # Check for linked email addresses
+            sender_identities = await self.get_linked_identities(sender)
+            if sender_identities:
+                logger.debug(f"Found linked identities for SMS sender {sender}: {sender_identities}")
+            
             conversation_id = self._generate_conversation_id(sender, recipient)
             
             entry_id = f"sms_{sms_data.get('sid', datetime.now().isoformat())}"
@@ -190,7 +242,8 @@ class MemoryClient:
                 content=content,
                 metadata={
                     'sms_sid': sms_data.get('sid'),
-                    'direction': sms_data.get('direction', 'unknown')
+                    'direction': sms_data.get('direction', 'unknown'),
+                    'linked_email': sender_identities[0].get('email', '') if sender_identities else ''
                 }
             )
             
@@ -198,13 +251,63 @@ class MemoryClient:
             
             await self._notify_memory_engineer('sms_stored', {
                 'conversation_id': conversation_id,
-                'participants': [sender, recipient]
+                'participants': [sender, recipient],
+                'has_linked_identity': bool(sender_identities)
             })
             
             return conversation_id
             
         except Exception as e:
             logger.error(f"Error storing SMS conversation: {e}")
+            return None
+    
+    async def store_voice_conversation(self, voice_data: Dict[str, Any]) -> Optional[str]:
+        """Store voice/phone conversation in memory"""
+        if not self.enabled:
+            return None
+        
+        try:
+            sender = voice_data.get('from', '')
+            recipient = voice_data.get('to', '')
+            transcript = voice_data.get('transcript', '')
+            duration = voice_data.get('duration', 0)
+            
+            # Check for linked identities
+            sender_identities = await self.get_linked_identities(sender)
+            
+            conversation_id = self._generate_conversation_id(sender, recipient)
+            
+            entry_id = f"voice_{voice_data.get('call_sid', datetime.now().isoformat())}"
+            entry = ConversationEntry(
+                id=entry_id,
+                conversation_id=conversation_id,
+                medium='voice',
+                timestamp=voice_data.get('start_time', datetime.now()),
+                sender=sender,
+                recipient=recipient,
+                content=transcript,
+                metadata={
+                    'call_sid': voice_data.get('call_sid'),
+                    'duration_seconds': duration,
+                    'direction': voice_data.get('direction', 'unknown'),
+                    'recording_url': voice_data.get('recording_url', ''),
+                    'linked_email': sender_identities[0].get('email', '') if sender_identities else ''
+                }
+            )
+            
+            await self._store_entry(entry)
+            
+            await self._notify_memory_engineer('voice_stored', {
+                'conversation_id': conversation_id,
+                'participants': [sender, recipient],
+                'duration': duration,
+                'has_transcript': bool(transcript)
+            })
+            
+            return conversation_id
+            
+        except Exception as e:
+            logger.error(f"Error storing voice conversation: {e}")
             return None
     
     async def _store_entry(self, entry: ConversationEntry):
@@ -390,6 +493,108 @@ class MemoryClient:
         
         return f"Last {total_messages} messages over {timespan.days} days via {', '.join(mediums)}"
     
+    async def link_identities(self, email: str, phone: str, name: Optional[str] = None) -> bool:
+        """Link an email address with a phone number for cross-medium tracking"""
+        if not self.enabled:
+            return False
+        
+        try:
+            # Normalize identifiers
+            email_normalized = self._normalize_identifier(email)
+            phone_normalized = self._normalize_identifier(phone)
+            
+            # Create a unique ID for this mapping
+            mapping_id = f"map_{hashlib.md5(f'{email_normalized}:{phone_normalized}'.encode()).hexdigest()[:8]}"
+            
+            # Store the mapping
+            self.identity_mapping_collection.upsert(
+                ids=[mapping_id],
+                documents=[f"{email} <-> {phone}"],
+                metadatas=[{
+                    'email': email_normalized,
+                    'phone': phone_normalized,
+                    'name': name or '',
+                    'created_at': datetime.now().isoformat(),
+                    'last_updated': datetime.now().isoformat()
+                }]
+            )
+            
+            logger.info(f"Linked identities: {email} <-> {phone}")
+            
+            # Update existing conversations to use unified conversation ID
+            await self._merge_conversation_histories(email_normalized, phone_normalized)
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error linking identities: {e}")
+            return False
+    
+    async def _merge_conversation_histories(self, identifier1: str, identifier2: str):
+        """Merge conversation histories when identities are linked"""
+        try:
+            # Find all conversations involving either identifier
+            results = self.conversations_collection.query(
+                where={"$or": [
+                    {"sender": identifier1},
+                    {"recipient": identifier1},
+                    {"sender": identifier2},
+                    {"recipient": identifier2}
+                ]},
+                n_results=1000
+            )
+            
+            if results['ids']:
+                # Update all found conversations to use the unified conversation ID
+                unified_conv_id = self._generate_conversation_id(identifier1, identifier2)
+                
+                for i, doc_id in enumerate(results['ids']):
+                    metadata = results['metadatas'][i]
+                    metadata['conversation_id'] = unified_conv_id
+                    metadata['cross_medium_linked'] = True
+                    
+                    # Update the record
+                    self.conversations_collection.update(
+                        ids=[doc_id],
+                        metadatas=[metadata]
+                    )
+                
+                logger.info(f"Merged {len(results['ids'])} conversations for unified tracking")
+                
+        except Exception as e:
+            logger.error(f"Error merging conversation histories: {e}")
+    
+    async def get_linked_identities(self, identifier: str) -> List[Dict[str, str]]:
+        """Get all linked identities for a given email or phone number"""
+        if not self.enabled:
+            return []
+        
+        try:
+            normalized = self._normalize_identifier(identifier)
+            
+            # Search in identity mappings
+            results = self.identity_mapping_collection.query(
+                where={"$or": [
+                    {"email": normalized},
+                    {"phone": normalized}
+                ]},
+                n_results=10
+            )
+            
+            identities = []
+            for metadata in results['metadatas']:
+                identities.append({
+                    'email': metadata.get('email', ''),
+                    'phone': metadata.get('phone', ''),
+                    'name': metadata.get('name', '')
+                })
+            
+            return identities
+            
+        except Exception as e:
+            logger.error(f"Error getting linked identities: {e}")
+            return []
+    
     async def _notify_memory_engineer(self, event_type: str, data: Dict[str, Any]):
         """Notify the memory engineer agent about memory events"""
         try:
@@ -438,6 +643,14 @@ async def store_email_memory(email_data: Dict[str, Any], reply_content: str = No
     """Convenience function for storing email conversations"""
     return await memory_client.store_email_conversation(email_data, reply_content)
 
+async def store_sms_memory(sms_data: Dict[str, Any]) -> Optional[str]:
+    """Convenience function for storing SMS conversations"""
+    return await memory_client.store_sms_conversation(sms_data)
+
+async def store_voice_memory(voice_data: Dict[str, Any]) -> Optional[str]:
+    """Convenience function for storing voice conversations"""
+    return await memory_client.store_voice_conversation(voice_data)
+
 async def get_conversation_context(sender: str, recipient: str) -> Dict[str, Any]:
     """Convenience function for getting conversation context"""
     return await memory_client.get_conversation_context(sender, recipient)
@@ -445,3 +658,7 @@ async def get_conversation_context(sender: str, recipient: str) -> Dict[str, Any
 async def search_memory(query: str, limit: int = 10) -> List[ConversationEntry]:
     """Convenience function for searching memory"""
     return await memory_client.search_conversations(query, limit)
+
+async def link_customer_identities(email: str, phone: str, name: Optional[str] = None) -> bool:
+    """Convenience function for linking customer identities across mediums"""
+    return await memory_client.link_identities(email, phone, name)

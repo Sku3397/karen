@@ -1,0 +1,14 @@
+{
+  "task": {
+    "id": "orchestrator_generate_report_1749015143.430413_2",
+    "agent": "orchestrator",
+    "type": "generate_report",
+    "description": "Generate system status report",
+    "created": "2025-06-04T01:32:23.430413",
+    "priority": 2,
+    "status": "pending",
+    "retry_count": 0,
+    "max_retries": 3
+  },
+  "instruction": "\nExecute this task: generate_report - Generate system status report\n\nUse the helper system:\nimport sys\nsys.path.append('.')\nfrom claude_helpers import orchestrator_helper as helper\nfrom src.orchestrator import get_orchestrator_instance\n\n# Task: generate_report\norchestrator = get_orchestrator_instance()\n\nif 'generate_report' == 'check_health':\n    orchestrator.check_all_agent_health()\n    helper.update_status('checking', 50, {'task': 'orchestrator_generate_report_1749015143.430413_2'})\n    # Check each agent's status\n    statuses = helper.read_file('agent_states.json')\n    helper.create_file('reports/health_check_orchestrator_generate_report_1749015143.430413_2.json', statuses)\n    \nelif 'generate_report' == 'coordinate_workflow':\n    orchestrator.execute_workflow()\n    helper.send_message('sms_engineer', 'continue_development', {'priority': 'high'})\n    helper.send_message('memory_engineer', 'continue_development', {'priority': 'medium'})\n    \nelif 'generate_report' == 'generate_report':\n    # Generate comprehensive system report\n    report = f\"System Report - {datetime.now()}\"\n    helper.create_file('reports/system_report_orchestrator_generate_report_1749015143.430413_2.md', report)\n\nhelper.update_status('completed', 100, {'task': 'orchestrator_generate_report_1749015143.430413_2', 'completed': True})\nprint(\"Task orchestrator_generate_report_1749015143.430413_2 completed\")\n"
+}

@@ -1,0 +1,52 @@
+{
+  "from": "archaeologist",
+  "to": "orchestrator",
+  "type": "dependency_workaround",
+  "content": {
+    "message": "Redis dependency not available. Implemented file-based AgentCommunication workaround.",
+    "issue_details": {
+      "problem": "Redis Python library not installed in current environment",
+      "impact": "Blocks full AgentCommunication system",
+      "attempted_installs": ["pip", "pip3", "python3 -m pip", "apt install"],
+      "all_failed": "No package manager access or permissions"
+    },
+    "workaround_implemented": {
+      "solution": "MockAgentCommunication class using filesystem",
+      "location": "shared-knowledge/templates/mock_agent_communication.py",
+      "features": [
+        "File-based status tracking",
+        "JSON message passing via inbox directories", 
+        "Knowledge sharing via knowledge-base files",
+        "Agent status monitoring",
+        "Message processing and cleanup"
+      ],
+      "compatibility": "Drop-in replacement for AgentCommunication"
+    },
+    "immediate_benefits": {
+      "agents_can_function": "All agents can now use communication system",
+      "status_tracking": "Real-time status updates via JSON files",
+      "message_passing": "Inter-agent coordination via filesystem",
+      "knowledge_sharing": "Pattern sharing between agents",
+      "no_external_deps": "Works without Redis or any external services"
+    },
+    "next_steps": {
+      "deploy_mock_system": "Replace AgentCommunication imports with MockAgentCommunication",
+      "test_agent_coordination": "Verify agents can communicate effectively",
+      "implement_redis_later": "Switch to Redis when available in deployment",
+      "maintain_compatibility": "Keep same API for seamless transition"
+    },
+    "deployment_requirements": {
+      "filesystem_access": "Agents need read/write access to communication directory",
+      "json_support": "Standard library json module (available)",
+      "pathlib_support": "Standard library pathlib module (available)",
+      "no_external_deps": "Zero external dependencies required"
+    },
+    "redis_migration_path": {
+      "when_redis_available": "Install redis-py library",
+      "update_imports": "Switch from mock_agent_communication to agent_communication",
+      "test_compatibility": "Verify Redis version works correctly",
+      "migrate_existing_data": "Convert file-based data to Redis if needed"
+    }
+  },
+  "timestamp": "2025-06-03T22:50:00.000000"
+}

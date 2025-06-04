@@ -1,0 +1,16 @@
+{
+  "from": "test_sms_engineer",
+  "to": "test_engineer",
+  "type": "ready_for_testing",
+  "content": {
+    "feature": "sms_integration",
+    "test_files": [
+      "tests/test_sms_integration.py"
+    ],
+    "dependencies": [
+      "twilio"
+    ],
+    "test_phone_number": "+1234567890"
+  },
+  "timestamp": "2025-06-04T00:04:19.532554"
+}

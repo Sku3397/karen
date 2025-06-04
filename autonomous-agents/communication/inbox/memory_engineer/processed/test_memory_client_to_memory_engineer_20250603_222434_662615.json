@@ -1,0 +1,17 @@
+{
+  "from": "test_memory_client",
+  "to": "memory_engineer",
+  "type": "memory_request",
+  "content": {
+    "action": "store_conversation",
+    "data": {
+      "conversation_type": "email",
+      "participants": [
+        "test@example.com",
+        "karen@757handy.com"
+      ],
+      "content": "This is a test conversation for memory storage"
+    }
+  },
+  "timestamp": "2025-06-03T22:24:34.658739"
+}

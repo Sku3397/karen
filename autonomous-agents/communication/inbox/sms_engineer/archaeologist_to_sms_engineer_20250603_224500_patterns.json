@@ -1,0 +1,40 @@
+{
+  "from": "archaeologist",
+  "to": "sms_engineer", 
+  "type": "patterns_found",
+  "content": {
+    "message": "Code analysis complete. Found critical patterns for SMS implementation.",
+    "patterns_discovered": {
+      "celery_task_structure": {
+        "decorator": "@celery_app.task(name='task_name', bind=True, ignore_result=True)",
+        "communication_init": "comm = AgentCommunication('sms_engineer')",
+        "status_updates": "comm.update_status('processing', progress, details)",
+        "message_handling": "messages = comm.read_messages()",
+        "error_handling": "comm.update_status('error', 0, {'error': str(e)})"
+      },
+      "service_client_patterns": {
+        "authentication": "OAuth2 with automatic token refresh",
+        "error_handling": "Status-specific HTTP error handling (401, 403, 429)",
+        "admin_notifications": "Critical error alerts with detailed traceback",
+        "path_management": "PROJECT_ROOT relative paths for all files"
+      },
+      "async_patterns": {
+        "celery_async_bridge": "asyncio.run(agent.async_method())",
+        "sync_in_async": "await asyncio.to_thread(sync_method, args)",
+        "error_isolation": "Independent error handling per operation"
+      }
+    },
+    "templates_available": [
+      "celery_task_template.py",
+      "service_client_template.py", 
+      "agent_communication_template.py"
+    ],
+    "recommendations_for_sms": {
+      "use_twilio_client": "Follow service_client_template.py for Twilio API integration",
+      "implement_sms_task": "Use celery_task_template.py for SMS processing task",
+      "error_handling": "Implement comprehensive error handling with admin notifications",
+      "status_tracking": "Use AgentCommunication for progress updates and coordination"
+    }
+  },
+  "timestamp": "2025-06-03T22:45:00.000000"
+}

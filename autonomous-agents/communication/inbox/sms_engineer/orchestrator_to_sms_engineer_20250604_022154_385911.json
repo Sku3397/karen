@@ -1,0 +1,12 @@
+{
+  "id": "1749003714385911",
+  "sender": "orchestrator",
+  "recipient": "sms_engineer",
+  "message_type": "start_development",
+  "content": {
+    "archaeologist_complete": true,
+    "phone_engineer_complete": true,
+    "knowledge_base_available": true
+  },
+  "timestamp": "2025-06-04T02:21:54.385911+00:00"
+}

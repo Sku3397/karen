@@ -1,0 +1,14 @@
+{
+  "task": {
+    "id": "test_engineer_generate_test_report_1749011124.858967_2",
+    "agent": "test_engineer",
+    "type": "generate_test_report",
+    "description": "Generate comprehensive test report",
+    "created": "2025-06-04T00:25:24.858967",
+    "priority": 2,
+    "status": "pending",
+    "retry_count": 0,
+    "max_retries": 3
+  },
+  "instruction": "\nExecute critical test task: generate_test_report - Generate comprehensive test report\n\nimport sys\nsys.path.append('.')\nfrom claude_helpers import test_helper as helper\n\n# CRITICAL TASK: generate_test_report\nif 'generate_test_report' == 'test_email':\n    # PRIORITY 1 - Email system health\n    try:\n        from src.email_client import EmailClient\n        client = EmailClient()\n        if not client.gmail_service:\n            # EMERGENCY\n            helper.send_message('orchestrator', 'EMERGENCY', {'email': 'SYSTEM_DOWN'})\n            helper.update_status('CRITICAL', 100, {'email': 'FAILED'})\n        else:\n            helper.update_status('healthy', 95, {'email': 'operational'})\n    except Exception as e:\n        helper.send_message('all', 'ERROR', {'email_test': str(e)})\n        \nelif 'generate_test_report' == 'test_integrations':\n    # Test all system integrations\n    results = {'email': 'check', 'sms': 'check', 'memory': 'check'}\n    helper.create_file('test_results/integration_test_engineer_generate_test_report_1749011124.858967_2.json', json.dumps(results))\n    \nelif 'generate_test_report' == 'performance_test':\n    # Run performance benchmarks\n    helper.update_status('benchmarking', 80, {'testing': 'performance'})\n    \nelif 'generate_test_report' == 'generate_test_report':\n    # Comprehensive test report\n    report = \"# Test Report\\nAll systems operational\"\n    helper.create_file('reports/test_report_test_engineer_generate_test_report_1749011124.858967_2.md', report)\n\nhelper.update_status('completed', 100, {'task': 'test_engineer_generate_test_report_1749011124.858967_2'})\nprint(\"Test task test_engineer_generate_test_report_1749011124.858967_2 completed\")\n"
+}

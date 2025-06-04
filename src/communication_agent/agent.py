@@ -698,4 +698,175 @@ Reply Sent: {llm_reply_body[:200]}..."""
         else:
             logger.warning(f"No reply-to address determined for UID {email_uid}. Cannot send reply.")
 
-        logger.info(f"Finished processing single email UID {email_uid}.")
+    # SMS Processing Methods
+    async def check_and_process_incoming_sms(self, process_last_n_hours: int = 1):
+        """
+        Check for and process incoming SMS messages, similar to email processing.
+        
+        Args:
+            process_last_n_hours: Number of hours to look back for new messages
+        """
+        if not self.sms_handler:
+            logger.warning("SMS handler not available. Skipping SMS processing.")
+            return
+        
+        logger.info(f"Checking for incoming SMS messages in the last {process_last_n_hours} hours")
+        
+        try:
+            # Import here to avoid circular imports
+            from ..sms_client import SMSClient
+            from ..handyman_sms_engine import HandymanSMSEngine
+            
+            # Get SMS client instance
+            sms_client = SMSClient(karen_phone=os.getenv('KAREN_PHONE_NUMBER', '+17575551234'))
+            
+            # Fetch recent SMS messages
+            newer_than = f"{process_last_n_hours}h"
+            messages = sms_client.fetch_sms(
+                search_criteria='ALL',
+                newer_than=newer_than,
+                max_results=50
+            )
+            
+            logger.info(f"Found {len(messages)} SMS messages to process")
+            
+            # Process each unprocessed message
+            processed_count = 0
+            for msg in messages:
+                msg_id = msg.get('uid')
+                
+                # Check if already processed
+                if sms_client.is_sms_processed(msg_id):
+                    logger.debug(f"SMS {msg_id} already processed, skipping")
+                    continue
+                
+                # Process the message
+                await self.process_single_sms(msg)
+                processed_count += 1
+                
+                # Mark as processed
+                sms_client.mark_sms_as_processed(msg_id)
+            
+            logger.info(f"Processed {processed_count} new SMS messages")
+            
+        except Exception as e:
+            logger.error(f"Error in check_and_process_incoming_sms: {e}", exc_info=True)
+            raise
+
+    async def process_single_sms(self, sms_data: dict):
+        """
+        Process a single SMS message, similar to process_single_email.
+        
+        Args:
+            sms_data: SMS message data from fetch_sms
+        """
+        msg_id = sms_data.get('uid', 'unknown')
+        sender = sms_data.get('sender', 'unknown')
+        body = sms_data.get('body', '')
+        
+        logger.info(f"Processing SMS {msg_id} from {sender}")
+        
+        try:
+            # Import SMS engine
+            from ..handyman_sms_engine import HandymanSMSEngine
+            
+            # Initialize SMS engine with LLM client
+            sms_engine = HandymanSMSEngine(
+                business_name=os.getenv('BUSINESS_NAME', 'Beach Handyman'),
+                service_area=os.getenv('SERVICE_AREA', 'Virginia Beach area'), 
+                phone=os.getenv('BUSINESS_PHONE', '757-354-4577'),
+                llm_client=self.llm_client
+            )
+            
+            # Generate response
+            response_text, classification = await sms_engine.generate_sms_response_async(sender, body)
+            
+            logger.info(f"Generated SMS response for {msg_id}. Classification: {classification}")
+            
+            # Send response via SMS handler
+            if self.sms_handler:
+                # Handle multipart SMS if needed
+                if sms_engine.should_send_multipart_sms(response_text):
+                    parts = sms_engine.split_sms_response(response_text)
+                    logger.info(f"Sending multipart SMS ({len(parts)} parts) to {sender}")
+                    
+                    for i, part in enumerate(parts):
+                        message_sid = self.sms_handler.send_sms(sender, part)
+                        if not message_sid:
+                            logger.error(f"Failed to send SMS part {i+1}/{len(parts)} to {sender}")
+                            break
+                        # Small delay between parts
+                        if i < len(parts) - 1:
+                            await asyncio.sleep(1)
+                else:
+                    # Send single SMS
+                    message_sid = self.sms_handler.send_sms(sender, response_text)
+                    if message_sid:
+                        logger.info(f"Successfully sent SMS reply to {sender}. SID: {message_sid}")
+                    else:
+                        logger.error(f"Failed to send SMS reply to {sender}")
+                
+                # Handle emergency notifications
+                if classification.get('is_emergency'):
+                    await self.notify_admin_sms_emergency(sms_data, classification)
+                    
+            else:
+                logger.error("SMS handler not available for sending response")
+                
+        except Exception as e:
+            logger.error(f"Error processing SMS {msg_id}: {e}", exc_info=True)
+            raise
+
+    async def notify_admin_sms_emergency(self, sms_data: dict, classification: dict):
+        """
+        Notify admin of SMS emergency via email (following existing pattern).
+        
+        Args:
+            sms_data: Original SMS data
+            classification: Emergency classification details
+        """
+        sender = sms_data.get('sender', 'Unknown')
+        body = sms_data.get('body', '')
+        
+        logger.warning(f"EMERGENCY SMS received from {sender}")
+        
+        try:
+            # Send email notification to admin (reusing existing email infrastructure)
+            admin_email = os.getenv('ADMIN_EMAIL_ADDRESS')
+            if admin_email and hasattr(self, 'sending_email_client'):
+                
+                subject = f"🚨 EMERGENCY SMS from {sender}"
+                
+                email_body = f"""
+EMERGENCY SMS ALERT
+
+From: {sender}
+Received: {sms_data.get('date_str', 'Unknown time')}
+
+Message:
+{body}
+
+Classification Details:
+{classification}
+
+This message was automatically flagged as an emergency and requires immediate attention.
+Please respond via phone or SMS as appropriate.
+
+-- Karen AI Emergency Notification System
+"""
+                
+                success = self.sending_email_client.send_email(
+                    to=admin_email,
+                    subject=subject,
+                    body=email_body
+                )
+                
+                if success:
+                    logger.info(f"Emergency SMS notification sent to admin at {admin_email}")
+                else:
+                    logger.error(f"Failed to send emergency SMS notification to admin")
+            else:
+                logger.error("Admin email not configured or email client not available for emergency SMS notification")
+                
+        except Exception as e:
+            logger.error(f"Error in notify_admin_sms_emergency: {e}", exc_info=True)

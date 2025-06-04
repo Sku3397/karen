@@ -1,4 +1,4 @@
-# src/calendar_client.py
+# src/calendar_client.py - Secure calendar client with OAuth token management
 import os
 import json
 import logging
@@ -11,117 +11,102 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import google.auth.exceptions
 
-from .config import GOOGLE_CALENDAR_TOKEN_PATH, GOOGLE_APP_CREDENTIALS_PATH # Assuming these will be in config
+# Import secure OAuth token manager
+from .oauth_token_manager import get_calendar_credentials, get_token_manager
 
 logger = logging.getLogger(__name__)
 
-# Define the scopes needed for Google Calendar API
-CALENDAR_SCOPES = [
-    'https://www.googleapis.com/auth/calendar.readonly',
-    'https://www.googleapis.com/auth/calendar.events'
-]
-
 class CalendarClient:
-    def __init__(self, email_address: str, token_path: str = GOOGLE_CALENDAR_TOKEN_PATH, credentials_path: str = GOOGLE_APP_CREDENTIALS_PATH):
-        self.email_address = email_address # The email whose calendar we are accessing
-        self.token_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), token_path) # Path relative to project root
-        self.credentials_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), credentials_path)
-        logger.debug(f"Initializing CalendarClient for {email_address} using token '{self.token_path}' and creds '{self.credentials_path}'")
-
-        self.client_config = self._load_client_config()
-        if not self.client_config:
-            msg = f"Failed to load client configuration from {self.credentials_path}."
-            logger.error(msg)
-            raise ValueError(msg)
-
-        self.creds = self._load_and_refresh_credentials()
+    def __init__(self, email_address: str, token_path: str = None, credentials_path: str = None):
+        """
+        Initialize CalendarClient with secure OAuth token management
+        
+        Args:
+            email_address: Email address for calendar access
+            token_path: Legacy parameter, ignored (for backward compatibility)
+            credentials_path: Legacy parameter, ignored (for backward compatibility)
+        """
+        self.email_address = email_address
+        
+        # Legacy compatibility warnings
+        if token_path:
+            logger.warning(f"token_path parameter is deprecated. Using secure token manager instead.")
+        if credentials_path:
+            logger.warning(f"credentials_path parameter is deprecated. Using secure token manager instead.")
+        
+        logger.info(f"Initializing secure CalendarClient for {email_address}")
+        
+        # Use secure token manager for credentials
+        self.creds = self._get_secure_credentials()
+        
         if not self.creds:
-            msg = f"Failed to load/refresh Google OAuth credentials from {self.token_path} for calendar access."
+            msg = f"Failed to obtain secure OAuth credentials for calendar access: {email_address}"
             logger.error(msg)
             raise ValueError(msg)
         
         try:
             self.service = build('calendar', 'v3', credentials=self.creds)
-            logger.info(f"Google Calendar service built successfully for {email_address}.")
+            logger.info(f"Secure Google Calendar service built successfully for {email_address}")
         except Exception as e:
             logger.error(f"Failed to build Google Calendar service for {email_address}: {e}", exc_info=True)
             raise
 
-    def _load_client_config(self) -> Optional[Dict[str, Any]]:
-        logger.debug(f"Attempting to load client configuration from {self.credentials_path}")
+    def _get_secure_credentials(self) -> Optional[Credentials]:
+        """Get secure OAuth credentials using the token manager"""
         try:
-            with open(self.credentials_path, 'r') as f:
-                full_creds_json = json.load(f)
-                client_config = full_creds_json.get('installed') or full_creds_json.get('web') # Support both types
-            if not client_config or not all(k in client_config for k in ['client_id', 'client_secret', 'token_uri']):
-                logger.error("Client credentials JSON is missing required keys (client_id, client_secret, token_uri).")
-                return None
-            return client_config
-        except FileNotFoundError:
-            logger.error(f"OAuth credentials file not found at {self.credentials_path}")
-            return None
-        except Exception as e:
-            logger.error(f"Error loading client config from {self.credentials_path}: {e}", exc_info=True)
-            return None
-
-    def _load_and_refresh_credentials(self) -> Optional[Credentials]:
-        creds = None
-        if os.path.exists(self.token_path):
-            try:
-                creds = Credentials.from_authorized_user_file(self.token_path, CALENDAR_SCOPES)
-            except Exception as e:
-                logger.warning(f"Could not load credentials from {self.token_path} using scopes {CALENDAR_SCOPES}: {e}. Will try without scopes for refresh.")
-                try:
-                    creds = Credentials.from_authorized_user_file(self.token_path)
-                except Exception as e2:
-                    logger.error(f"Failed to load credentials from {self.token_path} even without scopes: {e2}")
-                    creds = None
-        
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                logger.info(f"Credentials for {self.email_address} calendar are expired. Attempting to refresh...")
-                try:
-                    creds.refresh(GoogleAuthRequest())
-                    self._save_token(creds)
-                    logger.info(f"Successfully refreshed and saved calendar credentials for {self.email_address}.")
-                except google.auth.exceptions.RefreshError as e:
-                    logger.error(f"Failed to refresh calendar credentials for {self.email_address}. Refresh token may be invalid or revoked. Re-auth needed. Error: {e}", exc_info=True)
-                    # Potentially delete the bad token file here if re-auth is the only way
-                    # os.remove(self.token_path)
-                    return None # Must return None to indicate failure to get valid creds
-                except Exception as e:
-                    logger.error(f"Unexpected error refreshing calendar credentials for {self.email_address}: {e}", exc_info=True)
-                    return None
+            logger.debug(f"Requesting secure calendar credentials for {self.email_address}")
+            
+            # Use the secure token manager to get credentials
+            creds = get_calendar_credentials(self.email_address)
+            
+            if creds and creds.valid:
+                logger.info(f"Secure calendar credentials obtained for {self.email_address}")
+                return creds
             else:
-                # This case means no token, or token invalid and no refresh_token or not expired (which is weird)
-                # This path should ideally trigger re-authentication flow if this were interactive.
-                # For an autonomous agent, this indicates a setup issue or revoked token.
-                logger.error(f"No valid calendar credentials for {self.email_address} at {self.token_path}. Manual OAuth flow is needed to generate a new token with scopes: {CALENDAR_SCOPES}")
-                return None # No valid credentials, and cannot refresh.
-        
-        if not creds or not creds.valid:
-             logger.error(f"FINAL CHECK: Still no valid credentials for {self.email_address} calendar.")
-             return None
-        
-        # Ensure all required scopes are present
-        if not all(scope in creds.scopes for scope in CALENDAR_SCOPES):
-            logger.warning(f"Calendar credentials for {self.email_address} are missing one or more required scopes. Current: {creds.scopes}, Required: {CALENDAR_SCOPES}. Operations may fail. Re-auth needed.")
-            # Don't return None here, let it proceed but log warning. Some readonly ops might work.
-
-        logger.info(f"Calendar credentials for {self.email_address} loaded/refreshed successfully.")
-        return creds
-
-    def _save_token(self, creds: Credentials):
-        try:
-            with open(self.token_path, 'w') as token_file:
-                token_file.write(creds.to_json())
-            logger.info(f"Calendar OAuth token data saved to {self.token_path} for {self.email_address}.")
+                logger.error(f"Failed to obtain valid secure calendar credentials for {self.email_address}")
+                return None
+                
         except Exception as e:
-            logger.error(f"Failed to save calendar token to {self.token_path}: {e}", exc_info=True)
+            logger.error(f"Error obtaining secure calendar credentials for {self.email_address}: {e}", exc_info=True)
+            return None
+    
+    def refresh_credentials(self) -> bool:
+        """Refresh credentials using the secure token manager"""
+        try:
+            logger.info(f"Refreshing calendar credentials for {self.email_address}")
+            
+            # Get fresh credentials from token manager
+            new_creds = get_calendar_credentials(self.email_address)
+            
+            if new_creds and new_creds.valid:
+                self.creds = new_creds
+                # Rebuild service with new credentials
+                self.service = build('calendar', 'v3', credentials=self.creds)
+                logger.info(f"Calendar credentials refreshed successfully for {self.email_address}")
+                return True
+            else:
+                logger.error(f"Failed to refresh calendar credentials for {self.email_address}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error refreshing calendar credentials for {self.email_address}: {e}", exc_info=True)
+            return False
+    
+    def _ensure_valid_credentials(self) -> bool:
+        """Ensure credentials are valid, refresh if necessary"""
+        if not self.creds or not self.creds.valid:
+            logger.warning(f"Invalid calendar credentials detected for {self.email_address}, attempting refresh")
+            return self.refresh_credentials()
+        return True
+
 
     # --- Calendar specific methods will go here ---
     def get_availability(self, start_time_iso: str, end_time_iso: str, calendar_id: str = 'primary') -> Optional[List[Dict[str, str]]]:
         """Gets free/busy information for a calendar."""
+        if not self._ensure_valid_credentials():
+            logger.error("Failed to ensure valid credentials for calendar operation.")
+            return None
+        
         if not self.service:
             logger.error("Calendar service not available.")
             return None

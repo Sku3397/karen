@@ -1,0 +1,1 @@
+# Migration scripts for Karen AI database

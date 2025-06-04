@@ -1,0 +1,204 @@
+version: '3.8'
+
+services:
+  # Redis - Message broker and cache
+  redis:
+    image: redis:7-alpine
+    container_name: karen-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - karen-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # PostgreSQL Database (optional - for future database needs)
+  postgres:
+    image: postgres:15-alpine
+    container_name: karen-postgres
+    environment:
+      POSTGRES_DB: karen
+      POSTGRES_USER: karen
+      POSTGRES_PASSWORD: karen_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - karen-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U karen"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # FastAPI Application Server
+  karen-api:
+    build:
+      context: .
+      target: api
+    container_name: karen-api
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URL=postgresql://karen:karen_password@postgres:5432/karen
+      - ENVIRONMENT=development
+    volumes:
+      - ./src:/app
+      - ./logs:/app/logs
+      - ./autonomous-agents:/app/autonomous-agents
+      - oauth_tokens:/app/tokens
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - karen-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Celery Worker for background tasks
+  karen-worker:
+    build:
+      context: .
+      target: worker
+    container_name: karen-worker
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URL=postgresql://karen:karen_password@postgres:5432/karen
+      - ENVIRONMENT=development
+    volumes:
+      - ./src:/app
+      - ./logs:/app/logs
+      - ./autonomous-agents:/app/autonomous-agents
+      - oauth_tokens:/app/tokens
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - karen-network
+    restart: unless-stopped
+
+  # Celery Beat Scheduler
+  karen-beat:
+    build:
+      context: .
+      target: beat
+    container_name: karen-beat
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URL=postgresql://karen:karen_password@postgres:5432/karen
+      - ENVIRONMENT=development
+    volumes:
+      - ./src:/app
+      - ./logs:/app/logs
+      - ./autonomous-agents:/app/autonomous-agents
+      - oauth_tokens:/app/tokens
+      - celery_beat:/app/celerybeat-schedule
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - karen-network
+    restart: unless-stopped
+
+  # React Frontend (Development)
+  karen-frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    container_name: karen-frontend
+    ports:
+      - "8082:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - NODE_ENV=development
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    depends_on:
+      - karen-api
+    networks:
+      - karen-network
+    restart: unless-stopped
+
+  # Nginx reverse proxy (optional for production-like setup)
+  nginx:
+    image: nginx:alpine
+    container_name: karen-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./dist:/usr/share/nginx/html
+    depends_on:
+      - karen-api
+      - karen-frontend
+    networks:
+      - karen-network
+    restart: unless-stopped
+
+  # Flower - Celery monitoring (optional)
+  flower:
+    image: mher/flower:latest
+    container_name: karen-flower
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - FLOWER_PORT=5555
+    depends_on:
+      - redis
+    networks:
+      - karen-network
+    restart: unless-stopped
+
+  # Redis Commander - Redis monitoring (optional)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: karen-redis-commander
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    depends_on:
+      - redis
+    networks:
+      - karen-network
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local
+  oauth_tokens:
+    driver: local
+  celery_beat:
+    driver: local
+
+networks:
+  karen-network:
+    driver: bridge

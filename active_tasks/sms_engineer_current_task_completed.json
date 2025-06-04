@@ -1,14 +1,14 @@
 {
   "task": {
-    "id": "sms_engineer_create_integration_tests_1749015143.430413_2",
+    "id": "sms_engineer_create_integration_tests_1749022400.119878_2",
     "agent": "sms_engineer",
     "type": "create_integration_tests",
     "description": "Create integration tests",
-    "created": "2025-06-04T01:32:23.430413",
+    "created": "2025-06-04T03:33:20.119878",
     "priority": 2,
     "status": "pending",
     "retry_count": 0,
     "max_retries": 3
   },
-  "instruction": "\nExecute this task: create_integration_tests - Create integration tests\n\nimport sys\nsys.path.append('.')\nfrom claude_helpers import sms_helper as helper\n\n# Task: create_integration_tests\nif 'create_integration_tests' == 'implement_feature':\n    # Check current progress\n    if not os.path.exists('src/sms_client.py'):\n        # Create initial SMS client\n        sms_code = '''Complete SMS implementation...'''\n        helper.create_file('src/sms_client.py', sms_code)\n    else:\n        # Add new feature\n        current = helper.read_file('src/sms_client.py')\n        # Enhance with new methods\n        helper.update_status('enhancing', 60, {'adding': 'bulk_sms_support'})\n        \nelif 'create_integration_tests' == 'refactor_code':\n    # Refactor existing code\n    helper.update_status('refactoring', 70, {'optimizing': 'sms_client'})\n    \nelif 'create_integration_tests' == 'add_error_handling':\n    # Improve error handling\n    helper.update_status('improving', 80, {'adding': 'robust_error_handling'})\n    \nelif 'create_integration_tests' == 'create_integration_tests':\n    # Create comprehensive tests\n    test_code = '''SMS integration tests...'''\n    helper.create_file('tests/test_sms_integration_sms_engineer_create_integration_tests_1749015143.430413_2.py', test_code)\n\nhelper.update_status('completed', 100, {'task': 'sms_engineer_create_integration_tests_1749015143.430413_2'})\nprint(\"Task sms_engineer_create_integration_tests_1749015143.430413_2 completed\")\n"
+  "instruction": "\nExecute this task: create_integration_tests - Create integration tests\n\nimport sys\nsys.path.append('.')\nfrom claude_helpers import sms_helper as helper\n\n# Task: create_integration_tests\nif 'create_integration_tests' == 'implement_feature':\n    # Check current progress\n    if not os.path.exists('src/sms_client.py'):\n        # Create initial SMS client\n        sms_code = '''Complete SMS implementation...'''\n        helper.create_file('src/sms_client.py', sms_code)\n    else:\n        # Add new feature\n        current = helper.read_file('src/sms_client.py')\n        # Enhance with new methods\n        helper.update_status('enhancing', 60, {'adding': 'bulk_sms_support'})\n        \nelif 'create_integration_tests' == 'refactor_code':\n    # Refactor existing code\n    helper.update_status('refactoring', 70, {'optimizing': 'sms_client'})\n    \nelif 'create_integration_tests' == 'add_error_handling':\n    # Improve error handling\n    helper.update_status('improving', 80, {'adding': 'robust_error_handling'})\n    \nelif 'create_integration_tests' == 'create_integration_tests':\n    # Create comprehensive tests\n    test_code = '''SMS integration tests...'''\n    helper.create_file('tests/test_sms_integration_sms_engineer_create_integration_tests_1749022400.119878_2.py', test_code)\n\nhelper.update_status('completed', 100, {'task': 'sms_engineer_create_integration_tests_1749022400.119878_2'})\nprint(\"Task sms_engineer_create_integration_tests_1749022400.119878_2 completed\")\n"
 }

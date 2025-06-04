@@ -1,0 +1,46 @@
+#!/bin/bash
+# Eigencode Setup Script for Karen AI
+
+echo "Setting up Eigencode integration..."
+
+# Check if eigencode is available via npm
+npm list -g eigencode || npm install -g eigencode
+
+# If not available via npm, check alternative installation methods
+if ! command -v eigencode &> /dev/null; then
+    echo "Eigencode not found via npm. Checking alternative sources..."
+    
+    # Try pip
+    pip install eigencode 2>/dev/null || echo "Not available via pip"
+    
+    # Try direct download
+    if [ ! -f "/usr/local/bin/eigencode" ]; then
+        echo "Please visit https://eigencode.ai for installation instructions"
+        echo "Or check if it's available at: https://github.com/eigencode/eigencode"
+    fi
+fi
+
+# Create eigencode configuration
+cat > eigencode.config.json << EOF
+{
+  "project": "karen-ai",
+  "language": "python",
+  "framework": ["fastapi", "celery", "redis"],
+  "style": {
+    "indent": 4,
+    "line_length": 100,
+    "quotes": "double"
+  },
+  "analysis": {
+    "depth": "comprehensive",
+    "include_suggestions": true,
+    "auto_fix": false
+  },
+  "daemons": {
+    "interval": 300,
+    "background": true
+  }
+}
+EOF
+
+echo "Eigencode configuration created"

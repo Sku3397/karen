@@ -124,7 +124,7 @@ class SmallTalkEngine:
         message_lower = customer_message.lower()
         
         # Weather mentions
-        weather_keywords = ['weather', 'rain', 'snow', 'hot', 'cold', 'sunny', 'cloudy', 'storm']
+        weather_keywords = ['weather', 'rain', 'snow', 'hot', 'cold', 'sunny', 'cloudy', 'storm', 'beautiful day', 'nice day', 'lovely day', 'perfect day', 'gorgeous day']
         if any(keyword in message_lower for keyword in weather_keywords):
             return 'weather'
         

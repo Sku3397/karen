@@ -1,4 +1,4 @@
-# EmailClient: Handles sending and fetching emails, now using Gmail API for sending.
+# EmailClient: Secure email handling with OAuth token management
 import email
 from email.mime.text import MIMEText
 from typing import List, Optional, Dict, Any
@@ -6,8 +6,8 @@ import json
 import time
 import os
 import base64
-from datetime import datetime, timedelta # Added timedelta
-import logging # Added
+from datetime import datetime, timedelta
+import logging
 
 # Google API Client libraries
 from google.oauth2.credentials import Credentials
@@ -16,164 +16,97 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import google.auth.exceptions
 
-# Import ClientSecretsLoader
-from google_auth_oauthlib.flow import InstalledAppFlow
+# Import OAuth token manager for secure token handling
+from .oauth_token_manager import get_gmail_credentials, get_token_manager
 
 # Define paths relative to the project root, assuming this file is in src/
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-CREDENTIALS_FILE_PATH = os.path.join(PROJECT_ROOT, 'credentials.json')
-# TOKEN_FILE_PATH is no longer a class/module level constant
 
-# Define the scopes needed.
-SCOPES = ['https://www.googleapis.com/auth/gmail.send',
-          'https://www.googleapis.com/auth/gmail.compose',
-          'https://www.googleapis.com/auth/gmail.readonly',
-          'https://www.googleapis.com/auth/gmail.modify']
-
-logger = logging.getLogger(__name__) # Added
+logger = logging.getLogger(__name__)
 
 class EmailClient:
-    def __init__(self, email_address: str, token_file_path: str):
-        self.email_address = email_address
-        self.token_file_path = os.path.join(PROJECT_ROOT, token_file_path) # Ensure it's an absolute path relative to project root
-        logger.debug(f"Initializing EmailClient for {email_address} using token file {self.token_file_path}")
+    def __init__(self, email_address: str, token_file_path: str = None, profile: str = 'gmail_secretary'):
+        """
+        Initialize EmailClient with secure OAuth token management
         
-        self._label_id_cache: Dict[str, Optional[str]] = {} # Ensure this instance variable for label cache is present
-
-        # Load client config once during initialization
-        self.client_config = self._load_client_config()
-        if not self.client_config:
-             logger.error(f"Failed to load client configuration from {CREDENTIALS_FILE_PATH} during init.")
-             raise ValueError(f"Failed to load client configuration from {CREDENTIALS_FILE_PATH}.")
-
-        self.creds = self._load_and_refresh_credentials() # Pass client_config here
-
+        Args:
+            email_address: Email address for the client
+            token_file_path: Legacy parameter, ignored (for backward compatibility)
+            profile: OAuth profile to use ('gmail_secretary' or 'gmail_monitor')
+        """
+        self.email_address = email_address
+        self.profile = profile
+        
+        # Legacy compatibility - warn if token_file_path is provided
+        if token_file_path:
+            logger.warning(f"token_file_path parameter is deprecated. Using secure token manager instead.")
+        
+        logger.info(f"Initializing secure EmailClient for {email_address} with profile {profile}")
+        
+        self._label_id_cache: Dict[str, Optional[str]] = {}
+        
+        # Use secure token manager for credentials
+        self.creds = self._get_secure_credentials()
+        
         if not self.creds:
-            logger.error(f"Failed to load or refresh Google OAuth credentials from {self.token_file_path} during init.")
-            raise ValueError(f"Failed to load or refresh Google OAuth credentials from {self.token_file_path}.")
-        logger.info(f"EmailClient for {email_address} initialized successfully using {self.token_file_path}.")
+            logger.error(f"Failed to obtain secure OAuth credentials for {email_address}")
+            raise ValueError(f"Failed to obtain secure OAuth credentials for {email_address}")
+        
+        logger.info(f"Secure EmailClient for {email_address} initialized successfully")
 
-    def _load_client_config(self) -> Optional[Dict[str, Any]]:
-        logger.debug(f"Attempting to load client configuration from {CREDENTIALS_FILE_PATH}...")
+    def _get_secure_credentials(self) -> Optional[Credentials]:
+        """Get secure OAuth credentials using the token manager"""
         try:
-            with open(CREDENTIALS_FILE_PATH, 'r') as f:
-                full_creds_json = json.load(f)
-                client_config = full_creds_json.get('installed')
+            logger.debug(f"Requesting secure credentials for {self.email_address} with profile {self.profile}")
             
-            if not client_config or not client_config.get('client_id') or not client_config.get('client_secret') or not client_config.get('token_uri'):
-                logger.error("credentials.json is missing client_id, client_secret, or token_uri.")
+            # Use the secure token manager to get credentials
+            creds = get_gmail_credentials(self.email_address, self.profile)
+            
+            if creds and creds.valid:
+                logger.info(f"Secure credentials obtained for {self.email_address}")
+                return creds
+            else:
+                logger.error(f"Failed to obtain valid secure credentials for {self.email_address}")
                 return None
-
-            logger.debug(f"Successfully loaded client_config from {CREDENTIALS_FILE_PATH}")
-            return client_config
-
-        except FileNotFoundError:
-            logger.error(f"OAuth credentials.json file not found at {CREDENTIALS_FILE_PATH}", exc_info=True)
-            return None
-        except json.JSONDecodeError:
-            logger.error(f"Could not decode JSON from {CREDENTIALS_FILE_PATH}", exc_info=True)
-            return None
+                
         except Exception as e:
-            logger.error(f"An unexpected error occurred while loading client config: {e}", exc_info=True)
+            logger.error(f"Error obtaining secure credentials for {self.email_address}: {e}", exc_info=True)
             return None
-
-    def _load_and_refresh_credentials(self) -> Optional[Credentials]:
-        logger.debug(f"Attempting to load and refresh credentials from {self.token_file_path}...")
-        creds = None
-        token_data = None # Initialize token_data here to prevent UnboundLocalError
-
-        # --- Start: Modified token loading and refresh logic ---
-        if os.path.exists(self.token_file_path):
-            logger.debug(f"Token file found at {self.token_file_path}. Attempting to load raw data.")
-            try:
-                with open(self.token_file_path, 'r') as token_file:
-                    token_data = json.load(token_file)
-                logger.debug(f"Raw token data loaded from {self.token_file_path}.")
-
-                # Attempt to create Credentials object from loaded data, providing client_config
-                creds = Credentials.from_authorized_user_info(token_data, SCOPES)
-                logger.debug("Credentials object created from loaded token data.")
-
-            except Exception as e:
-                logger.error(f"Error creating credentials from token data in {self.token_file_path} for {self.email_address}: {e}", exc_info=True)
-                token_data = None # Ensure token_data is None if loading/creation fails
-                creds = None
-
-        else:
-            logger.info(f"Token file {self.token_file_path} not found.")
-
-        # Check if we have a refresh token in the raw data OR the loaded creds object
-        has_refresh_token = (token_data and token_data.get('refresh_token')) or (creds and creds.refresh_token)
-
-        should_attempt_refresh = False
-        # Modified condition: Attempt refresh if a refresh token is found AND credentials are not valid OR are expired.
-        if has_refresh_token and (creds is None or not creds.valid or creds.expired):
-            logger.info(f"Refresh token found in {self.token_file_path} for {self.email_address}, and credentials are not valid or are expired. Attempting to refresh...")
-            should_attempt_refresh = True
-
-
-        if should_attempt_refresh and creds: # Need a creds object to refresh
-             logger.debug("Attempting to refresh credentials...")
-             try:
-                 creds.refresh(GoogleAuthRequest())
-                 logger.info(f"Successfully refreshed credentials for {self.email_address} from {self.token_file_path}.")
-                 self._save_token_from_creds(creds) # Save the refreshed credentials
-             except google.auth.exceptions.RefreshError as e:
-                 logger.error(f"Failed to refresh credentials for {self.email_address} from {self.token_file_path}. Google RefreshError: {e}", exc_info=True)
-                 if hasattr(e, 'response') and hasattr(e.response, 'data'):
-                     try:
-                         error_details = json.loads(e.response.data.decode())
-                         logger.error(f"Google OAuth Error Details: {error_details}")
-                     except Exception as json_e:
-                         logger.error(f"Could not parse Google OAuth error details: {json_e}")
-                 creds = None  # Crucial: set creds to None if refresh fails
-             except Exception as e:
-                 logger.error(f"An unexpected error occurred during credential refresh for {self.email_address} from {self.token_file_path}: {e}", exc_info=True)
-                 creds = None # Crucial: set creds to None on other errors
-        elif has_refresh_token and creds is None:
-             # This case might happen if loading raw token data failed, but we know a refresh token should be there.
-             # We could potentially try to build a minimal creds object just for refreshing,
-             # but it's safer to assume if initial load fails, we need re-auth.
-             logger.error(f"Refresh token found in raw data but cannot create a valid Credentials object to perform refresh for {self.email_address}. Re-authentication may be required.")
-             creds = None # Ensure creds is None if we can't refresh
-
-        # --- End: Modified token loading and refresh logic ---
-
-        if not creds or not creds.valid:
-            logger.error(f"FINAL CHECK: No valid credentials from {self.token_file_path} for {self.email_address} after load/refresh attempts. Please re-run OAuth setup for this token or check logs for Google OAuth Error Details.")
-            return None
-        else:
-            logger.debug(f"Credentials from {self.token_file_path} for {self.email_address} loaded and are valid.")
-
-        # This re-saving logic might be redundant if from_authorized_user_file handles expiry well
-        # and refresh also saves. Consider removing if causing issues.
-        # Keeping for now as a safeguard, checking for old timestamp format.
-        if os.path.exists(self.token_file_path) and creds and creds.valid:
-             try:
-                 with open(self.token_file_path, 'r') as token_file_check:
-                    token_data_check = json.load(token_file_check)
-                 # Check if the saved expiry is in a format that suggests it was from an old save logic (e.g. ms)
-                 # This heuristic might need refinement.
-                 if isinstance(token_data_check.get('expiry'), str) and token_data_check.get('expiry').endswith('Z'):
-                    # If expiry is a string (like from google-auth), and we are re-saving, ensure it matches our timestamp format.
-                    pass # from_authorized_user_file should handle it. _save_token_from_creds always saves timestamp.
-                 elif isinstance(token_data_check.get('expiry_date'), (int, float)) and token_data_check.get('expiry_date', 0) > time.time() * 500: # Heuristic for ms
-                     logger.info(f"Re-saving token file {self.token_file_path} with expiry_date in seconds after initial load/normalization.")
-                     self._save_token_from_creds(creds)
-             except Exception as check_e:
-                 logger.warning(f"Error during token file check/re-save heuristic for {self.token_file_path}: {check_e}", exc_info=True)
-
-
-        logger.debug(f"Credential loading and refresh process for {self.token_file_path} completed.")
-        return creds
+    
+    def refresh_credentials(self) -> bool:
+        """Refresh credentials using the secure token manager"""
+        try:
+            logger.info(f"Refreshing credentials for {self.email_address}")
+            
+            # Get fresh credentials from token manager
+            new_creds = get_gmail_credentials(self.email_address, self.profile)
+            
+            if new_creds and new_creds.valid:
+                self.creds = new_creds
+                logger.info(f"Credentials refreshed successfully for {self.email_address}")
+                return True
+            else:
+                logger.error(f"Failed to refresh credentials for {self.email_address}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error refreshing credentials for {self.email_address}: {e}", exc_info=True)
+            return False
+    
+    def _ensure_valid_credentials(self) -> bool:
+        """Ensure credentials are valid, refresh if necessary"""
+        if not self.creds or not self.creds.valid:
+            logger.warning(f"Invalid credentials detected for {self.email_address}, attempting refresh")
+            return self.refresh_credentials()
+        return True
 
     def _get_label_id(self, label_name: str) -> Optional[str]:
         """Fetches the ID of a label by its name. Caches results."""
         if label_name in self._label_id_cache:
             return self._label_id_cache[label_name]
 
-        if not self.creds or not self.creds.valid:
-            logger.error(f"Cannot fetch label ID for '{label_name}': invalid or missing credentials.")
+        if not self._ensure_valid_credentials():
+            logger.error(f"Cannot fetch label ID for '{label_name}': failed to ensure valid credentials.")
             return None
         try:
             service = build('gmail', 'v1', credentials=self.creds)

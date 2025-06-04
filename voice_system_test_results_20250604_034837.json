@@ -1,0 +1,56 @@
+{
+  "test_suite_duration_ms": 968.398,
+  "total_phases": 9,
+  "phases_passed": 8,
+  "healing_actions_applied": 1,
+  "overall_health_score": 88.88888888888889,
+  "results": {
+    "ElevenLabs API Health": {
+      "all_passed": false,
+      "summary": "No API key configured"
+    },
+    "Voice Generation": {
+      "all_passed": true,
+      "summary": "Voice generation files present"
+    },
+    "Context Switching": {
+      "all_passed": true,
+      "summary": "Components available"
+    },
+    "Emotion Modulation": {
+      "all_passed": true,
+      "summary": "Components available"
+    },
+    "Cache Performance": {
+      "all_passed": true,
+      "summary": "Structure validated"
+    },
+    "Error Handling": {
+      "all_passed": true,
+      "summary": "Structure validated"
+    },
+    "Webhook Integration": {
+      "all_passed": true,
+      "summary": "ElevenLabs integration complete"
+    },
+    "Performance Benchmarks": {
+      "all_passed": true,
+      "summary": "Structure validated"
+    },
+    "Cost Optimization": {
+      "all_passed": true,
+      "summary": "Structure validated"
+    }
+  },
+  "healing_actions": [
+    "Configure ElevenLabs API key"
+  ],
+  "recommendations": [
+    "Configure ElevenLabs API key for full voice functionality",
+    "Apply healing actions and re-run tests",
+    "System is functional with minor issues"
+  ],
+  "timestamp": "20250604_034837",
+  "test_mode": "simplified",
+  "notes": "Simplified test due to import constraints"
+}

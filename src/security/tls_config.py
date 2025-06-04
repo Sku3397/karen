@@ -1,1 +1,7 @@
-import ssl\n\n# Function to create a context for TLS\ndef create_tls_context():\n    context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)\n    context.load_cert_chain(certfile='path/to/certfile', keyfile='path/to/keyfile')\n    return context
+import ssl
+
+# Function to create a context for TLS
+def create_tls_context():
+    context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+    context.load_cert_chain(certfile='path/to/certfile', keyfile='path/to/keyfile')
+    return context

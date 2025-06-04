@@ -1,1 +1,27 @@
-from cryptography.fernet import Fernet\n\n# Generate and save a key\ndef generate_key():\n    key = Fernet.generate_key()\n    with open('secret.key', 'wb') as key_file:\n        key_file.write(key)\n        return key\n\n# Load the previously generated key\ndef load_key():\n    return open('secret.key', 'rb').read()\n\n# Encrypt a message\ndef encrypt_message(message):\n    key = load_key()\n    encoded_message = message.encode()\n    f = Fernet(key)\n    encrypted_message = f.encrypt(encoded_message)\n    return encrypted_message\n\n# Decrypt a message\ndef decrypt_message(encrypted_message):\n    key = load_key()\n    f = Fernet(key)\n    decrypted_message = f.decrypt(encrypted_message)\n    return decrypted_message.decode()
+from cryptography.fernet import Fernet
+
+# Generate and save a key
+def generate_key():
+    key = Fernet.generate_key()
+    with open('secret.key', 'wb') as key_file:
+        key_file.write(key)
+        return key
+
+# Load the previously generated key
+def load_key():
+    return open('secret.key', 'rb').read()
+
+# Encrypt a message
+def encrypt_message(message):
+    key = load_key()
+    encoded_message = message.encode()
+    f = Fernet(key)
+    encrypted_message = f.encrypt(encoded_message)
+    return encrypted_message
+
+# Decrypt a message
+def decrypt_message(encrypted_message):
+    key = load_key()
+    f = Fernet(key)
+    decrypted_message = f.decrypt(encrypted_message)
+    return decrypted_message.decode()

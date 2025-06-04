@@ -30,7 +30,7 @@ except ImportError as e:
 # Import endpoint routers
 # Simplified imports - assuming these modules exist and export a 'router'
 try:
-    from .endpoints import users, appointments, communications, knowledge, billing, inventory, tasks
+    from .endpoints import users, appointments, communications, knowledge, billing, inventory, tasks, memory
 except ImportError as e:
     print(f"Warning: Could not import some endpoint modules: {e}. Using mock routers.")
     users = type('MockRouter', (), {'router': APIRouter(tags=["mock"])})()
@@ -40,6 +40,7 @@ except ImportError as e:
     billing = type('MockRouter', (), {'router': APIRouter(tags=["mock"])})()
     inventory = type('MockRouter', (), {'router': APIRouter(tags=["mock"])})()
     tasks = type('MockRouter', (), {'router': APIRouter(tags=["mock"])})()
+    memory = type('MockRouter', (), {'router': APIRouter(tags=["mock"])})()
 
 
 # Import the Task Manager Agent's router

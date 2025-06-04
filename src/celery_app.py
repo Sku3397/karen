@@ -51,6 +51,9 @@ from .communication_agent.agent import CommunicationAgent # Assuming this path
 # Import the actual task_manager instance from its module
 from .task_manager_agent import task_manager as actual_task_manager_instance # Assuming this path
 
+# Import AgentCommunication
+from src.agent_communication import AgentCommunication
+
 # Import MockEmailClient if using it for tests
 # The decision to use MockEmailClient should ideally be in config, not directly here.
 # For now, will rely on config.USE_MOCK_EMAIL_CLIENT if it exists.
@@ -208,18 +211,339 @@ def check_instruction_emails_task_runner(): # Renamed to avoid conflict with a p
         raise
     logger.info("Celery task: \u09af\u09cc\u0997FINISHED check_instruction_emails_task_runner \u09af\u09cc\u0997")
 
-# Define a periodic task schedule (e.g., run every 5 minutes)
-# This schedule will be active if Celery beat is run with this app.
-# celery_app.conf.beat_schedule = {
-#     'check-secretary-emails-every-1-minute': { # Changed to 1 minute for faster testing feedback
-#         'task': 'check_emails_task', # Name is 'check_emails_task'
-#         'schedule': crontab(minute='*/1'),  # Run every 1 minute
-#     },
-#     'check-instruction-emails-every-2-minutes': { 
-#         'task': 'check_instruction_emails_task', # This is the name of the task defined above
-#         'schedule': crontab(minute='*/2'),  # Run every 2 minutes
-#     },
-# }
+# --- New Agent-Related Tasks ---
+@celery_app.task(name='archaeologist_periodic_scan_task', bind=True, ignore_result=True)
+def archaeologist_periodic_scan_task(self):
+    """Code archaeologist agent that maps existing system"""
+    task_logger = self.get_logger()
+    comm = AgentCommunication('archaeologist')
+    task_logger.info("Executing archaeologist_periodic_scan_task: System mapping and analysis.")
+    
+    try:
+        comm.update_status('analyzing', 10, {'phase': 'starting', 'task_id': self.request.id})
+        
+        messages = comm.read_messages()
+        for msg in messages:
+            task_logger.info(f"Archaeologist received: {msg.get('type')} from {msg.get('from')} - Content: {msg.get('content')}")
+
+        # TODO: Implement actual archaeologist agent logic
+        # Example:
+        # archaeologist_instance = get_archaeologist_agent_instance() # Needs to be defined
+        # asyncio.run(archaeologist_instance.perform_system_scan())
+        task_logger.info("Archaeologist: Performing mock system scan...")
+        comm.update_status('analyzing', 50, {'phase': 'scanning filesystem', 'task_id': self.request.id})
+        # Simulate work
+        import time
+        time.sleep(5) # Simulate scan time
+        
+        comm.share_knowledge('code_patterns', {
+            'discovered_by': 'archaeologist',
+            'pattern_type': 'error_handling',
+            'description': 'try/except with logging via task_logger or module logger',
+            'example_location': 'src/celery_app.py'
+        })
+        comm.share_knowledge('system_info', {
+            'celery_version': celery_app.conf.CELERY_VERSION if hasattr(celery_app.conf, 'CELERY_VERSION') else 'unknown',
+            'broker_url': celery_app.conf.broker_url,
+        })
+
+        comm.send_message('sms_engineer', 'analysis_complete', {
+            'patterns_documented': True,
+            'templates_created': False, # Mock value
+            'report_id': f"archaeology_report_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        })
+        
+        comm.update_status('completed', 100, {'phase': 'done', 'task_id': self.request.id})
+        task_logger.info("Archaeologist: System scan completed and findings shared.")
+        print("PRINT_DEBUG: archaeologist_periodic_scan_task executed successfully.", flush=True)
+
+    except Exception as e:
+        task_logger.error(f"Error in archaeologist_periodic_scan_task: {e}", exc_info=True)
+        comm.update_status('error', 0, {'error': str(e), 'task_id': self.request.id, 'details': 'Failed during periodic scan'})
+        # raise # Re-raise if Celery should retry or mark as failure explicitly based on strategy
+
+@celery_app.task(name='sms_event_handler_task', bind=True, ignore_result=True)
+def sms_event_handler_task(self, payload: dict):
+    """Handles incoming SMS events."""
+    task_logger = self.get_logger()
+    comm = AgentCommunication('sms_engineer')
+    task_logger.info(f"Executing sms_event_handler_task with payload: {payload}")
+
+    try:
+        comm.update_status('processing_sms', 10, {'phase': 'received_payload', 'task_id': self.request.id, 'payload_keys': list(payload.keys())})
+        
+        messages = comm.read_messages()
+        for msg in messages:
+            task_logger.info(f"SMS Engineer received: {msg.get('type')} from {msg.get('from')} - Content: {msg.get('content')}")
+            if msg.get('type') == 'analysis_complete':
+                task_logger.info(f"SMS Engineer: Noted analysis complete from {msg.get('from')}")
+
+        # TODO: Implement actual SMS event handling logic using an sms_engineer agent
+        # Example:
+        # sms_engineer_instance = get_sms_engineer_agent_instance() # Needs to be defined
+        # asyncio.run(sms_engineer_instance.process_incoming_sms(payload))
+        task_logger.info(f"SMS Engineer: Processing SMS payload: {payload.get('sms_content', 'N/A')}")
+        comm.update_status('processing_sms', 70, {'phase': 'generating_reply', 'task_id': self.request.id})
+        # Simulate work
+        import time
+        time.sleep(3)
+
+        # Example: sending a message to another agent or confirming action
+        comm.send_message('memory_engineer', 'new_sms_interaction', {
+            'sms_payload': payload,
+            'status': 'processed_by_sms_engineer'
+        })
+        
+        comm.update_status('completed', 100, {'phase': 'sms_processed', 'task_id': self.request.id})
+        task_logger.info(f"SMS Engineer: SMS event processed: {payload.get('message_sid', 'N/A')}")
+        print(f"PRINT_DEBUG: sms_event_handler_task executed successfully for payload: {payload}", flush=True)
+
+    except Exception as e:
+        task_logger.error(f"Error in sms_event_handler_task: {e}", exc_info=True)
+        comm.update_status('error', 0, {'error': str(e), 'task_id': self.request.id, 'payload': payload})
+        # raise
+
+@celery_app.task(name='voice_event_handler_task', bind=True, ignore_result=True)
+def voice_event_handler_task(self, payload: dict):
+    """Handles incoming voice/call events."""
+    task_logger = self.get_logger()
+    comm = AgentCommunication('phone_engineer')
+    task_logger.info(f"Executing voice_event_handler_task with payload: {payload}")
+
+    try:
+        comm.update_status('processing_voice', 10, {'phase': 'received_payload', 'task_id': self.request.id, 'call_sid': payload.get('call_sid')})
+        
+        messages = comm.read_messages()
+        for msg in messages:
+            task_logger.info(f"Phone Engineer received: {msg.get('type')} from {msg.get('from')} - Content: {msg.get('content')}")
+
+        # TODO: Implement actual voice event handling logic
+        # Example:
+        # phone_engineer_instance = get_phone_engineer_agent_instance() # Needs to be defined
+        # asyncio.run(phone_engineer_instance.process_incoming_voice(payload))
+        task_logger.info(f"Phone Engineer: Processing voice payload for call SID: {payload.get('call_sid', 'N/A')}")
+        comm.update_status('processing_voice', 70, {'phase': 'transcribing_call', 'task_id': self.request.id})
+        import time
+        time.sleep(7) # Simulate transcription and processing
+
+        comm.send_message('memory_engineer', 'new_voice_interaction', {
+            'voice_payload': payload,
+            'transcription_status': 'simulated_success',
+            'status': 'processed_by_phone_engineer'
+        })
+
+        comm.update_status('completed', 100, {'phase': 'voice_processed', 'task_id': self.request.id})
+        task_logger.info(f"Phone Engineer: Voice event processed for call SID: {payload.get('call_sid', 'N/A')}")
+        print(f"PRINT_DEBUG: voice_event_handler_task executed successfully for payload: {payload}", flush=True)
+
+    except Exception as e:
+        task_logger.error(f"Error in voice_event_handler_task: {e}", exc_info=True)
+        comm.update_status('error', 0, {'error': str(e), 'task_id': self.request.id, 'payload': payload})
+        # raise
+
+@celery_app.task(name='memory_maintenance_task', bind=True, ignore_result=True)
+def memory_maintenance_task(self):
+    """Consolidates and manages conversation memory."""
+    task_logger = self.get_logger()
+    comm = AgentCommunication('memory_engineer')
+    task_logger.info("Executing memory_maintenance_task.")
+
+    try:
+        comm.update_status('maintenance', 10, {'phase': 'starting_memory_maintenance', 'task_id': self.request.id})
+        
+        messages = comm.read_messages()
+        for msg in messages:
+            task_logger.info(f"Memory Engineer received: {msg.get('type')} from {msg.get('from')} - Content: {msg.get('content')}")
+            # Example: process new_sms_interaction or new_voice_interaction messages
+            if msg.get('type') in ['new_sms_interaction', 'new_voice_interaction']:
+                task_logger.info(f"Memory Engineer: Processing {msg.get('type')} from {msg.get('from')}")
+                # Add to knowledge base or internal memory structures
+
+        # TODO: Implement actual memory maintenance logic
+        # Example:
+        # memory_engineer_instance = get_memory_engineer_agent_instance() # Needs to be defined
+        # asyncio.run(memory_engineer_instance.perform_maintenance())
+        task_logger.info("Memory Engineer: Performing memory consolidation and indexing...")
+        comm.update_status('maintenance', 60, {'phase': 'consolidating_data', 'task_id': self.request.id})
+        import time
+        time.sleep(10) # Simulate maintenance work
+
+        comm.share_knowledge('memory_summary', {
+            'last_updated': datetime.now().isoformat(),
+            'interactions_processed_in_run': len(messages), # Example metric
+            'summary_quality': 'simulated_high'
+        })
+        
+        comm.update_status('completed', 100, {'phase': 'memory_maintenance_done', 'task_id': self.request.id})
+        task_logger.info("Memory Engineer: Memory maintenance task completed.")
+        print("PRINT_DEBUG: memory_maintenance_task executed successfully.", flush=True)
+
+    except Exception as e:
+        task_logger.error(f"Error in memory_maintenance_task: {e}", exc_info=True)
+        comm.update_status('error', 0, {'error': str(e), 'task_id': self.request.id})
+        # raise
+
+@celery_app.task(name='qa_tests_runner_task', bind=True, ignore_result=True)
+def qa_tests_runner_task(self):
+    """Runs automated quality assurance tests."""
+    task_logger = self.get_logger()
+    comm = AgentCommunication('test_engineer')
+    task_logger.info("Executing qa_tests_runner_task.")
+
+    try:
+        comm.update_status('testing', 10, {'phase': 'initializing_tests', 'task_id': self.request.id})
+        
+        messages = comm.read_messages()
+        for msg in messages:
+            task_logger.info(f"Test Engineer received: {msg.get('type')} from {msg.get('from')} - Content: {msg.get('content')}")
+            # Could receive triggers or configurations for tests
+
+        # TODO: Implement actual QA test execution logic
+        # Example:
+        # test_engineer_instance = get_test_engineer_agent_instance() # Needs to be defined
+        # asyncio.run(test_engineer_instance.run_all_tests())
+        task_logger.info("Test Engineer: Starting test suites...")
+        comm.update_status('testing', 50, {'phase': 'running_core_tests', 'task_id': self.request.id})
+        import time
+        time.sleep(15) # Simulate test execution
+
+        test_results = {'passed': 100, 'failed': 2, 'skipped': 5, 'pass_rate': 100*100/(100+2)} # Mock results
+        comm.share_knowledge('test_run_summary', {
+            'run_id': f"qa_run_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            'results': test_results,
+            'coverage': 'simulated_75_percent'
+        })
+        
+        comm.send_message('orchestrator', 'test_results_available', { # Assuming an orchestrator agent
+            'summary': test_results,
+            'details_link': f"/reports/qa/run_{datetime.now().strftime('%Y%m%d%H%M%S')}.html" # Mock link
+        })
+
+        comm.update_status('completed', 100, {'phase': 'qa_tests_done', 'task_id': self.request.id, 'results_summary': test_results})
+        task_logger.info("Test Engineer: QA tests completed and results shared.")
+        print("PRINT_DEBUG: qa_tests_runner_task executed successfully.", flush=True)
+
+    except Exception as e:
+        task_logger.error(f"Error in qa_tests_runner_task: {e}", exc_info=True)
+        comm.update_status('error', 0, {'error': str(e), 'task_id': self.request.id})
+        # raise
+
+# --- New Monitoring Tasks ---
+@celery_app.task(name='monitor_celery_logs_task', ignore_result=True)
+def monitor_celery_logs_task():
+    logger.info("Executing monitor_celery_logs_task.")
+    # TODO: Implement logic to check celery_worker_debug_logs_new.txt and celery_beat_logs_new.txt
+    # This could involve checking file size, modification time, or scanning for errors.
+    # For simplicity, just logging for now.
+    worker_log_path = os.path.join(PROJECT_ROOT_FOR_CELERY, 'celery_worker_debug_logs_new.txt')
+    beat_log_path = os.path.join(PROJECT_ROOT_FOR_CELERY, 'celery_beat_logs_new.txt')
+    logger.debug(f"Checking Celery worker log: {worker_log_path}")
+    logger.debug(f"Checking Celery beat log: {beat_log_path}")
+    print(f"PRINT_DEBUG: monitor_celery_logs_task executed. Worker log: {worker_log_path}, Beat log: {beat_log_path}", flush=True)
+
+@celery_app.task(name='monitor_agent_platform_logs_task', ignore_result=True)
+def monitor_agent_platform_logs_task():
+    logger.info("Executing monitor_agent_platform_logs_task.")
+    agent_logs_dir = os.path.join(PROJECT_ROOT_FOR_CELERY, 'multi-agent-logs') # As per user request
+    # TODO: Implement logic to check logs in /multi-agent-logs/
+    # This could involve checking file counts, sizes, modification times, or scanning for errors.
+    logger.debug(f"Checking agent platform logs in: {agent_logs_dir}")
+    if not os.path.exists(agent_logs_dir):
+        logger.warning(f"Agent logs directory {agent_logs_dir} does not exist.")
+    else:
+        # Example: list files, check modification times, etc.
+        pass
+    print(f"PRINT_DEBUG: monitor_agent_platform_logs_task executed for dir: {agent_logs_dir}", flush=True)
+
+@celery_app.task(name='monitor_redis_queues_task', ignore_result=True)
+def monitor_redis_queues_task():
+    logger.info("Executing monitor_redis_queues_task.")
+    try:
+        redis_url = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0')
+        # The redis library is already in requirements.txt
+        import redis
+        r = redis.from_url(redis_url)
+        # Celery default queue is usually 'celery' but can be changed.
+        # Check common queues; this might need to be more dynamic based on actual app usage.
+        queues_to_check = ['celery'] # Default Celery queue
+        # Add other known queues if necessary, e.g., based on task_routes or config.
+        # For tasks defined in celery_integration.existing_tasks, if they use specific queues.
+        # The orchestrator config mentions "fetch_new_emails", "process_email_with_llm", "send_karen_reply"
+        # Assuming they use the default queue for now unless specified otherwise.
+
+        queue_lengths = {}
+        for q_name in queues_to_check:
+            try:
+                length = r.llen(q_name)
+                queue_lengths[q_name] = length
+                logger.info(f"Redis queue '{q_name}' length: {length}")
+            except Exception as e:
+                logger.error(f"Error checking Redis queue '{q_name}': {e}", exc_info=True)
+        
+        if not queue_lengths:
+            logger.warning("No Redis queues were checked or an error occurred for all.")
+
+    except ImportError:
+        logger.error("Redis library not installed. Cannot monitor Redis queues.")
+    except Exception as e:
+        logger.error(f"Error connecting to Redis or monitoring queues: {e}", exc_info=True)
+    print(f"PRINT_DEBUG: monitor_redis_queues_task executed. Checked: {list(queue_lengths.keys()) if 'queue_lengths' in locals() else 'None'}", flush=True)
+
+
+@celery_app.task(name='monitor_gmail_api_quota_task', ignore_result=True)
+def monitor_gmail_api_quota_task():
+    logger.info("Executing monitor_gmail_api_quota_task.")
+    # This task serves as a reminder. Actual Gmail API quota monitoring is complex
+    # and best handled via Google Cloud Monitoring or specific client library features.
+    logger.warning("REMINDER: Periodically check Google Cloud Console for Gmail API quota usage.")
+    # Optionally, provide a direct link if known and stable:
+    # logger.info("Link to Google Cloud API Quotas: https://console.cloud.google.com/apis/dashboard")
+    print("PRINT_DEBUG: monitor_gmail_api_quota_task executed (manual check reminder).", flush=True)
+
+# Define a periodic task schedule
+celery_app.conf.beat_schedule = {
+    # Existing email check tasks (adjust schedules as needed based on actual `email_check_interval`)
+    'check-secretary-emails-every-2-minutes': {
+        'task': 'check_emails_task', # Name of the task defined earlier
+        'schedule': crontab(minute='*/2'),
+    },
+    'check-instruction-emails-every-5-minutes': {
+        'task': 'check_instruction_emails_task', # Name of the task defined earlier
+        'schedule': crontab(minute='*/5'),
+    },
+
+    # New Agent-Related Periodic Tasks
+    'archaeologist-scan-every-6-hours': {
+        'task': 'archaeologist_periodic_scan_task',
+        'schedule': crontab(minute=0, hour='*/6'), # Every 6 hours
+    },
+    'memory-maintenance-daily': {
+        'task': 'memory_maintenance_task',
+        'schedule': crontab(minute=0, hour=3), # Daily at 3:00 AM
+    },
+    'qa-tests-runner-hourly': {
+        'task': 'qa_tests_runner_task',
+        'schedule': crontab(minute=30, hour='*'), # Every hour at 30 minutes past the hour
+    },
+
+    # New Monitoring Periodic Tasks
+    'monitor-celery-logs-every-15-mins': {
+        'task': 'monitor_celery_logs_task',
+        'schedule': crontab(minute='*/15'),
+    },
+    'monitor-agent-platform-logs-every-17-mins': { # Offset slightly
+        'task': 'monitor_agent_platform_logs_task',
+        'schedule': crontab(minute='*/17'),
+    },
+    'monitor-redis-queues-every-10-mins': {
+        'task': 'monitor_redis_queues_task',
+        'schedule': crontab(minute='*/10'),
+    },
+    'monitor-gmail-api-quota-every-12-hours': {
+        'task': 'monitor_gmail_api_quota_task',
+        'schedule': crontab(minute=0, hour='*/12'), # Every 12 hours
+    },
+}
 
 # --- Autonomous Testing Rig (Keep for other tests, but not primary for this interactive one) ---
 def run_autonomous_test_suite():

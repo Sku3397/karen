@@ -1,0 +1,34 @@
+{
+  "email_baseline": {
+    "timestamp": "2025-06-03T00:46:49.909268",
+    "test_suite": "email_baseline",
+    "tests": [
+      {
+        "name": "required_files",
+        "status": "PASSED",
+        "message": "All 6 required files found"
+      },
+      {
+        "name": "environment_variables",
+        "status": "FAILED",
+        "message": "Missing environment variables: SECRETARY_EMAIL_ADDRESS, MONITORED_EMAIL_ACCOUNT, ADMIN_EMAIL_ADDRESS"
+      },
+      {
+        "name": "oauth_tokens",
+        "status": "PASSED",
+        "message": "All 2 OAuth token files found"
+      },
+      {
+        "name": "python_imports",
+        "status": "FAILED",
+        "message": "Failed to import: google.oauth2.credentials (google-auth), googleapiclient.discovery (google-api-python-client)"
+      }
+    ],
+    "summary": {
+      "passed": 2,
+      "failed": 2,
+      "total": 4,
+      "success_rate": 50.0
+    }
+  }
+}

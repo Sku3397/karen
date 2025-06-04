@@ -148,6 +148,9 @@ ADMIN_EMAIL = ADMIN_EMAIL_ADDRESS
 SECRETARY_EMAIL = SECRETARY_EMAIL_ADDRESS # This refers to karensecretaryai@gmail.com
 PRIMARY_KAREN_EMAIL = MONITORED_EMAIL_ACCOUNT_CONFIG # This will be hello@757handy.com
 
+# Memory System Configuration
+USE_MEMORY_SYSTEM = os.getenv('USE_MEMORY_SYSTEM', 'False').lower() == 'true'
+
 # --- Celery Configuration ---
 # If True, the main application will not attempt to start Celery worker and beat.
 # This is useful if Redis is not available or Celery is managed separately.

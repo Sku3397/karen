@@ -43,6 +43,9 @@ from src.config import (
 # Import the new utility function
 from src.datetime_utils import parse_datetime_from_details
 
+# Import memory system
+from src.memory_client import store_email_memory, get_conversation_context
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG) # Ensure DEBUG level for this logger
 
@@ -234,9 +237,24 @@ class CommunicationAgent:
                 llm_reply_body = "Could not generate a response at this time."
                 email_classification = None
                 
+                # Get conversation context from memory system
+                conversation_context = {}
+                try:
+                    conversation_context = await get_conversation_context(email_from, self.monitoring_email_address)
+                    if conversation_context.get('message_count', 0) > 0:
+                        logger.info(f"Found existing conversation history for {email_from}: {conversation_context.get('message_count')} messages, last interaction: {conversation_context.get('last_interaction')}")
+                except Exception as e:
+                    logger.warning(f"Failed to get conversation context for email UID {email_uid}: {e}")
+                
                 if self.llm_client and self.response_engine:
                     try:
                         logger.info(f"Generating enhanced handyman response for email UID {email_uid} from {email_from} (received in {self.monitoring_email_address})")
+                        
+                        # Enhance response generation with conversation context
+                        if conversation_context.get('message_count', 0) > 0:
+                            context_info = f"Previous conversation context: {conversation_context.get('conversation_summary', 'No summary available')}. Recent topics: {', '.join(conversation_context.get('recent_topics', []))[:100]}"
+                            logger.debug(f"Adding conversation context to response generation for UID {email_uid}: {context_info}")
+                        
                         llm_reply_body, email_classification = await self.response_engine.generate_response_async(
                             email_from, email_subject, email_body
                         )
@@ -335,6 +353,14 @@ Services: {services}
 Reply Sent: {llm_reply_body[:200]}..."""
                     self.send_admin_email(subject=admin_subject_no_task, body=admin_body_no_task)
                 # ---- END RESTORED TASK PROCESSING LOGIC ----
+
+                # Store conversation in memory system
+                try:
+                    conversation_id = await store_email_memory(email_data, llm_reply_body if email_from else None)
+                    if conversation_id:
+                        logger.debug(f"Stored email conversation in memory system for UID {email_uid}, conversation ID: {conversation_id}")
+                except Exception as e:
+                    logger.warning(f"Failed to store email conversation in memory for UID {email_uid}: {e}")
 
                 # Mark email as processed in the monitored inbox
                 if email_uid:

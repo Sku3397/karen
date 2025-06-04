@@ -56,4 +56,8 @@ structlog==23.2.0
 # Background tasks
 celery==5.3.4
 redis==5.0.1
-django-celery-beat==2.5.0 
+django-celery-beat==2.5.0
+
+# Memory and vector database
+chromadb>=0.4.0,<0.5.0
+numpy>=1.24.0,<2.0.0 

@@ -1,0 +1,47 @@
+[project]
+name = "karen-ai-handyman"
+root = "/karen"
+existing_features = ["email", "calendar", "celery"]
+
+[celery_integration]
+broker_url = "redis://localhost:6379/0"
+existing_tasks = [
+    "fetch_new_emails",
+    "process_email_with_llm", 
+    "send_karen_reply"
+]
+
+[agents]
+[agents.archaeologist]
+role = "system_mapper"
+workspace = "../agent-workspaces/archaeology"
+priority = 1
+
+[agents.sms_engineer]
+role = "sms_integration"
+workspace = "../agent-workspaces/sms-dev"
+dependencies = ["src.email_client", "src.llm_client", "src.handyman_response_engine"]
+priority = 2
+
+[agents.phone_engineer]
+role = "voice_integration"
+workspace = "../agent-workspaces/phone-dev"
+dependencies = ["src.communication_agent.voice_transcription_handler"]
+priority = 2
+
+[agents.memory_engineer]
+role = "conversation_memory"
+workspace = "../agent-workspaces/memory-dev"
+dependencies = ["src.communication_agent.agent", "src.email_client"]
+priority = 2
+
+[agents.test_engineer]
+role = "quality_assurance"
+workspace = "../agent-workspaces/testing-dev"
+monitors_all = true
+priority = 3
+
+[workflow]
+phases = ["analysis", "development", "testing", "integration", "deployment"]
+test_threshold = 95
+preserve_working = ["email", "calendar", "celery_tasks"] 

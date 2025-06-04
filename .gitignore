@@ -26,3 +26,4 @@ celery_worker_from_main_logs.txt
 
 # Celery Beat schedule database
 celerybeat-schedule.sqlite3
+celery_worker_debug_logs_new.txt

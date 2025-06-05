@@ -1,0 +1,802 @@
+[
+  {
+    "task_id": "EGT_SMS_001",
+    "description": "NLP-dependent method _classify_message_type in ConversationManager is a basic placeholder and needs actual NLP logic.",
+    "source_file": "src/sms_conversation_manager.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Requires implementing or integrating NLP capabilities for message classification."
+  },
+  {
+    "task_id": "EGT_SMS_002",
+    "description": "NLP-dependent method _extract_intent in ConversationManager is a basic placeholder and needs actual NLP logic.",
+    "source_file": "src/sms_conversation_manager.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Requires implementing or integrating NLP capabilities for intent extraction."
+  },
+  {
+    "task_id": "EGT_SMS_003",
+    "description": "NLP-dependent method _assess_urgency in ConversationManager is a basic placeholder and needs actual NLP logic.",
+    "source_file": "src/sms_conversation_manager.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Requires implementing or integrating NLP capabilities for urgency assessment."
+  },
+  {
+    "task_id": "EGT_SMS_004",
+    "description": "Method _generate_context_summary in ConversationManager is a placeholder.",
+    "source_file": "src/sms_conversation_manager.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Needs implementation for summarizing conversation context."
+  },
+  {
+    "task_id": "EGT_SMS_005",
+    "description": "Conversation cleanup scheduler (schedule_cleanup) in ConversationManager is not fully implemented.",
+    "source_file": "src/sms_conversation_manager.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Complete the implementation for Redis-based or other scheduled cleanup."
+  },
+  {
+    "task_id": "EGT_SMS_006",
+    "description": "Error handling for Redis connection failures in ConversationManager could be more robust.",
+    "source_file": "src/sms_conversation_manager.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Improve resilience to Redis unavailability."
+  },
+  {
+    "task_id": "EGT_SMS_007",
+    "description": "Method _build_intent_mapping in SMSTemplateSystem is basic; needs expansion or integration with an NLP intent recognizer.",
+    "source_file": "src/sms_templates.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Expand intent mapping or integrate with a proper intent recognition module."
+  },
+  {
+    "task_id": "EGT_SMS_008",
+    "description": "Template variable validation is missing in SMSTemplateSystem.",
+    "source_file": "src/sms_templates.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Add validation for variables used in templates."
+  },
+  {
+    "task_id": "EGT_SMS_009",
+    "description": "Management methods (add, update, delete) in SMSTemplateSystem modify in-memory only; persistence to JSON is missing.",
+    "source_file": "src/sms_templates.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement saving changes to templates back to the JSON file."
+  },
+  {
+    "task_id": "EGT_SMS_010",
+    "description": "NLP-dependent method _calculate_confidence in QuickReplySystem is a placeholder.",
+    "source_file": "src/sms_quick_replies.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement logic for calculating quick reply confidence."
+  },
+  {
+    "task_id": "EGT_SMS_011",
+    "description": "NLP-dependent method _get_context_boost in QuickReplySystem is a placeholder.",
+    "source_file": "src/sms_quick_replies.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement logic for contextual boosting of quick replies."
+  },
+  {
+    "task_id": "EGT_SMS_012",
+    "description": "NLP-dependent method _add_personality_and_branding in QuickReplySystem is a placeholder.",
+    "source_file": "src/sms_quick_replies.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Integrate with personality modules to enhance quick replies."
+  },
+  {
+    "task_id": "EGT_SMS_013",
+    "description": "Method smart_response_generation in QuickReplySystem is a placeholder.",
+    "source_file": "src/sms_quick_replies.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement advanced smart response generation."
+  },
+  {
+    "task_id": "EGT_SMS_014",
+    "description": "Keyword-based _detect_service_type in SMSAppointmentBooking is basic; needs NLP.",
+    "source_file": "src/sms_appointment_integration.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Replace keyword spotting with NLP for service type detection."
+  },
+  {
+    "task_id": "EGT_SMS_015",
+    "description": "Keyword-based _detect_urgency in SMSAppointmentBooking is basic; needs NLP.",
+    "source_file": "src/sms_appointment_integration.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Replace keyword spotting with NLP for urgency detection."
+  },
+  {
+    "task_id": "EGT_SMS_016",
+    "description": "Method _parse_appointment_request_nlp in SMSAppointmentBooking is a placeholder.",
+    "source_file": "src/sms_appointment_integration.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement NLP-based parsing of appointment requests."
+  },
+  {
+    "task_id": "EGT_SMS_017",
+    "description": "Calendar conflict resolution logic in SMSAppointmentBooking is basic.",
+    "source_file": "src/sms_appointment_integration.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Enhance conflict resolution for calendar bookings."
+  },
+  {
+    "task_id": "EGT_TEST_001",
+    "description": "Method test_integration_with_nlp_module in TestConversationManager (tests/test_sms_conversation.py) is a placeholder.",
+    "source_file": "tests/test_sms_conversation.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "Implement integration tests with the NLP module."
+  },
+  {
+    "task_id": "EGT_TEST_002",
+    "description": "Method test_integration_with_customer_profile in TestConversationManager (tests/test_sms_conversation.py) is a placeholder.",
+    "source_file": "tests/test_sms_conversation.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "Implement integration tests with the customer profile system."
+  },
+  {
+    "task_id": "EGT_TEST_003",
+    "description": "Persistence tests for SMSTemplateSystem (e.g., test_add_template_persistence) in tests/test_sms_conversation.py are placeholders or incomplete.",
+    "source_file": "tests/test_sms_conversation.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "Implement tests that verify persistence of template changes to JSON file."
+  },
+  {
+    "task_id": "EGT_TEST_004",
+    "description": "Create tests/test_sms_complete.py for end-to-end SMS flow testing.",
+    "source_file": "tests/test_sms_complete.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Create and implement end-to-end tests."
+  },
+  {
+    "task_id": "EGT_PHONE_001",
+    "description": "Advanced features in VoiceWebhookHandler (dynamic IVR, sentiment routing, proactive deflection) are not fully implemented.",
+    "source_file": "src/voice_webhook_handler.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement commented-out advanced features."
+  },
+  {
+    "task_id": "EGT_PHONE_002",
+    "description": "Method generate_speech_for_dynamic_content in ElevenLabsVoiceHandler (used by VoiceWebhookHandler) is basic.",
+    "source_file": "src/voice_webhook_handler.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Enhance dynamic speech generation capabilities."
+  },
+  {
+    "task_id": "EGT_PHONE_003",
+    "description": "Method _get_dynamic_menu_options in VoiceIVRSystem relies on simple flags; needs more sophisticated logic.",
+    "source_file": "src/voice_ivr_system.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement more sophisticated dynamic IVR menu generation."
+  },
+  {
+    "task_id": "EGT_PHONE_004",
+    "description": "Personalization of IVR prompts (_personalize_prompt) in VoiceIVRSystem is basic.",
+    "source_file": "src/voice_ivr_system.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Enhance IVR prompt personalization."
+  },
+  {
+    "task_id": "EGT_PHONE_005",
+    "description": "Method _extract_entities_and_intent in VoiceTranscriptionHandler is a placeholder.",
+    "source_file": "src/voice_transcription_handler.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Integrate NLP for entity and intent extraction from transcriptions."
+  },
+  {
+    "task_id": "EGT_PHONE_006",
+    "description": "Method _detect_sentiment_advanced in VoiceTranscriptionHandler is a placeholder.",
+    "source_file": "src/voice_transcription_handler.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement advanced sentiment detection."
+  },
+  {
+    "task_id": "EGT_PHONE_007",
+    "description": "Seasonal adjustments (_get_adjusted_hours) in BusinessHoursManager not fully implemented.",
+    "source_file": "src/business_hours_manager.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Clarify and implement how seasonal flags apply to hours."
+  },
+  {
+    "task_id": "EGT_PHONE_008",
+    "description": "Persistence logic for BusinessHoursManager configuration (save_config) needs completion.",
+    "source_file": "src/business_hours_manager.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Ensure add/update/delete for special days/weekly hours persists to JSON."
+  },
+  {
+    "task_id": "EGT_PHONE_009",
+    "description": "Many TODO comments in VoiceCallAnalytics for complex calculations or external data source integration.",
+    "source_file": "src/voice_call_analytics.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Address TODOs, e.g., CRM for LTV, sentiment from external NLP."
+  },
+  {
+    "task_id": "EGT_PHONE_010",
+    "description": "Method _calculate_transcription_accuracy in VoiceCallAnalytics relies on a placeholder or manual input.",
+    "source_file": "src/voice_call_analytics.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement automated transcription accuracy calculation."
+  },
+  {
+    "task_id": "EGT_PHONE_011",
+    "description": "Method assess_urgency in EmergencyHandler relies on keyword spotting; could be enhanced with NLP.",
+    "source_file": "src/voice_emergency_handler.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Improve urgency assessment with advanced NLP."
+  },
+  {
+    "task_id": "EGT_PHONE_012",
+    "description": "Methods _fetch_safety_protocols and _get_escalation_contacts in EmergencyHandler are placeholders.",
+    "source_file": "src/voice_emergency_handler.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement logic to fetch/retrieve safety protocols and escalation contacts."
+  },
+  {
+    "task_id": "EGT_PHONE_013",
+    "description": "Logic for _notify_emergency_services and _dispatch_internal_response in EmergencyHandler is high-level.",
+    "source_file": "src/voice_emergency_handler.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Provide concrete implementation for emergency notifications and dispatch."
+  },
+  {
+    "task_id": "EGT_PHONE_014",
+    "description": "Many TODO placeholders in VoiceQualityAssurance for complex analysis (sentiment arc, compliance, problem resolution).",
+    "source_file": "src/voice_quality_assurance.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement placeholder QA analysis functionalities."
+  },
+  {
+    "task_id": "EGT_PHONE_015",
+    "description": "Method _perform_technical_audio_analysis in VoiceQualityAssurance is a placeholder.",
+    "source_file": "src/voice_quality_assurance.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement technical audio analysis features."
+  },
+  {
+    "task_id": "EGT_MEMORY_001",
+    "description": "Error handling for ChromaDB operations in MemoryEmbeddingsManager could be more specific.",
+    "source_file": "src/memory_embeddings_manager.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Improve error handling for vector DB interactions."
+  },
+  {
+    "task_id": "EGT_MEMORY_002",
+    "description": "Strategy for updating embeddings in MemoryEmbeddingsManager if the underlying text changes.",
+    "source_file": "src/memory_embeddings_manager.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Design",
+    "notes": "Design and implement a strategy for stale embedding updates."
+  },
+  {
+    "task_id": "EGT_MEMORY_003",
+    "description": "Methods _infer_missing_info and _predict_future_needs in CustomerProfileBuilder are placeholders requiring ML/NLP.",
+    "source_file": "src/customer_profile_builder.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement ML/NLP for customer info inference and needs prediction."
+  },
+  {
+    "task_id": "EGT_MEMORY_004",
+    "description": "Method _calculate_loyalty_score in CustomerProfileBuilder is rule-based; could be ML-driven.",
+    "source_file": "src/customer_profile_builder.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "ML_Model",
+    "notes": "Explore and implement an ML-driven loyalty score."
+  },
+  {
+    "task_id": "EGT_MEMORY_005",
+    "description": "Method _rank_and_filter_results in ContextRetrievalEngine logic is basic; could use more advanced ranking.",
+    "source_file": "src/context_retrieval_engine.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Implement advanced ranking like MMR for context retrieval."
+  },
+  {
+    "task_id": "EGT_MEMORY_006",
+    "description": "Method _synthesize_context in ContextRetrievalEngine is a placeholder; needs LLM integration or advanced summarization.",
+    "source_file": "src/context_retrieval_engine.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement context synthesis using LLMs or summarization techniques."
+  },
+  {
+    "task_id": "EGT_MEMORY_007",
+    "description": "Many TODO comments in MemoryAnalytics indicating placeholder logic for metrics (knowledge gap, context miss, personalization impact).",
+    "source_file": "src/memory_analytics.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement placeholder analytics calculations."
+  },
+  {
+    "task_id": "EGT_MEMORY_008",
+    "description": "Methods _perform_topic_modeling_on_memory and _identify_emerging_customer_needs in MemoryAnalytics require significant NLP/ML.",
+    "source_file": "src/memory_analytics.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement topic modeling and emerging needs identification."
+  },
+  {
+    "task_id": "EGT_MEMORY_009",
+    "description": "Evaluate if a dedicated memory_cross_channel_linking.py is needed or if CustomerProfileBuilder IdentityResolver is sufficient. If separate, define its scope.",
+    "source_file": "src/memory_cross_channel_linking.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Design",
+    "notes": "File does not exist. Analyze need and potentially create."
+  },
+  {
+    "task_id": "EGT_MEMORY_010",
+    "description": "Define requirements for a centralized MemoryLearningEngine. Could involve feedback loops, model retraining, etc.",
+    "source_file": "src/memory_learning_engine.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Design",
+    "notes": "File does not exist. Design and potentially create."
+  },
+  {
+    "task_id": "EGT_MEMORY_011",
+    "description": "Create src/memory_privacy_manager.py to handle PII detection, anonymization, data retention policies, and user consent for memory storage.",
+    "source_file": "src/memory_privacy_manager.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NewFeature",
+    "notes": "File does not exist. Critical for privacy compliance."
+  },
+  {
+    "task_id": "EGT_PERS_001",
+    "description": "Method adjust_trait_for_context in PersonalityTraits (core_personality.py) needs more contexts and refined adjustment logic.",
+    "source_file": "src/personality/core_personality.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Expand context-based personality adjustments."
+  },
+  {
+    "task_id": "EGT_PERS_002",
+    "description": "Method analyze_response_for_consistency in PersonalityConsistencyChecker (core_personality.py) relies on keyword spotting; could use semantic analysis.",
+    "source_file": "src/personality/core_personality.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Improve consistency checking with semantic analysis."
+  },
+  {
+    "task_id": "EGT_PERS_003",
+    "description": "Method _get_regional_dialect_adjustment in CorePersonality (core_personality.py) is a placeholder.",
+    "source_file": "src/personality/core_personality.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement regional dialect adjustments."
+  },
+  {
+    "task_id": "EGT_PERS_004",
+    "description": "Placeholder _maintain_professional_boundaries in ResponseEnhancer needs implementation.",
+    "source_file": "src/personality/response_enhancer.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement logic for maintaining professional boundaries."
+  },
+  {
+    "task_id": "EGT_PERS_005",
+    "description": "Method _add_karens_mannerisms in ResponseEnhancer relies on simple pre/post-pending; could be more nuanced.",
+    "source_file": "src/personality/response_enhancer.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Improve nuance in adding Karen\\'s mannerisms."
+  },
+  {
+    "task_id": "EGT_PERS_006",
+    "description": "Integration with HumorEngine and RegionalAdaptation is missing from ResponseEnhancer.enhance_response.",
+    "source_file": "src/personality/response_enhancer.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Integration",
+    "notes": "Integrate humor and regional adaptation into the response enhancement pipeline."
+  },
+  {
+    "task_id": "EGT_PERS_007",
+    "description": "Emotion detection in EmpathyEngine is keyword-based; consider NLP sentiment/emotion models.",
+    "source_file": "src/personality/empathy_engine.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Upgrade emotion detection with more advanced NLP models."
+  },
+  {
+    "task_id": "EGT_PERS_008",
+    "description": "Method _detect_cultural_indicators_in_text in CulturalAwareness is a placeholder.",
+    "source_file": "src/personality/cultural_awareness.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Implement detection of cultural indicators in text."
+  },
+  {
+    "task_id": "EGT_PERS_009",
+    "description": "Complex date logic for variable holidays in CulturalAwareness._get_holiday_greeting_if_applicable needs robust implementation and testing.",
+    "source_file": "src/personality/cultural_awareness.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Ensure accurate and robust handling of variable holiday dates."
+  },
+  {
+    "task_id": "EGT_PERS_010",
+    "description": "Method _detect_small_talk_opportunity in SmallTalkEngine (small_talk.py) is keyword-based; could be more context-aware.",
+    "source_file": "src/personality/small_talk.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "NLP_Improvement",
+    "notes": "Improve context awareness for small talk detection."
+  },
+  {
+    "task_id": "EGT_PERS_011",
+    "description": "SSML generation (_add_vocal_emphasis) in VoicePersonality is very basic; needs expansion for richer vocal expression.",
+    "source_file": "src/personality/voice_personality.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Enhance SSML capabilities for more expressive voice output."
+  },
+  {
+    "task_id": "EGT_PERS_012",
+    "description": "Weather comments in RegionalAdaptation are simulated; consider live weather API integration.",
+    "source_file": "src/personality/regional_adaptation.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Integration",
+    "notes": "Integrate with a live weather API for realistic local weather comments."
+  },
+  {
+    "task_id": "EGT_PERS_013",
+    "description": "Method _is_context_appropriate_for_humor in HumorEngine could be more sophisticated (e.g., using sentiment from EmpathyEngine).",
+    "source_file": "src/personality/humor_engine.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Integration",
+    "notes": "Improve humor appropriateness detection using sentiment analysis."
+  },
+  {
+    "task_id": "EGT_PERS_014",
+    "description": "src/personality/__init__.py does not export classes from humor_engine.py, regional_adaptation.py, or voice_personality.py. Add them if intended for direct external use.",
+    "source_file": "src/personality/__init__.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Update __all__ and imports in the personality package init file."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_001",
+    "description": "Review src/analytics/__init__.py; ensure it exports all relevant classes from submodules.",
+    "source_file": "src/analytics/__init__.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "Refactor",
+    "notes": "Ensure proper exposure of analytics classes."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_002",
+    "description": "Churn prediction model in CustomerAnalytics is initialized but not trained (_train_churn_model is placeholder).",
+    "source_file": "src/analytics/customer_analytics.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "ML_Model",
+    "notes": "Implement training pipeline for the churn prediction model."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_003",
+    "description": "Data retrieval methods in CustomerAnalytics (_get_customer_transaction_data, etc.) are placeholders.",
+    "source_file": "src/analytics/customer_analytics.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement actual data fetching for customer analytics."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_004",
+    "description": "Data retrieval methods in RevenueIntelligence (_get_financial_data, etc.) are placeholders.",
+    "source_file": "src/analytics/revenue_intelligence.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement actual data fetching for revenue intelligence."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_005",
+    "description": "Forecasting (_predict_future_revenue) in RevenueIntelligence uses a basic linear regression placeholder.",
+    "source_file": "src/analytics/revenue_intelligence.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "ML_Model",
+    "notes": "Implement more robust revenue forecasting models."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_006",
+    "description": "Data retrieval methods in OperationalMetrics (_get_interaction_logs, etc.) are placeholders.",
+    "source_file": "src/analytics/operational_metrics.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Implementation",
+    "notes": "Implement actual data fetching for operational metrics."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_007",
+    "description": "Create src/analytics/predictive_models.py to house more advanced ML models.",
+    "source_file": "src/analytics/predictive_models.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NewFeature",
+    "notes": "File does not exist. Consolidate and develop advanced predictive models here."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_008",
+    "description": "Create src/analytics/report_generator.py to generate formatted reports from analytics.",
+    "source_file": "src/analytics/report_generator.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "NewFeature",
+    "notes": "File does not exist. Implement report generation capabilities."
+  },
+  {
+    "task_id": "EGT_ANALYTICS_009",
+    "description": "Create src/analytics/insight_generator.py to automatically identify key insights from analytics data.",
+    "source_file": "src/analytics/insight_generator.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "NewFeature",
+    "notes": "File does not exist. Implement automated insight generation."
+  },
+  {
+    "task_id": "EGT_TEST_005",
+    "description": "Create tests/integration/test_email_to_sms_flow.py.",
+    "source_file": "tests/integration/test_email_to_sms_flow.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Implement integration tests for email-to-SMS flow."
+  },
+  {
+    "task_id": "EGT_TEST_006",
+    "description": "Create tests/integration/test_appointment_booking_flow.py.",
+    "source_file": "tests/integration/test_appointment_booking_flow.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Implement integration tests for appointment booking."
+  },
+  {
+    "task_id": "EGT_TEST_007",
+    "description": "Create tests/integration/test_full_customer_journey.py.",
+    "source_file": "tests/integration/test_full_customer_journey.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Implement end-to-end customer journey tests."
+  },
+  {
+    "task_id": "EGT_TEST_008",
+    "description": "Create tests/load/test_concurrent_conversations.py.",
+    "source_file": "tests/load/test_concurrent_conversations.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Implement load tests for concurrent conversations."
+  },
+  {
+    "task_id": "EGT_TEST_009",
+    "description": "Create tests/chaos/test_service_failures.py.",
+    "source_file": "tests/chaos/test_service_failures.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Implement chaos tests for service failures."
+  },
+  {
+    "task_id": "EGT_TEST_010",
+    "description": "Create tests/performance/test_system_limits.py.",
+    "source_file": "tests/performance/test_system_limits.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Testing",
+    "notes": "File does not exist. Implement performance tests for system limits."
+  },
+  {
+    "task_id": "EGT_TEST_011",
+    "description": "Create src/monitoring_dashboard_service.py (clarified from test_monitoring_dashboard.py) if a backend for a dashboard is needed.",
+    "source_file": "src/monitoring_dashboard_service.py",
+    "status": "new",
+    "priority": "low",
+    "assigned_to": "EigencodeAgent",
+    "category": "NewFeature",
+    "notes": "Clarify intent: Is this a backend service or UI test? Assumed backend service for now."
+  },
+  {
+    "task_id": "EGT_COORD_001",
+    "description": "Review start_session.py for any TODOs or areas for improvement regarding Eigencode task integration.",
+    "source_file": "start_session.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Integration",
+    "notes": "Ensure start_session.py correctly sets up environment for Eigencode task processing."
+  },
+  {
+    "task_id": "EGT_COORD_002",
+    "description": "Review eigencode_integration.py for TODOs, especially how it consumes/processes tasks from tasks/eigencode_assigned_tasks.json.",
+    "source_file": "eigencode_integration.py",
+    "status": "new",
+    "priority": "high",
+    "assigned_to": "EigencodeAgent",
+    "category": "Integration",
+    "notes": "This is key for enabling Eigencode agents to act on these tasks. Ensure it reads and processes the new task file."
+  },
+  {
+    "task_id": "EGT_COORD_003",
+    "description": "Re-evaluate the need for eigencode_karen_bridge.py. If eigencode_integration.py handles the interaction, this might not be needed. If it IS needed for Eigencode agents to pick up these tasks, then creating it is a high priority task.",
+    "source_file": "eigencode_karen_bridge.py",
+    "status": "new",
+    "priority": "medium",
+    "assigned_to": "EigencodeAgent",
+    "category": "Design",
+    "notes": "File does not exist. Determine if this bridge component is necessary for the Eigencode workflow."
+  }
+] 

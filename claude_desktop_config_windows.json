@@ -1,0 +1,44 @@
+{
+  "mcpServers": {
+    "karen-codebase-core": {
+      "command": "python",
+      "args": ["karen_codebase_core_mcp.py"],
+      "cwd": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    },
+    "karen-codebase-search-basic": {
+      "command": "python",
+      "args": ["karen_codebase_search_basic_mcp.py"],
+      "cwd": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    },
+    "karen-codebase-analysis": {
+      "command": "python",
+      "args": ["karen_codebase_analysis_mcp.py"],
+      "cwd": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    },
+    "karen-tools-fixed": {
+      "command": "python",
+      "args": ["karen_tools_fixed_mcp.py"],
+      "cwd": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    },
+    "karen-all-tools": {
+      "command": "python",
+      "args": ["karen_all_tools_mcp.py"],
+      "cwd": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "c077e6ee-12ac-4a5b-8042-9fc9a2e3560e",
+  "title": "MCP Tool Schema Validation Failed",
+  "description": "New file_operations tool is failing schema validation with 'inputSchema is required' error",
+  "reporter": "demo_mcp_agent",
+  "assigned_to": "testing_agent",
+  "status": "assigned",
+  "created_at": "2025-06-14T00:52:08.505415",
+  "updated_at": "2025-06-14T00:52:08.507999",
+  "tags": [
+    "mcp",
+    "schema",
+    "validation",
+    "tools"
+  ]
+}

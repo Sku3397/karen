@@ -1,0 +1,16 @@
+{
+  "id": "5045eced-b88a-4284-ae5b-2cc306dc10cf",
+  "title": "Help Request: Need Redis Configuration Help",
+  "description": "Having trouble configuring Redis for MCP tool testing. Getting authentication errors.",
+  "reporter": "demo_mcp_agent",
+  "assigned_to": "mcp_codebase_tools",
+  "status": "assigned",
+  "created_at": "2025-06-14T00:52:06.406422",
+  "updated_at": "2025-06-14T00:52:06.409096",
+  "tags": [
+    "help_request",
+    "redis",
+    "configuration",
+    "authentication"
+  ]
+}

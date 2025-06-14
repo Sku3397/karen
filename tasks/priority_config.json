@@ -1,0 +1,33 @@
+{
+  "priority_levels": {
+    "critical": {
+      "weight": 1000,
+      "max_wait_time": 300
+    },
+    "high": {
+      "weight": 750,
+      "max_wait_time": 1800
+    },
+    "medium": {
+      "weight": 500,
+      "max_wait_time": 3600
+    },
+    "low": {
+      "weight": 250,
+      "max_wait_time": 86400
+    }
+  },
+  "category_priorities": {
+    "NLP_Improvement": "high",
+    "Testing": "medium",
+    "Implementation": "medium",
+    "NewFeature": "high",
+    "Refactor": "low",
+    "ML_Model": "high"
+  },
+  "escalation_rules": {
+    "stuck_task_threshold": 3600,
+    "max_retries": 3,
+    "auto_escalate_critical": true
+  }
+}

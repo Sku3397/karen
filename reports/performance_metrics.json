@@ -1,0 +1,24 @@
+{
+  "collection_time": "2025-06-05T01:07:39.469654",
+  "system_metrics": {
+    "cpu_usage": "15%",
+    "memory_usage": "2.1GB",
+    "disk_usage": "45%",
+    "network_io": "low"
+  },
+  "agent_performance": {
+    "eigencode_worker": {
+      "tasks_per_minute": 8.5,
+      "success_rate": 100,
+      "avg_completion_time": 15.2,
+      "error_count": 0
+    }
+  },
+  "task_metrics": {
+    "total_tasks": 204,
+    "completed_tasks": 24,
+    "pending_tasks": 180,
+    "failed_tasks": 0,
+    "completion_rate": 11.8
+  }
+}

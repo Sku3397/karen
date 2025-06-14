@@ -1,0 +1,20 @@
+{
+  "auto_scaling_rules": {
+    "eigencode_worker": {
+      "metric": "task_queue_depth",
+      "scale_up_threshold": 100,
+      "scale_down_threshold": 10,
+      "min_replicas": 1,
+      "max_replicas": 10
+    },
+    "api_server": {
+      "metric": "cpu_utilization",
+      "scale_up_threshold": 70,
+      "scale_down_threshold": 30,
+      "min_replicas": 2,
+      "max_replicas": 8
+    }
+  },
+  "scaling_cooldown": 300,
+  "health_check_grace_period": 60
+}

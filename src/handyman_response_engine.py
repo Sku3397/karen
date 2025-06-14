@@ -10,6 +10,13 @@ import asyncio # Added for asyncio.to_thread
 
 logger = logging.getLogger(__name__)
 
+try:
+    from .nlp_enhancements import HandymanNLPEnhancer
+    NLP_AVAILABLE = True
+except ImportError:
+    logger.warning("NLP enhancements not available. Install dependencies: pip install spacy")
+    NLP_AVAILABLE = False
+
 class HandymanResponseEngine:
     """Enhanced response engine specifically designed for handyman business communications"""
     
@@ -22,6 +29,16 @@ class HandymanResponseEngine:
         self.phone = phone
         self.business_hours = "Monday-Friday 8AM-6PM, Saturday 8AM-4PM"
         self.llm_client = llm_client
+        
+        # Initialize enhanced NLP processor
+        self.nlp_enhancer = None
+        if NLP_AVAILABLE:
+            try:
+                self.nlp_enhancer = HandymanNLPEnhancer()
+                logger.info("Enhanced NLP processor initialized successfully")
+            except Exception as e:
+                logger.warning(f"Failed to initialize NLP enhancer: {e}")
+                self.nlp_enhancer = None
         
         # Common handyman services
         self.services = {
@@ -41,23 +58,60 @@ class HandymanResponseEngine:
             'burst pipe', 'no power', 'electrical fire', 'gas leak', 'ceiling leak'
         ]
 
-    def classify_email_type(self, subject: str, body: str) -> Dict[str, Any]:
+    def classify_email_type(self, subject: str, body: str, customer_id: Optional[str] = None) -> Dict[str, Any]:
         """Classify the email to determine the best response approach"""
         content = (subject + " " + body).lower()
+        full_text = subject + " " + body
         
+        # Basic classification (fallback)
         classification = {
             'is_emergency': any(keyword in content for keyword in self.emergency_keywords),
             'services_mentioned': [],
             'is_quote_request': any(word in content for word in ['quote', 'estimate', 'cost', 'price', 'how much']),
             'is_appointment_request': any(word in content for word in ['schedule', 'appointment', 'when', 'available', 'book time', 'see you']),
             'is_general_inquiry': True,  # Default to true, will be refined
-            'tone': 'professional'  # Default tone
+            'tone': 'professional',  # Default tone
+            'language': 'en',  # Default language
+            'extracted_entities': [],
+            'price_entities': [],
+            'generated_quote': None,
+            'response_suggestions': []
         }
         
-        # Identify mentioned services
-        for service_type, keywords in self.services.items():
-            if any(keyword in content for keyword in keywords):
-                classification['services_mentioned'].append(service_type)
+        # Use enhanced NLP if available
+        if self.nlp_enhancer:
+            try:
+                nlp_result = self.nlp_enhancer.process_enhanced_message(full_text, customer_id)
+                
+                # Update classification with NLP results
+                classification['language'] = nlp_result['detected_language']
+                classification['extracted_entities'] = nlp_result['service_entities']
+                classification['price_entities'] = nlp_result['price_entities']
+                classification['generated_quote'] = nlp_result['generated_quote']
+                classification['response_suggestions'] = nlp_result['response_suggestions']
+                
+                # Update services mentioned based on extracted entities
+                for entity in nlp_result['service_entities']:
+                    if entity.service_type not in classification['services_mentioned']:
+                        classification['services_mentioned'].append(entity.service_type)
+                
+                # Update urgency based on NLP analysis
+                for entity in nlp_result['service_entities']:
+                    if entity.urgency == 'high':
+                        classification['is_emergency'] = True
+                        break
+                
+                logger.info(f"Enhanced NLP classification completed. Language: {classification['language']}, "
+                          f"Entities: {len(classification['extracted_entities'])}")
+                
+            except Exception as e:
+                logger.warning(f"NLP enhancement failed, using basic classification: {e}")
+        
+        # Fallback to basic service detection if NLP didn't find services
+        if not classification['services_mentioned']:
+            for service_type, keywords in self.services.items():
+                if any(keyword in content for keyword in keywords):
+                    classification['services_mentioned'].append(service_type)
         
         # Determine if it's a general inquiry or specific request
         if classification['services_mentioned'] or classification['is_quote_request'] or classification['is_appointment_request']:
@@ -134,6 +188,49 @@ SERVICES MENTIONED: {services_text}
 - Provide service-specific information if helpful
 
 """
+        
+        # Add NLP-enhanced information
+        if classification.get('extracted_entities'):
+            base_prompt += """
+ENHANCED SERVICE ANALYSIS:
+"""
+            for entity in classification['extracted_entities']:
+                base_prompt += f"- {entity.service_type.title()}: {entity.description} (Urgency: {entity.urgency})\n"
+                if entity.estimated_duration:
+                    base_prompt += f"  Estimated duration: {entity.estimated_duration}\n"
+                if entity.materials_needed:
+                    base_prompt += f"  Materials may include: {', '.join(entity.materials_needed)}\n"
+            base_prompt += "\n"
+        
+        # Add quote information if available
+        if classification.get('generated_quote'):
+            quote = classification['generated_quote']
+            base_prompt += f"""
+GENERATED QUOTE ESTIMATE: ${quote['total_estimate']:.2f}
+- Use this as a reference for pricing discussions
+- Mention that final pricing depends on assessment
+- Quote valid until: {quote['valid_until'][:10]}
+
+"""
+        
+        # Add language-specific instructions
+        if classification.get('language') == 'es':
+            base_prompt += """
+LANGUAGE NOTE: Customer appears to prefer Spanish
+- Respond in Spanish or offer bilingual service
+- Use professional Spanish business terminology
+- Mention Spanish-speaking staff availability
+
+"""
+        
+        # Add contextual suggestions
+        if classification.get('response_suggestions'):
+            suggestions = classification['response_suggestions'][:2]  # Top 2 suggestions
+            base_prompt += f"""
+RESPONSE SUGGESTIONS:
+{chr(10).join(f"- {suggestion}" for suggestion in suggestions)}
+
+"""
 
         base_prompt += f"""
 EMAIL TO RESPOND TO:
@@ -149,15 +246,15 @@ Write a professional email response as Karen from {self.business_name}. Include 
         return base_prompt
 
     async def generate_response_async(self, email_from: str, email_subject: str, 
-                               email_body: str) -> Tuple[str, Dict[str, Any]]:
+                               email_body: str, customer_id: Optional[str] = None) -> Tuple[str, Dict[str, Any]]:
         """Generate an enhanced response using the handyman-specific engine"""
         
         if not self.llm_client:
             logger.error("LLMClient not initialized in HandymanResponseEngine. Cannot generate AI response.")
-            classification = self.classify_email_type(email_subject, email_body)
+            classification = self.classify_email_type(email_subject, email_body, customer_id)
             return self._generate_fallback_response(email_from, classification), classification
 
-        classification = self.classify_email_type(email_subject, email_body)
+        classification = self.classify_email_type(email_subject, email_body, customer_id)
         enhanced_prompt = self.generate_enhanced_prompt(
             email_from, email_subject, email_body, classification
         )
@@ -168,9 +265,33 @@ Write a professional email response as Karen from {self.business_name}. Include 
                 enhanced_prompt # The argument to pass to generate_text
             )
             
+            # Handle language preferences and translation
+            if self.nlp_enhancer and classification.get('language') == 'es':
+                try:
+                    # Translate key parts if needed (basic implementation)
+                    response_text = self.nlp_enhancer.translate_response(response_text, 'es')
+                except Exception as e:
+                    logger.warning(f"Translation failed: {e}")
+            
             # Add signature if not present
-            if not any(sig in response_text.lower() for sig in ['karen', self.business_name.lower(), 'best regards', self.phone]):
-                response_text += f"\n\nBest regards,\nKaren\n{self.business_name}\n{self.phone}"
+            signature_keywords = ['karen', self.business_name.lower(), 'best regards', self.phone]
+            if not any(sig in response_text.lower() for sig in signature_keywords):
+                if classification.get('language') == 'es':
+                    response_text += f"\n\nSaludos cordiales,\nKaren\n{self.business_name}\n{self.phone}"
+                else:
+                    response_text += f"\n\nBest regards,\nKaren\n{self.business_name}\n{self.phone}"
+            
+            # Update conversation context if NLP enhancer is available
+            if self.nlp_enhancer and customer_id and classification.get('extracted_entities'):
+                try:
+                    self.nlp_enhancer.update_conversation_context(
+                        customer_id, 
+                        email_subject + " " + email_body,
+                        response_text,
+                        classification['extracted_entities']
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to update conversation context: {e}")
             
             logger.info(f"Enhanced response generated. Classification: {classification}")
             return response_text, classification

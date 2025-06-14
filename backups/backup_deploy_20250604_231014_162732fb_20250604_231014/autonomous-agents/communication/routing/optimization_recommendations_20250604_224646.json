@@ -1,0 +1,249 @@
+{
+  "overloaded_agents": [],
+  "underutilized_agents": [
+    "orchestrator",
+    "sms_engineer",
+    "memory_engineer",
+    "test_engineer"
+  ],
+  "skill_gaps": [
+    {
+      "skill": "nlp_processing",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "sms_integration",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "email_processing",
+      "reason": "low_coverage",
+      "agents": 0
+    },
+    {
+      "skill": "voice_processing",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "calendar_management",
+      "reason": "low_coverage",
+      "agents": 0
+    },
+    {
+      "skill": "memory_management",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "python_development",
+      "reason": "low_expertise",
+      "max_rating": 0.52
+    },
+    {
+      "skill": "api_integration",
+      "reason": "low_expertise",
+      "max_rating": 0.5
+    },
+    {
+      "skill": "database_operations",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "testing_automation",
+      "reason": "low_expertise",
+      "max_rating": 0.5
+    },
+    {
+      "skill": "code_analysis",
+      "reason": "low_expertise",
+      "max_rating": 0.5
+    },
+    {
+      "skill": "documentation",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "performance_optimization",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "error_handling",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "security_audit",
+      "reason": "low_coverage",
+      "agents": 0
+    },
+    {
+      "skill": "deployment",
+      "reason": "low_coverage",
+      "agents": 0
+    },
+    {
+      "skill": "monitoring",
+      "reason": "low_expertise",
+      "max_rating": 0.5
+    },
+    {
+      "skill": "task_orchestration",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "inter_agent_coordination",
+      "reason": "low_coverage",
+      "agents": 1
+    },
+    {
+      "skill": "workflow_management",
+      "reason": "low_coverage",
+      "agents": 1
+    }
+  ],
+  "skill_coverage": {
+    "nlp_processing": [
+      {
+        "agent": "sms_engineer",
+        "rating": 0.5
+      }
+    ],
+    "sms_integration": [
+      {
+        "agent": "sms_engineer",
+        "rating": 0.52
+      }
+    ],
+    "email_processing": [],
+    "voice_processing": [
+      {
+        "agent": "phone_engineer",
+        "rating": 0.5
+      }
+    ],
+    "calendar_management": [],
+    "memory_management": [
+      {
+        "agent": "memory_engineer",
+        "rating": 0.52
+      }
+    ],
+    "python_development": [
+      {
+        "agent": "sms_engineer",
+        "rating": 0.52
+      },
+      {
+        "agent": "phone_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "memory_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "test_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "archaeologist",
+        "rating": 0.5
+      }
+    ],
+    "api_integration": [
+      {
+        "agent": "sms_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "phone_engineer",
+        "rating": 0.5
+      }
+    ],
+    "database_operations": [
+      {
+        "agent": "memory_engineer",
+        "rating": 0.52
+      }
+    ],
+    "testing_automation": [
+      {
+        "agent": "sms_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "phone_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "test_engineer",
+        "rating": 0.47
+      }
+    ],
+    "code_analysis": [
+      {
+        "agent": "test_engineer",
+        "rating": 0.5
+      },
+      {
+        "agent": "archaeologist",
+        "rating": 0.5
+      }
+    ],
+    "documentation": [
+      {
+        "agent": "archaeologist",
+        "rating": 0.5
+      }
+    ],
+    "performance_optimization": [
+      {
+        "agent": "memory_engineer",
+        "rating": 0.5
+      }
+    ],
+    "error_handling": [
+      {
+        "agent": "test_engineer",
+        "rating": 0.5
+      }
+    ],
+    "security_audit": [],
+    "deployment": [],
+    "monitoring": [
+      {
+        "agent": "orchestrator",
+        "rating": 0.5
+      },
+      {
+        "agent": "archaeologist",
+        "rating": 0.5
+      }
+    ],
+    "task_orchestration": [
+      {
+        "agent": "orchestrator",
+        "rating": 0.5
+      }
+    ],
+    "inter_agent_coordination": [
+      {
+        "agent": "orchestrator",
+        "rating": 0.5
+      }
+    ],
+    "workflow_management": [
+      {
+        "agent": "orchestrator",
+        "rating": 0.5
+      }
+    ]
+  }
+}

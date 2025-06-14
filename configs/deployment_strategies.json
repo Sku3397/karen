@@ -1,0 +1,27 @@
+{
+  "strategies": {
+    "blue_green": {
+      "description": "Complete environment swap",
+      "rollback_time": "immediate",
+      "resource_overhead": "high",
+      "risk_level": "low"
+    },
+    "rolling_deployment": {
+      "description": "Gradual instance replacement",
+      "rollback_time": "moderate",
+      "resource_overhead": "low",
+      "risk_level": "medium"
+    },
+    "canary_deployment": {
+      "description": "Traffic percentage routing",
+      "rollback_time": "fast",
+      "resource_overhead": "medium",
+      "risk_level": "low"
+    }
+  },
+  "selection_criteria": {
+    "critical_services": "blue_green",
+    "normal_services": "rolling_deployment",
+    "experimental_features": "canary_deployment"
+  }
+}

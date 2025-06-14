@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "karen-codebase-core": {
+      "command": "python3",
+      "args": ["karen_codebase_core_mcp.py"],
+      "cwd": "/workspace",
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-codebase-search-basic": {
+      "command": "python3",
+      "args": ["karen_codebase_search_basic_mcp.py"],
+      "cwd": "/workspace",
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-codebase-analysis": {
+      "command": "python3",
+      "args": ["karen_codebase_analysis_mcp.py"],
+      "cwd": "/workspace",
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    }
+  }
+}

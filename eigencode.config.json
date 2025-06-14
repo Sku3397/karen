@@ -93,5 +93,13 @@
     "build/",
     "logs/",
     "temp_scripts/"
-  ]
+  ],
+  "optimization": {
+    "knowledge_base_cache_size": 1000,
+    "agent_communication_batch_size": 50,
+    "task_processing_threads": 4,
+    "memory_cleanup_interval_hours": 24,
+    "log_rotation_days": 7,
+    "cache_ttl_minutes": 60
+  }
 }

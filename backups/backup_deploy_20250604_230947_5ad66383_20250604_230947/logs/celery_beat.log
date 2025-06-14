@@ -1,0 +1,504 @@
+[2025-06-03 22:40:38,549: DEBUG/MainProcess][celery.beat] Setting default socket timeout to 30
+[2025-06-03 22:40:38,549: INFO/MainProcess][celery.beat] beat: Starting...
+[2025-06-03 22:40:38,562: DEBUG/MainProcess][django_celery_beat.schedulers] DatabaseScheduler: initial read
+[2025-06-03 22:40:38,562: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:40:38,562: DEBUG/MainProcess][django_celery_beat.schedulers] DatabaseScheduler: Fetching database schedule
+[2025-06-03 22:40:38,568: DEBUG/MainProcess][django_celery_beat.schedulers] Current schedule:
+<ModelEntry: celery.backend_cleanup celery.backend_cleanup(*[], **{}) <crontab: 0 4
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-secretary-emails-every-1-minute check_emails_task(*[], **{}) <crontab: */1 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-instruction-emails-every-2-minutes check_instruction_emails_task(*[], **{}) <crontab: */2 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-secretary-emails-every-2-minutes check_emails_task(*[], **{}) <crontab: */2 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-instruction-emails-every-5-minutes check_instruction_emails_task(*[], **{}) <crontab: */5 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: archaeologist-scan-every-6-hours archaeologist_periodic_scan_task(*[], **{}) <crontab: 0 */6
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: memory-maintenance-daily memory_maintenance_task(*[], **{}) <crontab: 0 3
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: qa-tests-runner-hourly qa_tests_runner_task(*[], **{}) <crontab: 30 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-celery-logs-every-15-mins monitor_celery_logs_task(*[], **{}) <crontab: */15 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-agent-platform-logs-every-17-mins monitor_agent_platform_logs_task(*[], **{}) <crontab: */17 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-redis-queues-every-10-mins monitor_redis_queues_task(*[], **{}) <crontab: */10 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-gmail-api-quota-every-12-hours monitor_gmail_api_quota_task(*[], **{}) <crontab: 0 */12
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+[2025-06-03 22:40:38,653: INFO/MainProcess][django_celery_beat.schedulers] DatabaseScheduler: Schedule changed.
+[2025-06-03 22:40:38,653: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:40:38,653: DEBUG/MainProcess][django_celery_beat.schedulers] DatabaseScheduler: Fetching database schedule
+[2025-06-03 22:40:38,656: DEBUG/MainProcess][django_celery_beat.schedulers] Current schedule:
+<ModelEntry: celery.backend_cleanup celery.backend_cleanup(*[], **{}) <crontab: 0 4
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-secretary-emails-every-1-minute check_emails_task(*[], **{}) <crontab: */1 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-instruction-emails-every-2-minutes check_instruction_emails_task(*[], **{}) <crontab: */2 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-secretary-emails-every-2-minutes check_emails_task(*[], **{}) <crontab: */2 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: check-instruction-emails-every-5-minutes check_instruction_emails_task(*[], **{}) <crontab: */5 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: archaeologist-scan-every-6-hours archaeologist_periodic_scan_task(*[], **{}) <crontab: 0 */6
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: memory-maintenance-daily memory_maintenance_task(*[], **{}) <crontab: 0 3
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: qa-tests-runner-hourly qa_tests_runner_task(*[], **{}) <crontab: 30 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-celery-logs-every-15-mins monitor_celery_logs_task(*[], **{}) <crontab: */15 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-agent-platform-logs-every-17-mins monitor_agent_platform_logs_task(*[], **{}) <crontab: */17 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-redis-queues-every-10-mins monitor_redis_queues_task(*[], **{}) <crontab: */10 *
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+<ModelEntry: monitor-gmail-api-quota-every-12-hours monitor_gmail_api_quota_task(*[], **{}) <crontab: 0 */12
+         * *
+          * (m/h/d/dM/MY), UTC>
+        >
+[2025-06-03 22:40:38,657: DEBUG/MainProcess][celery.beat] beat: Ticking with max interval->5.00 seconds
+[2025-06-03 22:40:38,667: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:40:38,690: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:40:38,690: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:40:38,695: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->2685b9c9-41ca-4010-8cdd-153348281836
+[2025-06-03 22:40:38,697: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:40:38,699: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->4d2581f9-ac89-4922-a7db-1c985a65acc9
+[2025-06-03 22:40:38,700: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:40:38,701: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->2fdbe098-2a06-4e59-8849-9b2f98053ae9
+[2025-06-03 22:40:38,702: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-5-minutes (check_instruction_emails_task)
+[2025-06-03 22:40:38,703: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->9e655020-f0cf-4427-8637-a7aab2378749
+[2025-06-03 22:40:38,705: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-redis-queues-every-10-mins (monitor_redis_queues_task)
+[2025-06-03 22:40:38,706: DEBUG/MainProcess][celery.beat] monitor_redis_queues_task sent. id->a7f7fdc5-a99c-43f4-a61a-1f18e40f80fc
+[2025-06-03 22:40:38,707: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:40:43,709: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:40:48,712: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:40:53,714: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:40:58,716: DEBUG/MainProcess][celery.beat] beat: Waking up in 1.27 seconds.
+[2025-06-03 22:41:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:41:00,001: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->af5eec55-67cb-4dcf-be76-1ca4dd864c9d
+[2025-06-03 22:41:00,002: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:05,004: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:10,006: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:15,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:20,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:25,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:30,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:35,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:40,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:45,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:50,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:41:55,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:42:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:42:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->85f0f97a-4984-4bcc-89a8-ee678088dcf9
+[2025-06-03 22:42:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:42:00,004: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->afbfb555-f0b9-47b7-90b9-c728a7f56d88
+[2025-06-03 22:42:00,006: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:42:00,007: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->4b72cc0e-e1bc-45da-966e-dcc6697a045c
+[2025-06-03 22:42:00,008: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:05,010: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:10,012: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:15,015: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:20,017: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:25,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:30,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:35,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:40,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:45,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:50,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:42:55,032: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:43:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:43:00,001: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->f9f3b81f-957b-4e3a-9670-90c590d6bc2c
+[2025-06-03 22:43:00,003: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:05,005: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:10,007: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:15,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:20,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:25,013: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:30,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:35,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:40,019: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:43:40,020: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:43:40,045: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:45,048: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:50,051: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:43:55,054: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.94 seconds.
+[2025-06-03 22:44:00,021: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:44:00,023: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->c3883d4e-2ae8-4c80-bbc6-1912002f95aa
+[2025-06-03 22:44:00,025: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:44:00,026: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->5299bf9a-2827-4f84-a436-9ae1499fdc85
+[2025-06-03 22:44:00,027: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:44:00,028: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->1fde6d30-e39f-4bc8-b060-82011467b5bd
+[2025-06-03 22:44:00,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:05,031: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:10,034: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:15,037: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:20,039: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:25,042: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:30,045: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:35,047: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:40,049: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:45,051: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:50,053: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:44:55,055: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.93 seconds.
+[2025-06-03 22:45:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-celery-logs-every-15-mins (monitor_celery_logs_task)
+[2025-06-03 22:45:00,002: DEBUG/MainProcess][celery.beat] monitor_celery_logs_task sent. id->bb198284-105d-44c6-8b09-070895488e11
+[2025-06-03 22:45:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:45:00,004: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->57a08e45-2ae2-4ea7-9e70-bc791c783ca0
+[2025-06-03 22:45:00,006: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-5-minutes (check_instruction_emails_task)
+[2025-06-03 22:45:00,007: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->16912242-2aae-4be6-bdcc-ff42a7dfd5a4
+[2025-06-03 22:45:00,008: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:05,010: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:10,013: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:15,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:20,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:25,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:30,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:35,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:40,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:45,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:50,032: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:45:55,034: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:46:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:46:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->e6e9d83b-2462-4b68-9bc1-cc013e252ddb
+[2025-06-03 22:46:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:46:00,004: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->169757de-db5b-4e40-b5c8-85bbd5b2894a
+[2025-06-03 22:46:00,005: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:46:00,006: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->62eed123-16c9-490c-ac6c-26d4f906bd49
+[2025-06-03 22:46:00,008: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:05,010: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:10,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:15,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:20,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:25,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:30,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:35,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:40,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:45,025: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:46:45,025: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:46:45,057: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:50,059: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:46:55,061: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.93 seconds.
+[2025-06-03 22:47:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:47:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->a64dfbf5-70e2-4856-81fb-0b7e90778868
+[2025-06-03 22:47:00,004: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:05,006: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:10,008: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:15,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:20,013: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:25,015: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:30,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:35,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:40,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:45,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:50,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:47:55,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:48:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:48:00,002: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->354887c2-c94b-4dc4-b6ef-23e0c704894c
+[2025-06-03 22:48:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:48:00,004: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->d249cc35-a0b1-4c2a-adf0-039338833f14
+[2025-06-03 22:48:00,005: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:48:00,006: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->e311e2f6-4ca5-4f71-80a8-65e46e5e93e7
+[2025-06-03 22:48:00,007: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:05,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:10,012: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:15,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:20,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:25,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:30,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:35,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:40,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:45,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:50,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:48:55,031: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:49:00,015: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:49:00,017: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->4c7fffb3-69d4-4ffc-8561-631030cb00b8
+[2025-06-03 22:49:00,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:05,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:10,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:15,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:20,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:25,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:30,032: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:35,034: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:40,036: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:45,038: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:50,039: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:49:50,039: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:49:50,056: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:49:55,058: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.93 seconds.
+[2025-06-03 22:50:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:50:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->8df10eed-6b36-43ae-90fe-e87e22ac62c8
+[2025-06-03 22:50:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-redis-queues-every-10-mins (monitor_redis_queues_task)
+[2025-06-03 22:50:00,004: DEBUG/MainProcess][celery.beat] monitor_redis_queues_task sent. id->ebb557de-1e39-4025-80f1-a992642d6b80
+[2025-06-03 22:50:00,005: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-5-minutes (check_instruction_emails_task)
+[2025-06-03 22:50:00,006: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->3270ee7d-77b2-4469-a080-e70af8e78180
+[2025-06-03 22:50:00,008: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:50:00,009: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->91bbd0bb-a486-43fa-ae46-179d9544269f
+[2025-06-03 22:50:00,010: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:50:00,011: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->fb7c2553-b199-4fa9-94f4-661767594f1b
+[2025-06-03 22:50:00,012: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:05,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:10,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:15,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:20,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:25,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:30,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:35,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:40,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:45,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:50,032: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:50:55,034: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:51:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-agent-platform-logs-every-17-mins (monitor_agent_platform_logs_task)
+[2025-06-03 22:51:00,005: DEBUG/MainProcess][celery.beat] monitor_agent_platform_logs_task sent. id->f358ef6e-5878-4a0d-8330-ecb18694f633
+[2025-06-03 22:51:00,006: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:51:00,007: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->18a5f66d-9715-4778-9fb3-a5cc4d1c80a2
+[2025-06-03 22:51:00,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:05,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:10,013: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:15,015: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:20,017: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:25,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:30,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:35,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:40,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:45,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:50,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:51:55,031: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:52:00,008: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:52:00,010: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->8439624b-ff6e-4e33-bd6b-b78952022644
+[2025-06-03 22:52:00,012: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:52:00,013: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->f4fba5c4-a0f3-44fb-b238-ce75106e8417
+[2025-06-03 22:52:00,015: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:52:00,016: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->e72c542b-f3d0-4df9-92a9-a55d4598aee5
+[2025-06-03 22:52:00,017: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:05,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:10,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:15,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:20,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:25,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:30,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:35,033: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:40,035: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:45,037: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:50,039: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:52:55,040: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:52:55,040: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:52:55,076: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.91 seconds.
+[2025-06-03 22:53:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:53:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->5553d388-7a81-4db4-8f03-79e31be3ce0f
+[2025-06-03 22:53:00,004: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:05,006: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:10,008: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:15,010: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:20,012: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:25,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:30,017: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:35,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:40,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:45,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:50,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:53:55,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:54:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:54:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->2d8506cf-87f8-41c9-b688-531bf2e81ab5
+[2025-06-03 22:54:00,004: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:54:00,006: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->ccabd325-dc3b-4804-92fe-22df4f3627f4
+[2025-06-03 22:54:00,008: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:54:00,009: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->42df144a-3df6-45de-9855-8ac9ed81cb5d
+[2025-06-03 22:54:00,010: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:05,012: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:10,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:15,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:20,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:25,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:30,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:35,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:40,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:45,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:50,032: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:54:55,034: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:55:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-5-minutes (check_instruction_emails_task)
+[2025-06-03 22:55:00,002: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->ec3331a3-6f27-4400-bcc0-7028308dc47e
+[2025-06-03 22:55:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:55:00,004: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->4afa8664-ee4a-4b15-9028-665af1e5674c
+[2025-06-03 22:55:00,006: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:05,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:10,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:15,013: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:20,015: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:25,017: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:30,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:35,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:40,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:45,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:50,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:55:55,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:55:59,990: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:55:59,990: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:56:00,015: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:56:00,017: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->004dda46-8a4d-4ec3-8c2c-7e00790bed44
+[2025-06-03 22:56:00,018: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:56:00,019: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->bdfc9f22-8d1c-4217-8d59-d9335d66c9a4
+[2025-06-03 22:56:00,020: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:56:00,021: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->6c674864-5e97-4b80-9610-b786f18a54ab
+[2025-06-03 22:56:00,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:05,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:10,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:15,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:20,030: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:25,033: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:30,035: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:35,037: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:40,039: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:45,041: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:50,043: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:56:55,046: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.94 seconds.
+[2025-06-03 22:57:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:57:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->a77e00fe-0827-4639-86cb-335d173e350a
+[2025-06-03 22:57:00,003: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:05,005: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:10,007: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:15,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:20,012: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:25,014: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:30,016: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:35,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:40,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:45,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:50,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:57:55,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:58:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 22:58:00,002: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->47208a76-201d-4ca1-b164-0f9fa31c751a
+[2025-06-03 22:58:00,004: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 22:58:00,005: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->618105e5-de92-4295-9758-fe5b3a6ee7a3
+[2025-06-03 22:58:00,007: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:58:00,008: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->e5539475-0509-46da-afb8-85bb9ce6887f
+[2025-06-03 22:58:00,009: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:05,011: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:10,013: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:15,015: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:20,018: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:25,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:30,022: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:35,025: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:40,027: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:45,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:50,032: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:58:55,035: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.96 seconds.
+[2025-06-03 22:59:00,001: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 22:59:00,003: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->63e3b28b-8bc7-4a46-842a-5e744c629d5e
+[2025-06-03 22:59:00,004: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:05,005: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 22:59:05,005: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 22:59:05,019: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:10,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:15,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:20,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:25,054: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:30,056: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:35,059: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:40,061: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:45,063: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:50,065: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 22:59:55,067: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.92 seconds.
+[2025-06-03 23:00:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task memory-maintenance-daily (memory_maintenance_task)
+[2025-06-03 23:00:00,002: DEBUG/MainProcess][celery.beat] memory_maintenance_task sent. id->8b33bfb4-e175-4ead-ba93-5c1f0fe2a01a
+[2025-06-03 23:00:00,003: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-redis-queues-every-10-mins (monitor_redis_queues_task)
+[2025-06-03 23:00:00,004: DEBUG/MainProcess][celery.beat] monitor_redis_queues_task sent. id->34b8c4fa-71be-48d7-a10c-f63c190670bc
+[2025-06-03 23:00:00,006: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 23:00:00,007: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->da97a1f7-5f3d-43e9-8b1c-2d7bf13255a9
+[2025-06-03 23:00:00,009: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-agent-platform-logs-every-17-mins (monitor_agent_platform_logs_task)
+[2025-06-03 23:00:00,010: DEBUG/MainProcess][celery.beat] monitor_agent_platform_logs_task sent. id->de970f25-082c-43c9-839d-9aac14bac398
+[2025-06-03 23:00:00,011: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 23:00:00,012: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->ffa39a0b-b514-4c86-850a-979a56837b82
+[2025-06-03 23:00:00,014: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 23:00:00,015: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->109096e2-c33f-4983-bfc9-ecd2b7eaa806
+[2025-06-03 23:00:00,016: INFO/MainProcess][celery.beat] Scheduler: Sending due task monitor-celery-logs-every-15-mins (monitor_celery_logs_task)
+[2025-06-03 23:00:00,017: DEBUG/MainProcess][celery.beat] monitor_celery_logs_task sent. id->d78fe379-26e1-4ff6-b788-f3ef699a6c96
+[2025-06-03 23:00:00,019: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-5-minutes (check_instruction_emails_task)
+[2025-06-03 23:00:00,020: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->9f22bcce-edb7-4423-9427-5a7e08ad00c6
+[2025-06-03 23:00:00,021: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:05,024: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:10,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:15,029: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:20,031: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:25,033: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:30,035: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:35,037: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:40,040: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:45,042: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:50,045: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:00:55,047: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.94 seconds.
+[2025-06-03 23:01:00,000: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 23:01:00,002: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->837c1e31-0c37-46c6-be7c-a4c25b6cc278
+[2025-06-03 23:01:00,003: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:05,005: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:10,008: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:15,026: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:20,028: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:25,031: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:30,033: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:35,036: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:40,038: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:45,040: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:50,043: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:01:55,045: DEBUG/MainProcess][celery.beat] beat: Waking up in 4.94 seconds.
+[2025-06-03 23:02:00,011: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-instruction-emails-every-2-minutes (check_instruction_emails_task)
+[2025-06-03 23:02:00,013: DEBUG/MainProcess][celery.beat] check_instruction_emails_task sent. id->500f0c83-56aa-451b-9fc6-3d654ae1fd21
+[2025-06-03 23:02:00,015: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-2-minutes (check_emails_task)
+[2025-06-03 23:02:00,016: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->2a5bf081-1e85-433f-9f02-0c7c32a54cbb
+[2025-06-03 23:02:00,018: INFO/MainProcess][celery.beat] Scheduler: Sending due task check-secretary-emails-every-1-minute (check_emails_task)
+[2025-06-03 23:02:00,019: DEBUG/MainProcess][celery.beat] check_emails_task sent. id->f6044d11-0eb5-42be-b0c7-a1802aba29cb
+[2025-06-03 23:02:00,020: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:02:05,023: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:02:10,023: DEBUG/MainProcess][celery.beat] beat: Synchronizing schedule...
+[2025-06-03 23:02:10,023: DEBUG/MainProcess][django_celery_beat.schedulers] Writing entries...
+[2025-06-03 23:02:10,071: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.
+[2025-06-03 23:02:15,073: DEBUG/MainProcess][celery.beat] beat: Waking up in 5.00 seconds.

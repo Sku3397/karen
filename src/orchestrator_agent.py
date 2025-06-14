@@ -8,8 +8,10 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 import uuid
 import re
+from .agent_activity_logger import AgentActivityLogger
 
 logger = logging.getLogger(__name__)
+activity_logger = AgentActivityLogger()
 
 class ContextManager:
     """Manages user context and conversation state."""
@@ -37,6 +39,16 @@ class OrchestratorAgent:
         Initialize the OrchestratorAgent.
         """
         self.context_manager = ContextManager()
+        
+        # Log initialization
+        activity_logger.log_activity(
+            agent_name="orchestrator",
+            activity_type="initialization",
+            details={
+                "context_manager": "initialized",
+                "timestamp": datetime.now().isoformat()
+            }
+        )
         
         # Agent routing patterns
         self.agent_patterns = {

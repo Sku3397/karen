@@ -1,0 +1,40 @@
+{
+  "incident_response": {
+    "severity_levels": [
+      "critical",
+      "high",
+      "medium",
+      "low"
+    ],
+    "escalation_matrix": {
+      "critical": [
+        "immediate_page",
+        "executive_notification"
+      ],
+      "high": [
+        "team_notification",
+        "2_hour_escalation"
+      ],
+      "medium": [
+        "team_notification",
+        "8_hour_escalation"
+      ],
+      "low": [
+        "email_notification",
+        "daily_review"
+      ]
+    }
+  },
+  "common_procedures": [
+    "system_restart",
+    "cache_clear",
+    "log_analysis",
+    "performance_tuning"
+  ],
+  "troubleshooting_guides": [
+    "task_processing_stuck",
+    "agent_communication_failure",
+    "high_resource_usage",
+    "authentication_issues"
+  ]
+}

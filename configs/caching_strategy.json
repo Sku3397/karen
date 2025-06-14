@@ -1,0 +1,31 @@
+{
+  "cache_layers": {
+    "application_cache": {
+      "type": "in_memory",
+      "ttl": 3600,
+      "max_size": "256MB"
+    },
+    "distributed_cache": {
+      "type": "redis",
+      "ttl": 86400,
+      "max_size": "2GB"
+    },
+    "cdn_cache": {
+      "type": "cloudfront",
+      "ttl": 604800,
+      "max_size": "unlimited"
+    }
+  },
+  "cache_policies": {
+    "user_sessions": "application_cache",
+    "api_responses": "distributed_cache",
+    "static_assets": "cdn_cache",
+    "template_data": "application_cache"
+  },
+  "invalidation_strategies": [
+    "time_based_expiry",
+    "event_driven_invalidation",
+    "manual_purge",
+    "version_based_invalidation"
+  ]
+}

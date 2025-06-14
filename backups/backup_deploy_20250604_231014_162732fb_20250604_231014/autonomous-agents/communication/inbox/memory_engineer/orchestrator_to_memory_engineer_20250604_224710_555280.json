@@ -1,0 +1,26 @@
+{
+  "from": "orchestrator",
+  "to": "memory_engineer",
+  "type": "task_assignment",
+  "content": {
+    "task_id": "MEMORY_ANALYSIS",
+    "task_type": "analysis",
+    "description": "Analyze memory usage patterns and optimize queries",
+    "priority": 3,
+    "required_skills": [
+      "memory_management",
+      "performance_optimization"
+    ],
+    "estimated_duration": 150,
+    "deadline": "2025-06-06T10:47:02.432619",
+    "retry_count": 0,
+    "max_retries": 3,
+    "skill_weights": {
+      "memory_management": 1.0,
+      "performance_optimization": 1.0
+    },
+    "assigned_at": "2025-06-04T22:47:02.434132",
+    "assigned_by": "orchestrator"
+  },
+  "timestamp": "2025-06-04T22:47:02.434135"
+}

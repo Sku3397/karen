@@ -1,0 +1,46 @@
+{
+  "mcpServers": {
+    "karen-codebase-core": {
+      "command": "python",
+      "args": ["-m", "src.mcp_servers.karen_codebase_core_mcp"],
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-codebase-search-basic": {
+      "command": "python",
+      "args": ["-m", "src.mcp_servers.karen_codebase_search_basic_mcp"],
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-codebase-analysis": {
+      "command": "python",
+      "args": ["-m", "src.mcp_servers.karen_codebase_analysis_mcp"],
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-codebase-git": {
+      "command": "python",
+      "args": ["-m", "src.mcp_servers.karen_codebase_git_mcp"],
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-codebase-architecture": {
+      "command": "python",
+      "args": ["-m", "src.mcp_servers.karen_codebase_architecture_mcp"],
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    },
+    "karen-tools": {
+      "command": "python",
+      "args": ["-m", "src.mcp_servers.karen_tools_mcp"],
+      "env": {
+        "PYTHONPATH": "/workspace"
+      }
+    }
+  }
+}

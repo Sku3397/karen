@@ -1,0 +1,47 @@
+{
+  "system_start_time": "2025-06-05T00:32:00.000000",
+  "agents": [
+    {
+      "name": "orchestrator",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": null,
+      "last_update": "2025-06-05T00:32:00.000000"
+    },
+    {
+      "name": "sms_engineer",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": "task_sms_001",
+      "last_update": "2025-06-05T01:52:17.645511"
+    },
+    {
+      "name": "phone_engineer",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": null,
+      "last_update": "2025-06-05T00:32:00.000000"
+    },
+    {
+      "name": "memory_engineer",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": "task_memory_001",
+      "last_update": "2025-06-05T10:36:40.286054"
+    },
+    {
+      "name": "test_engineer",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": "task_test_001",
+      "last_update": "2025-06-05T10:36:40.324531"
+    },
+    {
+      "name": "archaeologist",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": null,
+      "last_update": "2025-06-05T00:32:00.000000"
+    }
+  ]
+}

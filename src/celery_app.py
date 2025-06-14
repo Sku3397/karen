@@ -68,6 +68,29 @@ if USE_MOCK_EMAIL_CLIENT:
 # ^-- This might be conflicting. Celery signals should handle configuration for Celery loggers.
 logger = logging.getLogger(__name__)
 
+# Eigencode optimization: Task result caching
+REDIS_TASK_CACHE = {}
+
+def cache_task_result(task_id: str, result: dict, ttl: int = 3600):
+    """Cache task result in Redis."""
+    try:
+        redis_client = redis.from_url(os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0'))
+        redis_client.setex(f"task_result:{task_id}", ttl, json.dumps(result))
+    except Exception as e:
+        logger.warning(f"Failed to cache task result: {e}")
+
+def get_cached_task_result(task_id: str) -> dict:
+    """Get cached task result from Redis."""
+    try:
+        redis_client = redis.from_url(os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0'))
+        cached = redis_client.get(f"task_result:{task_id}")
+        if cached:
+            return json.loads(cached)
+    except Exception as e:
+        logger.warning(f"Failed to get cached task result: {e}")
+    return None
+
+
 print("PRINT: CELERY_APP.PY - About to create Celery app instance", flush=True)
 # Celery broker and backend URLs are now sourced from config module (or directly from os.getenv due to early load)
 celery_app = Celery(

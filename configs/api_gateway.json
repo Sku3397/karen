@@ -1,0 +1,42 @@
+{
+  "routing_rules": {
+    "path_based": {
+      "/api/v1/*": "api_service_v1"
+    },
+    "header_based": {
+      "X-API-Version: v2": "api_service_v2"
+    },
+    "query_based": {
+      "version=beta": "api_service_beta"
+    }
+  },
+  "middleware": [
+    "authentication",
+    "rate_limiting",
+    "request_logging",
+    "response_caching",
+    "circuit_breaker"
+  ],
+  "policies": {
+    "rate_limiting": {
+      "requests_per_minute": 1000
+    },
+    "authentication": {
+      "required": true,
+      "type": "jwt"
+    },
+    "cors": {
+      "enabled": true,
+      "origins": [
+        "*"
+      ]
+    },
+    "compression": {
+      "enabled": true,
+      "algorithms": [
+        "gzip",
+        "br"
+      ]
+    }
+  }
+}

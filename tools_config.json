@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "karen-tools": {
+      "command": "C:\\Python313\\python.exe",
+      "args": ["C:\\Users\\Man\\ultra\\projects\\karen\\mcp_with_tools.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

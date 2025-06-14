@@ -1,0 +1,20 @@
+{
+  "workflow_types": [
+    "task_processing",
+    "error_handling",
+    "deployment",
+    "monitoring"
+  ],
+  "adaptation_criteria": [
+    "performance_metrics",
+    "error_rates",
+    "completion_times",
+    "resource_utilization"
+  ],
+  "optimization_strategies": [
+    "parallel_processing",
+    "load_balancing",
+    "caching",
+    "preprocessing"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "monitoring_config": {
+    "check_interval": 30,
+    "health_thresholds": {
+      "cpu_usage": 80,
+      "memory_usage": 75,
+      "task_completion_rate": 1.0
+    },
+    "alert_conditions": [
+      "worker_unresponsive",
+      "task_queue_overflow",
+      "performance_degradation"
+    ]
+  },
+  "auto_recovery": {
+    "restart_on_failure": true,
+    "max_restart_attempts": 3,
+    "cooldown_period": 300
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "metrics_collection": {
+    "system_metrics": [
+      "cpu",
+      "memory",
+      "disk",
+      "network"
+    ],
+    "application_metrics": [
+      "task_rate",
+      "error_rate",
+      "latency"
+    ],
+    "business_metrics": [
+      "completion_rate",
+      "user_satisfaction"
+    ]
+  },
+  "alert_rules": {
+    "critical": 

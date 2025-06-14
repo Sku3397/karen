@@ -1,0 +1,104 @@
+{
+  "core_server": {
+    "file_exists": {
+      "status": "passed",
+      "test": "file existence check",
+      "result": true
+    },
+    "read_file": {
+      "status": "passed",
+      "test": "file reading",
+      "result": true,
+      "content_length": 26
+    },
+    "write_file": {
+      "status": "passed",
+      "test": "file writing",
+      "result": true
+    },
+    "list_directory": {
+      "status": "passed",
+      "test": "directory listing",
+      "result": true,
+      "items_found": 2
+    },
+    "get_file_info": {
+      "status": "passed",
+      "test": "file metadata",
+      "result": true,
+      "file_size": 26
+    },
+    "create_directory": {
+      "status": "passed",
+      "test": "directory creation",
+      "result": true
+    },
+    "delete_file": {
+      "status": "passed",
+      "test": "file deletion",
+      "result": true
+    }
+  },
+  "search_server": {
+    "search_codebase": {
+      "status": "passed",
+      "test": "codebase search",
+      "result": true,
+      "matches": {
+        "async def": 13,
+        "import logging": 21,
+        "class Agent": 5
+      }
+    },
+    "find_function_definition": {
+      "status": "passed",
+      "test": "function definition search",
+      "result": true,
+      "functions_found": 177
+    },
+    "find_class_definition": {
+      "status": "passed",
+      "test": "class definition search",
+      "result": true,
+      "classes_found": 26
+    },
+    "search_imports": {
+      "status": "passed",
+      "test": "import statement search",
+      "result": true,
+      "imports_found": 242
+    }
+  },
+  "analysis_server": {
+    "find_function_usage": {
+      "status": "passed",
+      "test": "function usage analysis",
+      "result": true,
+      "usages_found": 3
+    },
+    "find_todos_fixmes": {
+      "status": "passed",
+      "test": "todo/fixme detection",
+      "result": true,
+      "todos_found": 5
+    },
+    "get_code_complexity": {
+      "status": "passed",
+      "test": "code complexity analysis",
+      "result": true,
+      "files_analyzed": 10,
+      "average_complexity": 394.3
+    },
+    "analyze_code_patterns": {
+      "status": "passed",
+      "test": "code pattern analysis",
+      "result": true,
+      "patterns_found": {
+        "async_functions": 13,
+        "error_handling": 70,
+        "logging": 110,
+        "imports": 126
+      }
+    }
+  }
+}

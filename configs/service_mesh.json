@@ -1,0 +1,25 @@
+{
+  "mesh_features": {
+    "traffic_management": {
+      "load_balancing": "round_robin",
+      "circuit_breaking": true,
+      "retry_policies": true,
+      "timeout_policies": true
+    },
+    "security": {
+      "mutual_tls": true,
+      "authorization_policies": true,
+      "certificate_management": "automatic"
+    },
+    "observability": {
+      "distributed_tracing": true,
+      "metrics_collection": true,
+      "access_logging": true
+    }
+  },
+  "service_configuration": {
+    "sidecar_injection": "automatic",
+    "traffic_splitting": "weight_based",
+    "fault_injection": "testing_only"
+  }
+}

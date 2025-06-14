@@ -1,0 +1,128 @@
+{
+  "failure_skill_mismatch_orchestrator": {
+    "pattern_id": "failure_skill_mismatch_orchestrator",
+    "failure_category": "skill_mismatch",
+    "description": "Agent orchestrator experiencing skill_mismatch failures",
+    "triggers": {
+      "agent": "orchestrator",
+      "category": "skill_mismatch"
+    },
+    "frequency": 1,
+    "impact_score": 0.5,
+    "affected_agents": [
+      "orchestrator"
+    ],
+    "affected_skills": [],
+    "mitigation_suggestions": [
+      "Review and update agent skill definitions",
+      "Implement cross-training between agents",
+      "Add skill validation before task assignment"
+    ],
+    "discovered_at": "2025-06-04T22:53:24.726995",
+    "examples": [
+      "demo_task_003"
+    ]
+  },
+  "failure_skill_mismatch_test_engineer": {
+    "pattern_id": "failure_skill_mismatch_test_engineer",
+    "failure_category": "skill_mismatch",
+    "description": "Agent test_engineer experiencing skill_mismatch failures",
+    "triggers": {
+      "agent": "test_engineer",
+      "category": "skill_mismatch"
+    },
+    "frequency": 2,
+    "impact_score": 0.1,
+    "affected_agents": [
+      "test_engineer"
+    ],
+    "affected_skills": [],
+    "mitigation_suggestions": [
+      "Review and update agent skill definitions",
+      "Implement cross-training between agents",
+      "Add skill validation before task assignment"
+    ],
+    "discovered_at": "2025-06-04T22:53:25.033230",
+    "examples": [
+      "demo_task_006",
+      "demo_task_071"
+    ]
+  },
+  "failure_skill_mismatch_sms_engineer": {
+    "pattern_id": "failure_skill_mismatch_sms_engineer",
+    "failure_category": "skill_mismatch",
+    "description": "Agent sms_engineer experiencing skill_mismatch failures",
+    "triggers": {
+      "agent": "sms_engineer",
+      "category": "skill_mismatch"
+    },
+    "frequency": 4,
+    "impact_score": 0.2,
+    "affected_agents": [
+      "sms_engineer"
+    ],
+    "affected_skills": [],
+    "mitigation_suggestions": [
+      "Review and update agent skill definitions",
+      "Implement cross-training between agents",
+      "Add skill validation before task assignment"
+    ],
+    "discovered_at": "2025-06-04T22:53:26.160974",
+    "examples": [
+      "demo_task_017",
+      "demo_task_020",
+      "demo_task_021",
+      "demo_task_040"
+    ]
+  },
+  "failure_skill_mismatch_phone_engineer": {
+    "pattern_id": "failure_skill_mismatch_phone_engineer",
+    "failure_category": "skill_mismatch",
+    "description": "Agent phone_engineer experiencing skill_mismatch failures",
+    "triggers": {
+      "agent": "phone_engineer",
+      "category": "skill_mismatch"
+    },
+    "frequency": 3,
+    "impact_score": 0.15,
+    "affected_agents": [
+      "phone_engineer"
+    ],
+    "affected_skills": [],
+    "mitigation_suggestions": [
+      "Review and update agent skill definitions",
+      "Implement cross-training between agents",
+      "Add skill validation before task assignment"
+    ],
+    "discovered_at": "2025-06-04T22:53:27.090938",
+    "examples": [
+      "demo_task_026",
+      "demo_task_061",
+      "demo_task_070"
+    ]
+  },
+  "failure_skill_mismatch_memory_engineer": {
+    "pattern_id": "failure_skill_mismatch_memory_engineer",
+    "failure_category": "skill_mismatch",
+    "description": "Agent memory_engineer experiencing skill_mismatch failures",
+    "triggers": {
+      "agent": "memory_engineer",
+      "category": "skill_mismatch"
+    },
+    "frequency": 1,
+    "impact_score": 0.5,
+    "affected_agents": [
+      "memory_engineer"
+    ],
+    "affected_skills": [],
+    "mitigation_suggestions": [
+      "Review and update agent skill definitions",
+      "Implement cross-training between agents",
+      "Add skill validation before task assignment"
+    ],
+    "discovered_at": "2025-06-04T22:53:27.298370",
+    "examples": [
+      "demo_task_028"
+    ]
+  }
+}

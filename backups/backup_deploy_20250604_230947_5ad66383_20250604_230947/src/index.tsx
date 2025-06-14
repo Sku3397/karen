@@ -1,0 +1,1 @@
+import React from 'react';\nimport ReactDOM from 'react-dom';\nimport App from './App';\nimport { Provider } from 'react-redux';\nimport store from './redux/store';\n\nReactDOM.render(\n  <React.StrictMode>\n    <Provider store={store}>\n      <App />\n    </Provider>\n  </React.StrictMode>,\n  document.getElementById('root')\n);

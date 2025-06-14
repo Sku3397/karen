@@ -1,0 +1,82 @@
+{
+  "phase": "protocol_validation",
+  "timestamp": "2025-06-13T22:23:53.764197",
+  "results": {
+    "core": {
+      "file_exists": true,
+      "mcp_compliant": true,
+      "tools_found": [
+        "read_file",
+        "write_file",
+        "list_directory",
+        "get_file_info",
+        "file_exists",
+        "create_directory",
+        "delete_file"
+      ],
+      "protocol_features": {
+        "mcp_2024_11_05": true,
+        "mcp_protocol_comment": true,
+        "json_rpc": true,
+        "async_support": true,
+        "list_tools_method": false,
+        "call_tool_method": false,
+        "error_handling": true,
+        "pathlib_usage": true
+      },
+      "line_count": 722,
+      "validation_score": 0.875
+    },
+    "search": {
+      "file_exists": true,
+      "mcp_compliant": true,
+      "tools_found": [
+        "search_codebase",
+        "find_function_definition",
+        "find_class_definition",
+        "search_imports"
+      ],
+      "protocol_features": {
+        "mcp_2024_11_05": true,
+        "mcp_protocol_comment": true,
+        "json_rpc": true,
+        "async_support": true,
+        "list_tools_method": false,
+        "call_tool_method": false,
+        "error_handling": true,
+        "pathlib_usage": true
+      },
+      "line_count": 361,
+      "validation_score": 0.875
+    },
+    "analysis": {
+      "file_exists": true,
+      "mcp_compliant": true,
+      "tools_found": [
+        "find_function_usage",
+        "find_todos_fixmes",
+        "get_code_complexity",
+        "analyze_code_patterns"
+      ],
+      "protocol_features": {
+        "mcp_2024_11_05": true,
+        "mcp_protocol_comment": true,
+        "json_rpc": true,
+        "async_support": true,
+        "list_tools_method": false,
+        "call_tool_method": false,
+        "error_handling": true,
+        "pathlib_usage": true
+      },
+      "line_count": 378,
+      "validation_score": 0.875
+    }
+  },
+  "summary": {
+    "total_servers": 3,
+    "compliant_servers": 3,
+    "total_tools": 15,
+    "validated_tools": 15,
+    "success": true
+  }
+}

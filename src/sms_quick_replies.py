@@ -438,7 +438,11 @@ class QuickReplySystem:
             'service_area': context.get('service_area', 'Hampton Roads'),
             'safety_tip': self._get_safety_tip(context.get('emergency_type', '')),
             'safety_instruction': self._get_safety_instruction(context.get('emergency_type', '')),
-            'confirmation_details': context.get('confirmation_details', 'Everything is set!')
+            'confirmation_details': context.get('confirmation_details', 'Everything is set!'),
+            'customer_name': context.get('customer_info', {}).get('name', ''),
+            'service_type': context.get('service_type', 'service'),
+            'eta': context.get('eta', '30 minutes'),
+            'tech_name': context.get('tech_name', 'our technician')
         }
         
         # Safe template substitution

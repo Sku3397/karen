@@ -1,0 +1,1 @@
+import React from 'react';\n\nfunction AppointmentCalendar() {\n  return (<div>Appointment Calendar Component</div>);\n}\n\nexport default AppointmentCalendar;

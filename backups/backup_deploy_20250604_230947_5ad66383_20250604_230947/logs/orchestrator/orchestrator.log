@@ -1,0 +1,22 @@
+2025-06-04 23:09:11,532 - src.orchestrator - ERROR - Failed to initialize email client: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-04 23:09:11,532 - src.orchestrator - INFO - Starting task processor loop
+2025-06-04 23:09:11,532 - src.orchestrator - INFO - Starting health monitor loop
+2025-06-04 23:09:11,532 - src.orchestrator - DEBUG - Performing health check on all agents
+2025-06-04 23:09:11,532 - src.orchestrator - INFO - Starting timeout monitor loop
+2025-06-04 23:09:11,532 - src.orchestrator - INFO - AgentOrchestrator ORCHESTRATOR-001 initialized successfully
+2025-06-04 23:09:11,532 - src.orchestrator - ERROR - Error checking health of archaeologist: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:11,533 - src.orchestrator - ERROR - Error checking health of sms_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:11,533 - src.orchestrator - ERROR - Error checking health of phone_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:11,533 - src.orchestrator - ERROR - Error checking health of memory_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:11,533 - src.orchestrator - ERROR - Error checking health of test_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:47,020 - src.orchestrator - ERROR - Failed to initialize email client: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-04 23:09:47,020 - src.orchestrator - INFO - Starting task processor loop
+2025-06-04 23:09:47,021 - src.orchestrator - INFO - Starting health monitor loop
+2025-06-04 23:09:47,021 - src.orchestrator - INFO - Starting timeout monitor loop
+2025-06-04 23:09:47,021 - src.orchestrator - INFO - AgentOrchestrator ORCHESTRATOR-001 initialized successfully
+2025-06-04 23:09:47,021 - src.orchestrator - DEBUG - Performing health check on all agents
+2025-06-04 23:09:47,021 - src.orchestrator - ERROR - Error checking health of archaeologist: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:47,022 - src.orchestrator - ERROR - Error checking health of sms_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:47,022 - src.orchestrator - ERROR - Error checking health of phone_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:47,022 - src.orchestrator - ERROR - Error checking health of memory_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'
+2025-06-04 23:09:47,022 - src.orchestrator - ERROR - Error checking health of test_engineer: 'AgentCommunication' object has no attribute 'get_agent_status'

@@ -1,0 +1,26 @@
+{
+  "contributor": "memory_engineer",
+  "type": "cross_medium_memory",
+  "content": {
+    "type": "cross_medium_memory_pattern",
+    "description": "Memory system now supports unified conversation tracking across email, SMS, and voice",
+    "features": [
+      "Automatic phone number extraction from SMS gateway emails",
+      "Identity linking between email addresses and phone numbers",
+      "Unified conversation context across all mediums",
+      "Conversation history merging when identities are linked"
+    ],
+    "implementation_details": {
+      "phone_normalization": "Converts all phone formats to 10-digit format",
+      "email_normalization": "Lowercase and stripped",
+      "auto_linking": "Detects phone numbers in email addresses like 1234567890@vtext.com",
+      "collections": [
+        "conversations",
+        "context",
+        "identity_mappings"
+      ]
+    },
+    "timestamp": "2025-06-03T22:36:51.590817"
+  },
+  "timestamp": "2025-06-03T22:36:51.590821"
+}

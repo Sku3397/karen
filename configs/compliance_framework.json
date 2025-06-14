@@ -1,0 +1,27 @@
+{
+  "standards": [
+    "SOC2",
+    "GDPR",
+    "HIPAA",
+    "PCI_DSS"
+  ],
+  "control_mappings": {
+    "data_privacy": [
+      "GDPR_Art_6",
+      "HIPAA_164.502"
+    ],
+    "access_control": [
+      "SOC2_CC6.1",
+      "PCI_DSS_8"
+    ],
+    "audit_logging": [
+      "SOC2_CC7.1",
+      "HIPAA_164.312"
+    ]
+  },
+  "compliance_monitoring": {
+    "automated_checks": true,
+    "manual_reviews": "quarterly",
+    "external_audits": "annually"
+  }
+}

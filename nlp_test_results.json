@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-06-05T00:11:33.396585",
+  "summary": {
+    "total_tests": 49,
+    "passed": 38,
+    "failed": 11,
+    "accuracy_percent": 77.55102040816327,
+    "average_confidence": 0.7
+  },
+  "intent_accuracy": {
+    "emergency": {
+      "correct": 4,
+      "total": 4
+    },
+    "appointment_schedule": {
+      "correct": 4,
+      "total": 4
+    },
+    "appointment_cancel": {
+      "correct": 2,
+      "total": 3
+    },
+    "appointment_reschedule": {
+      "correct": 2,
+      "total": 3
+    },
+    "quote_request": {
+      "correct": 4,
+      "total": 4
+    },
+    "service_inquiry": {
+      "correct": 4,
+      "total": 4
+    },
+    "general_inquiry": {
+      "correct": 3,
+      "total": 3
+    },
+    "complaint": {
+      "correct": 1,
+      "total": 4
+    },
+    "compliment": {
+      "correct": 2,
+      "total": 4
+    },
+    "payment_inquiry": {
+      "correct": 3,
+      "total": 4
+    },
+    "status_check": {
+      "correct": 2,
+      "total": 4
+    },
+    "greeting": {
+      "correct": 4,
+      "total": 4
+    },
+    "goodbye": {
+      "correct": 3,
+      "total": 4
+    }
+  },
+  "failed_tests": [
+    {
+      "message": "I need to cancel my appointment",
+      "expected": "appointment_cancel",
+      "actual": "appointment_schedule",
+      "confidence": 0.7
+    },
+    {
+      "message": "Need to move my appointment to Thursday",
+      "expected": "appointment_reschedule",
+      "actual": "appointment_schedule",
+      "confidence": 0.7
+    },
+    {
+      "message": "The work wasn't done correctly",
+      "expected": "complaint",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "I'm not satisfied with the repair",
+      "expected": "complaint",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "This is terrible service",
+      "expected": "complaint",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "Thanks for the great service!",
+      "expected": "compliment",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "Excellent work on the plumbing!",
+      "expected": "compliment",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "How much do I owe for the work?",
+      "expected": "payment_inquiry",
+      "actual": "quote_request",
+      "confidence": 0.7
+    },
+    {
+      "message": "What's the status on my repair?",
+      "expected": "status_check",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "How's the work going?",
+      "expected": "status_check",
+      "actual": "service_inquiry",
+      "confidence": 0.7
+    },
+    {
+      "message": "Thanks, goodbye!",
+      "expected": "goodbye",
+      "actual": "compliment",
+      "confidence": 0.7
+    }
+  ]
+}

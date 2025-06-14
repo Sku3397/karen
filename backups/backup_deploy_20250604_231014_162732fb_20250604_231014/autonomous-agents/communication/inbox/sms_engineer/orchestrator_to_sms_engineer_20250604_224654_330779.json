@@ -1,0 +1,26 @@
+{
+  "from": "orchestrator",
+  "to": "sms_engineer",
+  "type": "task_assignment",
+  "content": {
+    "task_id": "SMS_FEATURE_DEV",
+    "task_type": "feature_development",
+    "description": "Implement SMS quick reply suggestions",
+    "priority": 2,
+    "required_skills": [
+      "sms_integration",
+      "nlp_processing"
+    ],
+    "estimated_duration": 180,
+    "deadline": "2025-06-05T22:46:46.272959",
+    "retry_count": 0,
+    "max_retries": 3,
+    "skill_weights": {
+      "sms_integration": 1.0,
+      "nlp_processing": 1.0
+    },
+    "assigned_at": "2025-06-04T22:46:46.274370",
+    "assigned_by": "orchestrator"
+  },
+  "timestamp": "2025-06-04T22:46:46.274373"
+}

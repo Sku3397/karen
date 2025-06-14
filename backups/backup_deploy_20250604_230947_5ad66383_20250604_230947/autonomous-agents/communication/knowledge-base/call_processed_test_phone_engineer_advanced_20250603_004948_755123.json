@@ -1,0 +1,15 @@
+{
+  "contributor": "test_phone_engineer_advanced",
+  "type": "call_processed",
+  "content": {
+    "call_id": "CA_workflow_test",
+    "caller": "+1757123456",
+    "intent": "Service Request",
+    "services": [
+      "Plumbing"
+    ],
+    "urgency": "normal",
+    "follow_up_required": true
+  },
+  "timestamp": "2025-06-03T00:49:48.752719"
+}

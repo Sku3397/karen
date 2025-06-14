@@ -1,0 +1,22 @@
+{
+  "from": "memory_engineer_runner",
+  "to": "orchestrator",
+  "type": "knowledge_update",
+  "content": {
+    "type": "memory_patterns_enhanced",
+    "description": "Memory system patterns using helper framework",
+    "patterns": [
+      "Use helper.create_file() for all file operations",
+      "Use helper.update_status() for progress updates",
+      "Use helper.read_file() for reading existing files",
+      "Use helper.search_code() to find patterns",
+      "ChromaDB collections: conversations, context, identity_mappings"
+    ],
+    "implementation": {
+      "cross_medium_linking": true,
+      "phone_normalization": true,
+      "auto_identity_detection": true
+    }
+  },
+  "timestamp": "2025-06-03T23:32:25.375450"
+}

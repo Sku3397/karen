@@ -1,0 +1,82 @@
+{
+  "orchestrator": {
+    "agent_name": "orchestrator",
+    "tasks_completed": 0,
+    "tasks_failed": 0,
+    "average_completion_time": 0.0,
+    "last_activity": null,
+    "success_rate": 1.0,
+    "current_load": 0,
+    "max_concurrent_tasks": 3,
+    "response_time_avg": 0.0,
+    "skill_ratings": {}
+  },
+  "sms_engineer": {
+    "agent_name": "sms_engineer",
+    "tasks_completed": 1,
+    "tasks_failed": 0,
+    "average_completion_time": 75.0,
+    "last_activity": "2025-06-04T22:46:46.252035",
+    "success_rate": 1.0,
+    "current_load": 1,
+    "max_concurrent_tasks": 3,
+    "response_time_avg": 0.0,
+    "skill_ratings": {
+      "sms_integration": 0.52,
+      "python_development": 0.52
+    }
+  },
+  "phone_engineer": {
+    "agent_name": "phone_engineer",
+    "tasks_completed": 0,
+    "tasks_failed": 0,
+    "average_completion_time": 0.0,
+    "last_activity": null,
+    "success_rate": 1.0,
+    "current_load": 2,
+    "max_concurrent_tasks": 3,
+    "response_time_avg": 0.0,
+    "skill_ratings": {}
+  },
+  "memory_engineer": {
+    "agent_name": "memory_engineer",
+    "tasks_completed": 1,
+    "tasks_failed": 0,
+    "average_completion_time": 45.0,
+    "last_activity": "2025-06-04T22:46:46.252660",
+    "success_rate": 1.0,
+    "current_load": 1,
+    "max_concurrent_tasks": 3,
+    "response_time_avg": 0.0,
+    "skill_ratings": {
+      "memory_management": 0.52,
+      "database_operations": 0.52
+    }
+  },
+  "test_engineer": {
+    "agent_name": "test_engineer",
+    "tasks_completed": 0,
+    "tasks_failed": 1,
+    "average_completion_time": 0.0,
+    "last_activity": "2025-06-04T22:46:46.253361",
+    "success_rate": 0.0,
+    "current_load": 0,
+    "max_concurrent_tasks": 3,
+    "response_time_avg": 0.0,
+    "skill_ratings": {
+      "testing_automation": 0.47
+    }
+  },
+  "archaeologist": {
+    "agent_name": "archaeologist",
+    "tasks_completed": 0,
+    "tasks_failed": 0,
+    "average_completion_time": 0.0,
+    "last_activity": null,
+    "success_rate": 1.0,
+    "current_load": 1,
+    "max_concurrent_tasks": 3,
+    "response_time_avg": 0.0,
+    "skill_ratings": {}
+  }
+}

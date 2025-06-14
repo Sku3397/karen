@@ -24,6 +24,11 @@ karen/
 ├── credentials.json      # Google OAuth Client ID and Secret (for all Google services)
 ├── gmail_token_karen.json # OAuth token for the sending email account (karensecretaryai@gmail.com)
 ├── gmail_token_monitor.json # OAuth token for the monitoring email account (hello@757handy.com)
+├── karen_mcp_server.py   # MCP server for real-time system monitoring
+├── mcp_config.json       # Configuration for MCP server integration
+├── start_karen_with_mcp.bat # Windows script to start Karen with MCP monitoring
+├── stop_karen.bat        # Windows script to stop all Karen services
+├── test_karen_mcp_real.py # Test script for MCP server functionality
 ├── manage.py             # Django manage.py (primarily for Celery Beat with Django-Celery-Beat)
 ├── pytest.ini            # Configuration for pytest
 ├── README.md             # This file
@@ -65,6 +70,105 @@ Other logs that might be generated depending on usage:
 - fastapi_logs.txt                # Logs from the FastAPI application (if run and configured)
 - main_app_console_output.log     # Console output from `python -m src.main` if redirected
 ```
+
+## MCP (Model Context Protocol) Monitoring
+
+Karen AI includes a real-time system monitoring server using the Model Context Protocol (MCP). This server provides comprehensive status monitoring of all system components, replacing any fake agent monitoring with real component health checks.
+
+### MCP Server Features
+
+The MCP server (`karen_mcp_server.py`) monitors the following **real system components**:
+
+- ✅ **Redis Broker Connectivity** - Verifies Redis server connection and gets performance metrics
+- ✅ **Celery Worker Status** - Checks for running worker processes and active tasks
+- ✅ **Celery Beat Scheduler** - Monitors the scheduled task system and database
+- ✅ **Gmail API Tokens** - Validates OAuth tokens for both sender and monitor accounts
+- ✅ **Google Calendar API** - Tests calendar connectivity and upcoming events
+- ✅ **Gemini LLM API** - Verifies AI model accessibility and response capability
+- ✅ **System Activity Logs** - Monitors recent activity and log file timestamps
+
+### Available MCP Tools
+
+1. **`get_karen_status`** - Get comprehensive system health overview
+2. **`get_component_status`** - Get detailed status of specific components (redis, celery_worker, celery_beat, gmail, calendar, gemini, activity)
+
+### MCP Server Configuration
+
+The MCP server is configured in `mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "karen-tools": {
+      "command": "python",
+      "args": ["karen_mcp_server.py"],
+      "cwd": ".",
+      "env": {
+        "KAREN_PROJECT_ROOT": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    }
+  }
+}
+```
+
+### Testing MCP Server
+
+Run the comprehensive test suite to verify all components:
+
+```bash
+python test_karen_mcp_real.py
+```
+
+This will test all real system components and verify the MCP server functionality.
+
+### Starting with MCP Monitoring
+
+#### Option 1: Use the Automated Startup Script (Windows)
+```cmd
+start_karen_with_mcp.bat
+```
+
+This script will:
+- Activate the virtual environment
+- Check Redis connectivity
+- Start Celery Beat scheduler
+- Start Celery Worker
+- Start the main Karen application
+- Start the MCP monitoring server
+
+#### Option 2: Manual MCP Server Start
+```bash
+python karen_mcp_server.py
+```
+
+### Stopping Services
+
+#### Option 1: Use the Stop Script (Windows)
+```cmd
+stop_karen.bat
+```
+
+This will properly terminate all Karen processes and clean up temporary files.
+
+#### Option 2: Manual Process Management
+Use Task Manager or PowerShell commands to stop individual services as needed.
+
+### MCP Health Monitoring
+
+The MCP server calculates overall system health based on critical components:
+- **🟢 Healthy**: 85%+ components operational
+- **🟡 Degraded**: 50-84% components operational  
+- **🔴 Critical**: <50% components operational
+
+### Integration with Cursor IDE
+
+When properly configured, the MCP server provides real-time Karen AI system status directly within Cursor IDE, allowing developers to:
+- Monitor system health without leaving the IDE
+- Quickly identify component issues
+- Get detailed status reports for debugging
+- Track system performance over time
+
+**Note**: This MCP implementation monitors **real system components only** - no fake agents or simulated data. All status reports reflect the actual state of the Karen AI handyman business automation system.
 
 ## Setup and Configuration
 
@@ -250,55 +354,3 @@ Django Celery Beat uses a database to store its schedule. A SQLite database (`ce
     ```bash
     python -m src.main
     ```
-    This will typically run the FastAPI server on `http://localhost:8002`. However, the core email processing loop relies on Celery and does not require the FastAPI server to be running explicitly unless specific API endpoints are being used for control or status.
-
-## Stopping the Application
-
-To stop the Celery services:
--   **Find Process IDs (PIDs):**
-    ```powershell
-    # On Windows (PowerShell) - Find Python processes running Celery
-    Get-Process -Name python | Where-Object {$_.Path -like '*celery*'} | Select-Object Id, Path, CommandLine
-    ```
-    ```bash
-    # On macOS/Linux
-    ps aux | grep 'celery -A src.celery_app'
-    ```
--   **Stop the Processes:**
-    Use the PIDs found to stop the Celery Beat and Worker processes.
-    ```powershell
-    # On Windows (PowerShell)
-    Stop-Process -Id <PID_FOR_BEAT> -Force
-    Stop-Process -Id <PID_FOR_WORKER> -Force
-    # Or a more comprehensive stop:
-    Get-Process -Name python | Stop-Process -Force -ErrorAction SilentlyContinue; Get-Process -Name celery | Stop-Process -Force -ErrorAction SilentlyContinue; Remove-Item -Path celerybeat.pid -Force -ErrorAction SilentlyContinue
-    ```
-    ```bash
-    # On macOS/Linux
-    kill <PID_FOR_BEAT>
-    kill <PID_FOR_WORKER>
-    # Or, to kill all celery workers/beat for this app (use with caution):
-    # pkill -f 'celery -A src.celery_app'
-    # rm -f celerybeat.pid
-    ```
-
-## Key Scripts & Utilities
-
--   **`scripts/temp_send_test_email.py`**: Sends a predefined test email from `SECRETARY_EMAIL_ADDRESS` to `MONITORED_EMAIL_ACCOUNT` to trigger the processing flow. Useful for end-to-end testing.
--   **`scripts/temp_fetch_last_received_email_by_karen.py`**: Fetches and displays the last email received by `SECRETARY_EMAIL_ADDRESS`. Useful for verifying replies sent by Karen. (Note: This script may have limitations in fetching the full email body due to `EmailClient` behavior).
--   **`scripts/test_calendar_client.py`**: Tests the Google Calendar integration.
--   **`scripts/test_datetime_parser.py`**: Tests the datetime parsing utility.
-
-## Known Issues & Limitations
--   **Email Body Fetching in `temp_fetch_last_received_email_by_karen.py`**: The utility script for fetching Karen's replies might not always display the full email body content due to current limitations in how `EmailClient.fetch_emails` parses/retrieves multipart emails. However, the LLM processing and actual email sending work correctly with full content.
--   **`dateutil` relative date parsing ("today", "tomorrow"):** In some environments, `dateutil.parser.parse` might have issues with "today" and "tomorrow" even with a default date. This is a known behavior being monitored.
--   **Firebase/Firestore Integration**: Currently disabled/commented out due to `ModuleNotFoundError`. Requires manual steps to re-enable (see Setup section).
-
-## Future Enhancements / To-Do
--   Robust error handling and retry mechanisms for external API calls.
--   More comprehensive unit and integration tests.
--   Admin dashboard/UI for monitoring and configuration.
--   Full implementation of SMS and Voice Transcription handlers.
--   Re-evaluate and complete Firebase/Firestore integration if needed.
--   CI/CD pipeline for automated testing and deployment.
--   Containerization with Docker for easier deployment of the entire application stack (including Redis, Celery, FastAPI).

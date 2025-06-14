@@ -14,8 +14,10 @@ from pathlib import Path
 from .agent_communication import AgentCommunication
 from .voice_client import VoiceClient
 from .llm_client import LLMClient
+from .agent_activity_logger import AgentActivityLogger
 
 logger = logging.getLogger(__name__)
+activity_logger = AgentActivityLogger()
 
 class PhoneEngineerAgent:
     """

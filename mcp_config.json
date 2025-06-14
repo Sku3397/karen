@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "karen-tools": {
+      "command": "python",
+      "args": ["karen_mcp_server.py"],
+      "cwd": ".",
+      "env": {
+        "KAREN_PROJECT_ROOT": "C:\\Users\\Man\\ultra\\projects\\karen"
+      }
+    }
+  }
+}

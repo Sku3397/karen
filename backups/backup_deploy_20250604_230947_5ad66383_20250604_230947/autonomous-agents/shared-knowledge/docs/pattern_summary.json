@@ -1,0 +1,1219 @@
+{
+  "analysis_timestamp": "2025-06-03T22:59:11.735323",
+  "files_analyzed": 142,
+  "total_files": 142,
+  "pattern_summary": {
+    "comprehensive_error_handling": 45,
+    "agent_class": 18,
+    "status_tracking": 3,
+    "inter_agent_communication": 4,
+    "environment_variable_usage": 18,
+    "detailed_exception_logging": 20,
+    "dotenv_configuration": 14,
+    "module_level_logging": 27,
+    "comprehensive_error_logging": 19,
+    "api_client_class": 18,
+    "oauth_authentication": 11,
+    "token_refresh_mechanism": 3,
+    "google_api_integration": 5,
+    "calendar_api_usage": 6,
+    "admin_notification_on_error": 2,
+    "celery_task_definition": 2,
+    "celery_task_binding": 2,
+    "celery_fire_and_forget": 2,
+    "async_sync_bridge": 4,
+    "gmail_api_usage": 6,
+    "sync_in_async_context": 3
+  },
+  "file_details": [
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agent_communication.py",
+      "size": 12814,
+      "lines": 245,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "agent_class",
+        "status_tracking",
+        "inter_agent_communication",
+        "environment_variable_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agent_registry.py",
+      "size": 746,
+      "lines": 31,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/ai_responder.py",
+      "size": 4459,
+      "lines": 84,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/api.py",
+      "size": 1240,
+      "lines": 33,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/billing_agent.py",
+      "size": 62,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/calendar_client.py",
+      "size": 14256,
+      "lines": 265,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "api_client_class",
+        "oauth_authentication",
+        "token_refresh_mechanism",
+        "google_api_integration",
+        "calendar_api_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/celery_app.py",
+      "size": 36604,
+      "lines": 683,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "admin_notification_on_error",
+        "celery_task_definition",
+        "celery_task_binding",
+        "celery_fire_and_forget",
+        "async_sync_bridge",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/celery_sms_schedule.py",
+      "size": 2880,
+      "lines": 91,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/celery_sms_tasks.py",
+      "size": 15710,
+      "lines": 424,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "celery_task_definition",
+        "celery_task_binding",
+        "celery_fire_and_forget",
+        "async_sync_bridge",
+        "environment_variable_usage",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/check_gcp_speech_import.py",
+      "size": 639,
+      "lines": 19,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communication_agent.py",
+      "size": 1256,
+      "lines": 31,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communicator_agent.py",
+      "size": 6554,
+      "lines": 180,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "api_client_class",
+        "oauth_authentication",
+        "agent_class",
+        "gmail_api_usage",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/config.py",
+      "size": 8831,
+      "lines": 157,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "gmail_api_usage",
+        "calendar_api_usage",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/conflict_resolver.py",
+      "size": 273,
+      "lines": 8,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/context_manager.py",
+      "size": 521,
+      "lines": 16,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/datetime_utils.py",
+      "size": 6608,
+      "lines": 119,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/dependencies.py",
+      "size": 58,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/django_settings.py",
+      "size": 3824,
+      "lines": 98,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/email_client.py",
+      "size": 42656,
+      "lines": 743,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "api_client_class",
+        "oauth_authentication",
+        "token_refresh_mechanism",
+        "google_api_integration",
+        "gmail_api_usage",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/email_processing_agent.py",
+      "size": 21799,
+      "lines": 366,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "environment_variable_usage",
+        "dotenv_configuration"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/emergency_response_agent.py",
+      "size": 74,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/errors.py",
+      "size": 598,
+      "lines": 19,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/expense_manager.py",
+      "size": 742,
+      "lines": 22,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/financial_reports.py",
+      "size": 985,
+      "lines": 27,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/firestore_interface.py",
+      "size": 1367,
+      "lines": 31,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/firestore_models.py",
+      "size": 1737,
+      "lines": 51,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/firestore_repository.py",
+      "size": 1191,
+      "lines": 29,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/google_calendar_service.py",
+      "size": 2844,
+      "lines": 64,
+      "patterns_found": [
+        "google_api_integration",
+        "calendar_api_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/handyman_response_engine.py",
+      "size": 16454,
+      "lines": 345,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "sync_in_async_context",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/handyman_sms_engine.py",
+      "size": 14317,
+      "lines": 357,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "sync_in_async_context",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/intent_classifier.py",
+      "size": 408,
+      "lines": 11,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/knowledge_base_agent.py",
+      "size": 10182,
+      "lines": 286,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "api_client_class",
+        "agent_class",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/language_utils.py",
+      "size": 296,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/llm_client.py",
+      "size": 7404,
+      "lines": 143,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "api_client_class",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/logging_config.py",
+      "size": 343,
+      "lines": 16,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/main.py",
+      "size": 19890,
+      "lines": 412,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "environment_variable_usage",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/memory_client.py",
+      "size": 27124,
+      "lines": 664,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "api_client_class",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/mock_email_client.py",
+      "size": 6429,
+      "lines": 140,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "api_client_class",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/models.py",
+      "size": 700,
+      "lines": 33,
+      "patterns_found": [
+        "api_client_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/orchestrator.py",
+      "size": 9849,
+      "lines": 249,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "agent_class",
+        "inter_agent_communication",
+        "environment_variable_usage",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/orchestrator_agent.py",
+      "size": 9543,
+      "lines": 279,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "agent_class",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/phone_engineer_agent.py",
+      "size": 35714,
+      "lines": 878,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "agent_class",
+        "status_tracking",
+        "inter_agent_communication",
+        "async_sync_bridge",
+        "sync_in_async_context",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/quote_manager.py",
+      "size": 702,
+      "lines": 22,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/reminder_service.py",
+      "size": 878,
+      "lines": 24,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/retry.py",
+      "size": 1012,
+      "lines": 27,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/route_optimizer.py",
+      "size": 290,
+      "lines": 6,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler_agent.py",
+      "size": 80,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/schemas_core.py",
+      "size": 603,
+      "lines": 21,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/share_archaeological_findings.py",
+      "size": 9467,
+      "lines": 240,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "gmail_api_usage",
+        "calendar_api_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/show_last_karen_email.py",
+      "size": 5524,
+      "lines": 112,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/sms_client.py",
+      "size": 17833,
+      "lines": 392,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "api_client_class",
+        "oauth_authentication",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/sms_engineer_agent.py",
+      "size": 24955,
+      "lines": 637,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "agent_class",
+        "status_tracking",
+        "inter_agent_communication",
+        "async_sync_bridge",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/sms_webhook.py",
+      "size": 1186,
+      "lines": 34,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/stripe_client.py",
+      "size": 916,
+      "lines": 28,
+      "patterns_found": [
+        "api_client_class",
+        "environment_variable_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/task_management_agent.py",
+      "size": 3024,
+      "lines": 77,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/task_manager.py",
+      "size": 4053,
+      "lines": 87,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/task_manager_agent.py",
+      "size": 13808,
+      "lines": 379,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "agent_class",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/voice_client.py",
+      "size": 25631,
+      "lines": 602,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "api_client_class",
+        "oauth_authentication",
+        "environment_variable_usage",
+        "dotenv_configuration",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/websocket_server.py",
+      "size": 313,
+      "lines": 11,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/__init__.py",
+      "size": 84,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/base_agent.py",
+      "size": 1210,
+      "lines": 33,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/contact_manager.py",
+      "size": 476,
+      "lines": 15,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/emergency_response_agent.py",
+      "size": 1820,
+      "lines": 49,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/escalation_protocols.py",
+      "size": 713,
+      "lines": 24,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/handyman_agent.py",
+      "size": 587,
+      "lines": 13,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/reminders.py",
+      "size": 751,
+      "lines": 17,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/response_coordinator.py",
+      "size": 587,
+      "lines": 10,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/scheduling_agent.py",
+      "size": 1777,
+      "lines": 41,
+      "patterns_found": [
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/api/appointments.py",
+      "size": 1543,
+      "lines": 37,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/api/routes.py",
+      "size": 957,
+      "lines": 21,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/api/scheduling_routes.py",
+      "size": 1096,
+      "lines": 28,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/api/tasks.py",
+      "size": 1284,
+      "lines": 37,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/api/users.py",
+      "size": 1182,
+      "lines": 31,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/auth_helpers.py",
+      "size": 155,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/jwt_handler.py",
+      "size": 243,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/jwt_service.py",
+      "size": 953,
+      "lines": 27,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/middleware.py",
+      "size": 860,
+      "lines": 22,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/oauth.py",
+      "size": 1985,
+      "lines": 56,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/oauth2.py",
+      "size": 192,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/oauth_service.py",
+      "size": 590,
+      "lines": 14,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/rbac.py",
+      "size": 973,
+      "lines": 26,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/role_based_access_control.py",
+      "size": 323,
+      "lines": 10,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/auth/security.py",
+      "size": 1029,
+      "lines": 28,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communication_agent/agent.py",
+      "size": 56345,
+      "lines": 872,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "detailed_exception_logging",
+        "admin_notification_on_error",
+        "agent_class",
+        "gmail_api_usage",
+        "calendar_api_usage",
+        "environment_variable_usage",
+        "module_level_logging",
+        "comprehensive_error_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communication_agent/email_handler.py",
+      "size": 888,
+      "lines": 25,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communication_agent/sms_handler.py",
+      "size": 1465,
+      "lines": 41,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communication_agent/voice_transcription_handler.py",
+      "size": 1587,
+      "lines": 34,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "environment_variable_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/communication_agent/__init__.py",
+      "size": 30,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/appointments.py",
+      "size": 1974,
+      "lines": 67,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/billing.py",
+      "size": 1650,
+      "lines": 61,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/communications.py",
+      "size": 6521,
+      "lines": 197,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/inventory.py",
+      "size": 1736,
+      "lines": 62,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/knowledge.py",
+      "size": 8411,
+      "lines": 267,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/memory.py",
+      "size": 5308,
+      "lines": 140,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "module_level_logging"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/tasks.py",
+      "size": 4655,
+      "lines": 151,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/endpoints/users.py",
+      "size": 235,
+      "lines": 9,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/gmail_client.py",
+      "size": 1000,
+      "lines": 25,
+      "patterns_found": [
+        "api_client_class",
+        "oauth_authentication",
+        "google_api_integration",
+        "gmail_api_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/google_workspace.py",
+      "size": 139,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/paypal_gateway.py",
+      "size": 1106,
+      "lines": 30,
+      "patterns_found": [
+        "environment_variable_usage",
+        "dotenv_configuration"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/sendgrid.py",
+      "size": 114,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/stripe.py",
+      "size": 108,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/stripe_gateway.py",
+      "size": 740,
+      "lines": 21,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "environment_variable_usage",
+        "dotenv_configuration"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/transcription.py",
+      "size": 731,
+      "lines": 16,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/twilio.py",
+      "size": 108,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/integrations/twilio_client.py",
+      "size": 944,
+      "lines": 34,
+      "patterns_found": [
+        "api_client_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/models/expense.py",
+      "size": 506,
+      "lines": 18,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/models/invoice.py",
+      "size": 695,
+      "lines": 21,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/models/payment.py",
+      "size": 609,
+      "lines": 19,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/nlu/basic_nlu.py",
+      "size": 1282,
+      "lines": 39,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/nlu/dialogflow_nlu.py",
+      "size": 1252,
+      "lines": 32,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/nlu/__init__.py",
+      "size": 797,
+      "lines": 23,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/appointments.py",
+      "size": 209,
+      "lines": 11,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/billing.py",
+      "size": 136,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/communications.py",
+      "size": 152,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/inventory.py",
+      "size": 116,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/knowledge.py",
+      "size": 126,
+      "lines": 7,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/tasks.py",
+      "size": 165,
+      "lines": 11,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routers/users.py",
+      "size": 185,
+      "lines": 11,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/routes/knowledge_base.py",
+      "size": 1763,
+      "lines": 50,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/agent.py",
+      "size": 4005,
+      "lines": 105,
+      "patterns_found": [
+        "comprehensive_error_handling",
+        "api_client_class",
+        "oauth_authentication",
+        "agent_class"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/google_calendar.py",
+      "size": 2788,
+      "lines": 65,
+      "patterns_found": [
+        "api_client_class",
+        "oauth_authentication",
+        "token_refresh_mechanism"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/models.py",
+      "size": 758,
+      "lines": 17,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/outlook_calendar.py",
+      "size": 2521,
+      "lines": 61,
+      "patterns_found": [
+        "api_client_class",
+        "oauth_authentication"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/utils.py",
+      "size": 1232,
+      "lines": 24,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/webhooks.py",
+      "size": 784,
+      "lines": 22,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/scheduler/__init__.py",
+      "size": 24,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/schemas/appointment.py",
+      "size": 522,
+      "lines": 20,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/schemas/task.py",
+      "size": 1937,
+      "lines": 50,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/schemas/user.py",
+      "size": 481,
+      "lines": 19,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/schemas/__init__.py",
+      "size": 43,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/audit_logging.py",
+      "size": 347,
+      "lines": 10,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/auth.py",
+      "size": 915,
+      "lines": 29,
+      "patterns_found": [
+        "comprehensive_error_handling"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/compliance_tools.py",
+      "size": 252,
+      "lines": 9,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/encryption.py",
+      "size": 418,
+      "lines": 12,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/encryption_utils.py",
+      "size": 737,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/kms.py",
+      "size": 941,
+      "lines": 22,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/secrets.py",
+      "size": 451,
+      "lines": 12,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/security/tls_config.py",
+      "size": 251,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/utils/CacheImplementation.py",
+      "size": 295,
+      "lines": 1,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/validators/input_validators.py",
+      "size": 1570,
+      "lines": 46,
+      "patterns_found": []
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/calendar/google_calendar.py",
+      "size": 1412,
+      "lines": 35,
+      "patterns_found": [
+        "api_client_class",
+        "oauth_authentication",
+        "google_api_integration",
+        "calendar_api_usage"
+      ]
+    },
+    {
+      "file_path": "/mnt/c/Users/Man/ultra/projects/karen/src/agents/calendar/outlook_calendar.py",
+      "size": 1478,
+      "lines": 35,
+      "patterns_found": [
+        "api_client_class",
+        "oauth_authentication"
+      ]
+    }
+  ],
+  "top_patterns": [
+    [
+      "comprehensive_error_handling",
+      45
+    ],
+    [
+      "module_level_logging",
+      27
+    ],
+    [
+      "detailed_exception_logging",
+      20
+    ],
+    [
+      "comprehensive_error_logging",
+      19
+    ],
+    [
+      "agent_class",
+      18
+    ],
+    [
+      "environment_variable_usage",
+      18
+    ],
+    [
+      "api_client_class",
+      18
+    ],
+    [
+      "dotenv_configuration",
+      14
+    ],
+    [
+      "oauth_authentication",
+      11
+    ],
+    [
+      "calendar_api_usage",
+      6
+    ]
+  ]
+}

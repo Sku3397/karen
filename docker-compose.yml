@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # Redis - Message broker and cache
+  # Redis - Message broker and cache (optimized for NLP workloads)
   redis:
     image: redis:7-alpine
     container_name: karen-redis
@@ -9,7 +9,18 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
-    command: redis-server --appendonly yes
+    command: >
+      redis-server 
+      --appendonly yes 
+      --maxmemory 1gb 
+      --maxmemory-policy allkeys-lru
+      --tcp-keepalive 60
+    deploy:
+      resources:
+        limits:
+          memory: 1.5G
+        reservations:
+          memory: 512M
     networks:
       - karen-network
     healthcheck:
@@ -71,7 +82,7 @@ services:
       timeout: 10s
       retries: 3
 
-  # Celery Worker for background tasks
+  # Celery Worker for background tasks (NLP-optimized)
   karen-worker:
     build:
       context: .
@@ -83,11 +94,25 @@ services:
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - DATABASE_URL=postgresql://karen:karen_password@postgres:5432/karen
       - ENVIRONMENT=development
+      - PYTHONUNBUFFERED=1
+      - PYTHONHASHSEED=0
+      - CELERY_WORKER_POOL=solo
+      - CELERY_WORKER_CONCURRENCY=2
+      - CELERY_TASK_SOFT_TIME_LIMIT=300
+      - CELERY_TASK_TIME_LIMIT=600
+      - NLP_CONFIDENCE_THRESHOLD=0.6
+      - NLP_BATCH_SIZE=10
     volumes:
       - ./src:/app
       - ./logs:/app/logs
       - ./autonomous-agents:/app/autonomous-agents
       - oauth_tokens:/app/tokens
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
     depends_on:
       redis:
         condition: service_healthy
@@ -124,7 +149,7 @@ services:
       - karen-network
     restart: unless-stopped
 
-  # React Frontend (Development)
+  # React Frontend (Development with memory optimization)
   karen-frontend:
     build:
       context: .
@@ -135,9 +160,16 @@ services:
     environment:
       - REACT_APP_API_URL=http://localhost:8000
       - NODE_ENV=development
+      - NODE_OPTIONS=--max-old-space-size=4096
     volumes:
       - ./src:/app/src
       - ./public:/app/public
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+        reservations:
+          memory: 2G
     depends_on:
       - karen-api
     networks:

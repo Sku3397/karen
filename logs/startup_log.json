@@ -1,0 +1,8 @@
+﻿{
+    "Environment":  "development",
+    "Timestamp":  "2025-06-05 00:19:06",
+    "CeleryBeat":  false,
+    "Success":  false,
+    "Redis":  true,
+    "PythonProcesses":  4
+}

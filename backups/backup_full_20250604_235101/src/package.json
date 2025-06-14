@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ai-handyman-secretary-assistant": "file:.."
+  }
+}

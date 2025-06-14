@@ -1,0 +1,9 @@
+{
+    "agent": "sms_engineer",
+    "status": "healthy",
+    "timestamp": "2025-06-05T11:23:59-04:00",
+    "memory_usage": "unknown%",
+    "disk_usage": "18%",
+    "issues": [""],
+    "uptime_seconds": 32874
+}

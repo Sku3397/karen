@@ -1,0 +1,20 @@
+{
+  "pattern_types": [
+    "code_patterns",
+    "error_patterns",
+    "usage_patterns",
+    "performance_patterns"
+  ],
+  "recognition_methods": [
+    "frequency_analysis",
+    "sequence_detection",
+    "anomaly_identification",
+    "correlation_analysis"
+  ],
+  "action_triggers": [
+    "optimization_opportunity",
+    "risk_detection",
+    "learning_opportunity",
+    "automation_candidate"
+  ]
+}

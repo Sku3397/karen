@@ -1,0 +1,1 @@
+# Load Balancer Configuration\n- Configured the Global Load Balancer to distribute traffic evenly across multiple regions.\n- Enabled Auto-scaling policies to dynamically adjust the number of instances based on traffic.\n- Set up CDN for static assets to reduce latency and improve load times.

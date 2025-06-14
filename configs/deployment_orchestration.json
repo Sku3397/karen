@@ -1,0 +1,23 @@
+{
+  "environments": {
+    "development": {
+      "auto_deploy": true,
+      "approval_required": false
+    },
+    "staging": {
+      "auto_deploy": true,
+      "approval_required": true
+    },
+    "production": {
+      "auto_deploy": false,
+      "approval_required": true
+    }
+  },
+  "deployment_steps": [
+    "pre_deployment_validation",
+    "backup_current_version",
+    "deploy_new_version",
+    "run_health_checks",
+    "notify_completion"
+  ]
+}

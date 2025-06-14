@@ -1,0 +1,33 @@
+{
+  "services": {
+    "eigencode_worker": {
+      "image": "karen/eigencode-worker:latest",
+      "replicas": 2,
+      "resources": {
+        "cpu": 0.5,
+        "memory": "512Mi"
+      }
+    },
+    "task_queue": {
+      "image": "redis:alpine",
+      "replicas": 1,
+      "resources": {
+        "cpu": 0.2,
+        "memory": "256Mi"
+      }
+    },
+    "api_server": {
+      "image": "karen/api-server:latest",
+      "replicas": 3,
+      "resources": {
+        "cpu": 1.0,
+        "memory": "1Gi"
+      }
+    }
+  },
+  "networking": {
+    "internal_communication": true,
+    "load_balancer": true,
+    "service_mesh": false
+  }
+}

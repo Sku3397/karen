@@ -1,0 +1,42 @@
+{
+  "demonstration_timestamp": "2025-06-04T22:53:32.327437",
+  "learning_insights": {
+    "timestamp": "2025-06-04T22:53:32.327442",
+    "system_health": {
+      "status": "good",
+      "score": 0.6387775133053737,
+      "success_rate": 0.8533333333333334,
+      "avg_completion_time_minutes": 374.31912543916764,
+      "total_tasks_analyzed": 75
+    },
+    "learning_progress": {
+      "total_patterns_learned": 45,
+      "failure_patterns_identified": 5,
+      "architecture_improvements_suggested": 5,
+      "data_points_analyzed": 75
+    },
+    "top_insights": [
+      "High-performing pattern: Successful completion with skills: PHONE_SYSTEM (success rate: 100.0%, confidence: 70.0%)",
+      "High-performing pattern: Successful completion with skills: PHONE_SYSTEM, SMS_MANAGEMENT (success rate: 100.0%, confidence: 60.0%)",
+      "High-performing pattern: Agent orchestrator successfully handles phone_call tasks (success rate: 100.0%, confidence: 60.0%)",
+      "Critical issue: Agent sms_engineer experiencing skill_mismatch failures (frequency: 4, impact: 20.0%)",
+      "Critical issue: Agent orchestrator experiencing skill_mismatch failures (frequency: 1, impact: 50.0%)"
+    ],
+    "recommended_actions": [
+      "Address Critical Skill Coverage Gaps: System has 15 skills with insufficient coverage",
+      "Optimize Load Distribution: High variance in agent utilization (variance: 629.9)",
+      "Address Skill Mismatch Issues: System experiencing 11 instances of skill_mismatch failures",
+      "Address skill_mismatch: Review and update agent skill definitions"
+    ],
+    "confidence_metrics": {
+      "overall_confidence": 0.28444444444444444,
+      "avg_pattern_confidence": 0.28444444444444444,
+      "max_pattern_confidence": 0.7,
+      "avg_sample_size": 2.8444444444444446,
+      "total_data_points": 128
+    }
+  },
+  "patterns_discovered": 45,
+  "failures_analyzed": 5,
+  "improvements_suggested": 5
+}

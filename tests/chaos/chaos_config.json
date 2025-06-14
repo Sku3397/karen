@@ -1,0 +1,28 @@
+{
+  "chaos_experiments": {
+    "service_failure": {
+      "probability": 0.1,
+      "duration": 60
+    },
+    "network_latency": {
+      "probability": 0.05,
+      "latency_ms": 1000
+    },
+    "resource_exhaustion": {
+      "probability": 0.02,
+      "duration": 30
+    }
+  },
+  "safety_measures": [
+    "experiment_timeout",
+    "automatic_recovery",
+    "blast_radius_control",
+    "monitoring_alerts"
+  ],
+  "metrics_collection": [
+    "system_resilience",
+    "recovery_time",
+    "error_propagation",
+    "user_impact"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "preferences": {
+    "customer@example.com": {
+      "preferred_times": [],
+      "service_history": [
+        "plumbing"
+      ],
+      "communication_style": "detailed",
+      "language_preference": "en",
+      "price_sensitivity": "medium",
+      "preferred_contractors": [],
+      "budget_range": null,
+      "response_time_preference": "standard",
+      "contact_method_preference": "email",
+      "satisfaction_history": []
+    },
+    "test1@customer.com": {
+      "preferred_times": [],
+      "service_history": [
+        "plumbing"
+      ],
+      "communication_style": "casual",
+      "language_preference": "en",
+      "price_sensitivity": "medium",
+      "preferred_contractors": [],
+      "budget_range": null,
+      "response_time_preference": "standard",
+      "contact_method_preference": "email",
+      "satisfaction_history": []
+    },
+    "test2@customer.com": {
+      "preferred_times": [],
+      "service_history": [
+        "electrical"
+      ],
+      "communication_style": "casual",
+      "language_preference": "en",
+      "price_sensitivity": "medium",
+      "preferred_contractors": [],
+      "budget_range": null,
+      "response_time_preference": "standard",
+      "contact_method_preference": "email",
+      "satisfaction_history": []
+    },
+    "+1234567890": {
+      "preferred_times": [],
+      "service_history": [
+        null
+      ],
+      "communication_style": "casual",
+      "language_preference": "es",
+      "price_sensitivity": "medium",
+      "preferred_contractors": [],
+      "budget_range": null,
+      "response_time_preference": "standard",
+      "contact_method_preference": "email",
+      "satisfaction_history": []
+    },
+    "memory_test@customer.com": {
+      "preferred_times": [],
+      "service_history": [
+        "plumbing",
+        "electrical"
+      ],
+      "communication_style": "casual",
+      "language_preference": "en",
+      "price_sensitivity": "medium",
+      "preferred_contractors": [],
+      "budget_range": null,
+      "response_time_preference": "standard",
+      "contact_method_preference": "email",
+      "satisfaction_history": []
+    }
+  }
+}

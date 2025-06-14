@@ -1,0 +1,13 @@
+{
+  "contributor": "phone_engineer",
+  "type": "voice_integration",
+  "content": {
+    "capabilities": [
+      "make_calls",
+      "transcribe",
+      "tts"
+    ],
+    "status": "operational"
+  },
+  "timestamp": "2025-06-03T00:49:48.712598"
+}

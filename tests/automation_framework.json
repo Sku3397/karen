@@ -1,0 +1,34 @@
+{
+  "test_categories": {
+    "unit_tests": {
+      "pattern": "test_*.py",
+      "runner": "pytest"
+    },
+    "integration_tests": {
+      "pattern": "test_integration_*.py",
+      "runner": "pytest"
+    },
+    "performance_tests": {
+      "pattern": "test_perf_*.py",
+      "runner": "custom"
+    },
+    "security_tests": {
+      "pattern": "test_security_*.py",
+      "runner": "custom"
+    }
+  },
+  "automation_triggers": [
+    "code_change",
+    "deployment_request",
+    "scheduled_run",
+    "manual_trigger"
+  ],
+  "reporting": {
+    "format": "json",
+    "destinations": [
+      "reports/",
+      "logs/"
+    ],
+    "notifications": true
+  }
+}

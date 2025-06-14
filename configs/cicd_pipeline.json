@@ -1,0 +1,26 @@
+{
+  "pipeline_stages": [
+    "source_checkout",
+    "dependency_installation",
+    "code_quality_check",
+    "unit_testing",
+    "integration_testing",
+    "security_scanning",
+    "build_artifacts",
+    "deployment_staging",
+    "acceptance_testing",
+    "production_deployment"
+  ],
+  "quality_gates": {
+    "code_coverage": 80,
+    "security_scan": "no_critical",
+    "performance_test": "baseline_maintained",
+    "manual_approval": "production_only"
+  },
+  "automation_triggers": [
+    "code_commit",
+    "pull_request",
+    "scheduled_build",
+    "manual_trigger"
+  ]
+}

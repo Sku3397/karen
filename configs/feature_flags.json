@@ -1,0 +1,28 @@
+{
+  "flag_types": {
+    "boolean_flags": "simple_on_off",
+    "percentage_flags": "gradual_rollout",
+    "user_segment_flags": "targeted_features",
+    "configuration_flags": "dynamic_config"
+  },
+  "targeting_rules": [
+    "user_attributes",
+    "geographic_location",
+    "device_type",
+    "user_cohort",
+    "random_percentage"
+  ],
+  "flag_lifecycle": [
+    "development",
+    "testing",
+    "gradual_rollout",
+    "full_deployment",
+    "sunset"
+  ],
+  "safety_measures": [
+    "kill_switch",
+    "circuit_breaker",
+    "automatic_rollback",
+    "monitoring_alerts"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "data_sources": [
+    "agent_activity_logs",
+    "task_completion_metrics",
+    "performance_data",
+    "error_logs"
+  ],
+  "processing_stages": [
+    "data_ingestion",
+    "cleaning_transformation",
+    "analysis_computation",
+    "visualization_preparation"
+  ],
+  "outputs": [
+    "daily_reports",
+    "trend_analysis",
+    "performance_insights"
+  ]
+}

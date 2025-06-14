@@ -1,0 +1,22 @@
+{
+  "response_phases": [
+    "detection",
+    "analysis",
+    "containment",
+    "eradication",
+    "recovery",
+    "lessons_learned"
+  ],
+  "team_roles": {
+    "incident_commander": "overall_coordination",
+    "security_analyst": "threat_analysis",
+    "system_admin": "technical_response",
+    "communications": "stakeholder_updates"
+  },
+  "escalation_criteria": [
+    "data_breach",
+    "system_compromise",
+    "service_disruption",
+    "compliance_violation"
+  ]
+}

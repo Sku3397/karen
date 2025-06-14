@@ -1,0 +1,22 @@
+{
+  "total_tasks": 80,
+  "completed": 80,
+  "in_progress": 0,
+  "failed": 0,
+  "pending": 0,
+  "categories": {
+    "NLP_Improvement": 21,
+    "Implementation": 23,
+    "Refactor": 9,
+    "Testing": 10,
+    "Design": 4,
+    "ML_Model": 3,
+    "NewFeature": 5,
+    "Integration": 5
+  },
+  "priorities": {
+    "high": 15,
+    "medium": 46,
+    "low": 19
+  }
+}

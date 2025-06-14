@@ -1,0 +1,27 @@
+{
+  "test_scenarios": {
+    "normal_load": {
+      "users": 100,
+      "duration": 300
+    },
+    "peak_load": {
+      "users": 500,
+      "duration": 180
+    },
+    "stress_test": {
+      "users": 1000,
+      "duration": 60
+    }
+  },
+  "metrics_tracked": [
+    "response_time",
+    "throughput",
+    "error_rate",
+    "resource_utilization"
+  ],
+  "thresholds": {
+    "response_time_p95": 2000,
+    "error_rate_max": 1,
+    "cpu_utilization_max": 80
+  }
+}

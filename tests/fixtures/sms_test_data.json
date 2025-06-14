@@ -1,0 +1,17 @@
+{
+  "appointment_requests": [
+    "Can I schedule a plumbing appointment for tomorrow?",
+    "Need someone to fix my sink ASAP",
+    "Book me for electrical work next week"
+  ],
+  "inquiries": [
+    "What are your rates for bathroom renovation?",
+    "Do you handle emergency calls?",
+    "Are you available on weekends?"
+  ],
+  "confirmations": [
+    "Yes, confirm my 2pm appointment",
+    "The Tuesday slot works for me",
+    "Please reschedule to Friday"
+  ]
+}

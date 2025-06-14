@@ -1,0 +1,33 @@
+{
+  "environments": {
+    "development": {
+      "auto_deploy": true,
+      "resource_limits": "low",
+      "data_source": "synthetic",
+      "monitoring": "basic"
+    },
+    "staging": {
+      "auto_deploy": true,
+      "resource_limits": "medium",
+      "data_source": "production_subset",
+      "monitoring": "comprehensive"
+    },
+    "production": {
+      "auto_deploy": false,
+      "resource_limits": "high",
+      "data_source": "live",
+      "monitoring": "full"
+    }
+  },
+  "promotion_criteria": {
+    "dev_to_staging": [
+      "tests_pass",
+      "code_review_approved"
+    ],
+    "staging_to_prod": [
+      "staging_tests_pass",
+      "manual_approval",
+      "change_window"
+    ]
+  }
+}

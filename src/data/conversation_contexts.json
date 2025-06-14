@@ -1,0 +1,80 @@
+{
+  "customer@example.com": [
+    {
+      "timestamp": "2025-06-05T00:11:06.697885",
+      "customer_message": "\n    Hello! I have an emergency plumbing issue in my kitchen. \n    The sink is leaking badly and water is getting on the floor.\n    I need someone to come out today. What would this cost?\n    ",
+      "response": "Email processed with enhanced NLP",
+      "extracted_entities": [
+        {
+          "service_type": "plumbing",
+          "urgency": "high",
+          "description": "Hello! I have an emergency plumbing issue in my kitchen. The sink is leaking badly and water is getting on the floor"
+        }
+      ]
+    }
+  ],
+  "test1@customer.com": [
+    {
+      "timestamp": "2025-06-05T00:12:55.634691",
+      "customer_message": "Kitchen sink leaking urgently, need plumber",
+      "response": "Email processed with enhanced NLP",
+      "extracted_entities": [
+        {
+          "service_type": "plumbing",
+          "urgency": "low",
+          "description": "Kitchen sink leaking urgently, need plumber"
+        }
+      ]
+    }
+  ],
+  "test2@customer.com": [
+    {
+      "timestamp": "2025-06-05T00:12:55.638906",
+      "customer_message": "Need electrical repair, budget around 250 dollars",
+      "response": "Email processed with enhanced NLP",
+      "extracted_entities": [
+        {
+          "service_type": "electrical",
+          "urgency": "low",
+          "description": "Need electrical repair, budget around 250 dollars"
+        },
+        {
+          "service_type": "general_repair",
+          "urgency": "low",
+          "description": "Need electrical repair, budget around 250 dollars"
+        }
+      ]
+    }
+  ],
+  "memory_test@customer.com": [
+    {
+      "timestamp": "2025-06-05T00:12:55.654193",
+      "customer_message": "Need plumbing repair",
+      "response": "Email processed with enhanced NLP",
+      "extracted_entities": [
+        {
+          "service_type": "plumbing",
+          "urgency": "low",
+          "description": "Need plumbing repair"
+        },
+        {
+          "service_type": "general_repair",
+          "urgency": "low",
+          "description": "Need plumbing repair"
+        }
+      ]
+    },
+    {
+      "timestamp": "2025-06-05T00:12:55.659134",
+      "customer_message": "Also need electrical work",
+      "response": "Email processed with enhanced NLP",
+      "extracted_entities": [
+        {
+          "service_type": "electrical",
+          "urgency": "low",
+          "description": "Also need electrical work"
+        }
+      ]
+    }
+  ]
+}

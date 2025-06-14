@@ -1,0 +1,34 @@
+{
+  "release_types": {
+    "hotfix": {
+      "urgency": "immediate",
+      "approval_required": "minimal",
+      "testing": "targeted",
+      "deployment": "expedited"
+    },
+    "patch": {
+      "urgency": "high",
+      "approval_required": "standard",
+      "testing": "regression",
+      "deployment": "standard"
+    },
+    "minor": {
+      "urgency": "normal",
+      "approval_required": "standard",
+      "testing": "comprehensive",
+      "deployment": "scheduled"
+    },
+    "major": {
+      "urgency": "planned",
+      "approval_required": "extensive",
+      "testing": "full_suite",
+      "deployment": "coordinated"
+    }
+  },
+  "release_schedule": {
+    "hotfix": "as_needed",
+    "patch": "weekly",
+    "minor": "monthly",
+    "major": "quarterly"
+  }
+}

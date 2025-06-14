@@ -1,0 +1,22 @@
+{
+  "archaeologist": {
+    "status": "error",
+    "error": "'AgentCommunication' object has no attribute 'get_agent_status'"
+  },
+  "sms_engineer": {
+    "status": "error",
+    "error": "'AgentCommunication' object has no attribute 'get_agent_status'"
+  },
+  "phone_engineer": {
+    "status": "error",
+    "error": "'AgentCommunication' object has no attribute 'get_agent_status'"
+  },
+  "memory_engineer": {
+    "status": "error",
+    "error": "'AgentCommunication' object has no attribute 'get_agent_status'"
+  },
+  "test_engineer": {
+    "status": "error",
+    "error": "'AgentCommunication' object has no attribute 'get_agent_status'"
+  }
+}

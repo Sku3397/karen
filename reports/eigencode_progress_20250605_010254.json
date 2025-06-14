@@ -1,0 +1,15 @@
+{
+  "total_tasks": 1,
+  "completed": 0,
+  "in_progress": 0,
+  "failed": 0,
+  "pending": 1,
+  "categories": {
+    "NLP_Improvement": 1
+  },
+  "priorities": {
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  }
+}

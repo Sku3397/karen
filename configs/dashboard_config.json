@@ -1,0 +1,21 @@
+{
+  "widgets": [
+    {
+      "type": "task_queue_status",
+      "refresh": 30
+    },
+    {
+      "type": "agent_health",
+      "refresh": 60
+    },
+    {
+      "type": "performance_metrics",
+      "refresh": 120
+    }
+  ],
+  "alerts": {
+    "queue_depth_threshold": 500,
+    "agent_failure_alert": true,
+    "performance_degradation": true
+  }
+}

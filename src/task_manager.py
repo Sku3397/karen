@@ -1,7 +1,7 @@
 # Task Manager & Dependency Tracker Logic
 from typing import List, Dict, Optional
 from google.cloud import firestore
-from firestore_models import create_task, update_task_status, assign_task, get_task
+from .firestore_models import create_task, update_task_status, assign_task, get_task
 import uuid
 
 class TaskManager:

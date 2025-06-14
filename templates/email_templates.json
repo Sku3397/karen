@@ -1,0 +1,14 @@
+{
+  "appointment_confirmation": {
+    "subject": "Appointment Confirmed - {service_type}",
+    "body": "Hi {customer_name},\n\nYour {service_type} appointment has been confirmed for {appointment_time}.\n\nThank you for choosing our services\\!\n\nBest regards,\nKaren"
+  },
+  "quote_request_response": {
+    "subject": "Quote Request - {service_type}",
+    "body": "Hi {customer_name},\n\nThank you for your interest in our {service_type} services. We will review your request and get back to you within 24 hours.\n\nBest regards,\nKaren"
+  },
+  "appointment_reminder": {
+    "subject": "Appointment Reminder - Tomorrow at {time}",
+    "body": "Hi {customer_name},\n\nThis is a friendly reminder about your {service_type} appointment tomorrow at {time}.\n\nSee you then\\!\n\nBest regards,\nKaren"
+  }
+}

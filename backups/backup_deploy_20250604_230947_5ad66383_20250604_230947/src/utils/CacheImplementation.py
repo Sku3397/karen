@@ -1,0 +1,1 @@
+# Cache Implementation\nimport cachetools\n\nclass CacheManager:\n    def __init__(self):\n        self.cache = cachetools.LRUCache(maxsize=1000)\n\n    def get_from_cache(self, key):\n        return self.cache.get(key)\n\n    def update_cache(self, key, value):\n        self.cache[key] = value

@@ -1,0 +1,25 @@
+{
+  "logging_configuration": {
+    "log_levels": {
+      "development": "DEBUG",
+      "staging": "INFO",
+      "production": "WARN"
+    },
+    "log_formats": {
+      "structured": "json",
+      "human_readable": "console",
+      "audit": "custom"
+    },
+    "log_rotation": {
+      "size_based": "100MB",
+      "time_based": "daily",
+      "retention": "30_days"
+    }
+  },
+  "distributed_tracing": {
+    "sampling_rate": 0.1,
+    "trace_correlation": true,
+    "span_collection": true,
+    "performance_monitoring": true
+  }
+}

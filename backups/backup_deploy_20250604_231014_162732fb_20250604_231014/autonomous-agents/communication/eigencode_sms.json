@@ -1,0 +1,18 @@
+{
+  "agent": "sms_engineer",
+  "focus": [
+    "conversation_threading",
+    "template_rendering",
+    "state_management"
+  ],
+  "monitor_files": [
+    "../../src/sms_conversation_manager.py",
+    "../../src/sms_templates.py",
+    "../../src/sms_engineer_agent.py"
+  ],
+  "metrics": [
+    "response_time",
+    "template_accuracy",
+    "conversation_completion_rate"
+  ]
+}

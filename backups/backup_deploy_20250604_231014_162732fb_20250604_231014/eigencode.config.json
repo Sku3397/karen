@@ -1,0 +1,97 @@
+{
+  "project": {
+    "name": "karen-ai",
+    "description": "Multi-agent AI assistant system for handyman services",
+    "version": "1.0.0"
+  },
+  "language": "python",
+  "frameworks": [
+    "fastapi",
+    "celery",
+    "redis",
+    "google-api-python-client",
+    "openai"
+  ],
+  "structure": {
+    "src_dir": "src/",
+    "test_dir": "tests/",
+    "config_dir": "config/",
+    "docs_dir": "docs/"
+  },
+  "style": {
+    "indent": 4,
+    "line_length": 100,
+    "quotes": "double",
+    "trailing_comma": true,
+    "sort_imports": true
+  },
+  "analysis": {
+    "depth": "comprehensive",
+    "include_suggestions": true,
+    "auto_fix": false,
+    "check_patterns": [
+      "security",
+      "performance",
+      "maintainability",
+      "documentation"
+    ]
+  },
+  "agents": {
+    "monitor": [
+      "src/orchestrator_agent.py",
+      "src/communication_agent.py",
+      "src/sms_engineer_agent.py",
+      "src/phone_engineer_agent.py",
+      "src/memory_client.py"
+    ],
+    "patterns": {
+      "agent_communication": "autonomous-agents/shared-knowledge/templates/",
+      "celery_tasks": "src/celery_*.py",
+      "api_endpoints": "src/api/",
+      "test_files": "tests/"
+    }
+  },
+  "daemons": {
+    "interval": 300,
+    "background": true,
+    "log_file": "logs/eigencode.log",
+    "watch_files": [
+      "src/**/*.py",
+      "tests/**/*.py",
+      "autonomous-agents/**/*.py"
+    ]
+  },
+  "integrations": {
+    "github": {
+      "enabled": true,
+      "auto_pr": false,
+      "branch_prefix": "eigencode/"
+    },
+    "slack": {
+      "enabled": false,
+      "webhook_url": null
+    },
+    "email": {
+      "enabled": false,
+      "smtp_server": null
+    }
+  },
+  "rules": {
+    "max_function_length": 50,
+    "max_class_length": 300,
+    "max_file_length": 1000,
+    "complexity_threshold": 10,
+    "test_coverage_min": 80
+  },
+  "exclude": [
+    "node_modules/",
+    ".venv/",
+    "__pycache__/",
+    "*.pyc",
+    ".git/",
+    "dist/",
+    "build/",
+    "logs/",
+    "temp_scripts/"
+  ]
+}

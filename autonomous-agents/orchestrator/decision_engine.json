@@ -1,0 +1,33 @@
+{
+  "decision_types": {
+    "task_prioritization": {
+      "factors": [
+        "urgency",
+        "complexity",
+        "dependencies"
+      ],
+      "algorithm": "weighted_scoring"
+    },
+    "resource_allocation": {
+      "factors": [
+        "capacity",
+        "specialization",
+        "load"
+      ],
+      "algorithm": "optimization"
+    },
+    "escalation_triggers": {
+      "factors": [
+        "error_rate",
+        "timeout",
+        "complexity"
+      ],
+      "algorithm": "threshold_based"
+    }
+  },
+  "confidence_thresholds": {
+    "auto_execute": 0.9,
+    "request_approval": 0.7,
+    "escalate": 0.5
+  }
+}

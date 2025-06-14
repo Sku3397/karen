@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(ls:*)",
+      "Bash(PYTHONPATH=/mnt/c/Users/Man/ultra/projects/karen/autonomous-agents/orchestrator python3 -c \"\nfrom agent_communication import AgentCommunication\ncomm = AgentCommunication('orchestrator')\n\n# Check all agent statuses\nstatuses = comm.get_all_agent_statuses()\nprint('=== Current Agent Statuses ===')\nfor agent, status in statuses.items():\n    print(f'{agent}: {status.get(\\\"status\\\")} - {status.get(\\\"progress\\\")}%')\n\")"
+    ],
+    "deny": []
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "contributor": "archaeologist",
+  "type": "dependency_issue",
+  "content": {
+    "issue": "Redis Python library not available in current environment",
+    "impact": "Blocks AgentCommunication system implementation",
+    "attempted_solutions": [
+      "pip install redis - pip not found",
+      "pip3 install redis - pip3 not found", 
+      "python3 -m pip install redis - pip module not available",
+      "apt install python3-redis - permission denied"
+    ],
+    "workaround_implemented": {
+      "mock_agent_communication": "Create simplified AgentCommunication without Redis",
+      "file_based_messaging": "Use filesystem for agent communication temporarily",
+      "status_tracking": "JSON file-based status updates",
+      "knowledge_sharing": "Direct file writes to knowledge base"
+    },
+    "solution_required": {
+      "install_redis": "Need to install Redis Python library in target environment",
+      "redis_server": "Need Redis server running for message broker",
+      "celery_broker": "Redis required for Celery message broker",
+      "agent_coordination": "Full inter-agent messaging depends on Redis"
+    },
+    "immediate_actions": {
+      "create_mock_implementation": "Implement file-based AgentCommunication",
+      "update_templates": "Provide Redis-free alternatives",
+      "document_requirements": "List all dependencies for deployment",
+      "test_without_redis": "Validate agent functionality without Redis"
+    }
+  },
+  "timestamp": "2025-06-03T22:50:00.000000"
+}

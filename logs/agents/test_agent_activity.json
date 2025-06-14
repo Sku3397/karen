@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp": "2025-06-05T04:17:37.317678",
+    "agent_name": "test_agent",
+    "activity_type": "initialization",
+    "details": {
+      "component": "test_component",
+      "status": "initialized",
+      "config": {
+        "test_param": "test_value"
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:17:37.319803",
+    "agent_name": "test_agent",
+    "activity_type": "task_completion",
+    "details": {
+      "task_id": "test_task_001",
+      "success": true,
+      "duration_seconds": 1.5,
+      "status": "completed",
+      "result": "test completed successfully"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:17:37.329895",
+    "agent_name": "test_agent",
+    "activity_type": "performance_metric",
+    "details": {
+      "metric_name": "response_time",
+      "metric_value": 0.25,
+      "context": {
+        "operation": "test_operation"
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:17:37.339582",
+    "agent_name": "test_agent",
+    "activity_type": "error",
+    "details": {
+      "error_type": "TestError",
+      "error_message": "This is a test error",
+      "context": {
+        "test_context": "error_simulation"
+      }
+    }
+  }
+]

@@ -15,8 +15,10 @@ from .agent_communication import AgentCommunication
 from .sms_client import SMSClient
 from .handyman_sms_engine import HandymanSMSEngine
 from .llm_client import LLMClient
+from .agent_activity_logger import AgentActivityLogger
 
 logger = logging.getLogger(__name__)
+activity_logger = AgentActivityLogger()
 
 class SMSEngineerAgent:
     """
@@ -48,6 +50,17 @@ class SMSEngineerAgent:
         self.errors_count = 0
         
         logger.info(f"SMSEngineerAgent initialized as '{agent_name}'")
+        
+        # Log initialization activity
+        activity_logger.log_activity(
+            agent_name=self.agent_name,
+            activity_type="initialization",
+            details={
+                "karen_phone": self.karen_phone,
+                "admin_phone_configured": self.admin_phone is not None,
+                "timestamp": datetime.now().isoformat()
+            }
+        )
     
     def initialize_clients(self):
         """Initialize SMS client and engine following Karen patterns."""
@@ -66,6 +79,18 @@ class SMSEngineerAgent:
                     llm_client=llm_client
                 )
                 logger.info("SMS engine initialized with LLM support")
+                
+                # Log successful initialization
+                activity_logger.log_activity(
+                    agent_name=self.agent_name,
+                    activity_type="client_initialization",
+                    details={
+                        "sms_client": "initialized",
+                        "sms_engine": "initialized_with_llm",
+                        "business_name": os.getenv('BUSINESS_NAME', 'Beach Handyman'),
+                        "karen_phone": self.karen_phone
+                    }
+                )
             except Exception as e:
                 logger.warning(f"Failed to initialize LLM client: {e}. Using fallback responses.")
                 self.sms_engine = HandymanSMSEngine(
@@ -73,6 +98,18 @@ class SMSEngineerAgent:
                     service_area=os.getenv('SERVICE_AREA', 'Virginia Beach area'),
                     phone=os.getenv('BUSINESS_PHONE', '757-354-4577'),
                     llm_client=None
+                )
+                
+                # Log fallback initialization
+                activity_logger.log_activity(
+                    agent_name=self.agent_name,
+                    activity_type="client_initialization",
+                    details={
+                        "sms_client": "initialized",
+                        "sms_engine": "initialized_without_llm",
+                        "fallback_reason": str(e),
+                        "karen_phone": self.karen_phone
+                    }
                 )
             
             return True
@@ -200,6 +237,17 @@ class SMSEngineerAgent:
                     
                     # Mark as processed
                     self.sms_client.mark_sms_as_processed(msg.get('uid'))
+                
+                # Log batch processing activity
+                activity_logger.log_activity(
+                    agent_name=self.agent_name,
+                    activity_type="sms_batch_processing",
+                    details={
+                        "messages_processed": len(new_messages),
+                        "total_processed": self.messages_processed,
+                        "batch_timestamp": datetime.now().isoformat()
+                    }
+                )
             
         except Exception as e:
             logger.error(f"Error fetching SMS: {e}", exc_info=True)

@@ -1,0 +1,365 @@
+{
+  "learning_insights": {
+    "timestamp": "2025-06-04T22:53:32.326104",
+    "system_health": {
+      "status": "good",
+      "score": 0.6387775133053737,
+      "success_rate": 0.8533333333333334,
+      "avg_completion_time_minutes": 374.31912543916764,
+      "total_tasks_analyzed": 75
+    },
+    "learning_progress": {
+      "total_patterns_learned": 45,
+      "failure_patterns_identified": 5,
+      "architecture_improvements_suggested": 5,
+      "data_points_analyzed": 75
+    },
+    "top_insights": [
+      "High-performing pattern: Successful completion with skills: PHONE_SYSTEM (success rate: 100.0%, confidence: 70.0%)",
+      "High-performing pattern: Successful completion with skills: PHONE_SYSTEM, SMS_MANAGEMENT (success rate: 100.0%, confidence: 60.0%)",
+      "High-performing pattern: Agent orchestrator successfully handles phone_call tasks (success rate: 100.0%, confidence: 60.0%)",
+      "Critical issue: Agent sms_engineer experiencing skill_mismatch failures (frequency: 4, impact: 20.0%)",
+      "Critical issue: Agent orchestrator experiencing skill_mismatch failures (frequency: 1, impact: 50.0%)"
+    ],
+    "recommended_actions": [
+      "Address Critical Skill Coverage Gaps: System has 15 skills with insufficient coverage",
+      "Optimize Load Distribution: High variance in agent utilization (variance: 629.9)",
+      "Address Skill Mismatch Issues: System experiencing 11 instances of skill_mismatch failures",
+      "Address skill_mismatch: Review and update agent skill definitions"
+    ],
+    "confidence_metrics": {
+      "overall_confidence": 0.28444444444444444,
+      "avg_pattern_confidence": 0.28444444444444444,
+      "max_pattern_confidence": 0.7,
+      "avg_sample_size": 2.8444444444444446,
+      "total_data_points": 128
+    }
+  },
+  "success_patterns": {
+    "timestamp": "2025-06-04T22:53:32.326267",
+    "total_patterns": 45,
+    "high_confidence_patterns": [],
+    "skill_success_analysis": {
+      "MEMORY_OPERATIONS, SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 396.5076365286071,
+        "sample_size": 4,
+        "confidence": 0.4
+      },
+      "EMAIL_HANDLING, SMS_MANAGEMENT, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 710.9022639534709,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "EMAIL_HANDLING, PHONE_SYSTEM": {
+        "success_rate": 1.0,
+        "avg_completion_time": 348.58548384779425,
+        "sample_size": 5,
+        "confidence": 0.5
+      },
+      "PHONE_SYSTEM, SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 430.0959236285799,
+        "sample_size": 6,
+        "confidence": 0.6
+      },
+      "PHONE_SYSTEM": {
+        "success_rate": 1.0,
+        "avg_completion_time": 493.86341377432785,
+        "sample_size": 7,
+        "confidence": 0.7
+      },
+      "EMAIL_HANDLING, PHONE_SYSTEM, SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 15.561821054296697,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "MEMORY_OPERATIONS": {
+        "success_rate": 1.0,
+        "avg_completion_time": 221.4886689342435,
+        "sample_size": 2,
+        "confidence": 0.2
+      },
+      "EMAIL_HANDLING, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 377.2402627293065,
+        "sample_size": 3,
+        "confidence": 0.3
+      },
+      "EMAIL_HANDLING, MEMORY_OPERATIONS, SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 254.82210634236276,
+        "sample_size": 4,
+        "confidence": 0.4
+      },
+      "EMAIL_HANDLING, MEMORY_OPERATIONS": {
+        "success_rate": 1.0,
+        "avg_completion_time": 185.86546814317776,
+        "sample_size": 3,
+        "confidence": 0.3
+      },
+      "MEMORY_OPERATIONS, PHONE_SYSTEM": {
+        "success_rate": 1.0,
+        "avg_completion_time": 521.1163191791125,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "EMAIL_HANDLING, PHONE_SYSTEM, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 413.9139092134131,
+        "sample_size": 4,
+        "confidence": 0.4
+      },
+      "SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 471.56354498564707,
+        "sample_size": 3,
+        "confidence": 0.3
+      },
+      "MEMORY_OPERATIONS, SMS_MANAGEMENT, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 214.7360939183272,
+        "sample_size": 3,
+        "confidence": 0.3
+      },
+      "PHONE_SYSTEM, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 890.3572181794759,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "EMAIL_HANDLING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 376.2940245395249,
+        "sample_size": 4,
+        "confidence": 0.4
+      },
+      "PHONE_SYSTEM, SMS_MANAGEMENT, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 249.9789625269402,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "SMS_MANAGEMENT, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 606.0274428122074,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "EMAIL_HANDLING, SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 144.30235090598285,
+        "sample_size": 2,
+        "confidence": 0.2
+      },
+      "EMAIL_HANDLING, MEMORY_OPERATIONS, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 201.58333798155672,
+        "sample_size": 1,
+        "confidence": 0.1
+      },
+      "TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 448.87093631800553,
+        "sample_size": 3,
+        "confidence": 0.3
+      },
+      "MEMORY_OPERATIONS, PHONE_SYSTEM, TESTING": {
+        "success_rate": 1.0,
+        "avg_completion_time": 377.4212498423858,
+        "sample_size": 2,
+        "confidence": 0.2
+      },
+      "MEMORY_OPERATIONS, PHONE_SYSTEM, SMS_MANAGEMENT": {
+        "success_rate": 1.0,
+        "avg_completion_time": 316.4728204223363,
+        "sample_size": 2,
+        "confidence": 0.2
+      }
+    },
+    "agent_performance_analysis": {
+      "phone_engineer": {
+        "avg_success_rate": 1.0,
+        "avg_completion_time": 361.48918505710736,
+        "total_tasks_analyzed": 12,
+        "pattern_count": 5
+      },
+      "memory_engineer": {
+        "avg_success_rate": 1.0,
+        "avg_completion_time": 473.5991155518882,
+        "total_tasks_analyzed": 8,
+        "pattern_count": 4
+      },
+      "sms_engineer": {
+        "avg_success_rate": 1.0,
+        "avg_completion_time": 336.1006032920374,
+        "total_tasks_analyzed": 18,
+        "pattern_count": 5
+      },
+      "test_engineer": {
+        "avg_success_rate": 1.0,
+        "avg_completion_time": 388.6936651258224,
+        "total_tasks_analyzed": 11,
+        "pattern_count": 4
+      },
+      "orchestrator": {
+        "avg_success_rate": 1.0,
+        "avg_completion_time": 320.34028055518684,
+        "total_tasks_analyzed": 15,
+        "pattern_count": 4
+      }
+    },
+    "recommendations": []
+  },
+  "failure_analysis": {
+    "timestamp": "2025-06-04T22:53:32.326381",
+    "total_failure_patterns": 5,
+    "failure_breakdown": {
+      "skill_mismatch": {
+        "pattern_count": 5,
+        "total_frequency": 11,
+        "avg_impact_score": 0.29,
+        "affected_agents": 5
+      }
+    },
+    "most_affected_agents": {
+      "sms_engineer": 4,
+      "phone_engineer": 3,
+      "test_engineer": 2,
+      "orchestrator": 1,
+      "memory_engineer": 1
+    },
+    "critical_issues": [],
+    "mitigation_summary": {
+      "Review and update agent skill definitions": 5,
+      "Implement cross-training between agents": 5,
+      "Add skill validation before task assignment": 5
+    }
+  },
+  "architecture_improvements": [
+    {
+      "improvement_id": "skill_coverage_enhancement",
+      "category": "skill_distribution",
+      "title": "Address Critical Skill Coverage Gaps",
+      "description": "System has 15 skills with insufficient coverage",
+      "rationale": "Multiple skills have fewer than 2 agents, creating single points of failure",
+      "expected_benefits": [
+        "Improved system resilience",
+        "Better task distribution",
+        "Reduced bottlenecks"
+      ],
+      "implementation_effort": "medium",
+      "priority": "high",
+      "affected_components": [
+        "agent_skills",
+        "task_routing"
+      ],
+      "metrics_to_track": [
+        "skill_coverage_percentage",
+        "task_assignment_success_rate"
+      ],
+      "suggested_timeline": "2-3 weeks",
+      "confidence": 0.8
+    },
+    {
+      "improvement_id": "skill_expertise_improvement",
+      "category": "skill_development",
+      "title": "Improve Agent Skill Expertise",
+      "description": "System has 5 skills with low expertise ratings",
+      "rationale": "Low skill ratings indicate agents need additional training or experience",
+      "expected_benefits": [
+        "Higher task success rates",
+        "Faster completion times",
+        "Better quality outcomes"
+      ],
+      "implementation_effort": "high",
+      "priority": "medium",
+      "affected_components": [
+        "agent_training",
+        "skill_ratings"
+      ],
+      "metrics_to_track": [
+        "average_skill_rating",
+        "task_success_rate"
+      ],
+      "suggested_timeline": "4-6 weeks",
+      "confidence": 0.7
+    },
+    {
+      "improvement_id": "load_balancing_optimization",
+      "category": "load_balancing",
+      "title": "Optimize Load Distribution",
+      "description": "High variance in agent utilization (variance: 629.9)",
+      "rationale": "Uneven load distribution leads to bottlenecks and inefficient resource usage",
+      "expected_benefits": [
+        "More even resource utilization",
+        "Reduced system bottlenecks",
+        "Improved overall throughput"
+      ],
+      "implementation_effort": "medium",
+      "priority": "high",
+      "affected_components": [
+        "task_routing",
+        "load_balancer"
+      ],
+      "metrics_to_track": [
+        "utilization_variance",
+        "average_response_time"
+      ],
+      "suggested_timeline": "2-3 weeks",
+      "confidence": 0.8
+    },
+    {
+      "improvement_id": "capacity_optimization",
+      "category": "capacity_management",
+      "title": "Optimize System Capacity",
+      "description": "Low average utilization (27.8%) suggests over-provisioning",
+      "rationale": "Low utilization indicates potential for capacity reduction or increased workload",
+      "expected_benefits": [
+        "Better resource efficiency",
+        "Cost optimization",
+        "Right-sized system capacity"
+      ],
+      "implementation_effort": "low",
+      "priority": "medium",
+      "affected_components": [
+        "agent_capacity",
+        "system_scaling"
+      ],
+      "metrics_to_track": [
+        "average_utilization",
+        "cost_per_task"
+      ],
+      "suggested_timeline": "1-2 weeks",
+      "confidence": 0.6
+    },
+    {
+      "improvement_id": "address_skill_mismatch_failures",
+      "category": "reliability",
+      "title": "Address Skill Mismatch Issues",
+      "description": "System experiencing 11 instances of skill_mismatch failures",
+      "rationale": "skill_mismatch is the most common failure type, indicating systemic issues",
+      "expected_benefits": [
+        "Reduced failure rate",
+        "Improved system reliability",
+        "Better user experience"
+      ],
+      "implementation_effort": "high",
+      "priority": "critical",
+      "affected_components": [
+        "skill_system",
+        "task_routing",
+        "agent_capabilities"
+      ],
+      "metrics_to_track": [
+        "failure_rate",
+        "system_uptime",
+        "task_success_rate"
+      ],
+      "suggested_timeline": "3-4 weeks",
+      "confidence": 0.9
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+[
+  {
+    "task_id": "SMS_INTEGRATION_001",
+    "task_type": "implement_sms_features",
+    "required_skills": [
+      "sms_integration",
+      "nlp_processing",
+      "python_development"
+    ],
+    "selected_agent": "sms_engineer",
+    "agent_scores": {
+      "sms_engineer": 1.32
+    },
+    "timestamp": "2025-06-04T22:46:05.686032",
+    "priority": 2
+  },
+  {
+    "task_id": "MEM_OPT_001",
+    "task_type": "optimize_memory_performance",
+    "required_skills": [
+      "memory_management",
+      "database_operations",
+      "performance_optimization"
+    ],
+    "selected_agent": "memory_engineer",
+    "agent_scores": {
+      "memory_engineer": 1.0
+    },
+    "timestamp": "2025-06-04T22:46:05.686739",
+    "priority": 3
+  },
+  {
+    "task_id": "BATCH_TASK_000",
+    "task_type": "process_data",
+    "required_skills": [
+      "python_development"
+    ],
+    "selected_agent": "sms_engineer",
+    "agent_scores": {
+      "sms_engineer": 1.0,
+      "phone_engineer": 1.0,
+      "memory_engineer": 1.0,
+      "test_engineer": 1.0,
+      "archaeologist": 1.0
+    },
+    "timestamp": "2025-06-04T22:46:05.695998",
+    "priority": 3
+  },
+  {
+    "task_id": "BATCH_TASK_001",
+    "task_type": "process_data",
+    "required_skills": [
+      "python_development"
+    ],
+    "selected_agent": "phone_engineer",
+    "agent_scores": {
+      "sms_engineer": 0.9166666666666666,
+      "phone_engineer": 1.0,
+      "memory_engineer": 1.0,
+      "test_engineer": 1.0,
+      "archaeologist": 1.0
+    },
+    "timestamp": "2025-06-04T22:46:13.830486",
+    "priority": 3
+  },
+  {
+    "task_id": "BATCH_TASK_002",
+    "task_type": "process_data",
+    "required_skills": [
+      "python_development"
+    ],
+    "selected_agent": "memory_engineer",
+    "agent_scores": {
+      "sms_engineer": 0.9166666666666666,
+      "phone_engineer": 0.9166666666666666,
+      "memory_engineer": 1.0,
+      "test_engineer": 1.0,
+      "archaeologist": 1.0
+    },
+    "timestamp": "2025-06-04T22:46:21.914176",
+    "priority": 3
+  },
+  {
+    "task_id": "BATCH_TASK_003",
+    "task_type": "process_data",
+    "required_skills": [
+      "python_development"
+    ],
+    "selected_agent": "test_engineer",
+    "agent_scores": {
+      "sms_engineer": 0.9166666666666666,
+      "phone_engineer": 0.9166666666666666,
+      "memory_engineer": 0.9166666666666666,
+      "test_engineer": 1.0,
+      "archaeologist": 1.0
+    },
+    "timestamp": "2025-06-04T22:46:30.044734",
+    "priority": 3
+  },
+  {
+    "task_id": "BATCH_TASK_004",
+    "task_type": "process_data",
+    "required_skills": [
+      "python_development"
+    ],
+    "selected_agent": "archaeologist",
+    "agent_scores": {
+      "sms_engineer": 0.9166666666666666,
+      "phone_engineer": 0.9166666666666666,
+      "memory_engineer": 0.9166666666666666,
+      "test_engineer": 0.9166666666666666,
+      "archaeologist": 1.0
+    },
+    "timestamp": "2025-06-04T22:46:38.148813",
+    "priority": 3
+  },
+  {
+    "task_id": "SMS_FEATURE_DEV",
+    "task_type": "feature_development",
+    "required_skills": [
+      "sms_integration",
+      "nlp_processing"
+    ],
+    "selected_agent": "sms_engineer",
+    "agent_scores": {
+      "sms_engineer": 1.1642400000000002
+    },
+    "timestamp": "2025-06-04T22:46:46.273004",
+    "priority": 2
+  },
+  {
+    "task_id": "VOICE_TESTING",
+    "task_type": "testing",
+    "required_skills": [
+      "voice_processing",
+      "testing_automation"
+    ],
+    "selected_agent": "phone_engineer",
+    "agent_scores": {
+      "phone_engineer": 0.9166666666666666
+    },
+    "timestamp": "2025-06-04T22:46:54.331955",
+    "priority": 3
+  },
+  {
+    "task_id": "MEMORY_ANALYSIS",
+    "task_type": "analysis",
+    "required_skills": [
+      "memory_management",
+      "performance_optimization"
+    ],
+    "selected_agent": "memory_engineer",
+    "agent_scores": {
+      "memory_engineer": 0.902
+    },
+    "timestamp": "2025-06-04T22:47:02.432670",
+    "priority": 3
+  }
+]

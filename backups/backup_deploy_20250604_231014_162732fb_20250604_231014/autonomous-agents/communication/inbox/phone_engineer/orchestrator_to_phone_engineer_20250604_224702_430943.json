@@ -1,0 +1,26 @@
+{
+  "from": "orchestrator",
+  "to": "phone_engineer",
+  "type": "task_assignment",
+  "content": {
+    "task_id": "VOICE_TESTING",
+    "task_type": "testing",
+    "description": "Create integration tests for voice transcription",
+    "priority": 3,
+    "required_skills": [
+      "voice_processing",
+      "testing_automation"
+    ],
+    "estimated_duration": 90,
+    "deadline": "2025-06-06T22:46:54.331895",
+    "retry_count": 0,
+    "max_retries": 3,
+    "skill_weights": {
+      "voice_processing": 1.0,
+      "testing_automation": 1.0
+    },
+    "assigned_at": "2025-06-04T22:46:54.333551",
+    "assigned_by": "orchestrator"
+  },
+  "timestamp": "2025-06-04T22:46:54.333555"
+}

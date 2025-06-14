@@ -1,0 +1,17 @@
+{
+  "deployment_id": "deploy_20250604_230947_5ad66383",
+  "backup_time": "2025-06-04T23:09:47.745781",
+  "version": "v1.0.0",
+  "commit_hash": "096e7a7d",
+  "backup_items": [
+    "src/",
+    "autonomous-agents/",
+    "tasks/",
+    "logs/",
+    "*.py",
+    "*.json",
+    "*.md",
+    "requirements.txt",
+    ".env"
+  ]
+}

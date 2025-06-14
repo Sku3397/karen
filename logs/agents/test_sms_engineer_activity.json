@@ -1,0 +1,485 @@
+[
+  {
+    "timestamp": "2025-06-05T04:19:47.876535",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:19:47.876524"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:47.877216",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:50.311239",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:19:50.311231"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:50.318263",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:53.124031",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:19:53.124023"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:53.131517",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:56.040599",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:19:56.040592"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:19:56.050688",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:20:01.785399",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:20:01.785390"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:20:01.792296",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:21:01.441695",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:21:01.441688"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:21:01.442477",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:21:03.515457",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:21:03.515448"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:21:03.523769",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:26:53.879417",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:26:53.879406"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:26:53.880449",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:25.214800",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:29:25.214789"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:25.222872",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:30.156983",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:29:30.156975"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:30.164001",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:35.420270",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:29:35.420262"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:35.426129",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:40.508958",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:29:40.508945"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:40.516571",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:45.568291",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:29:45.568283"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:29:45.575977",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:30:32.929672",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:30:32.929661"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:30:32.937163",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:30:35.465267",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:30:35.465252"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:30:35.473333",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:32:34.642386",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:32:34.642376"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:32:34.643619",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:32:42.297496",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:32:42.297487"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:32:42.305400",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:33:27.452837",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:33:27.452829"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:33:27.461944",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:43:56.263773",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:43:56.263759"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:43:56.265761",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:44:53.006796",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:44:53.006787"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:44:53.014514",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:45:45.287911",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:45:45.287900"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:45:45.289545",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:46:02.868055",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:46:02.868044"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:46:02.878105",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:46:23.823454",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "initialization",
+    "details": {
+      "karen_phone": "+17575551234",
+      "admin_phone_configured": true,
+      "timestamp": "2025-06-05T00:46:23.823437"
+    }
+  },
+  {
+    "timestamp": "2025-06-05T04:46:23.837342",
+    "agent_name": "test_sms_engineer",
+    "activity_type": "client_initialization",
+    "details": {
+      "sms_client": "initialized",
+      "sms_engine": "initialized_with_llm",
+      "business_name": "Beach Handyman",
+      "karen_phone": "+17575551234"
+    }
+  }
+]

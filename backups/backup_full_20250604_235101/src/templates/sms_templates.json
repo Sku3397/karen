@@ -1,0 +1,244 @@
+{
+  "welcome_new_customer": {
+    "category": "greeting",
+    "template": "Hi {customer_name}! Welcome to 757 Handy. I'm Karen, your AI assistant. How can I help you today?",
+    "variables": [
+      "customer_name"
+    ],
+    "fallback": "Hi! Welcome to 757 Handy. I'm Karen, your AI assistant. How can I help you today?"
+  },
+  "general_greeting": {
+    "category": "greeting",
+    "template": "Hello {customer_name}! Thanks for contacting 757 Handy. What can I help you with today?",
+    "variables": [
+      "customer_name"
+    ],
+    "fallback": "Hello! Thanks for contacting 757 Handy. What can I help you with today?"
+  },
+  "returning_customer": {
+    "category": "greeting",
+    "template": "Hi {customer_name}! Great to hear from you again. How can I help you today?",
+    "variables": [
+      "customer_name"
+    ],
+    "fallback": "Hi! Great to hear from you again. How can I help you today?"
+  },
+  "appointment_confirmation": {
+    "category": "appointment",
+    "template": "\u2705 Confirmed! {customer_name}, your {service_type} appointment is scheduled for {date} at {time}. Address: {address}. Reply Y to confirm or C to change.",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "date",
+      "time",
+      "address"
+    ],
+    "fallback": "\u2705 Your appointment is confirmed! We'll send details shortly."
+  },
+  "appointment_reminder": {
+    "category": "appointment",
+    "template": "\ud83d\udcc5 Reminder: {customer_name}, you have a {service_type} appointment tomorrow at {time}. Our tech {tech_name} will arrive then. Questions?",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "time",
+      "tech_name"
+    ],
+    "fallback": "\ud83d\udcc5 Reminder: You have a service appointment tomorrow. Our tech will contact you."
+  },
+  "appointment_scheduling": {
+    "category": "appointment",
+    "template": "I'd be happy to schedule your {service_type}! I have these times available: {available_times}. Which works best for you?",
+    "variables": [
+      "service_type",
+      "available_times"
+    ],
+    "fallback": "I'd be happy to schedule your service! What times work best for you?"
+  },
+  "tech_arrival": {
+    "category": "appointment",
+    "template": "\ud83d\ude9b {tech_name} is {eta_minutes} minutes away for your {service_type} appointment! Please be available. His contact: {tech_phone}",
+    "variables": [
+      "tech_name",
+      "eta_minutes",
+      "service_type",
+      "tech_phone"
+    ],
+    "fallback": "\ud83d\ude9b Our technician is on the way! Please be available."
+  },
+  "quote_request_response": {
+    "category": "quote",
+    "template": "I'd be happy to provide a quote for {service_description}! To give you an accurate estimate, I need: 1) Your address 2) Photos if possible 3) When you need it done",
+    "variables": [
+      "service_description"
+    ],
+    "fallback": "I'd be happy to provide a quote! Can you describe what you need done and your address?"
+  },
+  "quote_provided": {
+    "category": "quote",
+    "template": "\ud83d\udcb0 Quote for {customer_name}: {service_description} - Estimated ${min_cost}-${max_cost}. Includes {what_included}. Valid 30 days. Book now?",
+    "variables": [
+      "customer_name",
+      "service_description",
+      "min_cost",
+      "max_cost",
+      "what_included"
+    ],
+    "fallback": "\ud83d\udcb0 Here's your quote! I'll send the detailed estimate shortly."
+  },
+  "quote_followup": {
+    "category": "quote",
+    "template": "Hi {customer_name}! Following up on your {service_type} quote from {days_ago} days ago. Any questions? Ready to schedule?",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "days_ago"
+    ],
+    "fallback": "Hi! Following up on your recent quote. Any questions? Ready to schedule?"
+  },
+  "yes_confirmation": {
+    "category": "confirmation",
+    "template": "Perfect! {customer_name}, I've confirmed your request. {next_steps}",
+    "variables": [
+      "customer_name",
+      "next_steps"
+    ],
+    "fallback": "Perfect! I've confirmed your request. You'll hear from us shortly."
+  },
+  "reschedule_confirmation": {
+    "category": "confirmation",
+    "template": "No problem! I'll help you reschedule your {service_type}. What dates/times work better for you?",
+    "variables": [
+      "service_type"
+    ],
+    "fallback": "No problem! I'll help you reschedule. What dates/times work better for you?"
+  },
+  "cancellation_confirmation": {
+    "category": "confirmation",
+    "template": "Understood, {customer_name}. I've cancelled your {service_type} appointment for {date}. Hope to help you in the future!",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "date"
+    ],
+    "fallback": "Understood. I've cancelled your appointment. Hope to help you in the future!"
+  },
+  "emergency_response": {
+    "category": "emergency",
+    "template": "\ud83d\udea8 EMERGENCY received! {customer_name}, I'm dispatching our emergency team to {address} immediately. ETA: {eta}. Stay safe!",
+    "variables": [
+      "customer_name",
+      "address",
+      "eta"
+    ],
+    "fallback": "\ud83d\udea8 EMERGENCY received! I'm dispatching our emergency team immediately. Stay safe!"
+  },
+  "emergency_followup": {
+    "category": "emergency",
+    "template": "Emergency update: Our tech {tech_name} is en route to your {issue_type} emergency. ETA: {eta}. Direct contact: {tech_phone}",
+    "variables": [
+      "tech_name",
+      "issue_type",
+      "eta",
+      "tech_phone"
+    ],
+    "fallback": "Emergency update: Our technician is on the way. You'll receive contact info shortly."
+  },
+  "after_hours": {
+    "category": "business_hours",
+    "template": "Thanks for contacting 757 Handy! Our office hours are {business_hours}. For emergencies, reply URGENT. We'll respond first thing tomorrow!",
+    "variables": [
+      "business_hours"
+    ],
+    "fallback": "Thanks for contacting 757 Handy! Our office hours are 8AM-6PM Mon-Fri. For emergencies, reply URGENT."
+  },
+  "holiday_hours": {
+    "category": "business_hours",
+    "template": "Happy {holiday}! We're closed today but will respond to your message on {return_date}. For emergencies, reply URGENT.",
+    "variables": [
+      "holiday",
+      "return_date"
+    ],
+    "fallback": "We're closed for the holiday but will respond soon. For emergencies, reply URGENT."
+  },
+  "service_completion": {
+    "category": "follow_up",
+    "template": "\u2705 Service complete! {customer_name}, your {service_type} is finished. Total: ${amount}. How was {tech_name}'s work? Rate 1-5:",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "amount",
+      "tech_name"
+    ],
+    "fallback": "\u2705 Service complete! How was our work? Please rate 1-5 and share any feedback."
+  },
+  "feedback_request": {
+    "category": "follow_up",
+    "template": "Hi {customer_name}! How was your {service_type} experience? Your feedback helps us improve. Reply with any comments or concerns.",
+    "variables": [
+      "customer_name",
+      "service_type"
+    ],
+    "fallback": "Hi! How was your service experience? Your feedback helps us improve."
+  },
+  "referral_request": {
+    "category": "follow_up",
+    "template": "Glad you're happy with our service, {customer_name}! Know someone who needs {service_type} work? You both get $25 off when they mention you!",
+    "variables": [
+      "customer_name",
+      "service_type"
+    ],
+    "fallback": "Glad you're happy with our service! Refer a friend and you both get $25 off!"
+  },
+  "payment_reminder": {
+    "category": "payment",
+    "template": "Friendly reminder: {customer_name}, ${amount} is due for {service_type} completed on {service_date}. Pay online: {payment_link}",
+    "variables": [
+      "customer_name",
+      "amount",
+      "service_type",
+      "service_date",
+      "payment_link"
+    ],
+    "fallback": "Friendly reminder: Payment is due for your recent service. Please contact us to complete payment."
+  },
+  "payment_received": {
+    "category": "payment",
+    "template": "Payment received! Thanks {customer_name}. ${amount} paid for {service_type}. Receipt sent to {email}. Pleasure working with you!",
+    "variables": [
+      "customer_name",
+      "amount",
+      "service_type",
+      "email"
+    ],
+    "fallback": "Payment received! Thanks for your business. Receipt sent to your email."
+  },
+  "need_more_info": {
+    "category": "general",
+    "template": "I'd love to help! Could you provide more details about {topic}? The more info you give me, the better I can assist you.",
+    "variables": [
+      "topic"
+    ],
+    "fallback": "I'd love to help! Could you provide more details? The more info you give me, the better I can assist."
+  },
+  "transfer_to_human": {
+    "category": "general",
+    "template": "I'm connecting you with our human team for specialized help with {issue}. Expect a call within {timeframe}.",
+    "variables": [
+      "issue",
+      "timeframe"
+    ],
+    "fallback": "I'm connecting you with our human team for specialized help. Expect a call soon."
+  },
+  "weather_delay": {
+    "category": "general",
+    "template": "Weather alert! {customer_name}, your {time} appointment is delayed due to {weather_condition}. New time: {new_time}. Sorry for inconvenience!",
+    "variables": [
+      "customer_name",
+      "time",
+      "weather_condition",
+      "new_time"
+    ],
+    "fallback": "Weather alert! Your appointment is delayed due to weather. We'll contact you with new time."
+  }
+}

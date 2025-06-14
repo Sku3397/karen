@@ -1,0 +1,1 @@
+import React from 'react';\n\nfunction UserProfile() {\n  return (<div>User Profile Component</div>);\n}\n\nexport default UserProfile;

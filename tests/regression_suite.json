@@ -1,0 +1,20 @@
+{
+  "test_categories": [
+    "core_functionality",
+    "api_endpoints",
+    "data_processing",
+    "user_workflows"
+  ],
+  "test_selection_criteria": [
+    "critical_path_coverage",
+    "recent_changes_impact",
+    "historical_failure_rate",
+    "business_importance"
+  ],
+  "execution_strategy": {
+    "parallel_execution": true,
+    "test_isolation": true,
+    "retry_on_failure": true,
+    "results_comparison": true
+  }
+}

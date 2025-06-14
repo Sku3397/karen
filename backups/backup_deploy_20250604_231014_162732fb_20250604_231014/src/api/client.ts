@@ -1,0 +1,1 @@
+import axios from 'axios';\n\nconst client = axios.create({ baseURL: 'API_BASE_URL' });\n\nexport default client;

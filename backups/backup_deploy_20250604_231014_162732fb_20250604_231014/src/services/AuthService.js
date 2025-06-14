@@ -1,0 +1,1 @@
+class AuthService {\n  static authenticate() {\n    // logic to authenticate using OAuth 2.0\n  }\n}\n\nexport default AuthService;

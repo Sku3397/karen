@@ -1,0 +1,17 @@
+{
+  "agent": "memory_engineer", 
+  "focus": [
+    "context_retrieval",
+    "memory_persistence",
+    "cross_medium_integration"
+  ],
+  "monitor_files": [
+    "../../src/memory_client.py",
+    "../../src/context_manager.py"
+  ],
+  "metrics": [
+    "retrieval_accuracy",
+    "memory_utilization",
+    "context_relevance"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "from": "orchestrator",
+  "to": "sms_engineer",
+  "type": "task_assignment",
+  "content": {
+    "task_id": "BATCH_TASK_000",
+    "task_type": "process_data",
+    "description": "Process data batch 0",
+    "priority": 3,
+    "required_skills": [
+      "python_development"
+    ],
+    "estimated_duration": 45,
+    "deadline": null,
+    "retry_count": 0,
+    "max_retries": 3,
+    "skill_weights": {
+      "python_development": 1.0
+    },
+    "assigned_at": "2025-06-04T22:46:05.702788",
+    "assigned_by": "orchestrator"
+  },
+  "timestamp": "2025-06-04T22:46:05.702795"
+}

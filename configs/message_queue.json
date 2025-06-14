@@ -1,0 +1,28 @@
+{
+  "queue_types": {
+    "task_queue": {
+      "type": "priority_queue",
+      "persistence": true,
+      "max_retries": 3,
+      "dead_letter_queue": true
+    },
+    "event_queue": {
+      "type": "pub_sub",
+      "persistence": false,
+      "fanout": true,
+      "message_ordering": false
+    },
+    "notification_queue": {
+      "type": "fifo_queue",
+      "persistence": true,
+      "max_retries": 5,
+      "delay_delivery": true
+    }
+  },
+  "consumer_configuration": {
+    "concurrent_consumers": 5,
+    "batch_processing": true,
+    "prefetch_count": 10,
+    "acknowledgment_mode": "manual"
+  }
+}

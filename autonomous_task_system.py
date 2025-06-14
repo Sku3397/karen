@@ -43,8 +43,28 @@ class AutonomousTaskSystem:
         self.memory_threshold = 80  # Use up to 80% of RAM
         self.cpu_threshold = 90     # Use up to 90% of CPU
         
+        # Task completion tracking
+        self.processed_task_files = set()  # Track processed completion files
+        self.completion_monitor_running = False
+        
         # Task templates for continuous work
         self.task_templates = self.load_task_templates()
+        
+        # Process any existing completed tasks
+        self.process_existing_completed_tasks()
+        
+        # Start completion monitoring
+        self.start_completion_monitor()
+    
+    def process_existing_completed_tasks(self):
+        """Process any completed task files that exist at startup"""
+        logging.info("Processing existing completed tasks...")
+        
+        try:
+            self.check_completed_tasks()
+            logging.info("Finished processing existing completed tasks")
+        except Exception as e:
+            logging.error(f"Error processing existing completed tasks: {e}", exc_info=True)
         
     def load_task_templates(self):
         """Load predefined task templates for each agent"""
@@ -323,6 +343,120 @@ print("Test task {task['id']} completed")
         # Similar for archaeologist and memory_engineer...
         return instructions.get(agent_name, f"Execute task: {task}")
         
+    def start_completion_monitor(self):
+        """Start the background completion monitoring thread"""
+        if not self.completion_monitor_running:
+            self.completion_monitor_running = True
+            monitor_thread = threading.Thread(
+                target=self.monitor_task_completions,
+                daemon=True,
+                name="TaskCompletionMonitor"
+            )
+            monitor_thread.start()
+            logging.info("Started task completion monitoring thread")
+    
+    def monitor_task_completions(self):
+        """Background thread to monitor for completed tasks"""
+        logging.info("Task completion monitor started")
+        
+        while self.completion_monitor_running:
+            try:
+                self.check_completed_tasks()
+                time.sleep(10)  # Check every 10 seconds
+            except Exception as e:
+                logging.error(f"Error in task completion monitor: {e}", exc_info=True)
+                time.sleep(30)  # Wait longer on error
+    
+    def check_completed_tasks(self):
+        """Check for completed task files and update counters"""
+        active_tasks_dir = Path('active_tasks')
+        
+        if not active_tasks_dir.exists():
+            return
+        
+        # Look for completed task files
+        completed_files = list(active_tasks_dir.glob('*_current_task_completed.json'))
+        
+        for completed_file in completed_files:
+            file_path = str(completed_file)
+            
+            # Skip if already processed
+            if file_path in self.processed_task_files:
+                continue
+            
+            try:
+                # Read the completed task file
+                with open(completed_file, 'r') as f:
+                    task_data = json.load(f)
+                
+                # Extract agent name from filename
+                agent_name = self.extract_agent_from_filename(completed_file.name)
+                
+                if agent_name and agent_name in self.agent_states:
+                    # Increment completion counter
+                    self.agent_states[agent_name]['tasks_completed'] += 1
+                    self.agent_states[agent_name]['status'] = 'idle'  # Reset to idle after completion
+                    
+                    # Get task info
+                    task_info = task_data.get('task', {})
+                    task_id = task_info.get('id', 'unknown')
+                    task_type = task_info.get('type', 'unknown')
+                    
+                    logging.info(f"✅ Task completed: {agent_name} finished {task_type} ({task_id}). "
+                               f"Total completed: {self.agent_states[agent_name]['tasks_completed']}")
+                    
+                    # Mark as processed
+                    self.processed_task_files.add(file_path)
+                    
+                    # Move completed file to completed directory
+                    self.archive_completed_task(completed_file, task_data)
+                    
+                    # Save updated state
+                    self.save_state()
+                
+            except Exception as e:
+                logging.error(f"Error processing completed task file {completed_file}: {e}")
+    
+    def extract_agent_from_filename(self, filename: str) -> str:
+        """Extract agent name from task completion filename"""
+        # Expected format: {agent}_current_task_completed.json
+        if filename.endswith('_current_task_completed.json'):
+            agent_name = filename.replace('_current_task_completed.json', '')
+            
+            # Map to known agent names
+            agent_mapping = {
+                'orchestrator': 'orchestrator',
+                'archaeologist': 'archaeologist', 
+                'sms_engineer': 'sms_engineer',
+                'memory_engineer': 'memory_engineer',
+                'test_engineer': 'test_engineer'
+            }
+            
+            return agent_mapping.get(agent_name)
+        
+        return None
+    
+    def archive_completed_task(self, completed_file: Path, task_data: dict):
+        """Move completed task file to archive"""
+        try:
+            # Create completed directory if it doesn't exist
+            completed_dir = Path('active_tasks/completed')
+            completed_dir.mkdir(exist_ok=True)
+            
+            # Generate unique filename with timestamp
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            task_id = task_data.get('task', {}).get('id', 'unknown')
+            archive_filename = f"{task_id}_{timestamp}.json"
+            archive_path = completed_dir / archive_filename
+            
+            # Move the file
+            completed_file.rename(archive_path)
+            
+            logging.debug(f"Archived completed task: {completed_file.name} -> {archive_path}")
+            
+        except Exception as e:
+            logging.error(f"Error archiving completed task {completed_file}: {e}")
+    
     def monitor_resources(self):
         """Monitor system resources"""
         cpu_percent = psutil.cpu_percent(interval=1)
@@ -397,6 +531,9 @@ print("Test task {task['id']} completed")
             time.sleep(30)  # Check every 30 seconds
             
         logging.info("6-hour autonomous operation complete!")
+        
+        # Stop completion monitoring
+        self.completion_monitor_running = False
         
         # Final report
         self.generate_final_report()

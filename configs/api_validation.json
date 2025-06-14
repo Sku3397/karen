@@ -1,0 +1,24 @@
+{
+  "endpoints": {
+    "/api/sms/send": {
+      "method": "POST",
+      "auth": true,
+      "rate_limit": 100
+    },
+    "/api/appointments": {
+      "method": "GET",
+      "auth": true,
+      "rate_limit": 1000
+    },
+    "/api/templates": {
+      "method": "GET",
+      "auth": false,
+      "rate_limit": 500
+    }
+  },
+  "validation_rules": {
+    "input_sanitization": true,
+    "output_formatting": true,
+    "error_handling": true
+  }
+}

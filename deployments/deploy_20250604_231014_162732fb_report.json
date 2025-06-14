@@ -1,0 +1,404 @@
+{
+  "deployment_id": "deploy_20250604_231014_162732fb",
+  "config": {
+    "environment": "staging",
+    "version": "v1.0.0",
+    "commit_hash": "096e7a7d",
+    "timestamp": "2025-06-04T23:10:14.794478",
+    "backup_path": "C:\\Users\\Man\\ultra\\projects\\karen\\backups\\backup_deploy_20250604_231014_162732fb_20250604_231014",
+    "test_suites": [
+      "health",
+      "unit",
+      "integration",
+      "system"
+    ],
+    "notification_channels": [
+      "email",
+      "agents"
+    ],
+    "rollback_enabled": true,
+    "auto_rollback_on_failure": true,
+    "health_check_timeout": 300,
+    "max_rollback_attempts": 3,
+    "agent_coordination": true
+  },
+  "start_time": "2025-06-04T23:10:14.794478",
+  "end_time": "2025-06-04T23:10:19.067227",
+  "status": "rolled_back",
+  "test_results": [
+    {
+      "suite_name": "health",
+      "status": "passed",
+      "duration": 2.122409,
+      "passed_tests": 1,
+      "failed_tests": 0,
+      "error_message": null,
+      "log_file": "C:\\Users\\Man\\ultra\\projects\\karen\\logs\\test_health_20250604_231015.log",
+      "agent_involved": null
+    },
+    {
+      "suite_name": "unit",
+      "status": "failed",
+      "duration": 0.211141,
+      "passed_tests": 0,
+      "failed_tests": 0,
+      "error_message": "Exit code: 4",
+      "log_file": "C:\\Users\\Man\\ultra\\projects\\karen\\logs\\test_unit_20250604_231017.log",
+      "agent_involved": null
+    },
+    {
+      "suite_name": "integration",
+      "status": "failed",
+      "duration": 0.203193,
+      "passed_tests": 0,
+      "failed_tests": 0,
+      "error_message": "Exit code: 4",
+      "log_file": "C:\\Users\\Man\\ultra\\projects\\karen\\logs\\test_integration_20250604_231017.log",
+      "agent_involved": null
+    },
+    {
+      "suite_name": "system",
+      "status": "failed",
+      "duration": 0.222469,
+      "passed_tests": 0,
+      "failed_tests": 0,
+      "error_message": "Exit code: 4",
+      "log_file": "C:\\Users\\Man\\ultra\\projects\\karen\\logs\\test_system_20250604_231018.log",
+      "agent_involved": null
+    }
+  ],
+  "deployment_steps": [
+    {
+      "step": "backup_creation",
+      "status": "completed",
+      "details": {
+        "backup_path": "C:\\Users\\Man\\ultra\\projects\\karen\\backups\\backup_deploy_20250604_231014_162732fb_20250604_231014"
+      },
+      "timestamp": "2025-06-04T23:10:15.627239"
+    }
+  ],
+  "rollback_info": {
+    "backup_path": "C:\\Users\\Man\\ultra\\projects\\karen\\backups\\backup_deploy_20250604_231014_162732fb_20250604_231014",
+    "rollback_steps": [
+      {
+        "action": "restore",
+        "item": ".env",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.400811"
+      },
+      {
+        "action": "restore",
+        "item": ".eslintrc.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.401303"
+      },
+      {
+        "action": "restore",
+        "item": ".processed_call_ids.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.401790"
+      },
+      {
+        "action": "restore",
+        "item": "agent_task_monitor.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.402346"
+      },
+      {
+        "action": "restore",
+        "item": "agent_task_runner.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.402892"
+      },
+      {
+        "action": "restore",
+        "item": "agent_task_system.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.403416"
+      },
+      {
+        "action": "restore",
+        "item": "all_builds_list.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.403932"
+      },
+      {
+        "action": "restore",
+        "item": "ar_repo_iam_policy.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.404385"
+      },
+      {
+        "action": "restore",
+        "item": "ar_upload_permission_analysis.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.404699"
+      },
+      {
+        "action": "restore",
+        "item": "ar_upload_permission_analysis_correct.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:18.404967"
+      },
+      {
+        "action": "restore",
+        "item": "autonomous-agents",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.047349"
+      },
+      {
+        "action": "restore",
+        "item": "AUTONOMOUS_AGENT_SMS_IMPLEMENTATION.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.047937"
+      },
+      {
+        "action": "restore",
+        "item": "autonomous_deployment.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.048433"
+      },
+      {
+        "action": "restore",
+        "item": "autonomous_state.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.048859"
+      },
+      {
+        "action": "restore",
+        "item": "autonomous_task_system.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.049425"
+      },
+      {
+        "action": "restore",
+        "item": "builds_list.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.050015"
+      },
+      {
+        "action": "restore",
+        "item": "check_archaeologist_status.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.050461"
+      },
+      {
+        "action": "restore",
+        "item": "ci_cd_pipeline_setup.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.051016"
+      },
+      {
+        "action": "restore",
+        "item": "CLAUDE.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.051571"
+      },
+      {
+        "action": "restore",
+        "item": "claude_helpers.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.051983"
+      },
+      {
+        "action": "restore",
+        "item": "complete_sms_implementation.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.052437"
+      },
+      {
+        "action": "restore",
+        "item": "credentials.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.053635"
+      },
+      {
+        "action": "restore",
+        "item": "DATABASE_IMPLEMENTATION.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.054194"
+      },
+      {
+        "action": "restore",
+        "item": "DEPLOYMENT.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.054698"
+      },
+      {
+        "action": "restore",
+        "item": "eigencode.config.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.055224"
+      },
+      {
+        "action": "restore",
+        "item": "eigencode_alternative.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.055766"
+      },
+      {
+        "action": "restore",
+        "item": "EIGENCODE_INTEGRATION.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.056298"
+      },
+      {
+        "action": "restore",
+        "item": "eigencode_integration.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.056896"
+      },
+      {
+        "action": "restore",
+        "item": "ENHANCED_AGENT_COMMUNICATION.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.057510"
+      },
+      {
+        "action": "restore",
+        "item": "enhanced_agent_communication_example.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.058111"
+      },
+      {
+        "action": "restore",
+        "item": "firebase.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.058666"
+      },
+      {
+        "action": "restore",
+        "item": "gcp_project_setup.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.059238"
+      },
+      {
+        "action": "restore",
+        "item": "gcp_setup_instructions.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.059749"
+      },
+      {
+        "action": "restore",
+        "item": "generate_next_phase_tasks.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.060290"
+      },
+      {
+        "action": "restore",
+        "item": "gmail_token_hello_calendar.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.060759"
+      },
+      {
+        "action": "restore",
+        "item": "gmail_token_karen.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.061308"
+      },
+      {
+        "action": "restore",
+        "item": "gmail_token_monitor.json",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.061847"
+      },
+      {
+        "action": "restore",
+        "item": "launch_memory_engineer.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.062439"
+      },
+      {
+        "action": "restore",
+        "item": "launch_orchestrator.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.063046"
+      },
+      {
+        "action": "restore",
+        "item": "launch_sms_engineer.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.063582"
+      },
+      {
+        "action": "restore",
+        "item": "launch_test_engineer.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.064135"
+      },
+      {
+        "action": "restore",
+        "item": "learning_integration_example.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.064730"
+      },
+      {
+        "action": "restore",
+        "item": "LEARNING_SYSTEM.md",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.065264"
+      },
+      {
+        "action": "restore",
+        "item": "learning_system_demo.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.065813"
+      },
+      {
+        "action": "restore",
+        "item": "learning_system_integration.py",
+        "status": "completed",
+        "timestamp": "2025-06-04T23:10:19.066423"
+      },
+      {
+        "action": "rollback_error",
+        "error": "[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\Man\\\\ultra\\\\projects\\\\karen\\\\logs\\\\orchestrator\\\\orchestrator.log'",
+        "status": "failed",
+        "timestamp": "2025-06-04T23:10:19.066860"
+      }
+    ],
+    "rollback_time": "2025-06-04T23:10:19.066864",
+    "status": "failed",
+    "error": "[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\Man\\\\ultra\\\\projects\\\\karen\\\\logs\\\\orchestrator\\\\orchestrator.log'"
+  },
+  "notifications_sent": [
+    {
+      "channel": "email",
+      "status": "failed",
+      "error": "Channel not available or configured",
+      "timestamp": "2025-06-04T23:10:14.849720"
+    },
+    {
+      "channel": "agents",
+      "status": "error",
+      "error": "'AgentCommunication' object has no attribute 'broadcast_message'",
+      "timestamp": "2025-06-04T23:10:14.849726"
+    },
+    {
+      "channel": "email",
+      "status": "failed",
+      "error": "Channel not available or configured",
+      "timestamp": "2025-06-04T23:10:19.067218"
+    },
+    {
+      "channel": "agents",
+      "status": "error",
+      "error": "'AgentCommunication' object has no attribute 'broadcast_message'",
+      "timestamp": "2025-06-04T23:10:19.067224"
+    }
+  ],
+  "health_checks": [],
+  "agent_coordination_log": [
+    {
+      "action": "deployment_start_failed",
+      "error": "type object 'AgentType' has no attribute 'ORCHESTRATOR'",
+      "timestamp": "2025-06-04T23:10:14.849703"
+    },
+    {
+      "action": "agent_status_check",
+      "agent_count": 6,
+      "system_load": 27.8,
+      "timestamp": "2025-06-04T23:10:19.067207"
+    }
+  ]
+}

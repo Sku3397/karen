@@ -1,0 +1,29 @@
+{
+  "validation_stages": [
+    "syntax_check",
+    "dependency_verification",
+    "security_scan",
+    "functionality_test",
+    "performance_check"
+  ],
+  "gate_criteria": {
+    "syntax_check": {
+      "pass_rate": 100
+    },
+    "functionality_test": {
+      "pass_rate": 95
+    },
+    "security_scan": {
+      "critical_issues": 0
+    },
+    "performance_check": {
+      "degradation_threshold": 10
+    }
+  },
+  "failure_actions": [
+    "block_deployment",
+    "notify_team",
+    "create_issue",
+    "rollback_if_needed"
+  ]
+}

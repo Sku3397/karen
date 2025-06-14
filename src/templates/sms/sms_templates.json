@@ -1,0 +1,165 @@
+{
+  "appointment_confirmation": {
+    "template": "Hi {customer_name}, this confirms your {service_type} appointment on {date} at {time}. Reply Y to confirm or call us to reschedule.",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "date",
+      "time"
+    ],
+    "category": "scheduling"
+  },
+  "appointment_reminder": {
+    "template": "Reminder: {customer_name}, you have a {service_type} appointment tomorrow at {time}. Reply C to cancel or R to reschedule.",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "time"
+    ],
+    "category": "scheduling"
+  },
+  "quote_response": {
+    "template": "Hi {customer_name}, for {service_description} the estimated cost is ${min_price}-${max_price}. This includes {included_services}. Would you like to schedule?",
+    "variables": [
+      "customer_name",
+      "service_description",
+      "min_price",
+      "max_price",
+      "included_services"
+    ],
+    "category": "sales"
+  },
+  "service_complete": {
+    "template": "Hi {customer_name}, your {service_type} has been completed. Your invoice total is ${amount}. Thank you for choosing 757 Handy!",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "amount"
+    ],
+    "category": "billing"
+  },
+  "emergency_response": {
+    "template": "\ud83d\udea8 URGENT: {customer_name}, we received your emergency about {issue_type}. Our team is dispatching immediately. ETA: {eta}. Stay safe!",
+    "variables": [
+      "customer_name",
+      "issue_type",
+      "eta"
+    ],
+    "category": "emergency"
+  },
+  "business_hours_response": {
+    "template": "Hi! Thanks for contacting 757 Handy. Our office hours are 8AM-6PM Mon-Fri. For emergencies, reply URGENT. We'll respond first thing tomorrow!",
+    "variables": [],
+    "category": "automation"
+  },
+  "initial_greeting": {
+    "template": "Hi {customer_name}! Thanks for contacting 757 Handy. How can I help you today? For quotes, appointments, or service questions, just let me know!",
+    "variables": [
+      "customer_name"
+    ],
+    "category": "greeting"
+  },
+  "follow_up": {
+    "template": "Hi {customer_name}, following up on your {service_type} service. How was everything? We value your feedback! Reply with any concerns.",
+    "variables": [
+      "customer_name",
+      "service_type"
+    ],
+    "category": "follow_up"
+  },
+  "payment_reminder": {
+    "template": "Hi {customer_name}, friendly reminder: ${amount} is due for your {service_type} completed on {date}. Pay online or call us. Thanks!",
+    "variables": [
+      "customer_name",
+      "amount",
+      "service_type",
+      "date"
+    ],
+    "category": "billing"
+  },
+  "weather_delay": {
+    "template": "{customer_name}, weather delay! Your {time} appointment moved to {new_time} for safety. Sorry for any inconvenience!",
+    "variables": [
+      "customer_name",
+      "time",
+      "new_time"
+    ],
+    "category": "scheduling"
+  },
+  "tech_arrival": {
+    "template": "{customer_name}, {tech_name} is {eta} minutes away for your {service_type}! He'll call if any issues finding you.",
+    "variables": [
+      "customer_name",
+      "tech_name",
+      "eta",
+      "service_type"
+    ],
+    "category": "scheduling"
+  },
+  "quick_replies": {
+    "yes_variations": [
+      "Y",
+      "Yes",
+      "YES",
+      "Ok",
+      "OK",
+      "Sure",
+      "Confirm",
+      "\ud83d\udc4d",
+      "Yep",
+      "Yup",
+      "Absolutely"
+    ],
+    "no_variations": [
+      "N",
+      "No",
+      "NO",
+      "Cancel",
+      "Nope",
+      "\ud83d\udc4e",
+      "Nah",
+      "Not interested"
+    ],
+    "reschedule_variations": [
+      "R",
+      "Reschedule",
+      "Change",
+      "Different time",
+      "Move",
+      "Postpone"
+    ],
+    "emergency_variations": [
+      "URGENT",
+      "EMERGENCY",
+      "HELP",
+      "911",
+      "ASAP",
+      "NOW"
+    ],
+    "templates": {
+      "confirm_yes": "Great! Your appointment is confirmed. We'll see you then! You'll get a reminder 24hrs before.",
+      "confirm_no": "No problem. Would you like to reschedule for another time? Just let me know what works better.",
+      "need_more_info": "I'd be happy to help! Could you provide more details about what you need?",
+      "emergency_escalation": "\ud83d\udea8 Emergency received! I'm immediately notifying our dispatch team. Expect a call within 15 minutes.",
+      "reschedule_request": "I'll help you reschedule. What dates and times work best for you?",
+      "general_help": "I'm here to help! For fastest service, tell me: 1) What you need fixed 2) When you're available 3) Your address"
+    }
+  },
+  "sentiment_responses": {
+    "positive": [
+      "Wonderful! We're so glad you're happy with our service! \ud83c\udf1f",
+      "Thank you for the kind words! It means a lot to our team! \ud83d\ude0a",
+      "Fantastic! We love happy customers! Thanks for choosing us!"
+    ],
+    "negative": [
+      "I sincerely apologize. Let me get our manager to address this immediately. What's the best number to reach you?",
+      "I'm sorry to hear that. We want to make this right. Can you share more details so we can fix this?",
+      "That's not the experience we want you to have. Let me escalate this and have someone call you within the hour."
+    ],
+    "neutral": [
+      "Thanks for the feedback! Is there anything specific we can improve?",
+      "We appreciate your response. How can we better serve you in the future?",
+      "Thank you for letting us know. We're always looking to improve our service."
+    ]
+  }
+}

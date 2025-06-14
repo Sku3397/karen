@@ -1,0 +1,25 @@
+{
+  "schedule": {
+    "incremental": "every_hour",
+    "full_backup": "daily_at_2am",
+    "retention_days": 30
+  },
+  "backup_targets": [
+    "tasks/",
+    "templates/",
+    "logs/agents/",
+    "autonomous-agents/communication/",
+    "reports/",
+    "deployments/"
+  ],
+  "exclusions": [
+    "*.log",
+    "*.pid",
+    "__pycache__/",
+    ".git/",
+    "node_modules/"
+  ],
+  "compression": true,
+  "encryption": false,
+  "destination": "backups/"
+}

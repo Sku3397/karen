@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-06-05T01:08:03.528975",
+  "overall_status": "healthy",
+  "services": {
+    "eigencode_worker": {
+      "status": "active",
+      "pid": 15776,
+      "uptime_minutes": 4,
+      "health_score": 95
+    },
+    "file_system": {
+      "status": "healthy",
+      "disk_space_available": "55%",
+      "permissions": "ok"
+    },
+    "task_processing": {
+      "status": "active",
+      "queue_depth": 180,
+      "processing_rate": "normal"
+    }
+  },
+  "alerts": [],
+  "recommendations": [
+    "Monitor task queue growth",
+    "Consider scaling workers if queue grows beyond 500"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "contributor": "archaeologist",
+  "type": "agent_architecture",
+  "content": {
+    "agent_hierarchy": {
+      "orchestrator_agent": {
+        "role": "Central coordination and decision-making",
+        "location": "src/orchestrator_agent.py",
+        "key_features": [
+          "ContextManager for user conversation state",
+          "Agent routing patterns with regex matching",
+          "Workflow management and task distribution"
+        ],
+        "routing_patterns": {
+          "ScheduleAgent": ["schedule.*meeting", "book.*appointment", "calendar"],
+          "TaskAgent": ["create.*task", "todo", "remind"],
+          "CommunicationAgent": ["send.*email", "sms", "call"]
+        }
+      },
+      "communication_agent": {
+        "role": "Email, SMS, and voice processing facade",
+        "location": "src/communication_agent.py",
+        "dependencies": ["EmailClient", "SMSClient", "VoiceClient"],
+        "methods": ["send_email", "fetch_emails", "send_sms", "transcribe_audio"]
+      },
+      "task_manager": {
+        "role": "Task breakdown and dependency tracking",
+        "location": "src/task_manager.py",
+        "status": "Firestore integration commented out",
+        "key_methods": [
+          "breakdown_handyman_task",
+          "assign_tasks", 
+          "get_ready_tasks"
+        ]
+      },
+      "billing_agent": {
+        "role": "Payment processing",
+        "location": "src/billing_agent.py",
+        "status": "Stub implementation - needs development"
+      }
+    },
+    "service_clients": {
+      "email_client": {
+        "location": "src/email_client.py",
+        "authentication": "Google OAuth2 with Gmail API",
+        "key_features": [
+          "Token management with automatic refresh",
+          "Label-based email processing",
+          "MIME message construction for sending"
+        ],
+        "scopes": ["gmail.send", "gmail.compose", "gmail.readonly", "gmail.modify"]
+      },
+      "calendar_client": {
+        "location": "src/calendar_client.py", 
+        "authentication": "Google OAuth2 with Calendar API",
+        "key_features": [
+          "Availability checking",
+          "Event creation with attendees",
+          "Conflict detection"
+        ],
+        "scopes": ["calendar.readonly", "calendar.events"]
+      },
+      "llm_client": {
+        "location": "src/llm_client.py",
+        "model": "gemini-2.5-flash-preview-05-20",
+        "features": [
+          "System prompt template loading",
+          "Dynamic date substitution",
+          "Hot reload of prompts"
+        ]
+      }
+    },
+    "response_engine": {
+      "handyman_response_engine": {
+        "location": "src/handyman_response_engine.py",
+        "role": "Email classification and response generation",
+        "classification_types": [
+          "is_emergency",
+          "services_mentioned", 
+          "is_quote_request",
+          "is_appointment_request"
+        ],
+        "service_categories": ["plumbing", "electrical", "hvac", "carpentry", "drywall", "painting", "flooring"],
+        "emergency_keywords": ["emergency", "urgent", "flood", "burst pipe", "no power"]
+      }
+    },
+    "task_scheduling": {
+      "celery_app": {
+        "location": "src/celery_app.py",
+        "broker": "Redis",
+        "key_tasks": [
+          "check_emails_task (every 2 minutes)",
+          "check_instruction_emails_task (every 5 minutes)",
+          "monitor_celery_logs_task (every 15 minutes)",
+          "monitor_redis_queues_task (every 10 minutes)"
+        ],
+        "early_env_loading": "Loads .env before other imports for Celery context"
+      }
+    }
+  },
+  "timestamp": "2025-06-03T22:35:00.000000"
+}

@@ -16,6 +16,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from src.agent_communication import AgentCommunication
 from src.memory_client import memory_client
+from src.agent_activity_logger import AgentActivityLogger
 
 # Configure logging
 logging.basicConfig(
@@ -23,6 +24,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+activity_logger = AgentActivityLogger()
 
 class MemoryEngineer:
     """Memory Engineer agent that monitors and processes memory events"""
@@ -30,6 +32,17 @@ class MemoryEngineer:
     def __init__(self):
         self.agent_comm = AgentCommunication('memory_engineer')
         self.running = False
+        
+        # Log initialization
+        activity_logger.log_activity(
+            agent_name="memory_engineer",
+            activity_type="initialization",
+            details={
+                "agent_communication": "initialized",
+                "memory_client_enabled": memory_client.enabled,
+                "timestamp": datetime.now().isoformat()
+            }
+        )
         
     async def start(self):
         """Start the Memory Engineer"""

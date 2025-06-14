@@ -4,10 +4,23 @@ from schemas import Task, TaskStatus
 from typing import List, Dict, Optional
 import uuid
 import datetime
+from .agent_activity_logger import AgentActivityLogger
+
+activity_logger = AgentActivityLogger()
 
 class TaskManagementAgent:
     def __init__(self, firestore_interface: FirestoreTaskInterface):
         self.db = firestore_interface
+        
+        # Log initialization
+        activity_logger.log_activity(
+            agent_name="task_management_agent",
+            activity_type="initialization",
+            details={
+                "firestore_interface": "initialized",
+                "timestamp": datetime.datetime.now().isoformat()
+            }
+        )
 
     def create_and_breakdown_task(self, client_id: str, description: str, breakdown_steps: List[str]) -> Dict:
         # Create a parent task and its breakdown

@@ -1,0 +1,19 @@
+{
+  "categories": {
+    "agent_patterns": "autonomous-agents/shared-knowledge/",
+    "implementation_guides": "docs/",
+    "api_documentation": "src/api/",
+    "test_patterns": "tests/",
+    "configuration": "configs/"
+  },
+  "search_indices": [
+    "full_text_search",
+    "tag_based_search",
+    "semantic_search"
+  ],
+  "update_triggers": [
+    "new_file_created",
+    "existing_file_modified",
+    "knowledge_gap_identified"
+  ]
+}

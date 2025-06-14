@@ -1,0 +1,18 @@
+{
+  "agent": "phone_engineer",
+  "focus": [
+    "voice_transcription",
+    "call_handling",
+    "integration_stability"
+  ],
+  "monitor_files": [
+    "../../src/phone_engineer_agent.py",
+    "../../src/voice_client.py",
+    "../../src/integrations/transcription.py"
+  ],
+  "metrics": [
+    "transcription_accuracy",
+    "call_success_rate",
+    "response_latency"
+  ]
+}

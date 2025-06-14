@@ -1,38 +1,47 @@
 {
-  "start_time": "2025-06-04T01:32:23.430099",
-  "agent_states": {
-    "orchestrator": {
-      "status": "working",
-      "last_task": "orchestrator_generate_report_1749022400.119878_2",
-      "tasks_completed": 0
+  "system_start_time": "2025-06-05T00:32:00.000000",
+  "agents": [
+    {
+      "name": "orchestrator",
+      "status": "idle",
+      "queue_length": 0,
+      "current_task": null,
+      "last_update": "2025-06-05T00:32:00.000000"
     },
-    "archaeologist": {
+    {
+      "name": "sms_engineer",
       "status": "working",
-      "last_task": "archaeologist_create_templates_1749022400.119878_2",
-      "tasks_completed": 0
+      "queue_length": 0,
+      "current_task": "task_07680ee7",
+      "last_update": "2025-06-09T21:11:50.312364"
     },
-    "sms_engineer": {
+    {
+      "name": "phone_engineer",
       "status": "working",
-      "last_task": "sms_engineer_create_integration_tests_1749022400.119878_2",
-      "tasks_completed": 0
+      "queue_length": 0,
+      "current_task": "task_2b95180a",
+      "last_update": "2025-06-09T21:11:37.799229"
     },
-    "memory_engineer": {
+    {
+      "name": "memory_engineer",
       "status": "working",
-      "last_task": "memory_engineer_performance_tuning_1749022400.119878_2",
-      "tasks_completed": 0
+      "queue_length": 0,
+      "current_task": "task_54de1a19",
+      "last_update": "2025-06-09T21:12:07.932350"
     },
-    "test_engineer": {
+    {
+      "name": "test_engineer",
       "status": "working",
-      "last_task": "test_engineer_generate_test_report_1749022400.119878_2",
-      "tasks_completed": 0
+      "queue_length": 0,
+      "current_task": "task_ea66767f",
+      "last_update": "2025-06-09T21:14:20.544234"
+    },
+    {
+      "name": "archaeologist",
+      "status": "working",
+      "queue_length": 0,
+      "current_task": "task_e9b92e20",
+      "last_update": "2025-06-09T21:11:37.908625"
     }
-  },
-  "tasks_in_queues": {
-    "orchestrator": 0,
-    "archaeologist": 0,
-    "sms_engineer": 0,
-    "memory_engineer": 0,
-    "test_engineer": 0
-  },
-  "runtime": "2:27:49.072993"
+  ]
 }

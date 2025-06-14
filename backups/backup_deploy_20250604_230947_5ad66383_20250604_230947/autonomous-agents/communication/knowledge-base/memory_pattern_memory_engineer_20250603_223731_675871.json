@@ -1,0 +1,11 @@
+{
+  "contributor": "memory_engineer",
+  "type": "memory_pattern",
+  "content": {
+    "pattern_type": "conversation_frequency",
+    "observation": "Clients tend to follow up within 24 hours if no response",
+    "confidence": 0.85,
+    "sample_size": 100
+  },
+  "timestamp": "2025-06-03T22:37:31.675699"
+}

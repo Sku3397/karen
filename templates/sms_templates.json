@@ -1,0 +1,87 @@
+{
+  "appointment_confirmation": {
+    "template": "Hi {customer_name}, this confirms your {service_type} appointment on {date} at {time}. Reply Y to confirm or call us to reschedule.",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "date",
+      "time"
+    ],
+    "category": "scheduling",
+    "description": "Standard appointment confirmation message",
+    "created_at": "2025-06-04T22:58:11.494036",
+    "updated_at": "2025-06-04T22:58:11.494044"
+  },
+  "emergency_response": {
+    "template": "🚨 URGENT: {customer_name}, we received your emergency about {issue_type}. Our team is dispatching immediately. ETA: {eta}. Stay safe!",
+    "variables": [
+      "customer_name",
+      "issue_type",
+      "eta"
+    ],
+    "category": "emergency",
+    "description": "Emergency response with immediate dispatch notification",
+    "created_at": "2025-06-04T22:58:11.494046",
+    "updated_at": "2025-06-04T22:58:11.494047"
+  },
+  "quote_response": {
+    "template": "Hi {customer_name}, for {service_description} the estimated cost is ${min_price}-${max_price}. This includes {included_services}. Would you like to schedule?",
+    "variables": [
+      "customer_name",
+      "service_description",
+      "min_price",
+      "max_price",
+      "included_services"
+    ],
+    "category": "sales",
+    "description": "Service quote with pricing range",
+    "created_at": "2025-06-04T22:58:11.494048",
+    "updated_at": "2025-06-04T22:58:11.494049"
+  },
+  "business_hours_response": {
+    "template": "Hi! Thanks for contacting 757 Handy. Our office hours are 8AM-6PM Mon-Fri. For emergencies, reply URGENT. We'll respond first thing tomorrow!",
+    "variables": [],
+    "category": "automation",
+    "description": "After-hours automatic response",
+    "created_at": "2025-06-04T22:58:11.494050",
+    "updated_at": "2025-06-04T22:58:11.494050"
+  },
+  "test_greeting": {
+    "template": "Hello {customer_name}\\! Thanks for contacting 757 Handy. How can I help you today?",
+    "variables": [
+      "customer_name"
+    ],
+    "category": "greeting",
+    "description": "Test greeting template",
+    "fallback": "Hello\\! Thanks for contacting 757 Handy. How can I help you today?",
+    "updated_at": "2025-06-04T23:12:33.083693",
+    "updated_by": "claude_test",
+    "created_at": "2025-06-04T23:12:33.083693",
+    "created_by": "claude_test"
+  },
+  "version_test": {
+    "template": "Test template v2: Hello {name}!",
+    "variables": [
+      "name"
+    ],
+    "category": "test",
+    "description": "Test versioning template",
+    "updated_at": "2025-06-04T23:24:02.719440",
+    "updated_by": "test_user"
+  },
+  "quote_delivery": {
+    "template": "Hi {customer_name}! Your {service_type} quote is ready. Total: ${amount}. Valid for 30 days. Book now?",
+    "variables": [
+      "customer_name",
+      "service_type",
+      "amount"
+    ],
+    "category": "sales",
+    "description": "Quote delivery template with pricing",
+    "fallback": "Your quote is ready! Contact us to review the details.",
+    "updated_at": "2025-06-04T23:14:43.261104",
+    "updated_by": "demo_user",
+    "created_at": "2025-06-04T23:14:43.261104",
+    "created_by": "demo_user"
+  }
+}

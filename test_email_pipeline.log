@@ -1,0 +1,55 @@
+2025-06-05 00:11:23,596 - __main__ - INFO -    Secretary Email: karensecretaryai@gmail.com
+2025-06-05 00:11:23,596 - __main__ - INFO -    Monitored Email: hello@757handy.com
+2025-06-05 00:11:23,597 - __main__ - INFO -    Admin Email: sku3397@icloud.com
+2025-06-05 00:11:23,597 - __main__ - INFO -    Using Mock Client: False
+2025-06-05 00:11:23,598 - src.email_client - INFO - Initializing secure EmailClient for karensecretaryai@gmail.com with profile gmail_secretary
+2025-06-05 00:11:23,599 - src.token_manager - INFO - Token storage ensured at C:\Users\Man\ultra\projects\karen\oauth_tokens
+2025-06-05 00:11:23,600 - src.token_manager - INFO - Token background monitor started
+2025-06-05 00:11:23,600 - src.token_manager - INFO - Enhanced Token Manager initialized with automatic refresh and notifications
+2025-06-05 00:11:23,600 - src.token_manager - WARNING - No valid token available for gmail_secretary:karensecretaryai@gmail.com
+2025-06-05 00:11:23,601 - src.token_manager - INFO - Token failure notification prepared: Karen AI - OAuth Token Failure: gmail_secretary
+2025-06-05 00:11:23,601 - src.email_client - ERROR - Failed to obtain valid secure credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,601 - src.email_client - ERROR - Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,601 - __main__ - ERROR - Basic email flow test failed: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+Traceback (most recent call last):
+  File "C:\Users\Man\ultra\projects\karen\test_email_pipeline.py", line 80, in test_basic_email_flow
+    secretary_client = EmailClient(self.secretary_email, profile='gmail_secretary')
+  File "C:\Users\Man\ultra\projects\karen\src\email_client.py", line 53, in __init__
+    raise ValueError(f"Failed to obtain secure OAuth credentials for {email_address}")
+ValueError: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,603 - src.email_client - INFO - Initializing secure EmailClient for karensecretaryai@gmail.com with profile gmail_secretary
+2025-06-05 00:11:23,603 - src.token_manager - WARNING - No valid token available for gmail_secretary:karensecretaryai@gmail.com
+2025-06-05 00:11:23,603 - src.token_manager - INFO - Token failure notification prepared: Karen AI - OAuth Token Failure: gmail_secretary
+2025-06-05 00:11:23,603 - src.email_client - ERROR - Failed to obtain valid secure credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,603 - src.email_client - ERROR - Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,604 - __main__ - ERROR - Appointment scheduling test failed: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+Traceback (most recent call last):
+  File "C:\Users\Man\ultra\projects\karen\test_email_pipeline.py", line 163, in test_appointment_scheduling
+    secretary_client = EmailClient(self.secretary_email, profile='gmail_secretary')
+  File "C:\Users\Man\ultra\projects\karen\src\email_client.py", line 53, in __init__
+    raise ValueError(f"Failed to obtain secure OAuth credentials for {email_address}")
+ValueError: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,605 - src.email_client - INFO - Initializing secure EmailClient for karensecretaryai@gmail.com with profile gmail_secretary
+2025-06-05 00:11:23,605 - src.token_manager - WARNING - No valid token available for gmail_secretary:karensecretaryai@gmail.com
+2025-06-05 00:11:23,605 - src.token_manager - INFO - Token failure notification prepared: Karen AI - OAuth Token Failure: gmail_secretary
+2025-06-05 00:11:23,605 - src.email_client - ERROR - Failed to obtain valid secure credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,606 - src.email_client - ERROR - Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,606 - __main__ - ERROR - Service classification test failed: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+Traceback (most recent call last):
+  File "C:\Users\Man\ultra\projects\karen\test_email_pipeline.py", line 231, in test_service_classification
+    secretary_client = EmailClient(self.secretary_email, profile='gmail_secretary')
+  File "C:\Users\Man\ultra\projects\karen\src\email_client.py", line 53, in __init__
+    raise ValueError(f"Failed to obtain secure OAuth credentials for {email_address}")
+ValueError: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,607 - src.email_client - INFO - Initializing secure EmailClient for karensecretaryai@gmail.com with profile gmail_secretary
+2025-06-05 00:11:23,607 - src.token_manager - WARNING - No valid token available for gmail_secretary:karensecretaryai@gmail.com
+2025-06-05 00:11:23,607 - src.token_manager - INFO - Token failure notification prepared: Karen AI - OAuth Token Failure: gmail_secretary
+2025-06-05 00:11:23,607 - src.email_client - ERROR - Failed to obtain valid secure credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,608 - src.email_client - ERROR - Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+2025-06-05 00:11:23,608 - __main__ - ERROR - Priority handling test failed: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com
+Traceback (most recent call last):
+  File "C:\Users\Man\ultra\projects\karen\test_email_pipeline.py", line 297, in test_priority_handling
+    secretary_client = EmailClient(self.secretary_email, profile='gmail_secretary')
+  File "C:\Users\Man\ultra\projects\karen\src\email_client.py", line 53, in __init__
+    raise ValueError(f"Failed to obtain secure OAuth credentials for {email_address}")
+ValueError: Failed to obtain secure OAuth credentials for karensecretaryai@gmail.com

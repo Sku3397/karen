@@ -1,0 +1,1173 @@
+{
+  "skill_success_7159730337388934684": {
+    "pattern_id": "skill_success_7159730337388934684",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: MEMORY_OPERATIONS, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "MEMORY_OPERATIONS",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 360.59875645714106
+    },
+    "confidence": 0.4,
+    "sample_size": 4,
+    "success_rate": 1.0,
+    "avg_completion_time": 396.5076365286071,
+    "discovered_at": "2025-06-04T22:53:24.523310",
+    "last_updated": "2025-06-04T22:53:31.577532",
+    "examples": [
+      "demo_task_001",
+      "demo_task_054",
+      "demo_task_065",
+      "demo_task_069"
+    ]
+  },
+  "agent_task_phone_engineer_sms_response": {
+    "pattern_id": "agent_task_phone_engineer_sms_response",
+    "pattern_type": "success_pattern",
+    "description": "Agent phone_engineer successfully handles sms_response tasks",
+    "conditions": {
+      "agent": "phone_engineer",
+      "task_type": "sms_response"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 360.59875645714106
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 358.2281174710619,
+    "discovered_at": "2025-06-04T22:53:24.523317",
+    "last_updated": "2025-06-04T22:53:31.263566",
+    "examples": [
+      "demo_task_001",
+      "demo_task_048",
+      "demo_task_066"
+    ]
+  },
+  "skill_success_3741472023323762934": {
+    "pattern_id": "skill_success_3741472023323762934",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: TESTING, EMAIL_HANDLING, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "TESTING",
+        "EMAIL_HANDLING",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 710.9022639534709
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 710.9022639534709,
+    "discovered_at": "2025-06-04T22:53:24.625072",
+    "last_updated": "2025-06-04T22:53:24.625072",
+    "examples": [
+      "demo_task_002"
+    ]
+  },
+  "agent_task_memory_engineer_sms_response": {
+    "pattern_id": "agent_task_memory_engineer_sms_response",
+    "pattern_type": "success_pattern",
+    "description": "Agent memory_engineer successfully handles sms_response tasks",
+    "conditions": {
+      "agent": "memory_engineer",
+      "task_type": "sms_response"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 710.9022639534709
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 443.88908729841097,
+    "discovered_at": "2025-06-04T22:53:24.625079",
+    "last_updated": "2025-06-04T22:53:30.529948",
+    "examples": [
+      "demo_task_002",
+      "demo_task_059"
+    ]
+  },
+  "skill_success_-289946020103277801": {
+    "pattern_id": "skill_success_-289946020103277801",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: PHONE_SYSTEM, EMAIL_HANDLING",
+    "conditions": {
+      "required_skills": [
+        "PHONE_SYSTEM",
+        "EMAIL_HANDLING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 103.46106353627351
+    },
+    "confidence": 0.5,
+    "sample_size": 5,
+    "success_rate": 1.0,
+    "avg_completion_time": 348.58548384779425,
+    "discovered_at": "2025-06-04T22:53:24.828905",
+    "last_updated": "2025-06-04T22:53:30.216390",
+    "examples": [
+      "demo_task_004",
+      "demo_task_008",
+      "demo_task_031",
+      "demo_task_055",
+      "demo_task_056"
+    ]
+  },
+  "agent_task_phone_engineer_test_execution": {
+    "pattern_id": "agent_task_phone_engineer_test_execution",
+    "pattern_type": "success_pattern",
+    "description": "Agent phone_engineer successfully handles test_execution tasks",
+    "conditions": {
+      "agent": "phone_engineer",
+      "task_type": "test_execution"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 103.46106353627351
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 320.4349531913812,
+    "discovered_at": "2025-06-04T22:53:24.828912",
+    "last_updated": "2025-06-04T22:53:32.204794",
+    "examples": [
+      "demo_task_004",
+      "demo_task_068",
+      "demo_task_075"
+    ]
+  },
+  "skill_success_1944356867202215735": {
+    "pattern_id": "skill_success_1944356867202215735",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: PHONE_SYSTEM, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "PHONE_SYSTEM",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 192.89038309658733
+    },
+    "confidence": 0.6,
+    "sample_size": 6,
+    "success_rate": 1.0,
+    "avg_completion_time": 430.0959236285799,
+    "discovered_at": "2025-06-04T22:53:24.931187",
+    "last_updated": "2025-06-04T22:53:31.995811",
+    "examples": [
+      "demo_task_005",
+      "demo_task_016",
+      "demo_task_025",
+      "demo_task_029",
+      "demo_task_049",
+      "demo_task_073"
+    ]
+  },
+  "agent_task_sms_engineer_test_execution": {
+    "pattern_id": "agent_task_sms_engineer_test_execution",
+    "pattern_type": "success_pattern",
+    "description": "Agent sms_engineer successfully handles test_execution tasks",
+    "conditions": {
+      "agent": "sms_engineer",
+      "task_type": "test_execution"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 192.89038309658733
+    },
+    "confidence": 0.5,
+    "sample_size": 5,
+    "success_rate": 1.0,
+    "avg_completion_time": 383.24365592767225,
+    "discovered_at": "2025-06-04T22:53:24.931193",
+    "last_updated": "2025-06-04T22:53:29.694250",
+    "examples": [
+      "demo_task_005",
+      "demo_task_015",
+      "demo_task_042",
+      "demo_task_043",
+      "demo_task_051"
+    ]
+  },
+  "skill_success_5326707779017268055": {
+    "pattern_id": "skill_success_5326707779017268055",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: PHONE_SYSTEM",
+    "conditions": {
+      "required_skills": [
+        "PHONE_SYSTEM"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 498.66558555304715
+    },
+    "confidence": 0.7,
+    "sample_size": 7,
+    "success_rate": 1.0,
+    "avg_completion_time": 493.86341377432785,
+    "discovered_at": "2025-06-04T22:53:25.135428",
+    "last_updated": "2025-06-04T22:53:31.472983",
+    "examples": [
+      "demo_task_007",
+      "demo_task_014",
+      "demo_task_033",
+      "demo_task_038",
+      "demo_task_041",
+      "demo_task_048",
+      "demo_task_068"
+    ]
+  },
+  "agent_task_sms_engineer_sms_response": {
+    "pattern_id": "agent_task_sms_engineer_sms_response",
+    "pattern_type": "success_pattern",
+    "description": "Agent sms_engineer successfully handles sms_response tasks",
+    "conditions": {
+      "agent": "sms_engineer",
+      "task_type": "sms_response"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 498.66558555304715
+    },
+    "confidence": 0.7,
+    "sample_size": 7,
+    "success_rate": 1.0,
+    "avg_completion_time": 220.9647710810595,
+    "discovered_at": "2025-06-04T22:53:25.135435",
+    "last_updated": "2025-06-04T22:56:38.188745",
+    "examples": [
+      "demo_task_007",
+      "demo_task_009",
+      "demo_task_018",
+      "demo_task_045",
+      "demo_task_053",
+      "integration_test_001",
+      "integration_test_001"
+    ]
+  },
+  "agent_task_test_engineer_sms_response": {
+    "pattern_id": "agent_task_test_engineer_sms_response",
+    "pattern_type": "success_pattern",
+    "description": "Agent test_engineer successfully handles sms_response tasks",
+    "conditions": {
+      "agent": "test_engineer",
+      "task_type": "sms_response"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 66.49035436306657
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 66.49035436306657,
+    "discovered_at": "2025-06-04T22:53:25.237623",
+    "last_updated": "2025-06-04T22:53:25.237624",
+    "examples": [
+      "demo_task_008"
+    ]
+  },
+  "skill_success_6179760077177754152": {
+    "pattern_id": "skill_success_6179760077177754152",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: SMS_MANAGEMENT, EMAIL_HANDLING, PHONE_SYSTEM",
+    "conditions": {
+      "required_skills": [
+        "SMS_MANAGEMENT",
+        "EMAIL_HANDLING",
+        "PHONE_SYSTEM"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 15.561821054296697
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 15.561821054296697,
+    "discovered_at": "2025-06-04T22:53:25.339721",
+    "last_updated": "2025-06-04T22:53:25.339721",
+    "examples": [
+      "demo_task_009"
+    ]
+  },
+  "skill_success_-7543660322718729652": {
+    "pattern_id": "skill_success_-7543660322718729652",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: MEMORY_OPERATIONS",
+    "conditions": {
+      "required_skills": [
+        "MEMORY_OPERATIONS"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 84.90042645310999
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 221.4886689342435,
+    "discovered_at": "2025-06-04T22:53:25.442248",
+    "last_updated": "2025-06-04T22:53:31.263563",
+    "examples": [
+      "demo_task_010",
+      "demo_task_066"
+    ]
+  },
+  "agent_task_sms_engineer_phone_call": {
+    "pattern_id": "agent_task_sms_engineer_phone_call",
+    "pattern_type": "success_pattern",
+    "description": "Agent sms_engineer successfully handles phone_call tasks",
+    "conditions": {
+      "agent": "sms_engineer",
+      "task_type": "phone_call"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 84.90042645310999
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 257.99021958056136,
+    "discovered_at": "2025-06-04T22:53:25.442255",
+    "last_updated": "2025-06-04T22:53:31.158942",
+    "examples": [
+      "demo_task_010",
+      "demo_task_065"
+    ]
+  },
+  "skill_success_6495083507063625904": {
+    "pattern_id": "skill_success_6495083507063625904",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: EMAIL_HANDLING, TESTING",
+    "conditions": {
+      "required_skills": [
+        "EMAIL_HANDLING",
+        "TESTING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 552.0797433598656
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 377.2402627293065,
+    "discovered_at": "2025-06-04T22:53:25.544453",
+    "last_updated": "2025-06-04T22:53:28.964776",
+    "examples": [
+      "demo_task_011",
+      "demo_task_032",
+      "demo_task_044"
+    ]
+  },
+  "agent_task_test_engineer_test_execution": {
+    "pattern_id": "agent_task_test_engineer_test_execution",
+    "pattern_type": "success_pattern",
+    "description": "Agent test_engineer successfully handles test_execution tasks",
+    "conditions": {
+      "agent": "test_engineer",
+      "task_type": "test_execution"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 552.0797433598656
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 721.2184807696708,
+    "discovered_at": "2025-06-04T22:53:25.544459",
+    "last_updated": "2025-06-04T22:53:27.194438",
+    "examples": [
+      "demo_task_011",
+      "demo_task_027"
+    ]
+  },
+  "skill_success_-892072951340160644": {
+    "pattern_id": "skill_success_-892072951340160644",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: EMAIL_HANDLING, MEMORY_OPERATIONS, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "EMAIL_HANDLING",
+        "MEMORY_OPERATIONS",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 264.1328868789079
+    },
+    "confidence": 0.4,
+    "sample_size": 4,
+    "success_rate": 1.0,
+    "avg_completion_time": 254.82210634236276,
+    "discovered_at": "2025-06-04T22:53:25.647357",
+    "last_updated": "2025-06-04T22:53:31.054669",
+    "examples": [
+      "demo_task_012",
+      "demo_task_019",
+      "demo_task_063",
+      "demo_task_064"
+    ]
+  },
+  "agent_task_orchestrator_phone_call": {
+    "pattern_id": "agent_task_orchestrator_phone_call",
+    "pattern_type": "success_pattern",
+    "description": "Agent orchestrator successfully handles phone_call tasks",
+    "conditions": {
+      "agent": "orchestrator",
+      "task_type": "phone_call"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 264.1328868789079
+    },
+    "confidence": 0.6,
+    "sample_size": 6,
+    "success_rate": 1.0,
+    "avg_completion_time": 478.4565092470328,
+    "discovered_at": "2025-06-04T22:53:25.647362",
+    "last_updated": "2025-06-04T22:53:30.844886",
+    "examples": [
+      "demo_task_012",
+      "demo_task_022",
+      "demo_task_025",
+      "demo_task_032",
+      "demo_task_049",
+      "demo_task_062"
+    ]
+  },
+  "skill_success_-1759599336764580717": {
+    "pattern_id": "skill_success_-1759599336764580717",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: MEMORY_OPERATIONS, EMAIL_HANDLING",
+    "conditions": {
+      "required_skills": [
+        "MEMORY_OPERATIONS",
+        "EMAIL_HANDLING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 158.82356750408678
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 185.86546814317776,
+    "discovered_at": "2025-06-04T22:53:25.749927",
+    "last_updated": "2025-06-04T22:53:30.321151",
+    "examples": [
+      "demo_task_013",
+      "demo_task_042",
+      "demo_task_057"
+    ]
+  },
+  "agent_task_orchestrator_email_processing": {
+    "pattern_id": "agent_task_orchestrator_email_processing",
+    "pattern_type": "success_pattern",
+    "description": "Agent orchestrator successfully handles email_processing tasks",
+    "conditions": {
+      "agent": "orchestrator",
+      "task_type": "email_processing"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 158.82356750408678
+    },
+    "confidence": 0.5,
+    "sample_size": 5,
+    "success_rate": 1.0,
+    "avg_completion_time": 335.4428643254015,
+    "discovered_at": "2025-06-04T22:53:25.749933",
+    "last_updated": "2025-06-04T22:53:31.995815",
+    "examples": [
+      "demo_task_013",
+      "demo_task_054",
+      "demo_task_057",
+      "demo_task_069",
+      "demo_task_073"
+    ]
+  },
+  "agent_task_test_engineer_phone_call": {
+    "pattern_id": "agent_task_test_engineer_phone_call",
+    "pattern_type": "success_pattern",
+    "description": "Agent test_engineer successfully handles phone_call tasks",
+    "conditions": {
+      "agent": "test_engineer",
+      "task_type": "phone_call"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 605.5144711732494
+    },
+    "confidence": 0.5,
+    "sample_size": 5,
+    "success_rate": 1.0,
+    "avg_completion_time": 374.9430345662335,
+    "discovered_at": "2025-06-04T22:53:25.852955",
+    "last_updated": "2025-06-04T22:53:30.425654",
+    "examples": [
+      "demo_task_014",
+      "demo_task_024",
+      "demo_task_034",
+      "demo_task_035",
+      "demo_task_058"
+    ]
+  },
+  "skill_success_-5479448487530686928": {
+    "pattern_id": "skill_success_-5479448487530686928",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: PHONE_SYSTEM, MEMORY_OPERATIONS",
+    "conditions": {
+      "required_skills": [
+        "PHONE_SYSTEM",
+        "MEMORY_OPERATIONS"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 521.1163191791125
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 521.1163191791125,
+    "discovered_at": "2025-06-04T22:53:25.955458",
+    "last_updated": "2025-06-04T22:53:25.955458",
+    "examples": [
+      "demo_task_015"
+    ]
+  },
+  "agent_task_sms_engineer_memory_storage": {
+    "pattern_id": "agent_task_sms_engineer_memory_storage",
+    "pattern_type": "success_pattern",
+    "description": "Agent sms_engineer successfully handles memory_storage tasks",
+    "conditions": {
+      "agent": "sms_engineer",
+      "task_type": "memory_storage"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 684.7959069184934
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 406.313954559733,
+    "discovered_at": "2025-06-04T22:53:26.058397",
+    "last_updated": "2025-06-04T22:53:32.100310",
+    "examples": [
+      "demo_task_016",
+      "demo_task_074"
+    ]
+  },
+  "skill_success_325610779425036245": {
+    "pattern_id": "skill_success_325610779425036245",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: TESTING, PHONE_SYSTEM, EMAIL_HANDLING",
+    "conditions": {
+      "required_skills": [
+        "TESTING",
+        "PHONE_SYSTEM",
+        "EMAIL_HANDLING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 580.9726923034368
+    },
+    "confidence": 0.4,
+    "sample_size": 4,
+    "success_rate": 1.0,
+    "avg_completion_time": 413.9139092134131,
+    "discovered_at": "2025-06-04T22:53:26.263985",
+    "last_updated": "2025-06-04T22:53:30.425650",
+    "examples": [
+      "demo_task_018",
+      "demo_task_050",
+      "demo_task_053",
+      "demo_task_058"
+    ]
+  },
+  "agent_task_test_engineer_memory_storage": {
+    "pattern_id": "agent_task_test_engineer_memory_storage",
+    "pattern_type": "success_pattern",
+    "description": "Agent test_engineer successfully handles memory_storage tasks",
+    "conditions": {
+      "agent": "test_engineer",
+      "task_type": "memory_storage"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 189.67307689831844
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 392.12279080431864,
+    "discovered_at": "2025-06-04T22:53:26.366513",
+    "last_updated": "2025-06-04T22:53:28.441230",
+    "examples": [
+      "demo_task_019",
+      "demo_task_033",
+      "demo_task_039"
+    ]
+  },
+  "skill_success_2166814435877826748": {
+    "pattern_id": "skill_success_2166814435877826748",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 726.8052281118107
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 471.56354498564707,
+    "discovered_at": "2025-06-04T22:53:26.676152",
+    "last_updated": "2025-06-04T22:53:29.798894",
+    "examples": [
+      "demo_task_022",
+      "demo_task_024",
+      "demo_task_052"
+    ]
+  },
+  "skill_success_2662428756618790262": {
+    "pattern_id": "skill_success_2662428756618790262",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: TESTING, MEMORY_OPERATIONS, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "TESTING",
+        "MEMORY_OPERATIONS",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 223.48716580992595
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 214.7360939183272,
+    "discovered_at": "2025-06-04T22:53:26.779529",
+    "last_updated": "2025-06-04T22:53:32.100306",
+    "examples": [
+      "demo_task_023",
+      "demo_task_035",
+      "demo_task_074"
+    ]
+  },
+  "agent_task_orchestrator_memory_storage": {
+    "pattern_id": "agent_task_orchestrator_memory_storage",
+    "pattern_type": "success_pattern",
+    "description": "Agent orchestrator successfully handles memory_storage tasks",
+    "conditions": {
+      "agent": "orchestrator",
+      "task_type": "memory_storage"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 223.48716580992595
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 171.073092582968,
+    "discovered_at": "2025-06-04T22:53:26.779536",
+    "last_updated": "2025-06-04T22:53:28.652297",
+    "examples": [
+      "demo_task_023",
+      "demo_task_037",
+      "demo_task_041"
+    ]
+  },
+  "skill_success_-3909792430550502172": {
+    "pattern_id": "skill_success_-3909792430550502172",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: TESTING, PHONE_SYSTEM",
+    "conditions": {
+      "required_skills": [
+        "TESTING",
+        "PHONE_SYSTEM"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 890.3572181794759
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 890.3572181794759,
+    "discovered_at": "2025-06-04T22:53:27.194430",
+    "last_updated": "2025-06-04T22:53:27.194431",
+    "examples": [
+      "demo_task_027"
+    ]
+  },
+  "agent_task_phone_engineer_phone_call": {
+    "pattern_id": "agent_task_phone_engineer_phone_call",
+    "pattern_type": "success_pattern",
+    "description": "Agent phone_engineer successfully handles phone_call tasks",
+    "conditions": {
+      "agent": "phone_engineer",
+      "task_type": "phone_call"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 279.71186940162033
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 391.876043557422,
+    "discovered_at": "2025-06-04T22:53:27.402068",
+    "last_updated": "2025-06-04T22:53:27.505514",
+    "examples": [
+      "demo_task_029",
+      "demo_task_030"
+    ]
+  },
+  "skill_success_1373367165561121765": {
+    "pattern_id": "skill_success_1373367165561121765",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: EMAIL_HANDLING",
+    "conditions": {
+      "required_skills": [
+        "EMAIL_HANDLING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 504.0402177132237
+    },
+    "confidence": 0.4,
+    "sample_size": 4,
+    "success_rate": 1.0,
+    "avg_completion_time": 376.2940245395249,
+    "discovered_at": "2025-06-04T22:53:27.505507",
+    "last_updated": "2025-06-04T22:53:30.844882",
+    "examples": [
+      "demo_task_030",
+      "demo_task_045",
+      "demo_task_046",
+      "demo_task_062"
+    ]
+  },
+  "agent_task_phone_engineer_memory_storage": {
+    "pattern_id": "agent_task_phone_engineer_memory_storage",
+    "pattern_type": "success_pattern",
+    "description": "Agent phone_engineer successfully handles memory_storage tasks",
+    "conditions": {
+      "agent": "phone_engineer",
+      "task_type": "memory_storage"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 224.88158094605086
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 336.2335879384158,
+    "discovered_at": "2025-06-04T22:53:27.609457",
+    "last_updated": "2025-06-04T22:53:29.798898",
+    "examples": [
+      "demo_task_031",
+      "demo_task_052"
+    ]
+  },
+  "skill_success_-8864351499172731885": {
+    "pattern_id": "skill_success_-8864351499172731885",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: SMS_MANAGEMENT, PHONE_SYSTEM, TESTING",
+    "conditions": {
+      "required_skills": [
+        "SMS_MANAGEMENT",
+        "PHONE_SYSTEM",
+        "TESTING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 249.9789625269402
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 249.9789625269402,
+    "discovered_at": "2025-06-04T22:53:27.921074",
+    "last_updated": "2025-06-04T22:53:27.921075",
+    "examples": [
+      "demo_task_034"
+    ]
+  },
+  "skill_success_1724778341801618045": {
+    "pattern_id": "skill_success_1724778341801618045",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: SMS_MANAGEMENT, TESTING",
+    "conditions": {
+      "required_skills": [
+        "SMS_MANAGEMENT",
+        "TESTING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 606.0274428122074
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 606.0274428122074,
+    "discovered_at": "2025-06-04T22:53:28.129007",
+    "last_updated": "2025-06-04T22:53:28.129007",
+    "examples": [
+      "demo_task_036"
+    ]
+  },
+  "agent_task_memory_engineer_memory_storage": {
+    "pattern_id": "agent_task_memory_engineer_memory_storage",
+    "pattern_type": "success_pattern",
+    "description": "Agent memory_engineer successfully handles memory_storage tasks",
+    "conditions": {
+      "agent": "memory_engineer",
+      "task_type": "memory_storage"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 606.0274428122074
+    },
+    "confidence": 0.4,
+    "sample_size": 4,
+    "success_rate": 1.0,
+    "avg_completion_time": 446.3644440986492,
+    "discovered_at": "2025-06-04T22:53:28.129013",
+    "last_updated": "2025-06-04T22:53:30.112395",
+    "examples": [
+      "demo_task_036",
+      "demo_task_044",
+      "demo_task_046",
+      "demo_task_055"
+    ]
+  },
+  "skill_success_-6097511268893207805": {
+    "pattern_id": "skill_success_-6097511268893207805",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: EMAIL_HANDLING, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "EMAIL_HANDLING",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 111.7287911686146
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 144.30235090598285,
+    "discovered_at": "2025-06-04T22:53:28.233210",
+    "last_updated": "2025-06-04T22:53:30.529944",
+    "examples": [
+      "demo_task_037",
+      "demo_task_059"
+    ]
+  },
+  "agent_task_phone_engineer_email_processing": {
+    "pattern_id": "agent_task_phone_engineer_email_processing",
+    "pattern_type": "success_pattern",
+    "description": "Agent phone_engineer successfully handles email_processing tasks",
+    "conditions": {
+      "agent": "phone_engineer",
+      "task_type": "email_processing"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 490.4359067716161
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 400.6732231272558,
+    "discovered_at": "2025-06-04T22:53:28.337260",
+    "last_updated": "2025-06-04T22:53:31.054674",
+    "examples": [
+      "demo_task_038",
+      "demo_task_064"
+    ]
+  },
+  "skill_success_-6746222249092878551": {
+    "pattern_id": "skill_success_-6746222249092878551",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: MEMORY_OPERATIONS, EMAIL_HANDLING, TESTING",
+    "conditions": {
+      "required_skills": [
+        "MEMORY_OPERATIONS",
+        "EMAIL_HANDLING",
+        "TESTING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 201.58333798155672
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 201.58333798155672,
+    "discovered_at": "2025-06-04T22:53:28.441224",
+    "last_updated": "2025-06-04T22:53:28.441224",
+    "examples": [
+      "demo_task_039"
+    ]
+  },
+  "skill_success_-3687334861874891159": {
+    "pattern_id": "skill_success_-3687334861874891159",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: TESTING",
+    "conditions": {
+      "required_skills": [
+        "TESTING"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 467.2989253684303
+    },
+    "confidence": 0.3,
+    "sample_size": 3,
+    "success_rate": 1.0,
+    "avg_completion_time": 448.87093631800553,
+    "discovered_at": "2025-06-04T22:53:28.860484",
+    "last_updated": "2025-06-04T22:53:32.204791",
+    "examples": [
+      "demo_task_043",
+      "demo_task_067",
+      "demo_task_075"
+    ]
+  },
+  "skill_success_3644924895704431701": {
+    "pattern_id": "skill_success_3644924895704431701",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: MEMORY_OPERATIONS, TESTING, PHONE_SYSTEM",
+    "conditions": {
+      "required_skills": [
+        "MEMORY_OPERATIONS",
+        "TESTING",
+        "PHONE_SYSTEM"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 439.36887318450573
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 377.4212498423858,
+    "discovered_at": "2025-06-04T22:53:29.277061",
+    "last_updated": "2025-06-04T22:53:31.891122",
+    "examples": [
+      "demo_task_047",
+      "demo_task_072"
+    ]
+  },
+  "agent_task_memory_engineer_test_execution": {
+    "pattern_id": "agent_task_memory_engineer_test_execution",
+    "pattern_type": "success_pattern",
+    "description": "Agent memory_engineer successfully handles test_execution tasks",
+    "conditions": {
+      "agent": "memory_engineer",
+      "task_type": "test_execution"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 439.36887318450573
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 439.36887318450573,
+    "discovered_at": "2025-06-04T22:53:29.277069",
+    "last_updated": "2025-06-04T22:53:29.277070",
+    "examples": [
+      "demo_task_047"
+    ]
+  },
+  "agent_task_orchestrator_test_execution": {
+    "pattern_id": "agent_task_orchestrator_test_execution",
+    "pattern_type": "success_pattern",
+    "description": "Agent orchestrator successfully handles test_execution tasks",
+    "conditions": {
+      "agent": "orchestrator",
+      "task_type": "test_execution"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 296.38865606534495
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 296.38865606534495,
+    "discovered_at": "2025-06-04T22:53:29.589807",
+    "last_updated": "2025-06-04T22:53:29.589807",
+    "examples": [
+      "demo_task_050"
+    ]
+  },
+  "skill_success_-8947669880252402008": {
+    "pattern_id": "skill_success_-8947669880252402008",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: MEMORY_OPERATIONS, PHONE_SYSTEM, SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "MEMORY_OPERATIONS",
+        "PHONE_SYSTEM",
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 588.1639048895998
+    },
+    "confidence": 0.2,
+    "sample_size": 2,
+    "success_rate": 1.0,
+    "avg_completion_time": 316.4728204223363,
+    "discovered_at": "2025-06-04T22:53:29.694240",
+    "last_updated": "2025-06-04T22:53:30.636179",
+    "examples": [
+      "demo_task_051",
+      "demo_task_060"
+    ]
+  },
+  "agent_task_sms_engineer_email_processing": {
+    "pattern_id": "agent_task_sms_engineer_email_processing",
+    "pattern_type": "success_pattern",
+    "description": "Agent sms_engineer successfully handles email_processing tasks",
+    "conditions": {
+      "agent": "sms_engineer",
+      "task_type": "email_processing"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 751.9107429502805
+    },
+    "confidence": 0.4,
+    "sample_size": 4,
+    "success_rate": 1.0,
+    "avg_completion_time": 341.6845068787371,
+    "discovered_at": "2025-06-04T22:53:30.216395",
+    "last_updated": "2025-06-04T22:53:31.891126",
+    "examples": [
+      "demo_task_056",
+      "demo_task_060",
+      "demo_task_063",
+      "demo_task_072"
+    ]
+  },
+  "agent_task_memory_engineer_phone_call": {
+    "pattern_id": "agent_task_memory_engineer_phone_call",
+    "pattern_type": "success_pattern",
+    "description": "Agent memory_engineer successfully handles phone_call tasks",
+    "conditions": {
+      "agent": "memory_engineer",
+      "task_type": "phone_call"
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 564.774057625987
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 564.774057625987,
+    "discovered_at": "2025-06-04T22:53:31.368279",
+    "last_updated": "2025-06-04T22:53:31.368280",
+    "examples": [
+      "demo_task_067"
+    ]
+  },
+  "skill_success_-9007716574632546558": {
+    "pattern_id": "skill_success_-9007716574632546558",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 45.2
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 45.2,
+    "discovered_at": "2025-06-04T22:56:20.682407",
+    "last_updated": "2025-06-04T22:56:20.682408",
+    "examples": [
+      "integration_test_001"
+    ]
+  },
+  "skill_success_-3565036486724974544": {
+    "pattern_id": "skill_success_-3565036486724974544",
+    "pattern_type": "skill_pattern",
+    "description": "Successful completion with skills: SMS_MANAGEMENT",
+    "conditions": {
+      "required_skills": [
+        "SMS_MANAGEMENT"
+      ]
+    },
+    "outcomes": {
+      "success_rate": 1.0,
+      "avg_completion_time": 45.2
+    },
+    "confidence": 0.1,
+    "sample_size": 1,
+    "success_rate": 1.0,
+    "avg_completion_time": 45.2,
+    "discovered_at": "2025-06-04T22:56:38.188738",
+    "last_updated": "2025-06-04T22:56:38.188739",
+    "examples": [
+      "integration_test_001"
+    ]
+  }
+}

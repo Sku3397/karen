@@ -1,0 +1,47 @@
+{
+  "from": "archaeologist",
+  "to": "phone_engineer",
+  "type": "patterns_found", 
+  "content": {
+    "message": "Code analysis complete. Found critical patterns for voice processing implementation.",
+    "patterns_discovered": {
+      "gcp_integration_patterns": {
+        "speech_to_text": "Google Cloud Speech API integration found in transcription.py",
+        "authentication": "Service account JSON or OAuth2 for GCP APIs",
+        "error_handling": "Comprehensive error handling with retry logic",
+        "async_processing": "asyncio integration for real-time voice processing"
+      },
+      "voice_client_structure": {
+        "location": "src/voice_client.py referenced in communication_agent.py",
+        "methods": ["transcribe_audio", "synthesize_speech"],
+        "integration": "Part of CommunicationAgent facade pattern",
+        "configuration": "GCP config parameters required"
+      },
+      "celery_task_patterns": {
+        "voice_processing_task": "Process voice calls asynchronously",
+        "transcription_task": "Convert audio to text using GCP Speech API",
+        "response_generation": "Generate voice responses using Text-to-Speech",
+        "status_tracking": "Real-time progress updates via AgentCommunication"
+      }
+    },
+    "templates_available": [
+      "celery_task_template.py - For voice processing tasks",
+      "service_client_template.py - For GCP API clients",
+      "agent_communication_template.py - For coordination"
+    ],
+    "recommendations_for_voice": {
+      "gcp_speech_api": "Implement Google Cloud Speech-to-Text client",
+      "voice_processing_pipeline": "Audio -> Transcription -> LLM -> Response -> TTS",
+      "real_time_processing": "Use streaming APIs for live call processing",
+      "error_recovery": "Implement fallback mechanisms for API failures",
+      "status_updates": "Regular progress updates during long transcriptions"
+    },
+    "critical_dependencies": {
+      "google_cloud_speech": "Required for speech-to-text processing",
+      "google_cloud_texttospeech": "Required for voice response generation", 
+      "audio_processing": "Libraries for audio format conversion",
+      "streaming_support": "Real-time audio streaming capabilities"
+    }
+  },
+  "timestamp": "2025-06-03T22:45:00.000000"
+}

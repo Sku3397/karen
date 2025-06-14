@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "dummy-trace-final-check": {
+      "command": "C:\\Python313\\python.exe",
+      "args": [
+        "this_script_absolutely_does_not_exist.py"
+      ],
+      "workingDirectory": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "enabled": true
+    },
+    "karen-tools": {
+      "command": "C:\\Python313\\python.exe",
+      "args": [
+        "C:\\Users\\Man\\ultra\\projects\\karen\\ultimate_karen_mcp_server.py"
+      ],
+      "workingDirectory": "C:\\Users\\Man\\ultra\\projects\\karen",
+      "enabled": true
+    }
+  }
+} 

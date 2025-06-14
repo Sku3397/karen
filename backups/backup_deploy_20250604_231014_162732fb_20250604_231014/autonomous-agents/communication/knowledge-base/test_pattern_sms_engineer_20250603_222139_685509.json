@@ -1,0 +1,43 @@
+{
+  "contributor": "sms_engineer",
+  "type": "test_pattern",
+  "content": {
+    "feature": "sms_integration",
+    "test_areas": [
+      "twilio_connectivity",
+      "message_sending",
+      "message_fetching",
+      "llm_response_generation",
+      "emergency_detection",
+      "multipart_message_handling",
+      "celery_task_processing"
+    ],
+    "test_data": {
+      "test_numbers": [
+        "+1234567890",
+        "+15551234567"
+      ],
+      "emergency_keywords": [
+        "emergency",
+        "urgent",
+        "help",
+        "burst",
+        "flood"
+      ],
+      "sample_messages": [
+        "Need emergency plumber ASAP!",
+        "Can you give me a quote for deck repair?",
+        "What time are you available tomorrow?",
+        "yes",
+        "STOP"
+      ]
+    },
+    "integration_tests": [
+      "sms_to_email_flow",
+      "shared_calendar_integration",
+      "admin_notification_chain",
+      "agent_coordination"
+    ]
+  },
+  "timestamp": "2025-06-03T22:21:39.685500"
+}

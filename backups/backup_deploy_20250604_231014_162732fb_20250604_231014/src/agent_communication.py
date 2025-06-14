@@ -1,0 +1,896 @@
+import json
+import os
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional, Tuple, Set
+import redis
+from pathlib import Path
+import time
+import hashlib
+from enum import Enum
+from dataclasses import dataclass, asdict
+import statistics
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+
+class TaskPriority(Enum):
+    """Task priority levels with numeric values for comparison"""
+    CRITICAL = 1
+    HIGH = 2
+    MEDIUM = 3
+    LOW = 4
+
+class AgentSkill(Enum):
+    """Agent skill categories"""
+    # Technical Skills
+    NLP_PROCESSING = "nlp_processing"
+    SMS_INTEGRATION = "sms_integration"
+    EMAIL_PROCESSING = "email_processing"
+    VOICE_PROCESSING = "voice_processing"
+    CALENDAR_MANAGEMENT = "calendar_management"
+    MEMORY_MANAGEMENT = "memory_management"
+    
+    # Development Skills
+    PYTHON_DEVELOPMENT = "python_development"
+    API_INTEGRATION = "api_integration"
+    DATABASE_OPERATIONS = "database_operations"
+    TESTING_AUTOMATION = "testing_automation"
+    CODE_ANALYSIS = "code_analysis"
+    DOCUMENTATION = "documentation"
+    
+    # System Skills
+    PERFORMANCE_OPTIMIZATION = "performance_optimization"
+    ERROR_HANDLING = "error_handling"
+    SECURITY_AUDIT = "security_audit"
+    DEPLOYMENT = "deployment"
+    MONITORING = "monitoring"
+    
+    # Coordination Skills
+    TASK_ORCHESTRATION = "task_orchestration"
+    INTER_AGENT_COORDINATION = "inter_agent_coordination"
+    WORKFLOW_MANAGEMENT = "workflow_management"
+
+@dataclass
+class AgentPerformanceMetrics:
+    """Track agent performance metrics"""
+    agent_name: str
+    tasks_completed: int = 0
+    tasks_failed: int = 0
+    average_completion_time: float = 0.0
+    last_activity: Optional[datetime] = None
+    success_rate: float = 1.0
+    current_load: int = 0
+    max_concurrent_tasks: int = 3
+    response_time_avg: float = 0.0
+    skill_ratings: Dict[str, float] = None  # skill -> rating (0.0-1.0)
+    
+    def __post_init__(self):
+        if self.skill_ratings is None:
+            self.skill_ratings = {}
+
+@dataclass
+class TaskRequest:
+    """Enhanced task request with skill requirements"""
+    task_id: str
+    task_type: str
+    description: str
+    priority: TaskPriority
+    required_skills: List[AgentSkill]
+    estimated_duration: int  # minutes
+    deadline: Optional[datetime] = None
+    retry_count: int = 0
+    max_retries: int = 3
+    created_at: datetime = None
+    skill_weights: Dict[AgentSkill, float] = None  # skill importance weighting
+    
+    def __post_init__(self):
+        if self.created_at is None:
+            self.created_at = datetime.now()
+        if self.skill_weights is None:
+            # Default equal weighting for all required skills
+            self.skill_weights = {skill: 1.0 for skill in self.required_skills}
+
+class AgentCommunication:
+    """Enhanced inter-agent communication system with advanced routing and load balancing"""
+    
+    def __init__(self, agent_name: str):
+        self.agent_name = agent_name
+        self.redis_client = redis.from_url(os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0'))
+        
+        # Use project root for communication directory
+        project_root = Path(__file__).parent.parent
+        self.comm_dir = project_root / 'autonomous-agents' / 'communication'
+        self.ensure_directories()
+        
+        # Enhanced tracking systems
+        self.agent_skills = self._load_agent_skills()
+        self.performance_metrics = self._load_performance_metrics()
+        self.task_history = {}  # task_id -> completion data
+        self.routing_cache = {}  # Cache for skill-based routing decisions
+        
+        # Initialize default agent skills if not present
+        self._initialize_default_skills()
+        
+        logger.info(f"Enhanced AgentCommunication initialized for {agent_name}")
+
+    def ensure_directories(self):
+        """Create communication directories if they don't exist"""
+        # Agent-specific inbox and its processed sub-directory
+        agent_inbox_path = self.comm_dir / 'inbox' / self.agent_name
+        agent_inbox_path.mkdir(parents=True, exist_ok=True)
+        (agent_inbox_path / 'processed').mkdir(parents=True, exist_ok=True)
+
+        # Enhanced directories for new features
+        (self.comm_dir / 'outbox').mkdir(parents=True, exist_ok=True)
+        (self.comm_dir / 'status').mkdir(parents=True, exist_ok=True)
+        (self.comm_dir / 'knowledge-base').mkdir(parents=True, exist_ok=True)
+        (self.comm_dir / 'skills').mkdir(parents=True, exist_ok=True)
+        (self.comm_dir / 'performance').mkdir(parents=True, exist_ok=True)
+        (self.comm_dir / 'routing').mkdir(parents=True, exist_ok=True)
+
+    def _load_agent_skills(self) -> Dict[str, List[AgentSkill]]:
+        """Load agent skill mappings from file or initialize defaults"""
+        skills_file = self.comm_dir / 'skills' / 'agent_skills.json'
+        if skills_file.exists():
+            try:
+                with open(skills_file, 'r') as f:
+                    data = json.load(f)
+                    # Convert string skill names back to enum values
+                    skills = {}
+                    for agent, skill_list in data.items():
+                        skills[agent] = [AgentSkill(skill) for skill in skill_list]
+                    return skills
+            except Exception as e:
+                logger.error(f"Error loading agent skills: {e}")
+        
+        return self._get_default_agent_skills()
+
+    def _get_default_agent_skills(self) -> Dict[str, List[AgentSkill]]:
+        """Define default skills for each agent type"""
+        return {
+            'orchestrator': [
+                AgentSkill.TASK_ORCHESTRATION,
+                AgentSkill.INTER_AGENT_COORDINATION,
+                AgentSkill.WORKFLOW_MANAGEMENT,
+                AgentSkill.MONITORING
+            ],
+            'sms_engineer': [
+                AgentSkill.SMS_INTEGRATION,
+                AgentSkill.NLP_PROCESSING,
+                AgentSkill.API_INTEGRATION,
+                AgentSkill.PYTHON_DEVELOPMENT,
+                AgentSkill.TESTING_AUTOMATION
+            ],
+            'phone_engineer': [
+                AgentSkill.VOICE_PROCESSING,
+                AgentSkill.API_INTEGRATION,
+                AgentSkill.PYTHON_DEVELOPMENT,
+                AgentSkill.TESTING_AUTOMATION
+            ],
+            'memory_engineer': [
+                AgentSkill.MEMORY_MANAGEMENT,
+                AgentSkill.DATABASE_OPERATIONS,
+                AgentSkill.PERFORMANCE_OPTIMIZATION,
+                AgentSkill.PYTHON_DEVELOPMENT
+            ],
+            'test_engineer': [
+                AgentSkill.TESTING_AUTOMATION,
+                AgentSkill.CODE_ANALYSIS,
+                AgentSkill.PYTHON_DEVELOPMENT,
+                AgentSkill.ERROR_HANDLING
+            ],
+            'archaeologist': [
+                AgentSkill.CODE_ANALYSIS,
+                AgentSkill.DOCUMENTATION,
+                AgentSkill.PYTHON_DEVELOPMENT,
+                AgentSkill.MONITORING
+            ]
+        }
+
+    def _save_agent_skills(self):
+        """Save agent skills to file"""
+        skills_file = self.comm_dir / 'skills' / 'agent_skills.json'
+        try:
+            # Convert enum values to strings for JSON serialization
+            data = {}
+            for agent, skills in self.agent_skills.items():
+                data[agent] = [skill.value for skill in skills]
+            
+            with open(skills_file, 'w') as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            logger.error(f"Error saving agent skills: {e}")
+
+    def _initialize_default_skills(self):
+        """Initialize default skills for agents that don't have them"""
+        default_skills = self._get_default_agent_skills()
+        updated = False
+        
+        for agent, skills in default_skills.items():
+            if agent not in self.agent_skills:
+                self.agent_skills[agent] = skills
+                updated = True
+        
+        if updated:
+            self._save_agent_skills()
+
+    def _load_performance_metrics(self) -> Dict[str, AgentPerformanceMetrics]:
+        """Load agent performance metrics from file"""
+        metrics_file = self.comm_dir / 'performance' / 'agent_metrics.json'
+        metrics = {}
+        
+        if metrics_file.exists():
+            try:
+                with open(metrics_file, 'r') as f:
+                    data = json.load(f)
+                    for agent_name, metric_data in data.items():
+                        # Handle datetime deserialization
+                        if metric_data.get('last_activity'):
+                            metric_data['last_activity'] = datetime.fromisoformat(metric_data['last_activity'])
+                        metrics[agent_name] = AgentPerformanceMetrics(**metric_data)
+            except Exception as e:
+                logger.error(f"Error loading performance metrics: {e}")
+        
+        # Initialize metrics for known agents
+        for agent in self.agent_skills.keys():
+            if agent not in metrics:
+                metrics[agent] = AgentPerformanceMetrics(agent_name=agent)
+        
+        return metrics
+
+    def _save_performance_metrics(self):
+        """Save performance metrics to file"""
+        metrics_file = self.comm_dir / 'performance' / 'agent_metrics.json'
+        try:
+            data = {}
+            for agent_name, metrics in self.performance_metrics.items():
+                metric_dict = asdict(metrics)
+                # Handle datetime serialization
+                if metric_dict.get('last_activity'):
+                    metric_dict['last_activity'] = metrics.last_activity.isoformat()
+                data[agent_name] = metric_dict
+            
+            with open(metrics_file, 'w') as f:
+                json.dump(data, f, indent=2, default=str)
+        except Exception as e:
+            logger.error(f"Error saving performance metrics: {e}")
+
+    def find_best_agent_for_task(self, task_request: TaskRequest) -> Optional[str]:
+        """
+        Advanced skill-based routing with load balancing and performance optimization
+        
+        Returns the best agent for the task based on:
+        1. Skill match and ratings
+        2. Current load and availability
+        3. Performance history
+        4. Task priority and deadline urgency
+        """
+        # Get available agents with required skills
+        candidate_agents = self._get_candidate_agents(task_request)
+        
+        if not candidate_agents:
+            logger.warning(f"No agents found with required skills: {[skill.value for skill in task_request.required_skills]}")
+            return None
+        
+        # Score each candidate agent
+        agent_scores = {}
+        for agent in candidate_agents:
+            score = self._calculate_agent_score(agent, task_request)
+            agent_scores[agent] = score
+            logger.debug(f"Agent {agent} score: {score:.3f}")
+        
+        # Select best agent
+        best_agent = max(agent_scores.items(), key=lambda x: x[1])[0]
+        
+        # Cache routing decision for analysis
+        self._cache_routing_decision(task_request, best_agent, agent_scores)
+        
+        logger.info(f"Selected agent {best_agent} for task {task_request.task_id} (score: {agent_scores[best_agent]:.3f})")
+        return best_agent
+
+    def _get_candidate_agents(self, task_request: TaskRequest) -> List[str]:
+        """Get agents that have the required skills for the task"""
+        candidates = []
+        
+        for agent, skills in self.agent_skills.items():
+            # Check if agent has all required skills
+            agent_skill_set = set(skills)
+            required_skill_set = set(task_request.required_skills)
+            
+            if required_skill_set.issubset(agent_skill_set):
+                # Check if agent is available (not overloaded)
+                metrics = self.performance_metrics.get(agent)
+                if metrics and metrics.current_load < metrics.max_concurrent_tasks:
+                    candidates.append(agent)
+        
+        return candidates
+
+    def _calculate_agent_score(self, agent: str, task_request: TaskRequest) -> float:
+        """
+        Calculate a comprehensive score for agent-task matching
+        
+        Score components:
+        1. Skill match quality (40%)
+        2. Load balancing factor (25%)
+        3. Performance history (20%)
+        4. Response time factor (15%)
+        """
+        metrics = self.performance_metrics.get(agent)
+        if not metrics:
+            return 0.0
+        
+        # 1. Skill match score (0.0 - 1.0)
+        skill_score = self._calculate_skill_match_score(agent, task_request)
+        
+        # 2. Load balancing score (higher is better for less loaded agents)
+        load_factor = 1.0 - (metrics.current_load / metrics.max_concurrent_tasks)
+        
+        # 3. Performance score based on success rate and completion time
+        performance_score = metrics.success_rate
+        if metrics.average_completion_time > 0:
+            # Normalize completion time (assume 60 min is baseline)
+            time_factor = min(1.0, 60.0 / metrics.average_completion_time)
+            performance_score = (performance_score + time_factor) / 2
+        
+        # 4. Response time score (faster response is better)
+        response_score = 1.0
+        if metrics.response_time_avg > 0:
+            # Normalize response time (assume 5 min is baseline)
+            response_score = min(1.0, 5.0 / metrics.response_time_avg)
+        
+        # 5. Priority urgency factor
+        priority_boost = 1.0
+        if task_request.priority == TaskPriority.CRITICAL:
+            priority_boost = 1.3
+        elif task_request.priority == TaskPriority.HIGH:
+            priority_boost = 1.1
+        
+        # 6. Deadline urgency factor
+        deadline_boost = 1.0
+        if task_request.deadline:
+            time_until_deadline = (task_request.deadline - datetime.now()).total_seconds() / 3600  # hours
+            if time_until_deadline < 2:  # Less than 2 hours
+                deadline_boost = 1.4
+            elif time_until_deadline < 24:  # Less than 24 hours
+                deadline_boost = 1.2
+        
+        # Weighted combination
+        final_score = (
+            skill_score * 0.40 +
+            load_factor * 0.25 +
+            performance_score * 0.20 +
+            response_score * 0.15
+        ) * priority_boost * deadline_boost
+        
+        return final_score
+
+    def _calculate_skill_match_score(self, agent: str, task_request: TaskRequest) -> float:
+        """Calculate how well an agent's skills match the task requirements"""
+        agent_skills = set(self.agent_skills.get(agent, []))
+        required_skills = set(task_request.required_skills)
+        
+        if not required_skills:
+            return 1.0
+        
+        # Base score from skill overlap
+        skill_overlap = len(agent_skills.intersection(required_skills))
+        base_score = skill_overlap / len(required_skills)
+        
+        # Enhanced score using skill ratings
+        metrics = self.performance_metrics.get(agent)
+        if metrics and metrics.skill_ratings:
+            weighted_score = 0.0
+            total_weight = 0.0
+            
+            for skill in required_skills:
+                weight = task_request.skill_weights.get(skill, 1.0)
+                rating = metrics.skill_ratings.get(skill.value, 0.5)  # Default rating
+                weighted_score += rating * weight
+                total_weight += weight
+            
+            if total_weight > 0:
+                enhanced_score = weighted_score / total_weight
+                # Combine base and enhanced scores
+                return (base_score + enhanced_score) / 2
+        
+        return base_score
+
+    def _cache_routing_decision(self, task_request: TaskRequest, selected_agent: str, agent_scores: Dict[str, float]):
+        """Cache routing decision for analysis and learning"""
+        routing_data = {
+            'task_id': task_request.task_id,
+            'task_type': task_request.task_type,
+            'required_skills': [skill.value for skill in task_request.required_skills],
+            'selected_agent': selected_agent,
+            'agent_scores': agent_scores,
+            'timestamp': datetime.now().isoformat(),
+            'priority': task_request.priority.value
+        }
+        
+        cache_file = self.comm_dir / 'routing' / f'routing_{datetime.now().strftime("%Y%m%d")}.json'
+        
+        # Append to daily routing log
+        routing_log = []
+        if cache_file.exists():
+            try:
+                with open(cache_file, 'r') as f:
+                    routing_log = json.load(f)
+            except Exception:
+                routing_log = []
+        
+        routing_log.append(routing_data)
+        
+        try:
+            with open(cache_file, 'w') as f:
+                json.dump(routing_log, f, indent=2)
+        except Exception as e:
+            logger.error(f"Error caching routing decision: {e}")
+
+    def route_task_with_load_balancing(self, task_request: TaskRequest) -> Optional[str]:
+        """
+        Route task with advanced load balancing and dynamic priority adjustment
+        """
+        # Adjust priority based on system load and task age
+        adjusted_task = self._adjust_task_priority(task_request)
+        
+        # Find best agent
+        selected_agent = self.find_best_agent_for_task(adjusted_task)
+        
+        if selected_agent:
+            # Update agent load
+            self._update_agent_load(selected_agent, 1)
+            
+            # Send task with enhanced metadata
+            self._send_task_assignment(selected_agent, adjusted_task)
+            
+            logger.info(f"Task {adjusted_task.task_id} routed to {selected_agent}")
+            return selected_agent
+        
+        return None
+
+    def _adjust_task_priority(self, task_request: TaskRequest) -> TaskRequest:
+        """Dynamically adjust task priority based on various factors"""
+        original_priority = task_request.priority
+        
+        # Age-based priority escalation
+        task_age_hours = (datetime.now() - task_request.created_at).total_seconds() / 3600
+        
+        if task_age_hours > 24 and original_priority != TaskPriority.CRITICAL:
+            # Escalate priority if task is old
+            if original_priority == TaskPriority.LOW:
+                task_request.priority = TaskPriority.MEDIUM
+            elif original_priority == TaskPriority.MEDIUM:
+                task_request.priority = TaskPriority.HIGH
+            elif original_priority == TaskPriority.HIGH:
+                task_request.priority = TaskPriority.CRITICAL
+            
+            logger.info(f"Escalated task {task_request.task_id} priority from {original_priority.value} to {task_request.priority.value} due to age")
+        
+        # System load-based adjustment
+        system_load = self._calculate_system_load()
+        if system_load > 0.8:  # High system load
+            # Lower priority for non-critical tasks to reduce load
+            if task_request.priority == TaskPriority.LOW:
+                # Keep low priority tasks low in high load
+                pass
+            elif task_request.priority in [TaskPriority.MEDIUM, TaskPriority.HIGH]:
+                # Slightly reduce urgency in high load unless critical
+                logger.debug(f"System under high load ({system_load:.2f}), maintaining priority for task {task_request.task_id}")
+        
+        # Deadline-based adjustment
+        if task_request.deadline:
+            time_until_deadline = (task_request.deadline - datetime.now()).total_seconds() / 3600
+            if time_until_deadline < 1 and task_request.priority != TaskPriority.CRITICAL:
+                task_request.priority = TaskPriority.CRITICAL
+                logger.info(f"Escalated task {task_request.task_id} to CRITICAL due to imminent deadline")
+        
+        return task_request
+
+    def _calculate_system_load(self) -> float:
+        """Calculate overall system load based on all agents"""
+        if not self.performance_metrics:
+            return 0.0
+        
+        total_load = 0
+        total_capacity = 0
+        
+        for metrics in self.performance_metrics.values():
+            total_load += metrics.current_load
+            total_capacity += metrics.max_concurrent_tasks
+        
+        return total_load / total_capacity if total_capacity > 0 else 0.0
+
+    def _send_task_assignment(self, agent: str, task_request: TaskRequest):
+        """Send enhanced task assignment with all metadata"""
+        task_data = {
+            'task_id': task_request.task_id,
+            'task_type': task_request.task_type,
+            'description': task_request.description,
+            'priority': task_request.priority.value,
+            'required_skills': [skill.value for skill in task_request.required_skills],
+            'estimated_duration': task_request.estimated_duration,
+            'deadline': task_request.deadline.isoformat() if task_request.deadline else None,
+            'retry_count': task_request.retry_count,
+            'max_retries': task_request.max_retries,
+            'skill_weights': {skill.value: weight for skill, weight in task_request.skill_weights.items()},
+            'assigned_at': datetime.now().isoformat(),
+            'assigned_by': self.agent_name
+        }
+        
+        self.send_message(agent, 'task_assignment', task_data)
+
+    def _update_agent_load(self, agent: str, load_change: int):
+        """Update agent's current load"""
+        if agent in self.performance_metrics:
+            self.performance_metrics[agent].current_load += load_change
+            self.performance_metrics[agent].current_load = max(0, self.performance_metrics[agent].current_load)
+            self._save_performance_metrics()
+
+    def update_agent_performance(self, agent: str, task_id: str, success: bool, 
+                                completion_time: float, skill_used: List[AgentSkill]):
+        """Update agent performance metrics based on task completion"""
+        if agent not in self.performance_metrics:
+            self.performance_metrics[agent] = AgentPerformanceMetrics(agent_name=agent)
+        
+        metrics = self.performance_metrics[agent]
+        
+        # Update basic metrics
+        if success:
+            metrics.tasks_completed += 1
+        else:
+            metrics.tasks_failed += 1
+        
+        # Update success rate
+        total_tasks = metrics.tasks_completed + metrics.tasks_failed
+        metrics.success_rate = metrics.tasks_completed / total_tasks if total_tasks > 0 else 1.0
+        
+        # Update average completion time
+        if success and completion_time > 0:
+            if metrics.average_completion_time == 0:
+                metrics.average_completion_time = completion_time
+            else:
+                # Exponential moving average
+                alpha = 0.3  # Learning rate
+                metrics.average_completion_time = (1 - alpha) * metrics.average_completion_time + alpha * completion_time
+        
+        # Update skill ratings based on performance
+        if success and skill_used:
+            for skill in skill_used:
+                current_rating = metrics.skill_ratings.get(skill.value, 0.5)
+                # Improve rating on success
+                improvement = 0.05 if completion_time < metrics.average_completion_time else 0.02
+                new_rating = min(1.0, current_rating + improvement)
+                metrics.skill_ratings[skill.value] = new_rating
+        elif not success and skill_used:
+            # Slightly decrease rating on failure
+            for skill in skill_used:
+                current_rating = metrics.skill_ratings.get(skill.value, 0.5)
+                new_rating = max(0.1, current_rating - 0.03)
+                metrics.skill_ratings[skill.value] = new_rating
+        
+        # Update load and activity
+        metrics.current_load = max(0, metrics.current_load - 1)
+        metrics.last_activity = datetime.now()
+        
+        # Save updated metrics
+        self._save_performance_metrics()
+        
+        logger.info(f"Updated performance for {agent}: success={success}, completion_time={completion_time:.1f}min, success_rate={metrics.success_rate:.2f}")
+
+    def get_agent_workload_report(self) -> Dict[str, Dict]:
+        """Generate comprehensive workload report for all agents"""
+        report = {}
+        system_load = self._calculate_system_load()
+        
+        for agent, metrics in self.performance_metrics.items():
+            agent_skills = self.agent_skills.get(agent, [])
+            
+            # Calculate agent utilization
+            utilization = metrics.current_load / metrics.max_concurrent_tasks if metrics.max_concurrent_tasks > 0 else 0
+            
+            # Get recent performance trend
+            performance_trend = "stable"
+            if metrics.success_rate > 0.9:
+                performance_trend = "excellent"
+            elif metrics.success_rate > 0.7:
+                performance_trend = "good"
+            elif metrics.success_rate > 0.5:
+                performance_trend = "fair"
+            else:
+                performance_trend = "poor"
+            
+            report[agent] = {
+                'current_load': metrics.current_load,
+                'max_capacity': metrics.max_concurrent_tasks,
+                'utilization_percent': round(utilization * 100, 1),
+                'success_rate': round(metrics.success_rate, 3),
+                'avg_completion_time_min': round(metrics.average_completion_time, 1),
+                'tasks_completed': metrics.tasks_completed,
+                'tasks_failed': metrics.tasks_failed,
+                'performance_trend': performance_trend,
+                'skills': [skill.value for skill in agent_skills],
+                'top_skills': self._get_top_skills(metrics),
+                'last_activity': metrics.last_activity.isoformat() if metrics.last_activity else None,
+                'availability': 'available' if utilization < 0.8 else 'busy' if utilization < 1.0 else 'overloaded'
+            }
+        
+        return {
+            'timestamp': datetime.now().isoformat(),
+            'system_load_percent': round(system_load * 100, 1),
+            'agents': report
+        }
+
+    def _get_top_skills(self, metrics: AgentPerformanceMetrics, top_n: int = 3) -> List[Dict[str, float]]:
+        """Get top N skills for an agent based on ratings"""
+        if not metrics.skill_ratings:
+            return []
+        
+        sorted_skills = sorted(metrics.skill_ratings.items(), key=lambda x: x[1], reverse=True)
+        return [{'skill': skill, 'rating': round(rating, 3)} for skill, rating in sorted_skills[:top_n]]
+
+    def optimize_task_distribution(self) -> Dict[str, List[str]]:
+        """
+        Analyze and suggest optimal task distribution strategies
+        """
+        recommendations = {}
+        
+        # Analyze current workload distribution
+        workload_report = self.get_agent_workload_report()
+        
+        overloaded_agents = []
+        underutilized_agents = []
+        
+        for agent, data in workload_report['agents'].items():
+            if data['utilization_percent'] > 90:
+                overloaded_agents.append(agent)
+            elif data['utilization_percent'] < 30:
+                underutilized_agents.append(agent)
+        
+        # Generate recommendations
+        recommendations['overloaded_agents'] = overloaded_agents
+        recommendations['underutilized_agents'] = underutilized_agents
+        
+        # Skill gap analysis
+        skill_coverage = {}
+        for skill in AgentSkill:
+            skill_coverage[skill.value] = []
+            for agent, skills in self.agent_skills.items():
+                if skill in skills:
+                    metrics = self.performance_metrics.get(agent)
+                    rating = metrics.skill_ratings.get(skill.value, 0.5) if metrics else 0.5
+                    skill_coverage[skill.value].append({'agent': agent, 'rating': rating})
+        
+        # Identify skills with low coverage or low ratings
+        weak_skills = []
+        for skill, agents in skill_coverage.items():
+            if len(agents) < 2:  # Less than 2 agents have this skill
+                weak_skills.append({'skill': skill, 'reason': 'low_coverage', 'agents': len(agents)})
+            elif agents and max(agent['rating'] for agent in agents) < 0.6:
+                weak_skills.append({'skill': skill, 'reason': 'low_expertise', 'max_rating': max(agent['rating'] for agent in agents)})
+        
+        recommendations['skill_gaps'] = weak_skills
+        recommendations['skill_coverage'] = skill_coverage
+        
+        # Save recommendations
+        rec_file = self.comm_dir / 'routing' / f'optimization_recommendations_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json'
+        try:
+            with open(rec_file, 'w') as f:
+                json.dump(recommendations, f, indent=2)
+        except Exception as e:
+            logger.error(f"Error saving optimization recommendations: {e}")
+        
+        return recommendations
+
+    def send_message(self, to_agent: str, message_type: str, content: Dict):
+        """Send message to another agent"""
+        message = {
+            'from': self.agent_name,
+            'to': to_agent,
+            'type': message_type,
+            'content': content,
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        # Use Redis for real-time messaging (Pub/Sub for notification)
+        pubsub_channel = f"agent_channel_{to_agent}"
+        try:
+            self.redis_client.publish(pubsub_channel, json.dumps(message))
+        except Exception as e:
+            print(f"Error publishing message to Redis Pub/Sub channel {pubsub_channel} for agent {to_agent}: {e}")
+
+        # Add to Redis list for inbox processing
+        redis_list_key = f"agent_inbox_list:{to_agent}"
+        try:
+            self.redis_client.lpush(redis_list_key, json.dumps(message))
+        except Exception as e:
+            print(f"Error LPUSHing message to Redis list {redis_list_key} for agent {to_agent}: {e}")
+            # Fallback: If Redis list push fails, ensure it is definitely on disk as the primary alternative.
+            # The current logic already writes to disk unconditionally later, which covers this.
+
+        # Also save to filesystem for persistence
+        inbox_path = self.comm_dir / 'inbox' / to_agent
+        inbox_path.mkdir(parents=True, exist_ok=True) # Ensure target agent's inbox exists
+        
+        filename = f"{self.agent_name}_to_{to_agent}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.json"
+        with open(inbox_path / filename, 'w') as f:
+            json.dump(message, f, indent=2)
+    
+    def read_messages(self) -> List[Dict]:
+        """Read all unread messages for this agent from its Redis list inbox and then filesystem inbox."""
+        all_messages: List[Dict] = [] # Explicit type
+        # processed_message_ids_from_redis = set() # For future deduplication if complex scenarios arise
+
+        # 1. Read from Redis List Inbox
+        redis_list_key = f"agent_inbox_list:{self.agent_name}"
+        try:
+            # Atomically get all messages and clear the list to avoid race conditions with multiple workers (if any)
+            # or to ensure messages are definitively removed once fetched.
+            # Using a pipeline for atomicity of lrange and del.
+            pipe = self.redis_client.pipeline()
+            pipe.lrange(redis_list_key, 0, -1)  # Get all items
+            pipe.delete(redis_list_key)         # Delete the list
+            redis_messages_raw, _ = pipe.execute()
+
+            if redis_messages_raw:
+                for raw_message in reversed(redis_messages_raw): # LPUSH/LRANGE means newest is at head (index 0). Reverse to get chronological.
+                                                                 # If using RPOP in a loop, no reverse needed for chronological.
+                                                                 # Let's assume LPUSH -> newest at head. If processing order matters, consider RPOP or reversing LRANGE results.
+                                                                 # For typical inbox, newest last (append) or oldest first (pop from other end).
+                                                                 # LPUSH adds to left (head). LRANGE 0 -1 gets all, left to right.
+                                                                 # To process in order of arrival (oldest first), assuming LPUSH = newest first:
+                                                                 # Option A: LRANGE then reverse the client-side list. (current choice)
+                                                                 # Option B: Use RPOPLPUSH to a temporary list then process, or multiple RPOP.
+                    try:
+                        message_data = json.loads(raw_message.decode('utf-8') if isinstance(raw_message, bytes) else raw_message)
+                        all_messages.append(message_data)
+                    except json.JSONDecodeError as e:
+                        print(f"Error decoding JSON from Redis message for agent {self.agent_name}: {raw_message}, error: {e}")
+        except Exception as e:
+            print(f"Error reading messages from Redis list {redis_list_key} for agent {self.agent_name}: {e}")
+
+        # 2. Read from Filesystem Inbox
+        inbox_path = self.comm_dir / 'inbox' / self.agent_name
+        if inbox_path.exists():
+            processed_dir = inbox_path / 'processed'
+            processed_dir.mkdir(parents=True, exist_ok=True)
+            
+            for msg_file in inbox_path.glob('*.json'):
+                if msg_file.is_file(): # Ensure it's a file, not the 'processed' directory
+                    try:
+                        with open(msg_file, 'r') as f:
+                            message_data = json.load(f)
+                        # Basic deduplication could be added here if messages had unique IDs and were reliably written to both Redis & FS
+                        # For now, appending all; assumes Redis clear + FS move prevents most duplicates in practice.
+                        all_messages.append(message_data)
+                        
+                        # Move to processed
+                        msg_file.rename(processed_dir / msg_file.name)
+                    except Exception as e:
+                        # Handle cases like file being moved or deleted during processing, or JSON errors
+                        print(f"Error processing message file {msg_file.name}: {e}") 
+                        # Optionally log this error properly
+                        pass # Continue to next file
+        
+        return all_messages
+    
+    def update_status(self, status: str, progress: int, details: Dict = None):
+        """Update agent's current status"""
+        status_data = {
+            'agent': self.agent_name,
+            'status': status,
+            'progress': progress,
+            'details': details or {},
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        # Update in Redis for real-time monitoring
+        self.redis_client.setex(
+            f"agent_status_{self.agent_name}",
+            300,  # 5 minute TTL
+            json.dumps(status_data)
+        )
+        
+        # Save to filesystem
+        status_file = self.comm_dir / 'status' / f'{self.agent_name}_status.json'
+        with open(status_file, 'w') as f:
+            json.dump(status_data, f, indent=2)
+    
+    def share_knowledge(self, knowledge_type: str, content: Dict):
+        """Share learned patterns or discoveries with all agents"""
+        knowledge = {
+            'contributor': self.agent_name,
+            'type': knowledge_type,
+            'content': content,
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        kb_dir = self.comm_dir / 'knowledge-base'
+        kb_dir.mkdir(parents=True, exist_ok=True) # Ensure it exists
+        filename = f"{knowledge_type}_{self.agent_name}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.json"
+        
+        with open(kb_dir / filename, 'w') as f:
+            json.dump(knowledge, f, indent=2)
+        
+        # Notify all agents via Redis (e.g., a dashboard could listen to this)
+        self.redis_client.publish('knowledge_updates', json.dumps({
+            'type': 'new_knowledge',
+            'file': str(kb_dir / filename), # Send full path or relative as needed
+            'contributor': self.agent_name
+        }))
+    
+    def get_all_agent_statuses(self) -> Dict[str, Dict]:
+        """Get current status of all agents from filesystem"""
+        statuses = {}
+        status_dir = self.comm_dir / 'status'
+        
+        if status_dir.exists():
+            for status_file in status_dir.glob('*_status.json'):
+                if status_file.is_file():
+                    with open(status_file, 'r') as f:
+                        try:
+                            data = json.load(f)
+                            statuses[data['agent']] = data
+                        except json.JSONDecodeError:
+                            print(f"Warning: Could not decode JSON from status file: {status_file.name}")
+                            # Optionally log this error
+        
+        return statuses
+
+    def listen_for_messages(self, callback, channels: Optional[List[str]] = None):
+        """Listen to Redis pub/sub channels for real-time messages."""
+        if channels is None:
+            channels = [f"agent_channel_{self.agent_name}", "knowledge_updates"]
+
+        pubsub = self.redis_client.pubsub()
+        for channel in channels:
+            pubsub.subscribe(channel)
+        
+        print(f"{self.agent_name} listening for messages on channels: {', '.join(channels)}")
+        for message in pubsub.listen():
+            if message['type'] == 'message':
+                try:
+                    data = json.loads(message['data'])
+                    callback(message['channel'], data)
+                except json.JSONDecodeError:
+                    print(f"Error decoding JSON from Redis message: {message['data']}")
+                except Exception as e:
+                    print(f"Error in message callback: {e}")
+
+    def broadcast_emergency_alert(self, system_component: str, reported_status: str, alert_details: Optional[Dict] = None, action_request: str = 'STOP_ALL_WORK'):
+        """Broadcast an emergency alert to other agents and a dedicated Redis channel."""
+        emergency_msg_content = {
+            'severity': 'CRITICAL',
+            'system_component': system_component,
+            'reported_status': reported_status,
+            'details': alert_details or {},
+            'detected_by': self.agent_name,
+            'detected_at': datetime.now().isoformat(),
+            'action_request': action_request
+        }
+
+        # Define a list of agents to notify. 
+        # This could be externalized to a config file or managed by an orchestrator in a more advanced setup.
+        # For now, using the list from the user's example, excluding the sender itself.
+        agents_to_notify = ['orchestrator', 'sms_engineer', 'phone_engineer', 'memory_engineer', 'test_engineer']
+        
+        print(f"EMERGENCY BROADCAST by {self.agent_name}: System {system_component} reported as {reported_status}. Action: {action_request}")
+
+        for agent_name in agents_to_notify:
+            if agent_name != self.agent_name: # Avoid sending to self, though send_message doesn't prevent it
+                try:
+                    self.send_message(
+                        to_agent=agent_name, 
+                        message_type='emergency_alert', # Using a more generic type than 'emergency_stop'
+                        content=emergency_msg_content
+                    )
+                    print(f"Sent emergency alert to {agent_name}")
+                except Exception as e:
+                    print(f"Failed to send emergency alert to {agent_name}: {e}")
+            
+        # Also use Redis pub/sub for immediate global notification
+        try:
+            self.redis_client.publish('karen_emergency_channel', json.dumps(emergency_msg_content))
+            print(f"Published emergency alert to Redis channel 'karen_emergency_channel'")
+        except Exception as e:
+            print(f"Failed to publish emergency alert to Redis: {e}") 

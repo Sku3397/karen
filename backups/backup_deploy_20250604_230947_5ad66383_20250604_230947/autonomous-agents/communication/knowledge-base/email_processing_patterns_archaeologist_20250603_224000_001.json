@@ -1,0 +1,118 @@
+{
+  "contributor": "archaeologist",
+  "type": "email_processing_patterns",
+  "content": {
+    "gmail_api_integration": {
+      "authentication_flow": {
+        "scopes_required": [
+          "https://www.googleapis.com/auth/gmail.send",
+          "https://www.googleapis.com/auth/gmail.compose", 
+          "https://www.googleapis.com/auth/gmail.readonly",
+          "https://www.googleapis.com/auth/gmail.modify"
+        ],
+        "token_storage": "PROJECT_ROOT relative paths",
+        "refresh_mechanism": "Automatic via Google Auth Request",
+        "error_handling": "RefreshError for invalid tokens"
+      },
+      "email_fetching": {
+        "search_criteria_pattern": "Build Gmail queries with UNREAD, dates, labels",
+        "query_examples": [
+          "UNREAD after:2024/01/01",
+          "-label:Karen_Processed",
+          "is:unread"
+        ],
+        "batch_processing": "Process emails independently with error isolation",
+        "result_structure": "List[Dict] with headers, body, uid, attachments"
+      },
+      "email_sending": {
+        "mime_construction": "MIMEText for plain text messages",
+        "encoding": "base64.urlsafe_b64encode for Gmail API",
+        "message_structure": "{'raw': encoded_message}",
+        "error_handling": "HttpError with status code specific handling"
+      }
+    },
+    "label_management": {
+      "processed_tracking": {
+        "label_name": "Karen_Processed",
+        "purpose": "Prevent reprocessing of handled emails",
+        "implementation": "mark_email_as_processed method",
+        "search_exclusion": "-label:Karen_Processed in queries"
+      },
+      "label_operations": {
+        "creation": "Create label if doesn't exist",
+        "application": "Apply to message by UID",
+        "caching": "_label_id_cache for performance"
+      }
+    },
+    "response_generation_flow": {
+      "classification_step": {
+        "engine": "HandymanResponseEngine",
+        "classifications": [
+          "is_emergency",
+          "services_mentioned",
+          "is_quote_request", 
+          "is_appointment_request"
+        ],
+        "service_detection": "Keyword matching against service categories",
+        "emergency_keywords": ["emergency", "urgent", "flood", "burst pipe"]
+      },
+      "llm_integration": {
+        "model": "gemini-2.5-flash-preview-05-20",
+        "system_prompt": "Loaded from llm_system_prompt.txt",
+        "dynamic_variables": "{{current_date}} substitution",
+        "async_bridge": "asyncio.to_thread for sync methods in async context"
+      },
+      "calendar_check": {
+        "trigger_condition": "intent == 'schedule_appointment'",
+        "availability_check": "get_calendar_availability method",
+        "conflict_detection": "Compare requested time with busy slots",
+        "event_creation": "create_calendar_event with attendees"
+      }
+    },
+    "error_handling_patterns": {
+      "api_errors": {
+        "http_error_handling": "Status-specific logic (401, 403, 404)",
+        "content_extraction": "Decode error.content if bytes",
+        "logging": "logger.error with exc_info=True",
+        "admin_notification": "send_admin_email for critical failures"
+      },
+      "processing_isolation": {
+        "individual_email_try_catch": "Continue processing on single email failure",
+        "batch_continuation": "Don't stop entire batch for one error",
+        "labeling_guarantee": "Mark as processed even if processing fails"
+      }
+    },
+    "monitoring_and_logging": {
+      "task_scheduling": {
+        "frequency": "Every 2 minutes via Celery Beat",
+        "task_name": "check_emails_task",
+        "async_execution": "asyncio.run in Celery task"
+      },
+      "logging_patterns": {
+        "entry_exit": "Log start and completion of operations",
+        "debug_markers": "PRINT_DEBUG for critical checkpoints",
+        "special_markers": "योगFINISHED for task completion visibility"
+      },
+      "status_tracking": {
+        "agent_communication": "AgentCommunication for status updates",
+        "progress_reporting": "Percentage-based progress tracking",
+        "phase_tracking": "Detailed phase information in status"
+      }
+    },
+    "configuration_management": {
+      "environment_variables": {
+        "secretary_email": "SECRETARY_EMAIL_ADDRESS",
+        "monitored_email": "MONITORED_EMAIL_ACCOUNT", 
+        "admin_email": "ADMIN_EMAIL_ADDRESS",
+        "token_paths": "SECRETARY_TOKEN_PATH, MONITORED_EMAIL_TOKEN_PATH",
+        "api_keys": "GEMINI_API_KEY"
+      },
+      "early_loading": {
+        "celery_context": "Load .env before Celery imports",
+        "path_resolution": "PROJECT_ROOT calculation for consistent paths",
+        "override_mode": "load_dotenv with override=True"
+      }
+    }
+  },
+  "timestamp": "2025-06-03T22:40:00.000000"
+}

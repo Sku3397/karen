@@ -18,6 +18,7 @@ try:
 
     from test_engineer import main as test_engineer_main
     from dotenv import load_dotenv
+    from src.agent_activity_logger import AgentActivityLogger
 except ImportError as e:
     print(f"Error importing necessary modules: {e}")
     project_root_defined = 'PROJECT_ROOT' in locals() or 'PROJECT_ROOT' in globals()

@@ -1,0 +1,19 @@
+{
+  "training_modules": [
+    "security_awareness",
+    "secure_coding",
+    "incident_response",
+    "compliance_requirements"
+  ],
+  "delivery_methods": [
+    "online_courses",
+    "hands_on_workshops",
+    "tabletop_exercises",
+    "security_briefings"
+  ],
+  "assessment_criteria": {
+    "knowledge_tests": "monthly",
+    "practical_exercises": "quarterly",
+    "security_certifications": "annually"
+  }
+}
